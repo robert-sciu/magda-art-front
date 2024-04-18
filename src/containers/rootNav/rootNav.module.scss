@@ -1,0 +1,33 @@
+@import "../../../styles/variables.scss";
+
+.navBar {
+  width: 100%;
+  font-size: $size-s;
+  display: flex;
+  position: absolute;
+  top: 0;
+  justify-content: space-between;
+  padding: $size-xxs $size-m;
+  background-color: $nav-gray;
+  box-shadow: 2px 0px 10px $white-shadow;
+  ul {
+    display: flex;
+    list-style: none;
+    gap: $size-m;
+  }
+}
+
+.navLink {
+  color: $secondary-color;
+  transition: all 0.2s ease-in;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: $secondary-color--hover;
+}
+
+.navLinkActive {
+  color: $secondary-color--hover;
+  text-decoration: none;
+}

@@ -1,0 +1,62 @@
+@import "../../../../styles/variables.scss";
+
+.heroSection {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  z-index: -50;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.329);
+    z-index: -30;
+  }
+
+  .heading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      width: 25%;
+      border-radius: $border-radius-small;
+      box-shadow: 2px 0px 10px $white-shadow;
+      margin-bottom: $size-xl;
+    }
+
+    h1 {
+      font-family: "Dancing Script Variable", cursive;
+      font-size: $size-xxl;
+      color: $main-heading-color;
+      text-align: center;
+      text-wrap: nowrap;
+    }
+
+    h2 {
+      color: $main-heading-color;
+      font-size: $size-l;
+      font-weight: 400;
+    }
+  }
+
+  .heroImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -50;
+  }
+}

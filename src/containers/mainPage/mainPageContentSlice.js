@@ -1,0 +1,42 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {
+  managePendingState,
+  manageFulfilledState,
+  manageRejectedState,
+} from "../../utilities";
+
+export const fetchContent = createAsyncThunk(
+  "mainPageContent/fetchContent",
+  async () => {
+    const content = await fetch("http://localhost:4000/api/v1/contents");
+    const data = await content.json();
+    return data;
+  }
+);
+
+export const mainPageContentSlice = createSlice({
+  name: "mainPageContent",
+  initialState: {
+    content: {},
+    isLoadingContent: false,
+    hasError: false,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    // fetch content cases ////////////////////////////////////////////////////////////
+    builder.addCase(fetchContent.pending, managePendingState);
+    builder.addCase(fetchContent.fulfilled, (state, action) => {
+      manageFulfilledState(state);
+
+      action.payload.data.forEach(
+        (contentObject) =>
+          (state.content[contentObject.heading] = contentObject.content)
+      );
+    });
+    builder.addCase(fetchContent.rejected, manageRejectedState);
+  },
+});
+
+export const selectAllContent = (state) => state.mainPageContent.content;
+
+export default mainPageContentSlice.reducer;
