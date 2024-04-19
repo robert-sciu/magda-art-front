@@ -3,6 +3,7 @@ import {
   managePendingState,
   manageFulfilledState,
   manageRejectedState,
+  createImageObject,
 } from "../../utilities";
 
 export const fetchPageImages = createAsyncThunk(
@@ -17,7 +18,7 @@ export const fetchPageImages = createAsyncThunk(
 export const mainPageImagesSlice = createSlice({
   name: "mainPageImages",
   initialState: {
-    pageImages: {},
+    pageImages: { welcome: {} },
     isLoadingContent: false,
     hasError: false,
   },
@@ -28,14 +29,16 @@ export const mainPageImagesSlice = createSlice({
     builder.addCase(fetchPageImages.fulfilled, (state, action) => {
       manageFulfilledState(state);
 
-      action.payload.data.forEach(
-        (imageObject) =>
-          (state.pageImages[imageObject.section] = {
-            url: imageObject.url,
-            name: imageObject.name,
-          })
-      );
+      action.payload.data.forEach((imageObject) => {
+        if (imageObject.role === "welcome") {
+          state.pageImages[imageObject.role][imageObject.name] =
+            createImageObject(imageObject);
+          return;
+        }
+        state.pageImages[imageObject.role] = createImageObject(imageObject);
+      });
     });
+
     builder.addCase(fetchPageImages.rejected, manageRejectedState);
   },
 });
@@ -43,5 +46,7 @@ export const mainPageImagesSlice = createSlice({
 export const selectAllPageImages = (state) => state.mainPageImages.pageImages;
 export const selectHeroImage = (state) => state.mainPageImages.pageImages.hero;
 export const selectLogoImage = (state) => state.mainPageImages.pageImages.logo;
+export const selectWelcomeImages = (state) =>
+  state.mainPageImages.pageImages.welcome;
 
 export default mainPageImagesSlice.reducer;

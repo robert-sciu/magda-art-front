@@ -38,5 +38,8 @@ export const mainPageContentSlice = createSlice({
 });
 
 export const selectAllContent = (state) => state.mainPageContent.content;
+export const selectName = (state) => state.mainPageContent.content.name;
+export const selectWelcome = (state) => state.mainPageContent.content.welcome;
+export const selectBio = (state) => state.mainPageContent.content.bio;
 
 export default mainPageContentSlice.reducer;

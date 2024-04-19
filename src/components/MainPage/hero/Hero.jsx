@@ -4,10 +4,12 @@ import {
   selectHeroImage,
   selectLogoImage,
 } from "../../../containers/mainPage/mainPageImagesSlice";
+import { selectName } from "../../../containers/mainPage/mainPageContentSlice";
 
 export default function Hero() {
   const heroImage = useSelector(selectHeroImage);
   const logoImage = useSelector(selectLogoImage);
+  const name = useSelector(selectName);
   return (
     <div className={styles.heroSection}>
       <div className={styles.heading}>
@@ -20,7 +22,7 @@ export default function Hero() {
         ) : (
           "loading"
         )}
-        <h1>Magdalena Mędzkiewicz</h1>
+        <h1>{name}</h1>
         <h2>Porfolio</h2>
       </div>
 

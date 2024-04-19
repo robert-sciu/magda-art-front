@@ -12,3 +12,7 @@ export function manageRejectedState(state) {
   state.isLoadingContent = false;
   state.hasError = true;
 }
+
+export function createImageObject(imageObject) {
+  return { url: imageObject.url, name: imageObject.name, id: imageObject.id };
+}
