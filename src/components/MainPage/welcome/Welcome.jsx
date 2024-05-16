@@ -7,7 +7,7 @@ export default function Welcome() {
   const welcomeText = useSelector(selectWelcome);
   return (
     <div className={styles.gridContainer}>
-      <div>
+      <div className={styles.welcomeContent}>
         <h2>Welcome</h2>
         <p>{welcomeText}</p>
       </div>

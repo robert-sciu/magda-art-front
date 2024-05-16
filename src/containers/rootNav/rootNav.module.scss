@@ -2,32 +2,92 @@
 
 .navBar {
   width: 100%;
-  font-size: $size-s;
+  font-size: $size-m;
   display: flex;
   position: absolute;
   top: 0;
-  justify-content: space-between;
   padding: $size-xxs $size-m;
-  background-color: $nav-gray;
+  background-color: $main-white;
   box-shadow: 2px 0px 10px $white-shadow;
   ul {
     display: flex;
     list-style: none;
-    gap: $size-m;
+    gap: $size-xl;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
+}
+
+.logo {
+  width: $size-xxl;
+  position: relative;
+  border-radius: $border-radius-xs;
+  img {
+    position: relative;
+    z-index: 10;
+    border-radius: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.4rem;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      #ff0000,
+      #00ff00,
+      #0000ff,
+      rgb(255, 255, 0),
+      rgb(255, 0, 255)
+    );
+    animation: rotateGlow 15s linear infinite;
+  }
+  &::before {
+    opacity: 0.1;
+  }
+  &::after {
+    opacity: 0.5;
+    filter: blur($size-s);
+  }
+}
+
+@keyframes rotateGlow {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
   }
 }
 
 .navLink {
-  color: $secondary-color;
-  transition: all 0.2s ease-in;
+  color: $main-black;
+  transition: $link-transition;
   text-decoration: none;
 }
 
 .navLink:hover {
-  color: $secondary-color--hover;
+  color: $main-gray;
 }
 
 .navLinkActive {
-  color: $secondary-color--hover;
+  color: $main-gray;
   text-decoration: none;
+}
+.socials {
+  display: flex;
+  align-items: center;
+  gap: $size-s;
+  img {
+    height: $size-xl;
+    width: $size-xl;
+    filter: $main-black--filter;
+    transition: $link-transition;
+  }
+  img:hover {
+    filter: $main-gray--filter;
+  }
 }

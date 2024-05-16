@@ -18,7 +18,7 @@ export const fetchPageImages = createAsyncThunk(
 export const mainPageImagesSlice = createSlice({
   name: "mainPageImages",
   initialState: {
-    pageImages: { welcome: {} },
+    pageImages: { welcome: {}, socials: {} },
     isLoadingContent: false,
     hasError: false,
   },
@@ -28,9 +28,9 @@ export const mainPageImagesSlice = createSlice({
     builder.addCase(fetchPageImages.pending, managePendingState);
     builder.addCase(fetchPageImages.fulfilled, (state, action) => {
       manageFulfilledState(state);
-
+      const roles = Object.keys(state.pageImages);
       action.payload.data.forEach((imageObject) => {
-        if (imageObject.role === "welcome") {
+        if (roles.includes(imageObject.role)) {
           state.pageImages[imageObject.role][imageObject.name] =
             createImageObject(imageObject);
           return;
@@ -48,5 +48,7 @@ export const selectHeroImage = (state) => state.mainPageImages.pageImages.hero;
 export const selectLogoImage = (state) => state.mainPageImages.pageImages.logo;
 export const selectWelcomeImages = (state) =>
   state.mainPageImages.pageImages.welcome;
+export const selectSocialsIcons = (state) =>
+  state.mainPageImages.pageImages.socials;
 
 export default mainPageImagesSlice.reducer;

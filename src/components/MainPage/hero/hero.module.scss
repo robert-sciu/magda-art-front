@@ -30,7 +30,7 @@
 
     img {
       width: 25%;
-      border-radius: $border-radius-small;
+      border-radius: $border-radius-s;
       box-shadow: 2px 0px 10px $white-shadow;
       margin-bottom: $size-xl;
     }
@@ -38,13 +38,13 @@
     h1 {
       font-family: "Dancing Script Variable", cursive;
       font-size: $size-xxl;
-      color: $main-heading-color;
+      color: $main-white;
       text-align: center;
       text-wrap: nowrap;
     }
 
     h2 {
-      color: $main-heading-color;
+      color: $main-white;
       font-size: $size-l;
       font-weight: 400;
     }

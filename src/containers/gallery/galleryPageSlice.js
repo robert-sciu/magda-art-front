@@ -10,7 +10,6 @@ export const fetchImages = createAsyncThunk(
   async () => {
     const images = await fetch("http://localhost:4000/api/v1/paintings");
     const data = await images.json();
-    console.log(data);
     return data;
   }
 );

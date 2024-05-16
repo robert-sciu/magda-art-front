@@ -1,11 +1,17 @@
-$main-heading-color: #dfdfdf;
-$primary-color: #1a1a1a;
-$secondary-color: #dfdfdf;
+$main-white: #dfdfdf;
+$main-black: #1a1a1a;
+$main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
+  brightness(99%) contrast(85%);
+$main-gray: #5e5e5e;
+$main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
+  brightness(93%) contrast(91%);
 $secondary-color--hover: #f5f5f5;
 $background-primary: #e0e0e0;
 $background-secondary: #d4d4d4;
-$nav-gray: #474747c2;
 $white-shadow: #d1d1d1ab;
+
+// widths
+$main-content-width: 1440px;
 
 // font and gap sizes
 
@@ -21,4 +27,16 @@ $size-xxxs: 0.9rem;
 
 // border radii
 
-$border-radius-small: 0.4rem;
+$border-radius-s: 0.4rem;
+$border-radius-xs: 0.2rem;
+
+// properties
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+// transitions
+$link-transition: all 0.2s ease-in;

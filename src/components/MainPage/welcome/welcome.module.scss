@@ -1,12 +1,26 @@
 @import "../../../../styles/variables.scss";
 
 .gridContainer {
-  width: 1440px;
+  width: $main-content-width;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 3fr 2fr;
   gap: $size-xl;
+  padding: $size-xxl 0;
 
-  p {
+  .welcomeContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: $size-l;
+    color: $main-black;
+
+    h2 {
+      font-size: $size-xl;
+    }
+
+    p {
+      font-size: $size-m;
+    }
   }
 }
