@@ -1,0 +1,11 @@
+@import "../../../../styles/variables.scss";
+
+.bioGallery {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: $size-xxxxs;
+  margin: $size-xxxxs;
+  border-top-left-radius: $size-xxxs;
+  border-bottom-left-radius: $size-xxxs;
+}

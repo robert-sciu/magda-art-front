@@ -1,0 +1,20 @@
+.paralax {
+  min-height: 70vh;
+  background-attachment: fixed;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+
+  justify-content: center;
+
+  background-position: 100% calc(40% + 50px);
+  h2 {
+    color: rgb(255, 255, 255);
+    font-size: 17rem;
+    mix-blend-mode: difference;
+    z-index: 3;
+    /* box-shadow: 0 0 3rem 3rem black; */
+  }
+}

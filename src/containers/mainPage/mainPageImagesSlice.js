@@ -18,7 +18,7 @@ export const fetchPageImages = createAsyncThunk(
 export const mainPageImagesSlice = createSlice({
   name: "mainPageImages",
   initialState: {
-    pageImages: { welcome: {}, socials: {} },
+    pageImages: { welcome: {}, bio: {}, socials: {} },
     isLoadingContent: false,
     hasError: false,
   },
@@ -27,7 +27,6 @@ export const mainPageImagesSlice = createSlice({
     // fetch content cases ////////////////////////////////////////////////////////////
     builder.addCase(fetchPageImages.pending, managePendingState);
     builder.addCase(fetchPageImages.fulfilled, (state, action) => {
-      manageFulfilledState(state);
       const roles = Object.keys(state.pageImages);
       action.payload.data.forEach((imageObject) => {
         if (roles.includes(imageObject.role)) {
@@ -37,6 +36,7 @@ export const mainPageImagesSlice = createSlice({
         }
         state.pageImages[imageObject.role] = createImageObject(imageObject);
       });
+      manageFulfilledState(state);
     });
 
     builder.addCase(fetchPageImages.rejected, manageRejectedState);
@@ -48,7 +48,10 @@ export const selectHeroImage = (state) => state.mainPageImages.pageImages.hero;
 export const selectLogoImage = (state) => state.mainPageImages.pageImages.logo;
 export const selectWelcomeImages = (state) =>
   state.mainPageImages.pageImages.welcome;
+export const selectBioImages = (state) => state.mainPageImages.pageImages.bio;
 export const selectSocialsIcons = (state) =>
   state.mainPageImages.pageImages.socials;
+export const selectParalaxImage = (state) =>
+  state.mainPageImages.pageImages.paralax;
 
 export default mainPageImagesSlice.reducer;

@@ -1,32 +1,34 @@
 $main-white: #dfdfdf;
-$main-black: #1a1a1a;
+$main-black: #202020;
 $main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
   brightness(99%) contrast(85%);
 $main-gray: #5e5e5e;
+$main-light-gray: rgb(190, 190, 190);
 $main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
   brightness(93%) contrast(91%);
 $secondary-color--hover: #f5f5f5;
 $background-primary: #e0e0e0;
 $background-secondary: #d4d4d4;
 $white-shadow: #d1d1d1ab;
+$dark-shadow: rgba(85, 85, 85, 0.432);
 
 // widths
 $main-content-width: 1440px;
 
 // font and gap sizes
-
+$size-xxxl: 11rem;
 $size-xxl: 9rem;
 $size-xl: 6.7rem;
-$size-xl: 5rem;
 $size-l: 4rem;
 $size-m: 2.8rem;
 $size-s: 2.2rem;
 $size-xs: 1.6rem;
 $size-xxs: 1.2rem;
 $size-xxxs: 0.9rem;
+$size-xxxxs: 0.6rem;
 
 // border radii
-
+$border-radius-m: 0.8rem;
 $border-radius-s: 0.4rem;
 $border-radius-xs: 0.2rem;
 
@@ -40,3 +42,18 @@ $border-radius-xs: 0.2rem;
 
 // transitions
 $link-transition: all 0.2s ease-in;
+
+// often repeated elements:
+
+.bioGalleryItem {
+  width: 100%;
+  position: relative;
+
+  img {
+    background-size: cover;
+    background-repeat: no-repeat;
+    object-fit: cover; /* Prevents images from overflowing */
+    width: 100%;
+    height: 100%;
+  }
+}

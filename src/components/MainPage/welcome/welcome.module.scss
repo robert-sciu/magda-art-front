@@ -16,11 +16,26 @@
     color: $main-black;
 
     h2 {
-      font-size: $size-xl;
+      font-size: $size-l;
     }
 
     p {
-      font-size: $size-m;
+      font-size: $size-s;
+    }
+  }
+
+  .socials {
+    display: flex;
+    align-items: center;
+    gap: $size-m;
+    img {
+      height: $size-xxxl;
+      width: $size-xxxl;
+      filter: $main-black--filter;
+      transition: $link-transition;
+    }
+    img:hover {
+      filter: $main-gray--filter;
     }
   }
 }

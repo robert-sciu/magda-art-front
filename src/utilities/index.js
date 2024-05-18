@@ -14,5 +14,10 @@ export function manageRejectedState(state) {
 }
 
 export function createImageObject(imageObject) {
-  return { url: imageObject.url, name: imageObject.name, id: imageObject.id };
+  return {
+    url: imageObject.url,
+    name: imageObject.name,
+    id: imageObject.id,
+    placement: imageObject.placement ?? undefined,
+  };
 }

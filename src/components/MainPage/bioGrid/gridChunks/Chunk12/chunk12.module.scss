@@ -1,0 +1,12 @@
+@import "../../../../../../styles/variables.scss";
+.grid12 {
+  display: grid;
+  gap: $size-xxxxs;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .imgXlL {
+    grid-column: 1/2;
+    grid-row: 1/3;
+  }
+}

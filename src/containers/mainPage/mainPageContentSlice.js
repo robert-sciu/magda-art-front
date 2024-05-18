@@ -26,12 +26,11 @@ export const mainPageContentSlice = createSlice({
     // fetch content cases ////////////////////////////////////////////////////////////
     builder.addCase(fetchContent.pending, managePendingState);
     builder.addCase(fetchContent.fulfilled, (state, action) => {
-      manageFulfilledState(state);
-
       action.payload.data.forEach(
         (contentObject) =>
           (state.content[contentObject.heading] = contentObject.content)
       );
+      manageFulfilledState(state);
     });
     builder.addCase(fetchContent.rejected, manageRejectedState);
   },

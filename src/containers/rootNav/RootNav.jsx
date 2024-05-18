@@ -1,14 +1,11 @@
 import { NavLink, Outlet } from "react-router-dom";
 import styles from "./rootNav.module.scss";
-import {
-  selectLogoImage,
-  selectSocialsIcons,
-} from "../mainPage/mainPageImagesSlice";
+import { selectLogoImage } from "../mainPage/mainPageImagesSlice";
 import { useSelector } from "react-redux";
+import SocialIcons from "../../components/MainPage/socialIcons/SocialIcons";
 export default function Root() {
   const logo = useSelector(selectLogoImage);
-  const socials = useSelector(selectSocialsIcons);
-  console.log(socials);
+
   return (
     <>
       <div className={styles.navBar}>
@@ -70,12 +67,7 @@ export default function Root() {
           </li>
         </ul>
         <div className={styles.socials}>
-          <NavLink to="https://instagram.com" target="blank">
-            <img src={socials.instagram?.url} alt="instagram icon" />
-          </NavLink>
-          <NavLink to="https://facebook.com">
-            <img src={socials.facebook?.url} alt="facebook icon" />
-          </NavLink>
+          <SocialIcons />
         </div>
       </div>
       <Outlet />
