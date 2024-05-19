@@ -21,3 +21,7 @@ export function createImageObject(imageObject) {
     placement: imageObject.placement ?? undefined,
   };
 }
+
+export function matchTextToImage(imagePlacement, visualizationTexts) {
+  return visualizationTexts[`visualization${imagePlacement}`]["content"];
+}

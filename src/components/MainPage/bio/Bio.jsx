@@ -10,7 +10,7 @@ export default function Bio() {
       <div className={styles.gridContainer}>
         <BioGrid />
         <div className={styles.bioContent}>
-          <h2>Bio</h2>
+          <h2>Magdalena Mędzkiewicz</h2>
           <p>{bioText}</p>
         </div>
       </div>

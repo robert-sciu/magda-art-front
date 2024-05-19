@@ -17,7 +17,7 @@ export const fetchContent = createAsyncThunk(
 export const mainPageContentSlice = createSlice({
   name: "mainPageContent",
   initialState: {
-    content: {},
+    content: { visualizations: {} },
     isLoadingContent: false,
     hasError: false,
   },
@@ -26,10 +26,16 @@ export const mainPageContentSlice = createSlice({
     // fetch content cases ////////////////////////////////////////////////////////////
     builder.addCase(fetchContent.pending, managePendingState);
     builder.addCase(fetchContent.fulfilled, (state, action) => {
-      action.payload.data.forEach(
-        (contentObject) =>
-          (state.content[contentObject.heading] = contentObject.content)
-      );
+      action.payload.data.forEach((contentObject) => {
+        if (/^visualization\d+$/.test(contentObject.heading)) {
+          state.content.visualizations[contentObject.heading] = {
+            content: contentObject.content,
+            placement: contentObject.heading.slice(-1),
+          };
+          return;
+        }
+        state.content[contentObject.heading] = contentObject.content;
+      });
       manageFulfilledState(state);
     });
     builder.addCase(fetchContent.rejected, manageRejectedState);
@@ -40,5 +46,7 @@ export const selectAllContent = (state) => state.mainPageContent.content;
 export const selectName = (state) => state.mainPageContent.content.name;
 export const selectWelcome = (state) => state.mainPageContent.content.welcome;
 export const selectBio = (state) => state.mainPageContent.content.bio;
+export const selectVisualizationsTexts = (state) =>
+  state.mainPageContent.content.visualizations;
 
 export default mainPageContentSlice.reducer;

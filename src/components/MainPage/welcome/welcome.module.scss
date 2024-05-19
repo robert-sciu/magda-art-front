@@ -1,4 +1,4 @@
-@import "../../../../styles/variables.scss";
+@import "../../../../styles/variables.module.scss";
 
 .gridContainer {
   width: $main-content-width;
@@ -21,6 +21,7 @@
 
     p {
       font-size: $size-s;
+      line-height: $line-height-l;
     }
   }
 

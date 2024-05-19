@@ -1,0 +1,41 @@
+@import "../../../../styles/variables.module.scss";
+
+.tileContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: $size-xxl;
+  gap: $size-xl;
+
+  .textContainer {
+    flex: 1;
+    p {
+      font-size: $size-m;
+      line-height: $line-height-l;
+    }
+  }
+  .imageContainer {
+    z-index: 1;
+    position: relative;
+    flex: 1;
+
+    img {
+      border-radius: $border-radius-m;
+      overflow: hidden;
+    }
+  }
+
+  .imageContainer::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 102%;
+    height: 102%;
+    background-color: $main-light-gray;
+    border-radius: $border-radius-m;
+    z-index: -1;
+    box-shadow: 0 0 1rem $dark-shadow;
+  }
+}

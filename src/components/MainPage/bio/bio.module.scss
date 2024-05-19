@@ -1,4 +1,4 @@
-@import "../../../../styles/variables.scss";
+@import "../../../../styles/variables.module.scss";
 
 .background {
   background-color: $main-light-gray;
@@ -8,7 +8,7 @@
     width: $main-content-width;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 2fr 5fr;
     margin: 0 auto;
     box-shadow: 0 0rem 5rem $dark-shadow;
     border-radius: $border-radius-m;
@@ -27,6 +27,7 @@
 
       p {
         font-size: $size-s;
+        line-height: $line-height-l;
       }
     }
   }

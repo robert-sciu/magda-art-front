@@ -1,5 +1,7 @@
+@import "../../../../styles/variables.module.scss";
+
 .paralax {
-  min-height: 70vh;
+  min-height: $parallax-height;
   background-attachment: fixed;
 
   background-repeat: no-repeat;
@@ -11,10 +13,9 @@
 
   background-position: 100% calc(40% + 50px);
   h2 {
-    color: rgb(255, 255, 255);
+    color: $main-white;
     font-size: 17rem;
     mix-blend-mode: difference;
     z-index: 3;
-    /* box-shadow: 0 0 3rem 3rem black; */
   }
 }

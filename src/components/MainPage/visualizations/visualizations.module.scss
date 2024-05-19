@@ -1,0 +1,8 @@
+@import "../../../../styles/variables.module.scss";
+.visualizationsContainer {
+  width: $main-content-width;
+  margin: $size-xxxl auto;
+  border-radius: $border-radius-m;
+  overflow: hidden;
+  box-shadow: 0 0 2rem $dark-shadow;
+}

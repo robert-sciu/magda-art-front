@@ -1,15 +1,19 @@
 import Bio from "../../components/MainPage/bio/Bio";
 import Hero from "../../components/MainPage/hero/Hero";
-import BioParalax from "../../components/MainPage/bioParalax/BioParalax";
+import BioParallax from "../../components/MainPage/bioParallax/BioParallax";
 import Welcome from "../../components/MainPage/welcome/Welcome";
+import GalleryParallax from "../../components/MainPage/galleryParallax/GalleryParallax";
+import Visualizations from "../../components/MainPage/visualizations/Visualizations";
 
 export default function UiContainer() {
   return (
     <>
       <Hero />
       <Welcome />
-      <BioParalax />
+      <BioParallax />
       <Bio />
+      <GalleryParallax />
+      <Visualizations />
     </>
   );
 }

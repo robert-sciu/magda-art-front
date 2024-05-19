@@ -3,6 +3,8 @@ $main-black: #202020;
 $main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
   brightness(99%) contrast(85%);
 $main-gray: #5e5e5e;
+$gallery-background: rgba(0, 0, 0, 0.76);
+$gallery-link-hover: #0077ff;
 $main-light-gray: rgb(190, 190, 190);
 $main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
   brightness(93%) contrast(91%);
@@ -32,6 +34,11 @@ $border-radius-m: 0.8rem;
 $border-radius-s: 0.4rem;
 $border-radius-xs: 0.2rem;
 
+// line heights
+
+$line-height-standard: 1.5;
+$line-height-l: 1.8;
+
 // properties
 
 @property --gradient-angle {
@@ -43,17 +50,9 @@ $border-radius-xs: 0.2rem;
 // transitions
 $link-transition: all 0.2s ease-in;
 
-// often repeated elements:
+// elements
+$parallax-height: 70vh;
 
-.bioGalleryItem {
-  width: 100%;
-  position: relative;
-
-  img {
-    background-size: cover;
-    background-repeat: no-repeat;
-    object-fit: cover; /* Prevents images from overflowing */
-    width: 100%;
-    height: 100%;
-  }
+:export {
+  mainLightGray: $main-light-gray;
 }
