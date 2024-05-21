@@ -5,4 +5,9 @@
   border-radius: $border-radius-m;
   overflow: hidden;
   box-shadow: 0 0 2rem $dark-shadow;
+  h2 {
+    text-align: center;
+    font-size: $size-l;
+    margin: $size-l;
+  }
 }

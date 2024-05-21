@@ -18,7 +18,13 @@ export const fetchPageImages = createAsyncThunk(
 export const mainPageImagesSlice = createSlice({
   name: "mainPageImages",
   initialState: {
-    pageImages: { welcome: {}, bio: {}, socials: {}, visualizations: {} },
+    pageImages: {
+      welcome: {},
+      bio: {},
+      socials: {},
+      visualizations: {},
+      contact: {},
+    },
     isLoadingContent: false,
     hasError: false,
   },
@@ -55,8 +61,9 @@ export const selectBioParallaxImage = (state) =>
   state.mainPageImages.pageImages.bioParallax;
 export const selectVisualizationsImages = (state) =>
   state.mainPageImages.pageImages.visualizations;
-
 export const selectGalleryParallaxImage = (state) =>
   state.mainPageImages.pageImages.galleryParallax;
+export const selectContactImages = (state) =>
+  state.mainPageImages.pageImages.contact;
 
 export default mainPageImagesSlice.reducer;

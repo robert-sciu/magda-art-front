@@ -13,6 +13,7 @@ export default function Visualizations() {
 
   return (
     <div className={styles.visualizationsContainer}>
+      <h2>Visualizations</h2>
       {Object.values(visualizationImages).map((img, i) => {
         const imgSideReverse = i % 2 === 0 ? false : true;
         const text = matchTextToImage(img.placement, visualizationTexts);
