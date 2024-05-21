@@ -1,7 +1,8 @@
-import styles from "./contactForm.module.scss";
+import styles from "./contact.module.scss";
 import ContactGrid from "../../components/MainPage/contactGrid/ContactGrid";
+import ContactForm from "../../components/MainPage/contactForm/ContactForm";
 
-export default function ContactForm() {
+export default function Contact() {
   function handleSubmit(e) {
     e.preventDefault();
   }

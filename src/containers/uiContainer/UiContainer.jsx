@@ -4,7 +4,7 @@ import BioParallax from "../../components/MainPage/bioParallax/BioParallax";
 import Welcome from "../../components/MainPage/welcome/Welcome";
 import GalleryParallax from "../../components/MainPage/galleryParallax/GalleryParallax";
 import Visualizations from "../../components/MainPage/visualizations/Visualizations";
-import ContactForm from "../contact/ContactForm";
+import Contact from "../contact/Contact";
 
 export default function UiContainer() {
   return (
@@ -15,7 +15,7 @@ export default function UiContainer() {
       <Bio />
       <GalleryParallax />
       <Visualizations />
-      <ContactForm />
+      <Contact />
     </>
   );
 }
