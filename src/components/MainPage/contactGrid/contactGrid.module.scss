@@ -1,0 +1,12 @@
+@import "../../../../styles/variables.module.scss";
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 3fr;
+  gap: $size-xxxxs;
+  margin: $size-xxxs;
+  border-top-right-radius: $border-radius-m;
+  border-bottom-right-radius: $border-radius-m;
+  overflow: hidden;
+}

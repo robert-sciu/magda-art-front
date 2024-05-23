@@ -8,12 +8,11 @@ export default function Contact() {
   }
 
   return (
-    <div>
-      <div>
-        <h2>Contact Me</h2>
+    <div className={styles.contactSection} name="contact">
+      <div className={styles.gridContainer}>
         <ContactForm onSubmit={handleSubmit} />
+        <ContactGrid />
       </div>
-      <ContactGrid />
     </div>
   );
 }

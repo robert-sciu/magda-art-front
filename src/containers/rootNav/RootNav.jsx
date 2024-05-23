@@ -1,21 +1,14 @@
 import { NavLink, Outlet } from "react-router-dom";
+import { Link } from "react-scroll";
 import styles from "./rootNav.module.scss";
-import { selectLogoImage } from "../mainPage/mainPageImagesSlice";
-import { useSelector } from "react-redux";
 import SocialIcons from "../../components/MainPage/socialIcons/SocialIcons";
+import Logo from "../../components/MainPage/logo/Logo";
+import Footer from "../../components/common/footer/Footer";
 export default function Root() {
-  const logo = useSelector(selectLogoImage);
-
   return (
     <>
       <div className={styles.navBar}>
-        {logo ? (
-          <div className={styles.logo}>
-            <img src={logo.url} alt={logo.name} />
-          </div>
-        ) : (
-          "loading"
-        )}
+        <Logo />
         <ul>
           <NavLink
             className={({ isActive }) =>
@@ -26,14 +19,14 @@ export default function Root() {
             HOME
           </NavLink>
           <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/s"
+            <Link
+              className={styles.navLink}
+              activeClass={styles.navLinkActive}
+              to="bio"
+              smooth={true}
             >
               Bio
-            </NavLink>
+            </Link>
           </li>
           <li>
             <NavLink
@@ -46,24 +39,24 @@ export default function Root() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/s"
+            <Link
+              className={styles.navLink}
+              activeClass={styles.navLinkActive}
+              to="visualizations"
+              smooth={true}
             >
               Visualizations
-            </NavLink>
+            </Link>
           </li>
           <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/s"
+            <Link
+              className={styles.navLink}
+              activeClass={styles.navLinkActive}
+              to="contact"
+              smooth={true}
             >
               Contact
-            </NavLink>
+            </Link>
           </li>
         </ul>
         <div className={styles.socials}>
@@ -71,6 +64,7 @@ export default function Root() {
         </div>
       </div>
       <Outlet />
+      <Footer />
     </>
   );
 }

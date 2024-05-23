@@ -15,7 +15,6 @@ export default function GalleryPage() {
     <div>
       {paintings
         ? paintings.map((painting) => {
-            console.log(painting.path);
             return (
               <div key={painting.id}>
                 <h2>{painting.title}</h2>

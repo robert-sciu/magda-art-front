@@ -1,0 +1,44 @@
+@import "../../../../styles/variables.module.scss";
+.logo {
+  width: $size-xxl;
+  position: relative;
+  border-radius: $border-radius-xs;
+  img {
+    position: relative;
+    z-index: 10;
+    border-radius: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.4rem;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      #ff0000,
+      #00ff00,
+      #0000ff,
+      rgb(255, 255, 0),
+      rgb(255, 0, 255)
+    );
+    animation: rotateGlow 15s linear infinite;
+  }
+  &::before {
+    opacity: 0.1;
+  }
+  &::after {
+    opacity: 0.5;
+    filter: blur($size-s);
+  }
+}
+
+@keyframes rotateGlow {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}

@@ -48,5 +48,9 @@ export const selectWelcome = (state) => state.mainPageContent.content.welcome;
 export const selectBio = (state) => state.mainPageContent.content.bio;
 export const selectVisualizationsTexts = (state) =>
   state.mainPageContent.content.visualizations;
+export const selectFooterOwner = (state) =>
+  state.mainPageContent.content.footerOwner;
+export const selectFooterDesign = (state) =>
+  state.mainPageContent.content.footerDesign;
 
 export default mainPageContentSlice.reducer;

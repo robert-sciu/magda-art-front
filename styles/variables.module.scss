@@ -3,21 +3,25 @@ $main-black: #202020;
 $main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
   brightness(99%) contrast(85%);
 $main-gray: #5e5e5e;
-$gallery-background: rgba(0, 0, 0, 0.76);
-$gallery-link-hover: #0077ff;
-$main-light-gray: rgb(190, 190, 190);
+$gallery-background: #000000c2;
+$action-blue: #0077ff;
+$action-light-blue: #2289ff;
+$main-medium-light-gray: #a7a7a7;
+$main-light-gray: #d3d3d3;
 $main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
   brightness(93%) contrast(91%);
 $secondary-color--hover: #f5f5f5;
 $background-primary: #e0e0e0;
 $background-secondary: #d4d4d4;
 $white-shadow: #d1d1d1ab;
-$dark-shadow: rgba(85, 85, 85, 0.432);
+$dark-shadow: #5555556e;
+$medium-shadow: #a3a3a36e;
 
 // widths
 $main-content-width: 1440px;
 
 // font and gap sizes
+$size-xxxxl: 13.5rem;
 $size-xxxl: 11rem;
 $size-xxl: 9rem;
 $size-xl: 6.7rem;
@@ -55,4 +59,5 @@ $parallax-height: 70vh;
 
 :export {
   mainLightGray: $main-light-gray;
+  sizeXxxxl: $size-xxxxl;
 }

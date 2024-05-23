@@ -6,7 +6,7 @@ import styles from "./bio.module.scss";
 export default function Bio() {
   const bioText = useSelector(selectBio);
   return (
-    <div className={styles.background}>
+    <div className={styles.background} name="bio">
       <div className={styles.gridContainer}>
         <BioGrid />
         <div className={styles.bioContent}>

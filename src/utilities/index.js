@@ -23,5 +23,5 @@ export function createImageObject(imageObject) {
 }
 
 export function matchTextToImage(imagePlacement, visualizationTexts) {
-  return visualizationTexts[`visualization${imagePlacement}`]["content"];
+  return visualizationTexts[`visualization${imagePlacement}`]?.["content"];
 }

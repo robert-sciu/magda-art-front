@@ -12,7 +12,7 @@ export default function Visualizations() {
   const visualizationImages = useSelector(selectVisualizationsImages);
 
   return (
-    <div className={styles.visualizationsContainer}>
+    <div className={styles.visualizationsContainer} name="visualizations">
       <h2>Visualizations</h2>
       {Object.values(visualizationImages).map((img, i) => {
         const imgSideReverse = i % 2 === 0 ? false : true;

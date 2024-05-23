@@ -1,0 +1,18 @@
+@import "../../../../styles/variables.module.scss";
+
+footer {
+  border-top: 2px solid $main-medium-light-gray;
+  box-shadow: 0 0 4px 2px $medium-shadow;
+  padding: $size-xl $size-l;
+
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .footerInfo {
+      font-size: $size-xs;
+      color: $main-medium-light-gray;
+    }
+  }
+}

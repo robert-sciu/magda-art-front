@@ -3,11 +3,11 @@ import PropTypes from "prop-types";
 import scss from "../../../../styles/variables.module.scss";
 
 export default function VisualizationTile({ image, text, imgSideReverse }) {
-  console.log(imgSideReverse);
   const styleObject = {
     flexDirection: imgSideReverse || "row-reverse",
     backgroundColor: imgSideReverse || scss.mainLightGray,
   };
+
   return (
     <div className={styles.tileContainer} style={styleObject}>
       <div className={styles.textContainer}>
