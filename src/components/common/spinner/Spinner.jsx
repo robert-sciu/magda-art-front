@@ -10,6 +10,6 @@ export default function Spinner({
 }
 
 Spinner.propTypes = {
-  size: PropTypes.number,
+  size: PropTypes.string,
   color: PropTypes.string,
 };

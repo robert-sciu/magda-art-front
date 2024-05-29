@@ -6,7 +6,6 @@ import GalleryParallax from "../../components/MainPage/galleryParallax/GalleryPa
 import Visualizations from "../../components/MainPage/visualizations/Visualizations";
 import Contact from "../contact/Contact";
 import styles from "./uiContainer.module.scss";
-import Spinner from "../../components/common/spinner/Spinner";
 
 export default function UiContainer() {
   return (
@@ -18,7 +17,6 @@ export default function UiContainer() {
       <GalleryParallax />
       <Visualizations />
       <Contact />
-      <Spinner />
     </div>
   );
 }

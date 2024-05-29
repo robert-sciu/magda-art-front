@@ -2,7 +2,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import { Link } from "react-scroll";
 import styles from "./rootNav.module.scss";
 import SocialIcons from "../../components/MainPage/socialIcons/SocialIcons";
-import Logo from "../../components/MainPage/logo/Logo";
+import Logo from "../../components/common/logo/Logo";
 import Footer from "../../components/common/footer/Footer";
 export default function Root() {
   return (

@@ -1,6 +1,7 @@
 import styles from "./visualizationTile.module.scss";
 import PropTypes from "prop-types";
 import scss from "../../../../styles/variables.module.scss";
+import ImageTile from "../../common/image/ImageTile";
 
 export default function VisualizationTile({ image, text, imgSideReverse }) {
   const styleObject = {
@@ -14,14 +15,14 @@ export default function VisualizationTile({ image, text, imgSideReverse }) {
         <p>{text}</p>
       </div>
       <div className={styles.imageContainer}>
-        <img src={image.url} />
+        <ImageTile img={image} spinnerColor={scss.mainGray} />
       </div>
     </div>
   );
 }
 
 VisualizationTile.propTypes = {
-  image: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired,
-  imgSideReverse: PropTypes.bool.isRequired,
+  image: PropTypes.object,
+  text: PropTypes.string,
+  imgSideReverse: PropTypes.bool,
 };

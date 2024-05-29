@@ -1,16 +1,23 @@
+@import "../styles/variables.module.scss";
+
+@font-face {
+  font-family: "Dancing Script";
+  src: url("/src/assets/fonts/DancingScript-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+// Define the font-face for Roboto
+@font-face {
+  font-family: "Roboto";
+  src: url("/src/assets/fonts/Roboto-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
-  font-family: "Inter Variable", sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  // color-scheme: light dark;
-  // color: rgba(255, 255, 255, 0.87);
-  // background-color: #242424;
-
-  // font-synthesis: none;
-  // text-rendering: optimizeLegibility;
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -22,9 +29,11 @@
   margin: 0;
 }
 html {
-  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
+  font-weight: 400;
 }
+
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;

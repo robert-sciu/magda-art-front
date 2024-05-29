@@ -1,19 +1,20 @@
 import styles from "./chunk21.module.scss";
 import universalStyles from "../universalChunkStyle.module.scss";
 import PropTypes from "prop-types";
+import ImageTile from "../../../common/image/ImageTile";
 
 export default function Chunk21({ images }) {
   const [img1, img2, img3] = Object.values(images);
   return (
     <div className={styles.grid21}>
       <figure className={`${universalStyles.bioGalleryItem} ${styles.imgXlR}`}>
-        <img src={img1?.url} alt="" />
+        <ImageTile img={img1} />
       </figure>
       <figure className={universalStyles.bioGalleryItem}>
-        <img src={img2?.url} alt="" />
+        <ImageTile img={img2} />
       </figure>
       <figure className={universalStyles.bioGalleryItem}>
-        <img src={img3?.url} alt="" />
+        <ImageTile img={img3} />
       </figure>
     </div>
   );
