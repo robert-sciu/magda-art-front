@@ -4,10 +4,10 @@
   display: flex;
   gap: $size-xxxs;
   background-color: $main-black;
-  padding: $size-xxxxl $size-s;
+  padding: $size-xxxxl $size-l $size-xl;
   margin-top: $size-l;
-  align-items: flex-start;
-  min-height: 100vh;
+  // align-items: flex-start;
+  min-height: 50vh;
   img {
     min-height: $size-xxxl;
   }

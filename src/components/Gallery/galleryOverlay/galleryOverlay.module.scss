@@ -36,10 +36,11 @@
     height: 90%;
     width: 90%;
     gap: $size-m;
-    padding: $size-xl $size-xxl;
+    padding: $size-xl $size-xl;
     background-color: $overlay;
     border-radius: $border-radius-m;
     border: 2px solid $main-gray;
+
     .closeBtn {
       position: absolute;
       transform: scale(0.5);

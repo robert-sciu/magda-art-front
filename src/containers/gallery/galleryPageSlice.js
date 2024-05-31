@@ -42,7 +42,11 @@ export const galleryPageSlice = createSlice({
     createImageColumns: (state, action) => {
       state.columns = {};
       for (let i = 1; i <= action.payload; i++) {
-        state.columns[`column-${i}`] = { height: 0, paintings: [] };
+        state.columns[`column-${i}`] = {
+          height: 0,
+          isHighest: false,
+          paintings: [],
+        };
       }
     },
     populateColumns: (state, action) => {
@@ -54,10 +58,16 @@ export const galleryPageSlice = createSlice({
         const lowestCol = Object.keys(state.columns).find(
           (col) => state.columns[col].height === lowestColHeight
         );
-        const gapSize = parseFloat(scss.sizeXxxs) * 16;
+        const gapSize = parseFloat(scss.sizeXxxs);
         state.columns[lowestCol].height += image.height_px + gapSize;
         state.columns[lowestCol].paintings.push(image);
       });
+      const colHeights = Object.values(state.columns).map((col) => col.height);
+      const highestColHeight = Math.max(...colHeights);
+      const highestCol = Object.keys(state.columns).find(
+        (col) => state.columns[col].height === highestColHeight
+      );
+      state.columns[highestCol].isHighest = true;
     },
     setClickedImage: (state, action) => {
       state.clickedImage = action.payload;

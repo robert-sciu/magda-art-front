@@ -25,8 +25,8 @@ export default function GalleryPage() {
   function getNumberOfColumns() {
     const width = window.innerWidth;
     if (width >= 2800) return 6;
-    if (width >= 2000) return 5;
-    if (width >= 1702) return 4;
+    if (width >= 2400) return 5;
+    if (width >= 2000) return 4;
     if (width >= 1268) return 3;
     if (width >= 1000) return 2;
     return 1;
@@ -57,17 +57,23 @@ export default function GalleryPage() {
   }, [paintings, dispatch, numberOfColumns]);
 
   useEffect(() => {
-    if (columns) {
+    if (Array.from(Object.keys(columns)).length === numberOfColumns) {
       setGalleryColumns(columns);
       setColumnsReady(true);
     }
-  }, [columns]);
+  }, [columns, numberOfColumns]);
 
   return (
     <div className={styles.galleryPage}>
       {columnsReady ? (
         Object.entries(galleryColumns).map((column) => {
-          return <GalleryColumn column={column[1].paintings} key={column[0]} />;
+          return (
+            <GalleryColumn
+              column={column[1].paintings}
+              isHighest={column[1].isHighest}
+              key={column[0]}
+            />
+          );
         })
       ) : (
         <div className={styles.spinnerContainer}>

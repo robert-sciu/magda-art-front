@@ -11,8 +11,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: $size-xxs;
-    padding: $size-m;
+    gap: $size-xxxs;
+    padding: $size-s;
     opacity: 0;
     transition: $link-transition-slow;
     position: absolute;
@@ -21,6 +21,7 @@
     width: 100%;
     height: 100%;
     background-color: $overlay;
+    overflow: hidden;
     h3 {
       font-size: $size-m;
     }
@@ -36,7 +37,7 @@
       font-size: $size-xs;
       padding: $size-xxxxs $size-xs;
       border-radius: $border-radius-xs;
-      margin-top: $size-xxs;
+      margin-top: $size-xxxs;
       cursor: inherit;
       transition: $link-transition;
 
