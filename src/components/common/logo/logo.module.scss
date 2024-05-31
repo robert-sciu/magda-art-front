@@ -1,8 +1,12 @@
 @import "../../../../styles/variables.module.scss";
 .logo {
   width: $size-xxl;
+  height: $size-xxl;
   position: relative;
   border-radius: $border-radius-xs;
+  opacity: 0;
+  transition: 1s;
+
   img {
     position: relative;
     z-index: 10;

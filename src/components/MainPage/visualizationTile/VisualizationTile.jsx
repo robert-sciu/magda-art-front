@@ -1,7 +1,7 @@
 import styles from "./visualizationTile.module.scss";
 import PropTypes from "prop-types";
 import scss from "../../../../styles/variables.module.scss";
-import ImageTile from "../../common/image/ImageTile";
+import ImageTile from "../../common/imageTile/ImageTile";
 
 export default function VisualizationTile({ image, text, imgSideReverse }) {
   const styleObject = {

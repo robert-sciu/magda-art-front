@@ -1,7 +1,7 @@
 import styles from "./chunk11.module.scss";
 import universalStyles from "../universalChunkStyle.module.scss";
 import PropTypes from "prop-types";
-import ImageTile from "../../../common/image/ImageTile";
+import ImageTile from "../../../common/imageTile/ImageTile";
 
 export default function Chunk11({ images }) {
   const [img1, img2] = Object.values(images);

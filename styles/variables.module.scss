@@ -3,24 +3,31 @@ $main-black: #202020;
 $main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
   brightness(99%) contrast(85%);
 $main-gray: #5e5e5e;
-$gallery-background: #000000c2;
+$gallery-paralax-background: #000000c2;
 $action-blue: #0077ff;
 $action-light-blue: #2289ff;
 $main-medium-light-gray: #a7a7a7;
 $main-light-gray: #d3d3d3;
 $main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
   brightness(93%) contrast(91%);
+$main-white--filter: invert(68%) sepia(61%) saturate(0%) hue-rotate(188deg)
+  brightness(113%) contrast(101%);
+$action-blue--filter: invert(28%) sepia(98%) saturate(2273%) hue-rotate(202deg)
+  brightness(101%) contrast(105%);
+
 $secondary-color--hover: #f5f5f5;
 $background-primary: #e0e0e0;
 $background-secondary: #d4d4d4;
 $white-shadow: #d1d1d1ab;
 $dark-shadow: #5555556e;
 $medium-shadow: #a3a3a36e;
+$overlay: #0000009d;
 
 // widths
 $main-content-width: 1440px;
 
 // font and gap sizes
+$size-giant: calc(170rem / 16);
 $size-xxxxl: calc(135rem / 16);
 $size-xxxl: calc(110rem / 16);
 $size-xxl: calc(90rem / 16);
@@ -53,7 +60,7 @@ $line-height-l: 1.8;
 
 // transitions
 $link-transition: all 0.2s ease-in;
-
+$link-transition-slow: all 0.5s ease-in;
 // elements
 $parallax-height: 70vh;
 
@@ -63,6 +70,7 @@ $parallax-height: 70vh;
   mainGray: $main-gray;
   actionBlue: $action-blue;
   sizeXxxxl: $size-xxxxl;
+  sizeGiant: $size-giant;
   sizeXxxs: $size-xxxxs;
   sizeXl: $size-xl;
 }

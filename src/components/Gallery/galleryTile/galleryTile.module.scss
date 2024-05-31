@@ -1,0 +1,56 @@
+@import "../../../../styles/variables.module.scss";
+
+.galleryTile {
+  position: relative;
+  width: 100%;
+  color: $main-white;
+
+  .overlay {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $size-xxs;
+    padding: $size-m;
+    opacity: 0;
+    transition: $link-transition-slow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay;
+    h3 {
+      font-size: $size-m;
+    }
+
+    p {
+      font-size: $size-xs;
+      text-align: center;
+    }
+    button {
+      background-color: $main-white;
+      border: none;
+      color: $main-black;
+      font-size: $size-xs;
+      padding: $size-xxxxs $size-xs;
+      border-radius: $border-radius-xs;
+      margin-top: $size-xxs;
+      cursor: inherit;
+      transition: $link-transition;
+
+      &:link,
+      &:visited {
+        text-decoration: none;
+      }
+
+      &:hover,
+      &:active {
+        background-color: $main-light-gray;
+        color: $action-blue;
+        box-shadow: 0 0 0.4rem 0.01rem $white-shadow;
+      }
+    }
+  }
+}

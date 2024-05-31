@@ -1,4 +1,4 @@
-import ImageTile from "../../common/image/ImageTile";
+import ImageTile from "../../common/imageTile/ImageTile";
 import styles from "./contactGridTile.module.scss";
 import PropTypes from "prop-types";
 import scss from "../../../../styles/variables.module.scss";

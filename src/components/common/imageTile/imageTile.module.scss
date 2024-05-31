@@ -1,7 +1,8 @@
 .tileContainer {
-  width: 100%;
+  width: auto;
   height: 100%;
   position: relative;
+
   .spinner {
     position: absolute;
     top: 50%;
@@ -11,5 +12,6 @@
   img {
     opacity: 0;
     transition: 1s;
+    height: 100%;
   }
 }

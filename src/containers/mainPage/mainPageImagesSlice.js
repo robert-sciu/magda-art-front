@@ -51,12 +51,10 @@ export const mainPageImagesSlice = createSlice({
 
 export const selectAllPageImages = (state) => state.mainPageImages.pageImages;
 export const selectHeroImage = (state) => state.mainPageImages.pageImages.hero;
-export const selectLogoImage = (state) => state.mainPageImages.pageImages.logo;
+// export const selectLogoImage = (state) => state.mainPageImages.pageImages.logo;
 export const selectWelcomeImages = (state) =>
   state.mainPageImages.pageImages.welcome;
 export const selectBioImages = (state) => state.mainPageImages.pageImages.bio;
-export const selectSocialsIcons = (state) =>
-  state.mainPageImages.pageImages.socials;
 export const selectBioParallaxImage = (state) =>
   state.mainPageImages.pageImages.bioParallax;
 export const selectVisualizationsImages = (state) =>

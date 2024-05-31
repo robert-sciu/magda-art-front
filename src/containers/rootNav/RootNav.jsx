@@ -1,10 +1,22 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { Link } from "react-scroll";
 import styles from "./rootNav.module.scss";
-import SocialIcons from "../../components/MainPage/socialIcons/SocialIcons";
+import SocialIcons from "../../components/common/socialIcons/SocialIcons";
 import Logo from "../../components/common/logo/Logo";
 import Footer from "../../components/common/footer/Footer";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCommonImages } from "./rootNavSlice";
+import { filesLoaded } from "../../store/loadingStateSlice";
 export default function Root() {
+  const dispatch = useDispatch();
+  const loadState = useSelector(filesLoaded);
+
+  useEffect(() => {
+    if (!loadState) return;
+    dispatch(fetchCommonImages());
+  }, [dispatch, loadState]);
+
   return (
     <>
       <div className={styles.navBar}>

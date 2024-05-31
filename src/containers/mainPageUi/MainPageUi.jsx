@@ -5,9 +5,9 @@ import Welcome from "../../components/MainPage/welcome/Welcome";
 import GalleryParallax from "../../components/MainPage/galleryParallax/GalleryParallax";
 import Visualizations from "../../components/MainPage/visualizations/Visualizations";
 import Contact from "../contact/Contact";
-import styles from "./uiContainer.module.scss";
+import styles from "./mainPageUi.module.scss";
 
-export default function UiContainer() {
+export default function MainPageUi() {
   return (
     <div className={styles.uiContainer}>
       <Hero />

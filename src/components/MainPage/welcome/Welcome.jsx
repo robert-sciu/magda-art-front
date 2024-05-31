@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import styles from "./welcome.module.scss";
 import { selectWelcome } from "../../../containers/mainPage/mainPageContentSlice";
 import WelcomeGrid from "../welcomeGrid/WelcomeGrid";
-import SocialIcons from "../socialIcons/SocialIcons";
+import SocialIcons from "../../common/socialIcons/SocialIcons";
 
 export default function Welcome() {
   const welcomeText = useSelector(selectWelcome);

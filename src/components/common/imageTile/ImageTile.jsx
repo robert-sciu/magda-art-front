@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./imageTile.module.scss";
-import Spinner from "../../common/spinner/Spinner";
+import Spinner from "../spinner/Spinner";
 import PropTypes from "prop-types";
 import scss from "../../../../styles/variables.module.scss";
 
@@ -9,8 +9,14 @@ export default function ImageTile({
   alt = "",
   spinnerSize,
   spinnerColor,
+  loadCheck = () => {},
 }) {
   const [imgLoaded, setImgLoaded] = useState(false);
+
+  function handleLoad() {
+    setImgLoaded(true);
+    loadCheck(true);
+  }
 
   return (
     <div className={styles.tileContainer}>
@@ -25,7 +31,7 @@ export default function ImageTile({
       <img
         src={img?.url}
         alt={alt}
-        onLoad={() => setImgLoaded(true)}
+        onLoad={handleLoad}
         style={imgLoaded ? { opacity: "1" } : null}
       />
     </div>
@@ -35,6 +41,9 @@ export default function ImageTile({
 ImageTile.propTypes = {
   img: PropTypes.object,
   alt: PropTypes.string,
-  spinnerSize: PropTypes.number,
+  spinnerSize: PropTypes.string,
   spinnerColor: PropTypes.string,
+  onMouseEnter: PropTypes.func,
+  onMouseLeave: PropTypes.func,
+  loadCheck: PropTypes.func,
 };

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import styles from "./welcomeGrid.module.scss";
 import { selectWelcomeImages } from "../../../containers/mainPage/mainPageImagesSlice";
-import ImageTile from "../../common/image/ImageTile";
+import ImageTile from "../../common/imageTile/ImageTile";
 // import { useEffect, useState } from "react";
 
 export default function WelcomeGrid() {

@@ -1,10 +1,8 @@
 import Spinner from "../../components/common/spinner/Spinner";
 import styles from "./hero.module.scss";
 import { useSelector } from "react-redux";
-import {
-  selectHeroImage,
-  selectLogoImage,
-} from "../mainPage/mainPageImagesSlice";
+import { selectHeroImage } from "../mainPage/mainPageImagesSlice";
+import { selectLogoImage } from "../rootNav/rootNavSlice";
 import { selectName } from "../mainPage/mainPageContentSlice";
 import { useEffect, useState } from "react";
 import HeroHeading from "../../components/MainPage/heroHeading/HeroHeading";
