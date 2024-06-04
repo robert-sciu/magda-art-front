@@ -35,6 +35,7 @@ export const galleryPageSlice = createSlice({
     clickedImage: null,
     fullResImg: null,
     columns: {},
+    fillers: null,
     isLoadingContent: false,
     hasError: false,
   },
@@ -50,7 +51,8 @@ export const galleryPageSlice = createSlice({
       }
     },
     populateColumns: (state, action) => {
-      action.payload.forEach((image) => {
+      state.fillers = action.payload.fillers;
+      action.payload.paintings.forEach((image) => {
         const colHeights = Object.values(state.columns).map(
           (col) => col.height
         );
@@ -68,6 +70,15 @@ export const galleryPageSlice = createSlice({
         (col) => state.columns[col].height === highestColHeight
       );
       state.columns[highestCol].isHighest = true;
+
+      Object.values(state.columns).forEach((column) => {
+        const columnFreeSpace = highestColHeight - column.height;
+        const minimumFreeSpace = 300;
+        if (columnFreeSpace > minimumFreeSpace && state.fillers.length > 0) {
+          const filler = state.fillers.shift();
+          column.filler = filler.type;
+        }
+      });
     },
     setClickedImage: (state, action) => {
       state.clickedImage = action.payload;
@@ -76,19 +87,21 @@ export const galleryPageSlice = createSlice({
       state.clickedImage = null;
       state.fullResImg = null;
     },
+    setFillers: (state, action) => {
+      state.fillers = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchImages.pending, managePendingState);
     builder.addCase(fetchImages.fulfilled, (state, action) => {
-      manageFulfilledState(state);
       state.images = action.payload;
+      manageFulfilledState(state);
     });
     builder.addCase(fetchImages.rejected, manageRejectedState);
-
     builder.addCase(fetchFullResImg.pending, managePendingState);
     builder.addCase(fetchFullResImg.fulfilled, (state, action) => {
-      manageFulfilledState(state);
       state.fullResImg = action.payload;
+      manageFulfilledState(state);
     });
     builder.addCase(fetchFullResImg.rejected, manageRejectedState);
   },
@@ -98,12 +111,20 @@ export const selectAllImages = (state) => state.galleryPage.images;
 export const selectFullResImg = (state) => state.galleryPage.fullResImg;
 export const selectAllColumns = (state) => state.galleryPage.columns;
 export const selectClickedImage = (state) => state.galleryPage.clickedImage;
+export const selectAllFillers = (state) => state.galleryPage.fillers;
+// export const selectHighestColHeight = (state) => {
+//   const colHeights = Object.values(state.galleryPage.columns).map(
+//     (col) => col.height
+//   );
+//   return Math.max(...colHeights);
+// };
 
 export const {
   createImageColumns,
   populateColumns,
   setClickedImage,
   resetClickedImage,
+  setFillers,
 } = galleryPageSlice.actions;
 
 export default galleryPageSlice.reducer;

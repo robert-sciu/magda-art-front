@@ -4,5 +4,11 @@
   display: flex;
   gap: $size-s;
   opacity: 0;
-  transition: 1s;
+  img {
+    transition: $link-transition;
+    filter: $main-black--filter;
+  }
+  img:hover {
+    filter: $main-white--filter;
+  }
 }

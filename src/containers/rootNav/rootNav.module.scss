@@ -42,9 +42,9 @@
     height: $size-xl;
     width: $size-xl;
     filter: $main-black--filter;
-    transition: $link-transition;
+    // transition: $link-transition;
   }
   img:hover {
-    filter: $main-gray--filter;
+    filter: $main-gray--filter !important;
   }
 }
