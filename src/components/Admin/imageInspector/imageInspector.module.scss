@@ -1,0 +1,14 @@
+@import "../../../../styles/variables.module.scss";
+
+.inspectorContainer {
+  position: relative;
+  img {
+  }
+  button {
+    position: absolute;
+    top: $size-xxxxs;
+    right: $size-xxxxs;
+    background-color: $cancel-red;
+    cursor: pointer;
+  }
+}

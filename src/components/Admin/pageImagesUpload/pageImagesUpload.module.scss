@@ -1,0 +1,8 @@
+@import "../../../../styles/variables.module.scss";
+.container {
+  padding: $size-l;
+  gap: $size-l;
+  margin-top: $size-xxl;
+  border: 1px solid $main-medium-light-gray;
+  background-color: $main-white;
+}

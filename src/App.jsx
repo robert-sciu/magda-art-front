@@ -3,6 +3,8 @@ import "./App.scss";
 import Root from "./containers/rootNav/RootNav";
 import MainPage from "./containers/mainPage/MainPage";
 import GalleryPage from "./containers/gallery/GalleryPage.jsx";
+import Login from "./containers/admin/Login.jsx";
+import Admin from "./containers/admin/Admin.jsx";
 
 import { setFilesLoaded } from "./store/loadingStateSlice.js";
 import { useDispatch } from "react-redux";
@@ -37,6 +39,8 @@ function App() {
         <Route path="/" element={<Root />}>
           <Route index element={<MainPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<Admin />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,30 @@
+@import "./../../../../styles/variables.module.scss";
+
+.editorContainer {
+  width: 100%;
+  height: 100%;
+  margin-top: $size-xxxl;
+  display: flex;
+  flex-direction: column;
+  form {
+    border: 1px solid $main-medium-light-gray;
+    background-color: $main-light-gray;
+    padding: $size-l;
+    display: flex;
+    flex-direction: column;
+    gap: $size-xxs;
+    textarea {
+      resize: none;
+    }
+
+    button {
+      cursor: pointer;
+      padding: $size-xxxxs;
+      width: auto;
+      align-self: start;
+      min-width: calc($size-xxxxl * 1.5);
+      border-radius: $border-radius-m;
+      border: 1px solid $main-medium-light-gray;
+    }
+  }
+}

@@ -12,7 +12,7 @@ function SocialsFiller() {
   );
 }
 
-function Contact() {
+function ContactFiller() {
   return (
     <div>
       <Link className={styles.link} to="/">
@@ -41,7 +41,7 @@ function RandomFiller() {
 
 const FillerComponents = {
   socials: SocialsFiller,
-  contact: Contact,
+  contact: ContactFiller,
   logo: LogoFiller,
   random: RandomFiller,
 };

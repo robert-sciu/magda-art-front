@@ -9,6 +9,7 @@ import {
 export const fetchPageImages = createAsyncThunk(
   "mainPageImages/fetchPageImages",
   async () => {
+    console.log("refetching");
     const pageImages = await fetch("http://localhost:4000/api/v1/pageImages");
     const data = await pageImages.json();
     return data;
