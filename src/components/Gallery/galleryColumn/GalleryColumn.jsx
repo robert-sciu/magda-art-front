@@ -1,6 +1,9 @@
 import PropTypes from "prop-types";
-import styles from "./galleryColumn.module.scss";
+
 import GalleryTile from "../galleryTile/GalleryTile";
+
+import styles from "./galleryColumn.module.scss";
+
 export default function GalleryColumn({ column, isHighest, Filler = null }) {
   return (
     <div className={styles.galleryColumn}>

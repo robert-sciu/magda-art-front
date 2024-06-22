@@ -1,20 +1,39 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
 import {
   managePendingState,
   manageFulfilledState,
   manageRejectedState,
-} from "../../utilities";
-import api from "../../api/api";
+} from "../../../utilities";
+
+import api from "../../../api/api";
 
 const api_url = import.meta.env.VITE_API_BASE_URL;
+
+export const verifyToken = createAsyncThunk(
+  "auth/verifyToken",
+  async (token) => {
+    if (token) {
+      const response = await api.post(
+        `${api_url}/login/verifyToken`,
+        {},
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data.isValid;
+    }
+
+    return null;
+  }
+);
 
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async ({ email, password }) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      return token;
-    }
     if (email && password) {
       const response = await api.post(
         `${api_url}/login`,
@@ -41,7 +60,8 @@ export const authSlice = createSlice({
   name: "auth",
   initialState: {
     isAuthenticated: false,
-    token: null,
+    isLoadingContent: false,
+    hasError: false,
   },
   reducers: {
     logout(state) {
@@ -52,19 +72,26 @@ export const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(loginUser.pending, managePendingState);
-    builder.addCase(loginUser.fulfilled, (state, action) => {
-      state.token = action.payload;
+    builder.addCase(loginUser.fulfilled, (state) => {
       state.isAuthenticated = true;
       manageFulfilledState(state);
     });
-    builder.addCase(loginUser.rejected, (state, action) => {
+    builder.addCase(loginUser.rejected, (state) => {
       state.isAuthenticated = false;
-      state.token = null;
       manageRejectedState(state);
     });
+
+    builder.addCase(verifyToken.pending, managePendingState);
+    builder.addCase(verifyToken.fulfilled, (state, action) => {
+      state.isAuthenticated = action.payload;
+      manageFulfilledState(state);
+    });
+    builder.addCase(verifyToken.rejected, manageRejectedState);
   },
 });
 
 export const { logout } = authSlice.actions;
+
 export default authSlice.reducer;
+
 export const isAuthenticated = (state) => state.auth.isAuthenticated;

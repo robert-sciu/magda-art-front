@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
-import ImageInspector from "../imageInspector/ImageInspector";
-import styles from "./pageImagesUploadForm.module.scss";
-import PropTypes from "prop-types";
-import { createArrayFromObject } from "../../../utilities";
+
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
+
+import ImageInspector from "../../../components/Admin/imageInspector/ImageInspector";
+
+import styles from "./pageImagesUploadForm.module.scss";
+
+import { createArrayFromObject } from "../../../utilities";
+
 export default function PageImagesUploadForm({
   role,
   selector,
@@ -18,7 +23,6 @@ export default function PageImagesUploadForm({
   const [file, setFile] = useState(null);
   const [imageName, setImageName] = useState("");
   const [externalUrl, setExternalUrl] = useState("");
-
   const [showImages, setShowImages] = useState(false);
   const [freePlacement, setFreePlacement] = useState(undefined);
   const [numberOfImages, setNumberOfImages] = useState(0);
@@ -27,15 +31,13 @@ export default function PageImagesUploadForm({
 
   useEffect(() => {
     if (!placementsNeeded) return;
-    const placementsList = createArrayFromObject(images).map(
-      (img) => img.placement
-    );
-
     let freePlacement;
-
     if (hardPlacement) {
       freePlacement = hardPlacement;
     } else {
+      const placementsList = createArrayFromObject(images).map(
+        (img) => img.placement
+      );
       for (let i = 1; i <= maxNumberOfImages; i++) {
         if (!placementsList.includes(i)) {
           freePlacement = i;

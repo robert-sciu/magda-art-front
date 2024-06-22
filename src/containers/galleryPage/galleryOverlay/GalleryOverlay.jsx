@@ -1,20 +1,25 @@
+import { useEffect, useState } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
+
+import ImageTile from "../../../components/common/imageTile/ImageTile";
+import closeBtn from "../../../assets/close-circle-outline.svg";
+
 import {
   fetchFullResImg,
   resetClickedImage,
   selectClickedImage,
   selectFullResImg,
-} from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
+} from "../galleryPageUi/galleryPageSlice";
+
 import styles from "./galleryOverlay.module.scss";
-import { useEffect, useState } from "react";
-import ImageTile from "../../common/imageTile/ImageTile";
 import scss from "../../../../styles/variables.module.scss";
-import closeBtn from "../../../assets/close-circle-outline.svg";
 
 export default function GalleryOverlay() {
+  const [image, setImage] = useState(null);
+
   const fullResImage = useSelector(selectFullResImg);
   const clickedImage = useSelector(selectClickedImage);
-  const [image, setImage] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -39,7 +44,7 @@ export default function GalleryOverlay() {
       className={fullResImage ? styles.overlay : styles.inactive}
       onClick={closeOverlay}
     >
-      {fullResImage ? (
+      {fullResImage && (
         <div
           className={styles.overlayContainer}
           onClick={handleStopPropagation}
@@ -57,11 +62,10 @@ export default function GalleryOverlay() {
             <p>{image.description}</p>
           </div>
           <div className={styles.closeBtn} onClick={closeOverlay}>
-            {/* <img src={closeIcon?.url} alt="close button" /> */}
             <img src={closeBtn} alt="close button" />
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

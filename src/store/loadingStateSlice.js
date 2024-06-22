@@ -7,14 +7,10 @@ export const loadingStateSlice = createSlice({
     setFilesLoaded: (state, action) => {
       state.filesLoaded = action.payload;
     },
-    // setHeroImageReady: (state, action) => {
-    //   state.heroImageReady = action.payload;
-    // },
   },
 });
 
 export const filesLoaded = (state) => state.loadingState.filesLoaded;
-// export const heroImageReady = (state) => state.loadingState.heroImageReady;
 
 export const { setFilesLoaded } = loadingStateSlice.actions;
 

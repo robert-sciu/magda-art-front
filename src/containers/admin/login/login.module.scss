@@ -1,13 +1,14 @@
-@import "../../../styles/variables.module.scss";
+@import "../../../../styles/variables.module.scss";
 
 .loginContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
   height: 100vh;
   width: 100vw;
+  opacity: 0;
+
   form {
     display: flex;
     flex-direction: column;
@@ -57,4 +58,9 @@
       color: $action-light-blue;
     }
   }
+}
+
+.show {
+  opacity: 1;
+  transition: opacity 1s;
 }

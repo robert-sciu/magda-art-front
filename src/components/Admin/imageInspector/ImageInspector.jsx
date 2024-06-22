@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+
 import styles from "./imageInspector.module.scss";
 
 export default function ImageInspector({ img, onDelete }) {

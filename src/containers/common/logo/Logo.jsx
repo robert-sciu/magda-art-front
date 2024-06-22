@@ -18,9 +18,12 @@ import { createArrayFromObject } from "../../../utilities";
  */
 
 export default function Logo({ onLoad }) {
-  const logo = useSelector(selectLogoImage);
-  const logoImgData = createArrayFromObject(logo)[0];
   const [logoLoaded, setLogoLoaded] = useState(false);
+
+  const logo = useSelector(selectLogoImage);
+
+  const logoImgData = createArrayFromObject(logo)[0];
+
   function handleLoad() {
     setLogoLoaded(true);
     if (onLoad) onLoad(true);
@@ -28,13 +31,13 @@ export default function Logo({ onLoad }) {
 
   return (
     <div className={styles.logo} style={logoLoaded ? { opacity: "1" } : null}>
-      {logo ? (
+      {logo && (
         <img
           src={logoImgData?.url}
           alt={logoImgData?.name}
           onLoad={handleLoad}
         />
-      ) : null}
+      )}
     </div>
   );
 }

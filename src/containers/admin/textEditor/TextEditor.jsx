@@ -1,4 +1,9 @@
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+
+import TextInputArea from "../../../components/Admin/textInputArea/TextInputArea";
+
 import {
   selectBio,
   selectFooterDesign,
@@ -6,26 +11,15 @@ import {
   selectName,
   selectWelcome,
   selectVisualizationsTexts,
-} from "../../../containers/mainPage/mainPageUi/mainPageContentSlice";
-import { useEffect, useState } from "react";
+  fetchContent,
+} from "../../mainPage/mainPageUi/mainPageContentSlice";
+
 import styles from "./textEditor.module.scss";
+
 import api from "../../../api/api";
-import TextInputArea from "../textInputArea/TextInputArea";
-import { useNavigate } from "react-router-dom";
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
 export default function TextEditor() {
-  const nameData = useSelector(selectName);
-  const welcomeData = useSelector(selectWelcome);
-  const bioData = useSelector(selectBio);
-  const footerDesignData = useSelector(selectFooterDesign);
-  const footerOwnerData = useSelector(selectFooterOwner);
-
-  const visualizations = useSelector(selectVisualizationsTexts);
-  const visualization1Data = visualizations?.visualization1?.content;
-  const visualization2Data = visualizations?.visualization2?.content;
-  const visualization3Data = visualizations?.visualization3?.content;
-
   const [name, setName] = useState("");
   const [welcome, setWelcome] = useState("");
   const [bio, setBio] = useState("");
@@ -35,9 +29,19 @@ export default function TextEditor() {
   const [visualization2, setVisualization2] = useState("");
   const [visualization3, setVisualization3] = useState("");
 
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const nameData = useSelector(selectName);
+  const welcomeData = useSelector(selectWelcome);
+  const bioData = useSelector(selectBio);
+  const footerDesignData = useSelector(selectFooterDesign);
+  const footerOwnerData = useSelector(selectFooterOwner);
+  const visualizations = useSelector(selectVisualizationsTexts);
 
   useEffect(() => {
+    const visualization1Data = visualizations?.visualization1?.content;
+    const visualization2Data = visualizations?.visualization2?.content;
+    const visualization3Data = visualizations?.visualization3?.content;
     setName(nameData || "");
     setWelcome(welcomeData || "");
     setBio(bioData || "");
@@ -52,27 +56,22 @@ export default function TextEditor() {
     bioData,
     footerDesignData,
     footerOwnerData,
-    visualization1Data,
-    visualization2Data,
-    visualization3Data,
+    visualizations,
   ]);
 
-  function handleSubmit(e, heading, inputData) {
+  async function handleSubmit(e, heading, inputData) {
     e.preventDefault();
-
     const data = { heading: heading, content: inputData };
-    api
-      .post(`${api_url}/contents`, data, {
+    try {
+      await api.post(`${api_url}/contents`, data, {
         headers: {
           "Content-Type": "application/json",
         },
-      })
-      .then((response) => {
-        // console.log(response);
-      })
-      .catch((error) => {
-        // console.log(error);
       });
+    } catch (error) {
+      console.log(error);
+    }
+    dispatch(fetchContent());
   }
 
   return (

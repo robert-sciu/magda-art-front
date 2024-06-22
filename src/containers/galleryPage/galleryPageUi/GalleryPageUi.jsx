@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import GalleryOverlay from "../../../components/Gallery/galleryOverlay/GalleryOverlay.jsx";
+import GalleryOverlay from "../galleryOverlay/GalleryOverlay.jsx";
 import GalleryColumn from "../../../components/Gallery/galleryColumn/GalleryColumn.jsx";
 import Fillers from "../../../components/Gallery/fillers/fillers.jsx";
 import Spinner from "../../../components/common/spinner/Spinner.jsx";

@@ -1,5 +1,7 @@
-import scss from "../../../../styles/variables.module.scss";
 import PropTypes from "prop-types";
+
+import scss from "../../../../styles/variables.module.scss";
+
 import { SpinnerDotted } from "spinners-react";
 
 export default function Spinner({

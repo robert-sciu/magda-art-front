@@ -1,0 +1,62 @@
+@import "../../../../styles/variables.module.scss";
+
+.adminNav {
+  margin-top: $size-xxl;
+  padding: $size-xxl;
+  gap: $size-xxl;
+
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    list-style: none;
+    gap: $size-l;
+    font-size: $size-m;
+
+    li {
+      background-color: $main-white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: $border-radius-m;
+      cursor: pointer;
+      transition: $link-transition;
+    }
+
+    li:hover {
+      background-color: $main-light-gray;
+    }
+
+    .navLink {
+      padding: $size-xxs $size-m;
+      color: $main-black;
+      text-decoration: none;
+      transition: $link-transition;
+    }
+
+    .navLink:hover {
+      color: $action-light-blue;
+    }
+
+    .navLinkActive {
+      padding: $size-xxs $size-m;
+      color: $main-white;
+      border-radius: $border-radius-m;
+      text-decoration: none;
+      background-color: $action-light-blue;
+    }
+  }
+}
+
+.adminContainer {
+  background-color: $main-light-gray;
+  padding: $size-xxl $size-xxl;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: $main-content-width;
+  margin: 0 auto $size-xxxl;
+  position: relative;
+  border-radius: $border-radius-m;
+}

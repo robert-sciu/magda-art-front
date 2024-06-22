@@ -5,7 +5,7 @@ import mainPageImagesReducer from "../containers/mainPage/mainPageUi/mainPageIma
 import galleryPageReducer from "../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import loadingStateReducer from "./loadingStateSlice";
 import RootNavReducer from "../containers/rootNav/rootNavSlice";
-import authReducer from "../containers/admin/loginSlice";
+import authReducer from "../containers/admin/login/loginSlice";
 
 export default configureStore({
   reducer: {

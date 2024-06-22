@@ -6,11 +6,11 @@ import { Link } from "react-scroll";
 
 import SocialIcons from "../common/socialIcons/SocialIcons";
 import Logo from "../common/logo/Logo";
-import Footer from "../../components/common/footer/Footer";
+import Footer from "../common/footer/Footer";
 
 import { fetchCommonImages } from "./rootNavSlice";
 import { filesLoaded } from "../../store/loadingStateSlice";
-import { isAuthenticated } from "../admin/loginSlice";
+import { isAuthenticated } from "../admin/login/loginSlice";
 
 import styles from "./rootNav.module.scss";
 
@@ -106,8 +106,11 @@ export default function RootNav() {
           {showAdmin ? (
             <li>
               <NavLink
-                className={`${styles.navLink} ${styles.admin}`}
-                activeClass={styles.navLinkActive}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${styles.navLinkActive} ${styles.admin}`
+                    : styles.navLink
+                }
                 to="/admin"
               >
                 ADMIN

@@ -1,9 +1,13 @@
 import { useState } from "react";
-import ImageTile from "../../common/imageTile/ImageTile";
-import PropTypes from "prop-types";
-import styles from "./galleryTile.module.scss";
-import { setClickedImage } from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
+
 import { useDispatch } from "react-redux";
+import PropTypes from "prop-types";
+
+import ImageTile from "../../common/imageTile/ImageTile";
+
+import { setClickedImage } from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
+
+import styles from "./galleryTile.module.scss";
 
 export default function GalleryTile({ image }) {
   const [hover, setHover] = useState(false);

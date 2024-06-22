@@ -1,16 +1,21 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+import Logo from "../logo/Logo";
+
 import {
   selectFooterDesign,
   selectFooterOwner,
-} from "../../../containers/mainPage/mainPageUi/mainPageContentSlice";
-import Logo from "../../../containers/common/logo/Logo";
+} from "../../mainPage/mainPageUi/mainPageContentSlice";
+
 import styles from "./footer.module.scss";
-import { Link } from "react-router-dom";
 
 export default function Footer() {
   const owner = useSelector(selectFooterOwner);
   const designer = useSelector(selectFooterDesign);
+
   const year = new Date().getFullYear();
+
   return (
     <footer>
       <div className={styles.footerContainer}>

@@ -1,9 +1,13 @@
-import { useSelector } from "react-redux";
-import styles from "./galleryImagesUploadForm.module.scss";
-import { createArrayFromObject } from "../../../utilities";
-import ImageInspector from "../imageInspector/ImageInspector";
 import { useEffect, useState } from "react";
+
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
+
+import ImageInspector from "../../../components/Admin/imageInspector/ImageInspector";
+
+import styles from "./galleryImagesUploadForm.module.scss";
+
+import { createArrayFromObject } from "../../../utilities";
 
 export default function GalleryImagesUploadForm({
   selector,
@@ -20,6 +24,11 @@ export default function GalleryImagesUploadForm({
 
   const images = useSelector(selector);
   const imagesArray = createArrayFromObject(images)[1];
+
+  useEffect(() => {
+    if (!imagesArray) return;
+    setShowImages(true);
+  }, [imagesArray]);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,11 +48,6 @@ export default function GalleryImagesUploadForm({
     setShowImages(false);
     onDelete(endpoint, imgId);
   }
-
-  useEffect(() => {
-    if (!imagesArray) return;
-    setShowImages(true);
-  }, [imagesArray]);
 
   return (
     <div className={styles.container}>

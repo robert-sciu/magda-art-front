@@ -1,32 +1,47 @@
 import { useEffect, useState } from "react";
-import styles from "./login.module.scss";
-import api from "../../api/api";
-import { useNavigate } from "react-router-dom";
+
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "./loginSlice.js";
+import { useNavigate } from "react-router-dom";
+
+import { loginUser, verifyToken } from "./loginSlice.js";
 import { isAuthenticated } from "./loginSlice.js";
+
+import styles from "./login.module.scss";
 
 export default function Login() {
   const [email, setEmail] = useState("mail@example.pl");
   const [password, setPassword] = useState("admin123");
+  const [checkedForToken, setCheckedForToken] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const userAuthenticated = useSelector(isAuthenticated);
 
-  async function handleLogin(e) {
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (token) {
+      dispatch(verifyToken({ token }));
+    }
+    if (userAuthenticated) {
+      navigate("/admin");
+    } else {
+      setTimeout(() => {
+        setCheckedForToken(true);
+      }, 200);
+    }
+  }, [userAuthenticated, navigate, dispatch, token]);
+
+  function handleLogin(e) {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
   }
 
-  useEffect(() => {
-    if (userAuthenticated) {
-      navigate("/admin");
-    }
-  }, [userAuthenticated, navigate, dispatch]);
-
   return (
-    <div className={styles.loginContainer}>
+    <div
+      className={`${styles.loginContainer} ${checkedForToken && styles.show}`}
+    >
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         <label htmlFor="email">Email</label>

@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
-import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
-import styles from "./fillers.module.scss";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
+import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
+
 import { selectLogoImage } from "../../../containers/rootNav/rootNavSlice";
+
+import styles from "./fillers.module.scss";
 
 function SocialsFiller() {
   return (
@@ -26,7 +29,7 @@ function LogoFiller() {
   const logo = useSelector(selectLogoImage);
   return (
     <div className={styles.logo}>
-      <img src={logo?.url} alt={"logo"} />
+      <img src={logo?.externalUrl} alt={"logo"} />
     </div>
   );
 }

@@ -1,7 +1,10 @@
 import { useState } from "react";
-import styles from "./imageTile.module.scss";
-import Spinner from "../spinner/Spinner";
+
 import PropTypes from "prop-types";
+
+import Spinner from "../spinner/Spinner";
+
+import styles from "./imageTile.module.scss";
 import scss from "../../../../styles/variables.module.scss";
 
 export default function ImageTile({
@@ -12,7 +15,6 @@ export default function ImageTile({
   loadCheck = () => {},
 }) {
   const [imgLoaded, setImgLoaded] = useState(false);
-
   function handleLoad() {
     setImgLoaded(true);
     loadCheck(true);
