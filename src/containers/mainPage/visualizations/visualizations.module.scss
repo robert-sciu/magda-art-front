@@ -1,0 +1,25 @@
+@import "../../../../styles/variables.module.scss";
+
+.visualizationsContainer {
+  width: $main-content-width;
+  margin: $size-xxxl auto;
+  border-radius: $border-radius-m;
+  overflow: hidden;
+  box-shadow: 0 0 2rem $dark-shadow;
+
+  .visualizationsHeader {
+    background-color: $main-light-gray;
+    padding: $size-xl;
+
+    h2 {
+      text-align: center;
+      font-size: $size-l;
+      margin: 0;
+    }
+  }
+  h2 {
+    text-align: center;
+    font-size: $size-l;
+    margin: $size-l;
+  }
+}

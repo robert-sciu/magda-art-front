@@ -1,16 +1,15 @@
-import styles from "./visualizationTile.module.scss";
 import PropTypes from "prop-types";
-import scss from "../../../../styles/variables.module.scss";
+
 import ImageTile from "../../common/imageTile/ImageTile";
 
-export default function VisualizationTile({ image, text, imgSideReverse }) {
-  const styleObject = {
-    flexDirection: imgSideReverse || "row-reverse",
-    backgroundColor: imgSideReverse || scss.mainLightGray,
-  };
+import styles from "./visualizationTile.module.scss";
+import scss from "../../../../styles/variables.module.scss";
 
+export default function VisualizationTile({ image, text, imgSideReverse }) {
   return (
-    <div className={styles.tileContainer} style={styleObject}>
+    <div
+      className={`${styles.tileContainer} ${imgSideReverse && styles.reversed}`}
+    >
       <div className={styles.textContainer}>
         <p>{text}</p>
       </div>

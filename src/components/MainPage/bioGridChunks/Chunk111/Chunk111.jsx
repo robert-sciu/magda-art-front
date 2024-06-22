@@ -1,21 +1,20 @@
-import styles from "./chunk111.module.scss";
-import universalStyles from "../universalChunkStyle.module.scss";
 import PropTypes from "prop-types";
+
 import ImageTile from "../../../common/imageTile/ImageTile";
 
+import universalStyles from "../universalChunkStyle.module.scss";
+import styles from "./chunk111.module.scss";
+
 export default function Chunk111({ images }) {
-  const [img1, img2, img3] = Object.values(images);
   return (
     <div className={styles.grid111}>
-      <figure className={universalStyles.bioGalleryItem}>
-        <ImageTile img={img1} />
-      </figure>
-      <figure className={universalStyles.bioGalleryItem}>
-        <ImageTile img={img2} />
-      </figure>
-      <figure className={universalStyles.bioGalleryItem}>
-        <ImageTile img={img3} />
-      </figure>
+      {images.map((img) => {
+        return (
+          <figure className={universalStyles.bioGalleryItem} key={img?.id}>
+            <ImageTile img={img} />
+          </figure>
+        );
+      })}
     </div>
   );
 }

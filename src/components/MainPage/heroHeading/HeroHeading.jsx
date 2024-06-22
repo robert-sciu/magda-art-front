@@ -1,19 +1,14 @@
-import styles from "./heroHeading.module.scss";
 import PropTypes from "prop-types";
 
-export default function HeroHeading({ showHeading, logoImage, name }) {
+import styles from "./heroHeading.module.scss";
+
+export default function HeroHeading({ showHeading, logoImageArray, name }) {
   return (
-    <div
-      className={styles.heading}
-      style={{
-        opacity: showHeading ? 1 : 0,
-        transition: "opacity 3s",
-      }}
-    >
+    <div className={`${styles.heading} ${showHeading && styles.show}`}>
       <img
         className={styles.logoImage}
-        src={logoImage?.url}
-        alt={logoImage?.name}
+        src={logoImageArray[0]?.url}
+        alt={logoImageArray[0]?.name}
       />
       <h1>{name}</h1>
       <h2>Porfolio</h2>
@@ -23,6 +18,6 @@ export default function HeroHeading({ showHeading, logoImage, name }) {
 
 HeroHeading.propTypes = {
   showHeading: PropTypes.bool,
-  logoImage: PropTypes.object,
+  logoImageArray: PropTypes.array,
   name: PropTypes.string,
 };

@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
 import styles from "./imageInspector.module.scss";
-import api from "../../../api/api";
-const api_url = import.meta.env.VITE_API_BASE_URL;
 
 export default function ImageInspector({ img, onDelete }) {
   const imgId = img.id;
@@ -20,4 +18,5 @@ export default function ImageInspector({ img, onDelete }) {
 ImageInspector.propTypes = {
   img: PropTypes.object,
   onDelete: PropTypes.func,
+  endpoint: PropTypes.string,
 };

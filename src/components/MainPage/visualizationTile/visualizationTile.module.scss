@@ -39,3 +39,8 @@
     box-shadow: 0 0 1rem $dark-shadow;
   }
 }
+
+.reversed {
+  flex-direction: row-reverse;
+  background-color: $main-light-gray;
+}

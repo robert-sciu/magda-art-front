@@ -19,7 +19,12 @@ export function createImageObject(imageObject) {
     name: imageObject.name,
     id: imageObject.id,
     placement: imageObject.placement ?? undefined,
+    externalUrl: imageObject.externalUrl ?? undefined,
   };
+}
+
+export function createArrayFromObject(object) {
+  return Object.values(object);
 }
 
 export function matchTextToImage(imagePlacement, visualizationTexts) {

@@ -2,10 +2,20 @@
 
 .adminContainer {
   background-color: $main-light-gray;
-  padding: $size-xxl;
+  padding: $size-s $size-xxl $size-xxl;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: $main-content-width;
+  margin: $size-xxxxl auto;
+  position: relative;
+  .logoutBtn {
+    position: absolute;
+    width: $size-xxxxl;
+    top: $size-l;
+    right: $size-xxl;
+    background-color: $cancel-red;
+    cursor: pointer;
+  }
 }

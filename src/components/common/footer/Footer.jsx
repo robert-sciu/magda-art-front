@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import {
   selectFooterDesign,
   selectFooterOwner,
-} from "../../../containers/mainPage/mainPageContentSlice";
-import Logo from "../logo/Logo";
+} from "../../../containers/mainPage/mainPageUi/mainPageContentSlice";
+import Logo from "../../../containers/common/logo/Logo";
 import styles from "./footer.module.scss";
 import { Link } from "react-router-dom";
 

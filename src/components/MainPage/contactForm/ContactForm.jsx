@@ -1,17 +1,31 @@
-import { useState } from "react";
-import styles from "./contactForm.module.scss";
 import PropTypes from "prop-types";
 
-export default function ContactForm({ onSubmit }) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
+import Spinner from "../../common/spinner/Spinner";
+
+import styles from "./contactForm.module.scss";
+import scss from "../../../../styles/variables.module.scss";
+
+export default function ContactForm({
+  onSubmit,
+  name,
+  email,
+  subject,
+  message,
+  setName,
+  setEmail,
+  setSubject,
+  setMessage,
+  sendingInProgress,
+}) {
+  async function handleSubmit(e) {
+    e.preventDefault();
+    onSubmit();
+  }
 
   return (
     <div className={styles.contactContainer}>
       <h2>Contact Me</h2>
-      <form onSubmit={onSubmit} className={styles.contactForm}>
+      <form onSubmit={handleSubmit} className={styles.contactForm}>
         <label htmlFor="name">Name</label>
         <input
           placeholder="Your name"
@@ -49,7 +63,12 @@ export default function ContactForm({ onSubmit }) {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <button type="submit">Send</button>
+        <button type="submit">
+          <span>
+            {sendingInProgress ? <Spinner size={scss.sizeL} /> : null}
+          </span>
+          {sendingInProgress ? "Sending..." : "Send"}
+        </button>
       </form>
     </div>
   );
@@ -57,4 +76,13 @@ export default function ContactForm({ onSubmit }) {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  subject: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
+  setName: PropTypes.func.isRequired,
+  setEmail: PropTypes.func.isRequired,
+  setSubject: PropTypes.func.isRequired,
+  setMessage: PropTypes.func.isRequired,
+  sendingInProgress: PropTypes.bool,
 };

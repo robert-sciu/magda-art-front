@@ -1,16 +1,19 @@
-import { useSelector } from "react-redux";
-import styles from "./welcomeGrid.module.scss";
-import { selectWelcomeImages } from "../../../containers/mainPage/mainPageImagesSlice";
-import ImageTile from "../../common/imageTile/ImageTile";
-// import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 
-export default function WelcomeGrid() {
-  const welcomeImages = useSelector(selectWelcomeImages);
+import ImageTile from "../../common/imageTile/ImageTile";
+
+import styles from "./welcomeGrid.module.scss";
+
+export default function WelcomeGrid({ welcomeImagesArray }) {
   return (
     <div className={styles.gridContainer}>
-      {Object.values(welcomeImages).map((img) => (
+      {welcomeImagesArray.map((img) => (
         <ImageTile img={img} alt={img.name} key={img.id} />
       ))}
     </div>
   );
 }
+
+WelcomeGrid.propTypes = {
+  welcomeImagesArray: PropTypes.array,
+};

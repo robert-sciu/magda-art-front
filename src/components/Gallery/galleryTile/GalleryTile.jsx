@@ -2,7 +2,7 @@ import { useState } from "react";
 import ImageTile from "../../common/imageTile/ImageTile";
 import PropTypes from "prop-types";
 import styles from "./galleryTile.module.scss";
-import { setClickedImage } from "../../../containers/gallery/galleryPageSlice";
+import { setClickedImage } from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import { useDispatch } from "react-redux";
 
 export default function GalleryTile({ image }) {

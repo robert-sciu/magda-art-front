@@ -5,6 +5,8 @@
   flex-direction: column;
   align-items: center;
   opacity: 0;
+  transition: opacity 3s;
+  color: $main-white;
 
   .logoImage {
     width: 25%;
@@ -15,16 +17,18 @@
 
   h1 {
     font-family: "Dancing Script", cursive;
-    font-weight: normal;
+    font-weight: 400;
     font-size: $size-xxl;
-    color: $main-white;
     text-align: center;
     text-wrap: nowrap;
   }
 
   h2 {
-    color: $main-white;
     font-size: $size-l;
     font-weight: 400;
   }
+}
+
+.show {
+  opacity: 1;
 }

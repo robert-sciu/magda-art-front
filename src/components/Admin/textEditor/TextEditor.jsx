@@ -1,17 +1,17 @@
 import { useSelector } from "react-redux";
 import {
-  selectAllContent,
   selectBio,
   selectFooterDesign,
   selectFooterOwner,
   selectName,
   selectWelcome,
   selectVisualizationsTexts,
-} from "../../../containers/mainPage/mainPageContentSlice";
+} from "../../../containers/mainPage/mainPageUi/mainPageContentSlice";
 import { useEffect, useState } from "react";
 import styles from "./textEditor.module.scss";
 import api from "../../../api/api";
 import TextInputArea from "../textInputArea/TextInputArea";
+import { useNavigate } from "react-router-dom";
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
 export default function TextEditor() {
@@ -34,6 +34,8 @@ export default function TextEditor() {
   const [visualization1, setVisualization1] = useState("");
   const [visualization2, setVisualization2] = useState("");
   const [visualization3, setVisualization3] = useState("");
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setName(nameData || "");

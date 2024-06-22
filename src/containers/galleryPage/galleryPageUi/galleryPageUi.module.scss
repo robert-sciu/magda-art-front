@@ -1,0 +1,22 @@
+@import "../../../../styles/variables.module.scss";
+
+.galleryPage {
+  display: flex;
+  gap: $size-xxxs;
+  background-color: $main-black;
+  padding: $size-xxxxl $size-l $size-xl;
+  margin-top: $size-l;
+  // align-items: flex-start;
+  min-height: 50vh;
+  img {
+    min-height: $size-xxxl;
+  }
+}
+
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}

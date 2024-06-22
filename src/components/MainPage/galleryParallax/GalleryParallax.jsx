@@ -1,10 +1,13 @@
-import styles from "./galleryParallax.module.scss";
-import { selectGalleryParallaxImage } from "../../../containers/mainPage/mainPageImagesSlice";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-export default function GalleryParallax() {
-  const parallaxImg = useSelector(selectGalleryParallaxImage);
-  const imgStyle = { backgroundImage: `url(${parallaxImg?.url})` };
+
+import PropTypes from "prop-types";
+
+import styles from "./galleryParallax.module.scss";
+
+export default function GalleryParallax({ galleryParallaxImageArray }) {
+  const parallaxImgData = galleryParallaxImageArray[0];
+
+  const imgStyle = { backgroundImage: `url(${parallaxImgData?.url})` };
   return (
     <div className={styles.parallax} style={imgStyle}>
       <div className={styles.galleryLinkBackground}>
@@ -15,3 +18,7 @@ export default function GalleryParallax() {
     </div>
   );
 }
+
+GalleryParallax.propTypes = {
+  galleryParallaxImageArray: PropTypes.array,
+};

@@ -6,12 +6,12 @@ import {
   createImageObject,
 } from "../../utilities";
 
+const api_url = import.meta.env.VITE_API_BASE_URL;
+
 export const fetchCommonImages = createAsyncThunk(
   "rootNav/fetchCommonImages",
   async () => {
-    const commonImages = await fetch(
-      "http://localhost:4000/api/v1/pageImages/common"
-    );
+    const commonImages = await fetch(`${api_url}/pageImages/common`);
     const data = await commonImages.json();
     return data;
   }
@@ -35,7 +35,8 @@ export const rootNavSlice = createSlice({
             createImageObject(imageObject);
           return;
         }
-        state.common[imageObject.role] = createImageObject(imageObject);
+        state.common[imageObject.role][imageObject.name] =
+          createImageObject(imageObject);
       });
       manageFulfilledState(state);
     });

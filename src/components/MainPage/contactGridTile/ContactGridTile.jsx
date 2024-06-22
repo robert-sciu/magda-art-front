@@ -1,6 +1,8 @@
-import ImageTile from "../../common/imageTile/ImageTile";
-import styles from "./contactGridTile.module.scss";
 import PropTypes from "prop-types";
+
+import ImageTile from "../../common/imageTile/ImageTile";
+
+import styles from "./contactGridTile.module.scss";
 import scss from "../../../../styles/variables.module.scss";
 
 export default function ContactGridTile({ img }) {

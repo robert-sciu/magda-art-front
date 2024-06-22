@@ -1,0 +1,26 @@
+@import "../../../../styles/variables.module.scss";
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: $size-m;
+  p {
+    font-size: $size-m;
+  }
+  button {
+    cursor: pointer;
+    padding: $size-xxxxs $size-l;
+    border-radius: $border-radius-m;
+    background-color: $action-blue;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: $main-white;
+    border: none;
+    transition: $link-transition-slow;
+    &:hover {
+      background-color: $action-light-blue;
+    }
+  }
+}

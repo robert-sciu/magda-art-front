@@ -52,8 +52,14 @@
       background-color: $action-blue;
       color: $main-white;
       box-shadow: 0 0 1rem 0.4rem $dark-shadow;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: 0.3s;
+      span {
+        margin-right: $size-xxs;
+      }
     }
 
     button:hover,

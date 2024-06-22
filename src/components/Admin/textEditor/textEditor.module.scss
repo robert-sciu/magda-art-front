@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   form {
+    position: relative;
     border: 1px solid $main-medium-light-gray;
     background-color: $main-light-gray;
     padding: $size-l;

@@ -9,6 +9,7 @@
   padding: $size-xxs $size-m;
   background-color: $main-white;
   box-shadow: 2px 0px 10px $white-shadow;
+  opacity: 0;
   ul {
     display: flex;
     list-style: none;
@@ -34,6 +35,11 @@
   color: $main-gray;
   text-decoration: none;
 }
+
+.admin {
+  color: $action-green;
+}
+
 .socials {
   display: flex;
   align-items: center;

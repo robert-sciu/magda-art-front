@@ -1,38 +1,37 @@
-import { useDispatch } from "react-redux";
-import styles from "./heroBackground.module.scss";
 import PropTypes from "prop-types";
-import { useEffect, useState } from "react";
-import { setHeroImageReady } from "../../../store/loadingStateSlice";
-export default function HeroBackground({ heroImage }) {
-  const dispatch = useDispatch();
-  const [imgLoaded, setImgLoaded] = useState(false);
 
-  useEffect(() => {
-    if (imgLoaded) {
-      dispatch(setHeroImageReady(true));
-    }
-  }, [imgLoaded, dispatch]);
+import styles from "./heroBackground.module.scss";
+
+export default function HeroBackground({
+  heroImageArray,
+  onHeroImageLoaded,
+  heroImageLoaded,
+}) {
+  function handleHeroImageLoaded() {
+    onHeroImageLoaded(true);
+  }
 
   return (
     <div
       style={{
-        opacity: imgLoaded ? 1 : 0,
-        transition: "opacity 2s",
+        opacity: heroImageLoaded ? 1 : 0,
       }}
-      className={styles.heroContainer}
+      className={`${styles.heroContainer} ${heroImageLoaded && styles.show}`}
     >
       <img
         className={styles.heroImage}
-        src={heroImage.url}
-        alt={`Painting entitled ${heroImage.name}`}
-        onLoad={() => setImgLoaded(true)}
+        src={heroImageArray[0]?.url}
+        alt={`Painting entitled ${heroImageArray[0]?.name}`}
+        onLoad={() => handleHeroImageLoaded()}
       />
     </div>
   );
 }
 
 HeroBackground.propTypes = {
-  heroImage: PropTypes.object,
+  heroImageArray: PropTypes.array,
   imgLoaded: PropTypes.bool,
   onImgLoaded: PropTypes.func,
+  onHeroImageLoaded: PropTypes.func,
+  heroImageLoaded: PropTypes.bool,
 };

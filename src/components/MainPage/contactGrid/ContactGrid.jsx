@@ -1,16 +1,19 @@
-import { useSelector } from "react-redux";
-import styles from "./contactGrid.module.scss";
-import { selectContactImages } from "../../../containers/mainPage/mainPageImagesSlice";
+import PropTypes from "prop-types";
+
 import ContactGridTile from "../contactGridTile/ContactGridTile";
 
-export default function ContactGrid() {
-  const images = useSelector(selectContactImages);
+import styles from "./contactGrid.module.scss";
 
+export default function ContactGrid({ allImagesArray }) {
   return (
     <div className={styles.galleryGrid}>
-      {Object.values(images).map((img, i) => (
+      {allImagesArray.map((img, i) => (
         <ContactGridTile img={img} key={i} />
       ))}
     </div>
   );
 }
+
+ContactGrid.propTypes = {
+  allImagesArray: PropTypes.array,
+};

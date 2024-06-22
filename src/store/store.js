@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import mainPageContentReducer from "../containers/mainPage/mainPageContentSlice";
-import mainPageImagesReducer from "../containers/mainPage/mainPageImagesSlice";
-import galleryPageReducer from "../containers/gallery/galleryPageSlice";
+import mainPageContentReducer from "../containers/mainPage/mainPageUi/mainPageContentSlice";
+import mainPageImagesReducer from "../containers/mainPage/mainPageUi/mainPageImagesSlice";
+import galleryPageReducer from "../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import loadingStateReducer from "./loadingStateSlice";
 import RootNavReducer from "../containers/rootNav/rootNavSlice";
+import authReducer from "../containers/admin/loginSlice";
 
 export default configureStore({
   reducer: {
@@ -13,5 +14,6 @@ export default configureStore({
     galleryPage: galleryPageReducer,
     loadingState: loadingStateReducer,
     rootNav: RootNavReducer,
+    auth: authReducer,
   },
 });

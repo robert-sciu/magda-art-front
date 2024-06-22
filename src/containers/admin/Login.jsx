@@ -1,36 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./login.module.scss";
 import api from "../../api/api";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "./loginSlice.js";
+import { isAuthenticated } from "./loginSlice.js";
 
 export default function Login() {
   const [email, setEmail] = useState("mail@example.pl");
   const [password, setPassword] = useState("admin123");
-  const [message, setMessage] = useState("");
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const userAuthenticated = useSelector(isAuthenticated);
+
   async function handleLogin(e) {
     e.preventDefault();
-    try {
-      const response = await api.post(
-        "http://localhost:4000/api/v1/login",
-        {
-          email,
-          password,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      localStorage.setItem("token", response.data.token);
-      setMessage("login successful");
-      navigate("/admin");
-    } catch (error) {
-      setMessage(`Login failed: ${error.message}`);
-    }
+    dispatch(loginUser({ email, password }));
   }
+
+  useEffect(() => {
+    if (userAuthenticated) {
+      navigate("/admin");
+    }
+  }, [userAuthenticated, navigate, dispatch]);
 
   return (
     <div className={styles.loginContainer}>
@@ -52,7 +45,6 @@ export default function Login() {
         />
         <button type="submit">Login</button>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 }

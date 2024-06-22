@@ -1,0 +1,14 @@
+@import "../../../../styles/variables.module.scss";
+
+.socials {
+  display: flex;
+  gap: $size-s;
+  // opacity: 0;
+  img {
+    transition: $link-transition;
+    filter: $main-black--filter;
+  }
+  img:hover {
+    filter: $main-white--filter;
+  }
+}

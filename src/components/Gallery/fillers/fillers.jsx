@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import SocialIcons from "../../common/socialIcons/SocialIcons";
+import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
 import styles from "./fillers.module.scss";
 import { useSelector } from "react-redux";
 import { selectLogoImage } from "../../../containers/rootNav/rootNavSlice";

@@ -4,7 +4,7 @@ import {
   resetClickedImage,
   selectClickedImage,
   selectFullResImg,
-} from "../../../containers/gallery/galleryPageSlice";
+} from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import styles from "./galleryOverlay.module.scss";
 import { useEffect, useState } from "react";
 import ImageTile from "../../common/imageTile/ImageTile";

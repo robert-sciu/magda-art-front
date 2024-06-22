@@ -1,22 +1,26 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.scss";
-import Root from "./containers/rootNav/RootNav";
-import MainPage from "./containers/mainPage/MainPage";
-import GalleryPage from "./containers/gallery/GalleryPage.jsx";
-import Login from "./containers/admin/Login.jsx";
-import Admin from "./containers/admin/Admin.jsx";
-
-import { setFilesLoaded } from "./store/loadingStateSlice.js";
-import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
-import { useSelector } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import { filesLoaded } from "./store/loadingStateSlice.js";
+import RootNav from "./containers/rootNav/RootNav";
+import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
+import GalleryPage from "./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx";
+import Login from "./containers/admin/Login";
+import Admin from "./containers/admin/Admin";
 
-import { fetchContent } from "./containers/mainPage/mainPageContentSlice.js";
-import { fetchPageImages } from "./containers/mainPage/mainPageImagesSlice.js";
-import { fetchImages } from "./containers/gallery/galleryPageSlice.js";
+import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
+import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
+import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
+import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
+
+import "./App.scss";
+
+/**
+ * Renders the main application component.
+ *
+ * @return {JSX.Element} The rendered application component.
+ */
 
 function App() {
   const dispatch = useDispatch();
@@ -27,17 +31,19 @@ function App() {
       dispatch(setFilesLoaded(true));
     });
   });
+
   useEffect(() => {
     if (!loadState) return;
     dispatch(fetchContent());
     dispatch(fetchPageImages());
     dispatch(fetchImages());
   }, [dispatch, loadState]);
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Root />}>
-          <Route index element={<MainPage />} />
+        <Route path="/" element={<RootNav />}>
+          <Route index element={<MainPageUi />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
