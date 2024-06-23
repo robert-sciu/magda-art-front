@@ -4,7 +4,7 @@ import mainPageContentReducer from "../containers/mainPage/mainPageUi/mainPageCo
 import mainPageImagesReducer from "../containers/mainPage/mainPageUi/mainPageImagesSlice";
 import galleryPageReducer from "../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import loadingStateReducer from "./loadingStateSlice";
-import RootNavReducer from "../containers/rootNav/rootNavSlice";
+import rootNavReducer from "../containers/rootNav/rootNavSlice";
 import authReducer from "../containers/admin/login/loginSlice";
 
 export default configureStore({
@@ -13,7 +13,7 @@ export default configureStore({
     mainPageImages: mainPageImagesReducer,
     galleryPage: galleryPageReducer,
     loadingState: loadingStateReducer,
-    rootNav: RootNavReducer,
+    rootNav: rootNavReducer,
     auth: authReducer,
   },
 });

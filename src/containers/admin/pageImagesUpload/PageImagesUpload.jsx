@@ -31,6 +31,19 @@ import styles from "./pageImagesUpload.module.scss";
 import api from "../../../api/api";
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
+const uploadInfo = {
+  bigImages:
+    "SQUARE Image with width and height equal or larger than 2500px is HIGHLY recommended",
+  smallImages:
+    "due to tehnological limitations images should be perfectly square with width equal or bigger than 500px",
+  visualizationImages:
+    "Due to technical limitations images should be perfectly square with width equal or bigger than 1000px",
+  bigContactImage:
+    "An image with witdth equal or larger than 500 and height equal or larger than 1500px is recommended. REMEMBER TO UPLOAD IMAGE WITH 3:1 ASPECT RATIO",
+  socialIcons:
+    "Should be square image in svg(!!!) format or unexpected behaviour may occur",
+};
+
 export default function PageImagesUpload() {
   const { uploadSection } = useParams();
 
@@ -96,6 +109,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={1}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.bigImages}
             onDelete={handleDelete}
           />
           <PageImagesUploadForm
@@ -104,6 +118,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={4}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.smallImages}
             onDelete={handleDelete}
           />
           <PageImagesUploadForm
@@ -112,6 +127,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={1}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.bigImages}
             onDelete={handleDelete}
           />
           <PageImagesUploadForm
@@ -120,6 +136,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={11}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.smallImages}
             placementsNeeded={true}
             onDelete={handleDelete}
           />
@@ -129,6 +146,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={1}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.bigImages}
             onDelete={handleDelete}
           />
           <PageImagesUploadForm
@@ -137,6 +155,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={3}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.visualizationImages}
             placementsNeeded={true}
             onDelete={handleDelete}
           />
@@ -146,6 +165,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={1}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.bigContactImage}
             placementsNeeded={true}
             hardPlacement={1}
             onDelete={handleDelete}
@@ -156,6 +176,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={3}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.smallImages}
             placementsNeeded={true}
             hardPlacement={2}
             onDelete={handleDelete}
@@ -163,9 +184,10 @@ export default function PageImagesUpload() {
           <PageImagesUploadForm
             role="socials"
             selector={selectSocialsIcons}
-            maxNumberOfImages={2}
+            maxNumberOfImages={Infinity}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.socialIcons}
             onDelete={handleDelete}
             urlInput={true}
           />
@@ -175,6 +197,7 @@ export default function PageImagesUpload() {
             maxNumberOfImages={1}
             onSubmit={handleSubmit}
             endpoint="pageImages"
+            info={uploadInfo.smallImages}
             onDelete={handleDelete}
           />
         </>

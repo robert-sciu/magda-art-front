@@ -8,10 +8,21 @@
   gap: $size-xl;
   margin-bottom: $size-l;
   background-color: $main-light-gray;
+
   .formContainer {
     display: flex;
     flex-direction: column;
     gap: $size-xxs;
+
+    .error {
+      color: $error-red;
+      font-size: $size-xs;
+    }
+
+    .info {
+      font-style: italic;
+      color: $action-green;
+    }
 
     button {
       cursor: pointer;

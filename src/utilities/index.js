@@ -30,3 +30,49 @@ export function createArrayFromObject(object) {
 export function matchTextToImage(imagePlacement, visualizationTexts) {
   return visualizationTexts[`visualization${imagePlacement}`]?.["content"];
 }
+
+export async function checkImageDimensions(file, role) {
+  return new Promise((resolve, reject) => {
+    const rolesWithSquareImages = [
+      "welcome",
+      "bio",
+      "visualizations",
+      "contactSmall",
+      "socials",
+      "logo",
+    ];
+    const image = new Image();
+    image.src = URL.createObjectURL(file);
+
+    image.onload = () => {
+      let errorMessage = null;
+      if (
+        rolesWithSquareImages.includes(role) &&
+        image.width !== image.height
+      ) {
+        errorMessage = "Image should be square";
+      }
+      if (role === "contactBig" && image.width * 3 !== image.height) {
+        errorMessage =
+          "Image ratio should be 3:1. It would just look weird if it's not.";
+      }
+
+      URL.revokeObjectURL(image.src);
+      resolve(errorMessage);
+    };
+
+    image.onerror = () => {
+      URL.revokeObjectURL(image.src);
+      reject(
+        new Error("Failed to load file. Are you sure you're uploading an image")
+      );
+    };
+  });
+}
+
+export function splitOnUppercase(str) {
+  return str
+    .split(/(?=[A-Z])/)
+    .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
+    .join(" ");
+}

@@ -27,7 +27,7 @@ export default function TextInputArea({
     e.preventDefault();
     setShowEdit(false);
 
-    submit(e, heading, inputData);
+    submit(e, heading, inputData, onChange, originalContent);
   }
 
   return (

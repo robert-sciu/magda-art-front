@@ -59,9 +59,25 @@ export default function TextEditor() {
     visualizations,
   ]);
 
-  async function handleSubmit(e, heading, inputData) {
+  async function handleSubmit(
+    e,
+    heading,
+    inputData,
+    setInput,
+    originalContent
+  ) {
     e.preventDefault();
+    if (inputData.trim() === "") {
+      setInput("");
+      return;
+    }
+
+    if (inputData === originalContent) {
+      return;
+    }
+
     const data = { heading: heading, content: inputData };
+
     try {
       await api.post(`${api_url}/contents`, data, {
         headers: {
@@ -102,7 +118,7 @@ export default function TextEditor() {
         />
 
         <TextInputArea
-          heading={"footerDesign"}
+          heading={"developer name"}
           inputData={footerDesign}
           onChange={setFooterDesign}
           large={false}
@@ -110,7 +126,7 @@ export default function TextEditor() {
         />
 
         <TextInputArea
-          heading={"footerOwner"}
+          heading={"site owner"}
           inputData={footerOwner}
           onChange={setFooterOwner}
           large={false}

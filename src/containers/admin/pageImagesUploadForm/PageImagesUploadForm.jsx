@@ -7,7 +7,11 @@ import ImageInspector from "../../../components/Admin/imageInspector/ImageInspec
 
 import styles from "./pageImagesUploadForm.module.scss";
 
-import { createArrayFromObject } from "../../../utilities";
+import {
+  checkImageDimensions,
+  createArrayFromObject,
+  splitOnUppercase,
+} from "../../../utilities";
 
 export default function PageImagesUploadForm({
   role,
@@ -15,6 +19,7 @@ export default function PageImagesUploadForm({
   maxNumberOfImages,
   onSubmit,
   endpoint,
+  info,
   placementsNeeded = false,
   hardPlacement = undefined,
   onDelete,
@@ -26,6 +31,12 @@ export default function PageImagesUploadForm({
   const [showImages, setShowImages] = useState(false);
   const [freePlacement, setFreePlacement] = useState(undefined);
   const [numberOfImages, setNumberOfImages] = useState(0);
+  const [filenameError, setFilenameError] = useState(null);
+  const [fileError, setFileError] = useState(null);
+  const [urlError, setUrlError] = useState(null);
+  const [compatibilityError, setCompatibilityError] = useState(null);
+  const [header, setHeader] = useState(null);
+  const [subHeader, setSubHeader] = useState(null);
 
   const images = useSelector(selector);
 
@@ -57,8 +68,73 @@ export default function PageImagesUploadForm({
     setShowImages(true);
   }, [images]);
 
+  useEffect(() => {
+    const roleFormatted = splitOnUppercase(role);
+    if (numberOfImages === maxNumberOfImages) {
+      setHeader(
+        `${roleFormatted} section ${
+          maxNumberOfImages === 1 ? "image" : "images"
+        } already uploaded`
+      );
+      setSubHeader(`To add new Images you need to delete the old ones first`);
+    } else {
+      setHeader(
+        `Upload ${maxNumberOfImages === Infinity ? "" : maxNumberOfImages} ${
+          maxNumberOfImages === 1 ? "image" : "images"
+        } for ${roleFormatted} section`
+      );
+      setSubHeader(null);
+    }
+  }, [role, numberOfImages, maxNumberOfImages]);
+
+  function handleFileChange(e) {
+    setFile(e.target.files[0]);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!imageName || !file || (!externalUrl && urlInput)) {
+      setFilenameError(null);
+      setFileError(null);
+      setUrlError(null);
+
+      if (!imageName) {
+        setFilenameError("Please enter an image name");
+      }
+
+      if (!file) {
+        setFileError("Please select a file");
+      }
+
+      if (urlInput && !externalUrl) {
+        setUrlError("Please enter an external url");
+      }
+
+      return;
+    }
+
+    try {
+      const imageCompatibilityCheck = await checkImageDimensions(file, role);
+      if (imageCompatibilityCheck) {
+        setCompatibilityError(imageCompatibilityCheck);
+        return;
+      }
+    } catch (error) {
+      setCompatibilityError(error.message);
+      return;
+    }
+
+    setCompatibilityError(null);
+    setFilenameError(null);
+    setFileError(null);
+    setUrlError(null);
+
+    const filteredUrl = externalUrl
+      .replace("https://", "")
+      .replace("http://", "")
+      .replace("www.", "");
+
     await onSubmit(
       endpoint,
       file,
@@ -68,7 +144,7 @@ export default function PageImagesUploadForm({
       null,
       null,
       null,
-      externalUrl
+      externalUrl ? filteredUrl : null
     );
     setImageName("");
     setExternalUrl("");
@@ -83,15 +159,13 @@ export default function PageImagesUploadForm({
   return (
     <div className={styles.container}>
       <form className={styles.formContainer} onSubmit={handleSubmit}>
-        <h3>
-          Upload {maxNumberOfImages}{" "}
-          {maxNumberOfImages === 1 ? "image" : "images"} for {role} section
-        </h3>
+        <h3>{header}</h3>
         {numberOfImages === maxNumberOfImages ? (
-          <p>To add new images you need to delete the old ones</p>
+          <p>{subHeader}</p>
         ) : (
           <>
             <label htmlFor="name">Name</label>
+            {filenameError && <p className={styles.error}>{filenameError}</p>}
             <input
               type="text"
               id="name"
@@ -102,6 +176,7 @@ export default function PageImagesUploadForm({
             {urlInput ? (
               <>
                 <label htmlFor="url">Url</label>
+                {urlError && <p className={styles.error}>{urlError}</p>}
                 <input
                   type="text"
                   id="url"
@@ -112,11 +187,18 @@ export default function PageImagesUploadForm({
               </>
             ) : null}
             <label htmlFor="file">File:</label>
+            {numberOfImages === maxNumberOfImages || (
+              <p className={styles.info}>{info}</p>
+            )}
+            {fileError && <p className={styles.error}>{fileError}</p>}
+            {compatibilityError && (
+              <p className={styles.error}>{compatibilityError}</p>
+            )}
             <input
               type="file"
               id="file"
               name="file"
-              onChange={(e) => setFile(e.target.files[0])}
+              onChange={handleFileChange}
             />
             <button type="submit">Upload</button>
           </>
@@ -143,4 +225,5 @@ PageImagesUploadForm.propTypes = {
   onDelete: PropTypes.func,
   selector: PropTypes.func,
   urlInput: PropTypes.bool,
+  info: PropTypes.string,
 };
