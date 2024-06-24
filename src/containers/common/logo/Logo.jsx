@@ -17,7 +17,7 @@ import { createArrayFromObject } from "../../../utilities";
  * @return {JSX.Element} The rendered logo component.
  */
 
-export default function Logo({ onLoad }) {
+export default function Logo({ onLoad, isMainLogo }) {
   const [logoLoaded, setLogoLoaded] = useState(false);
 
   const logo = useSelector(selectLogoImage);
@@ -30,7 +30,10 @@ export default function Logo({ onLoad }) {
   }
 
   return (
-    <div className={styles.logo} style={logoLoaded ? { opacity: "1" } : null}>
+    <div
+      className={isMainLogo ? styles.mainLogo : styles.logoGlow}
+      style={logoLoaded ? { opacity: "1" } : null}
+    >
       {logo && (
         <img
           src={logoImgData?.url}
@@ -44,4 +47,5 @@ export default function Logo({ onLoad }) {
 
 Logo.propTypes = {
   onLoad: PropTypes.func,
+  isMainLogo: PropTypes.bool,
 };

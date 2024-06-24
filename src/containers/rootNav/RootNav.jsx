@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Outlet } from "react-router-dom";
-import { Link } from "react-scroll";
+import { Outlet } from "react-router-dom";
 
-import SocialIcons from "../common/socialIcons/SocialIcons";
-import Logo from "../common/logo/Logo";
 import Footer from "../common/footer/Footer";
 
+import DesktopNav from "../../components/common/desktopNav/DesktopNav";
 import { fetchCommonImages } from "./rootNavSlice";
 import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
 
-import styles from "./rootNav.module.scss";
+import MobileNav from "../../components/common/mobileNav/MobileNav";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.
@@ -20,12 +18,15 @@ import styles from "./rootNav.module.scss";
  * @return {JSX.Element} The root navigation component JSX.
  */
 
+const mobileWidth = 768;
+
 export default function RootNav() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [socialsLoaded, setSocialsLoaded] = useState(false);
   const [showNav, setShowNav] = useState(false);
-
+  const [desktopNav, setDesktopNav] = useState(window.innerWidth > mobileWidth);
+  const [mobileNav, setMobileNav] = useState(window.innerWidth <= mobileWidth);
   const dispatch = useDispatch();
 
   const loadState = useSelector(filesLoaded);
@@ -44,84 +45,31 @@ export default function RootNav() {
     (logoLoaded || socialsLoaded) && setShowNav(true);
   }, [logoLoaded, socialsLoaded]);
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth <= mobileWidth) {
+        setMobileNav(true);
+        setDesktopNav(false);
+      } else {
+        setMobileNav(false);
+        setDesktopNav(true);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <>
-      <div
-        className={styles.navBar}
-        style={showNav ? { opacity: "1", transition: "opacity 2s" } : null}
-      >
-        <Logo onLoad={setLogoLoaded} />
-        <ul>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/"
-            >
-              HOME
-            </NavLink>
-          </li>
-          <li>
-            <Link
-              className={styles.navLink}
-              activeClass={styles.navLinkActive}
-              to="bio"
-              smooth={true}
-            >
-              Bio
-            </Link>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/gallery"
-            >
-              Gallery
-            </NavLink>
-          </li>
-          <li>
-            <Link
-              className={styles.navLink}
-              activeClass={styles.navLinkActive}
-              to="visualizations"
-              smooth={true}
-            >
-              Visualizations
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={styles.navLink}
-              activeClass={styles.navLinkActive}
-              to="contact"
-              smooth={true}
-            >
-              Contact
-            </Link>
-          </li>
-
-          {showAdmin ? (
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? `${styles.navLinkActive} ${styles.admin}`
-                    : styles.navLink
-                }
-                to="/admin"
-              >
-                ADMIN
-              </NavLink>
-            </li>
-          ) : null}
-        </ul>
-        <div className={styles.socials}>
-          <SocialIcons onLoad={setSocialsLoaded} />
-        </div>
-      </div>
+      {desktopNav && (
+        <DesktopNav
+          showNav={showNav}
+          showAdmin={showAdmin}
+          onLogoLoaded={setLogoLoaded}
+          onSocialsLoaded={setSocialsLoaded}
+        />
+      )}
+      {mobileNav && <MobileNav onSocialsLoaded={setSocialsLoaded} />}
       <Outlet />
       <Footer />
     </>

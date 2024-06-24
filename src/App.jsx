@@ -16,9 +16,8 @@ import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageS
 import "./App.scss";
 import AdminNav from "./containers/admin/adminNav/AdminNav.jsx";
 import TextEditor from "./containers/admin/textEditor/TextEditor.jsx";
-import PageImagesUpload from "./containers/admin/pageImagesUpload/PageImagesUpload.jsx";
+import ImagesUploadManager from "./containers/admin/pageImagesUpload/ImagesUploadManager.jsx";
 import AdminStart from "./containers/admin/adminStart/AdminStart.jsx";
-// import GalleryImagesUpload from "./components/Admin/galleryImagesUploadForm/GalleryImagesUpload.jsx";
 
 /**
  * Renders the main application component.
@@ -55,7 +54,7 @@ function App() {
             <Route path="texts" element={<TextEditor />} />
             <Route
               path="images/:uploadSection"
-              element={<PageImagesUpload />}
+              element={<ImagesUploadManager />}
             />
           </Route>
         </Route>

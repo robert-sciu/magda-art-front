@@ -1,5 +1,5 @@
 @import "../../../../styles/variables.module.scss";
-.logo {
+.logoGlow {
   width: $size-xxl;
   height: $size-xxl;
   position: relative;
@@ -44,5 +44,20 @@
   }
   100% {
     --gradient-angle: 360deg;
+  }
+}
+
+.mainLogo {
+  width: calc($size-giant * 1.2);
+  height: calc($size-giant * 1.2);
+  // margin-bottom: $size-xl;
+
+  opacity: 0;
+  transition: 1s;
+
+  img {
+    z-index: 10;
+    border-radius: $border-radius-s;
+    box-shadow: 2px 0px 10px $white-shadow;
   }
 }

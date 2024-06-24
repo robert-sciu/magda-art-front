@@ -29,6 +29,10 @@ export const rootNavSlice = createSlice({
     // fetch content cases ////////////////////////////////////////////////////////////
     builder.addCase(fetchCommonImages.pending, managePendingState);
     builder.addCase(fetchCommonImages.fulfilled, (state, action) => {
+      const roles = Object.keys(state.common);
+      roles.forEach((role) => {
+        state.common[role] = {};
+      });
       action.payload.data.forEach((imageObject) => {
         if (imageObject.role === "socials") {
           state.common.socials[imageObject.name] =

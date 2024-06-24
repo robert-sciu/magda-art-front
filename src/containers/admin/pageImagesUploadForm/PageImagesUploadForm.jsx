@@ -9,7 +9,9 @@ import styles from "./pageImagesUploadForm.module.scss";
 
 import {
   checkImageDimensions,
+  checkUploadInfo,
   createArrayFromObject,
+  resetErrors,
   splitOnUppercase,
 } from "../../../utilities";
 
@@ -26,17 +28,18 @@ export default function PageImagesUploadForm({
   urlInput = false,
 }) {
   const [file, setFile] = useState(null);
+  const [fileInputValue, setFileInputValue] = useState("");
   const [imageName, setImageName] = useState("");
   const [externalUrl, setExternalUrl] = useState("");
   const [showImages, setShowImages] = useState(false);
   const [freePlacement, setFreePlacement] = useState(undefined);
   const [numberOfImages, setNumberOfImages] = useState(0);
-  const [filenameError, setFilenameError] = useState(null);
-  const [fileError, setFileError] = useState(null);
-  const [urlError, setUrlError] = useState(null);
-  const [compatibilityError, setCompatibilityError] = useState(null);
-  const [header, setHeader] = useState(null);
-  const [subHeader, setSubHeader] = useState(null);
+  const [imageNameError, setImageNameError] = useState("");
+  const [fileError, setFileError] = useState("");
+  const [urlError, setUrlError] = useState("");
+  const [compatibilityError, setCompatibilityError] = useState("");
+  const [header, setHeader] = useState("");
+  const [subHeader, setSubHeader] = useState("");
 
   const images = useSelector(selector);
 
@@ -89,30 +92,26 @@ export default function PageImagesUploadForm({
 
   function handleFileChange(e) {
     setFile(e.target.files[0]);
+    setFileInputValue(e.target.value);
+    resetErrors([setCompatibilityError]);
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!imageName || !file || (!externalUrl && urlInput)) {
-      setFilenameError(null);
-      setFileError(null);
-      setUrlError(null);
+    resetErrors([setImageNameError, setFileError, setUrlError]);
 
-      if (!imageName) {
-        setFilenameError("Please enter an image name");
-      }
+    const isValid = await checkUploadInfo({
+      imageName,
+      file,
+      externalUrl,
+      urlInput,
+      onImageNameError: setImageNameError,
+      onFileError: setFileError,
+      onUrlError: setUrlError,
+    });
 
-      if (!file) {
-        setFileError("Please select a file");
-      }
-
-      if (urlInput && !externalUrl) {
-        setUrlError("Please enter an external url");
-      }
-
-      return;
-    }
+    if (!isValid) return;
 
     try {
       const imageCompatibilityCheck = await checkImageDimensions(file, role);
@@ -125,29 +124,22 @@ export default function PageImagesUploadForm({
       return;
     }
 
-    setCompatibilityError(null);
-    setFilenameError(null);
-    setFileError(null);
-    setUrlError(null);
-
     const filteredUrl = externalUrl
       .replace("https://", "")
       .replace("http://", "")
       .replace("www.", "");
 
-    await onSubmit(
+    await onSubmit({
       endpoint,
       file,
       imageName,
       role,
       freePlacement,
-      null,
-      null,
-      null,
-      externalUrl ? filteredUrl : null
-    );
+      externalUrl: externalUrl ? filteredUrl : null,
+    });
     setImageName("");
     setExternalUrl("");
+    setFileInputValue("");
     setFile(null);
   }
 
@@ -165,7 +157,7 @@ export default function PageImagesUploadForm({
         ) : (
           <>
             <label htmlFor="name">Name</label>
-            {filenameError && <p className={styles.error}>{filenameError}</p>}
+            {imageNameError && <p className={styles.error}>{imageNameError}</p>}
             <input
               type="text"
               id="name"
@@ -198,6 +190,7 @@ export default function PageImagesUploadForm({
               type="file"
               id="file"
               name="file"
+              value={fileInputValue}
               onChange={handleFileChange}
             />
             <button type="submit">Upload</button>

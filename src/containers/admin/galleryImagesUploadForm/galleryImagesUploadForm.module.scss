@@ -12,6 +12,10 @@
     flex-direction: column;
     gap: $size-xxs;
 
+    .error {
+      color: $error-red;
+      font-size: $size-xs;
+    }
     button {
       cursor: pointer;
       padding: $size-xxxxs;

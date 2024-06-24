@@ -76,3 +76,58 @@ export function splitOnUppercase(str) {
     .map((word) => word.slice(0, 1).toUpperCase() + word.slice(1))
     .join(" ");
 }
+
+export async function checkUploadInfo({
+  imageName,
+  file,
+  externalUrl,
+  urlInput,
+  height_cm,
+  width_cm,
+  description,
+  onImageNameError,
+  onFileError,
+  onUrlError,
+  onHeightError,
+  onWidthError,
+  onDescriptionError,
+}) {
+  return new Promise((resolve) => {
+    let isValid = true;
+    if (!imageName && onImageNameError) {
+      onImageNameError("Please enter an image name");
+      isValid = false;
+    }
+
+    if (!file) {
+      onFileError("Please select a file");
+      isValid = false;
+    }
+
+    if (urlInput && !externalUrl && onUrlError) {
+      onUrlError("Please enter an external url");
+      isValid = false;
+    }
+
+    if ((!height_cm || !Number(height_cm)) && onHeightError) {
+      onHeightError("Please enter a valid number for height");
+      isValid = false;
+    }
+
+    if ((!width_cm || !Number(width_cm)) && onWidthError) {
+      onWidthError("Please enter a valid number for width");
+      isValid = false;
+    }
+
+    if (!description && onDescriptionError) {
+      onDescriptionError("Please enter a description");
+      isValid = false;
+    }
+
+    resolve(isValid);
+  });
+}
+
+export function resetErrors(setters) {
+  setters.forEach((setter) => setter(null));
+}

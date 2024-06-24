@@ -1,0 +1,40 @@
+@import "../../../../styles/variables.module.scss";
+
+.mobileNav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100vh;
+  background-color: $mobileNav-transparent-white;
+  backdrop-filter: blur($size-xs);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $size-l;
+  font-size: $size-m;
+  padding-left: $size-m;
+  transition: transform 1s ease-out;
+
+  .menuBtn,
+  .closeBtn {
+    width: $size-xl;
+    position: absolute;
+    filter: $main-black--filter;
+    top: $size-s;
+    right: $size-s;
+    transition: $link-transition;
+  }
+}
+
+.mobileNavVisible {
+  transition: transform 1s;
+  transform: translateX(0);
+}
+
+.mobileNavHidden {
+  transition: transform 1s;
+  transform: translateX(100%);
+}

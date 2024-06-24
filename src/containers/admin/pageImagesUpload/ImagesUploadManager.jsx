@@ -14,19 +14,20 @@ import {
   fetchPageImages,
   selectBigContactImage,
   selectSmallContactImages,
-} from "../../../containers/mainPage/mainPageUi/mainPageImagesSlice";
+} from "../../mainPage/mainPageUi/mainPageImagesSlice";
+
 import {
   selectAllImages,
   fetchImages,
-} from "../../../containers/galleryPage/galleryPageUi/galleryPageSlice";
+} from "../../galleryPage/galleryPageUi/galleryPageSlice";
 
 import {
   fetchCommonImages,
   selectLogoImage,
   selectSocialsIcons,
-} from "../../../containers/rootNav/rootNavSlice";
+} from "../../rootNav/rootNavSlice";
 
-import styles from "./pageImagesUpload.module.scss";
+import styles from "./imagesUploadManager.module.scss";
 
 import api from "../../../api/api";
 const api_url = import.meta.env.VITE_API_BASE_URL;
@@ -44,12 +45,12 @@ const uploadInfo = {
     "Should be square image in svg(!!!) format or unexpected behaviour may occur",
 };
 
-export default function PageImagesUpload() {
+export default function ImagesUploadManager() {
   const { uploadSection } = useParams();
 
   const dispatch = useDispatch();
 
-  async function handleSubmit(
+  async function handleSubmit({
     endpoint,
     file,
     imageName,
@@ -58,8 +59,8 @@ export default function PageImagesUpload() {
     width_cm,
     height_cm,
     description,
-    externalUrl
-  ) {
+    externalUrl,
+  }) {
     const formData = new FormData();
     formData.append("file", file);
     formData.append(
@@ -103,6 +104,25 @@ export default function PageImagesUpload() {
     <div className={styles.container}>
       {uploadSection === "pageImages" && (
         <>
+          <PageImagesUploadForm
+            role="logo"
+            selector={selectLogoImage}
+            maxNumberOfImages={1}
+            onSubmit={handleSubmit}
+            endpoint="pageImages"
+            info={uploadInfo.smallImages}
+            onDelete={handleDelete}
+          />
+          <PageImagesUploadForm
+            role="socials"
+            selector={selectSocialsIcons}
+            maxNumberOfImages={Infinity}
+            onSubmit={handleSubmit}
+            endpoint="pageImages"
+            info={uploadInfo.socialIcons}
+            onDelete={handleDelete}
+            urlInput={true}
+          />
           <PageImagesUploadForm
             role={"hero"}
             selector={selectHeroImage}
@@ -179,25 +199,6 @@ export default function PageImagesUpload() {
             info={uploadInfo.smallImages}
             placementsNeeded={true}
             hardPlacement={2}
-            onDelete={handleDelete}
-          />
-          <PageImagesUploadForm
-            role="socials"
-            selector={selectSocialsIcons}
-            maxNumberOfImages={Infinity}
-            onSubmit={handleSubmit}
-            endpoint="pageImages"
-            info={uploadInfo.socialIcons}
-            onDelete={handleDelete}
-            urlInput={true}
-          />
-          <PageImagesUploadForm
-            role="logo"
-            selector={selectLogoImage}
-            maxNumberOfImages={1}
-            onSubmit={handleSubmit}
-            endpoint="pageImages"
-            info={uploadInfo.smallImages}
             onDelete={handleDelete}
           />
         </>

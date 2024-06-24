@@ -25,10 +25,8 @@ export default function Hero() {
   const [showHeading, setShowHeading] = useState(false);
 
   const heroImage = useSelector(selectHeroImage);
-  const logoImage = useSelector(selectLogoImage);
   const name = useSelector(selectName);
 
-  const logoImageArray = createArrayFromObject(logoImage);
   const heroImageArray = createArrayFromObject(heroImage);
 
   // Set the showHeading state to true after 600ms if the heroImageLoaded state is true
@@ -46,11 +44,7 @@ export default function Hero() {
     <div className={styles.heroSection}>
       <div className={styles.headingContainer}>
         {heroImageLoaded ? (
-          <HeroHeading
-            showHeading={showHeading}
-            logoImageArray={logoImageArray}
-            name={name}
-          />
+          <HeroHeading showHeading={showHeading} name={name} />
         ) : (
           <Spinner />
         )}

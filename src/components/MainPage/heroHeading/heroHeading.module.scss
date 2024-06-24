@@ -4,16 +4,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: $size-s;
   opacity: 0;
   transition: opacity 3s;
   color: $main-white;
-
-  .logoImage {
-    width: 25%;
-    border-radius: $border-radius-s;
-    box-shadow: 2px 0px 10px $white-shadow;
-    margin-bottom: $size-xl;
-  }
 
   h1 {
     font-family: "Dancing Script", cursive;

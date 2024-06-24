@@ -1,0 +1,18 @@
+@import "../../../../styles//variables.module.scss";
+
+.desktopNav {
+  width: 100%;
+  font-size: $size-m;
+  display: flex;
+  position: absolute;
+  top: 0;
+  padding: $size-xxs $size-m;
+  background-color: $main-white;
+  box-shadow: 2px 0px 10px $white-shadow;
+  opacity: 0;
+}
+
+.showNav {
+  opacity: 1;
+  transition: opacity 2s;
+}
