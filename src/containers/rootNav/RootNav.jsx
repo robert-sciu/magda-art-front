@@ -6,11 +6,13 @@ import { Outlet } from "react-router-dom";
 import Footer from "../common/footer/Footer";
 
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
-import { fetchCommonImages } from "./rootNavSlice";
+import { fetchCommonImages, setWindowWidth } from "./rootNavSlice";
 import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
 
 import MobileNav from "../../components/common/mobileNav/MobileNav";
+
+import scss from "../../../styles/variables.module.scss";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.
@@ -18,15 +20,16 @@ import MobileNav from "../../components/common/mobileNav/MobileNav";
  * @return {JSX.Element} The root navigation component JSX.
  */
 
-const mobileWidth = 768;
+const tabletWidth = parseInt(scss.tabletWidth);
 
 export default function RootNav() {
   const [showAdmin, setShowAdmin] = useState(false);
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [socialsLoaded, setSocialsLoaded] = useState(false);
   const [showNav, setShowNav] = useState(false);
-  const [desktopNav, setDesktopNav] = useState(window.innerWidth > mobileWidth);
-  const [mobileNav, setMobileNav] = useState(window.innerWidth <= mobileWidth);
+  const [desktopNav, setDesktopNav] = useState(window.innerWidth > tabletWidth);
+  const [mobileNav, setMobileNav] = useState(window.innerWidth <= tabletWidth);
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const dispatch = useDispatch();
 
   const loadState = useSelector(filesLoaded);
@@ -38,6 +41,10 @@ export default function RootNav() {
   }, [dispatch, loadState]);
 
   useEffect(() => {
+    dispatch(setWindowWidth(window.innerWidth));
+  }, [dispatch]);
+
+  useEffect(() => {
     userIsAuthenticated ? setShowAdmin(true) : setShowAdmin(false);
   }, [userIsAuthenticated]);
 
@@ -47,17 +54,18 @@ export default function RootNav() {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= mobileWidth) {
+      if (window.innerWidth <= tabletWidth) {
         setMobileNav(true);
         setDesktopNav(false);
       } else {
         setMobileNav(false);
         setDesktopNav(true);
       }
+      dispatch(setWindowWidth(window.innerWidth));
     }
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -69,7 +77,13 @@ export default function RootNav() {
           onSocialsLoaded={setSocialsLoaded}
         />
       )}
-      {mobileNav && <MobileNav onSocialsLoaded={setSocialsLoaded} />}
+      {mobileNav && (
+        <MobileNav
+          onSocialsLoaded={setSocialsLoaded}
+          mobileNavOpen={mobileNavOpen}
+          onMobileNavOpen={setMobileNavOpen}
+        />
+      )}
       <Outlet />
       <Footer />
     </>

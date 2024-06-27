@@ -1,4 +1,5 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .contactContainer {
   display: flex;
@@ -6,6 +7,9 @@
   padding: $size-xl $size-xxl;
   h2 {
     font-size: $size-l;
+    @include respond-to(tablet) {
+      font-size: $size-m;
+    }
   }
   .contactForm {
     display: flex;
@@ -16,6 +20,7 @@
       margin: $size-s auto 0 $size-xxxs;
       font-size: $size-s;
     }
+
     input {
       height: $size-l;
     }
@@ -32,6 +37,14 @@
       border: 3px solid $main-light-gray;
       outline: none;
       padding: $size-xxxs $size-xxxs;
+      @include respond-to(medium-desktop) {
+        padding: 0 $size-xxxs;
+      }
+    }
+    textarea {
+      @include respond-to(small-tablet) {
+        height: $size-xxxxl;
+      }
     }
 
     input:focus,
@@ -68,5 +81,13 @@
       box-shadow: 0 0 2rem 1rem $medium-shadow;
       background-color: $action-light-blue;
     }
+  }
+
+  @include respond-to(medium-desktop) {
+    padding: $size-l;
+  }
+
+  @include respond-to(small-desktop) {
+    padding: $size-xxs;
   }
 }

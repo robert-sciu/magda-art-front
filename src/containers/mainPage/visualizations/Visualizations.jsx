@@ -14,23 +14,25 @@ export default function Visualizations() {
   const visualizationImages = useSelector(selectVisualizationsImages);
 
   return (
-    <div className={styles.visualizationsContainer} name="visualizations">
-      <div className={styles.visualizationsHeader}>
-        <h2>Visualizations</h2>
-      </div>
-      {createArrayFromObject(visualizationImages).map((img, i) => {
-        const imgSideReverse = i % 2 === 0 ? false : true;
-        const text = matchTextToImage(img.placement, visualizationTexts);
+    <div className={styles.visualizationsBackground}>
+      <div className={styles.visualizationsContainer} name="visualizations">
+        <div className={styles.visualizationsHeader}>
+          <h2>Visualizations</h2>
+        </div>
+        {createArrayFromObject(visualizationImages).map((img, i) => {
+          const imgSideReverse = i % 2 === 0 ? false : true;
+          const text = matchTextToImage(img.placement, visualizationTexts);
 
-        return (
-          <VisualizationTile
-            image={img}
-            text={text}
-            imgSideReverse={imgSideReverse}
-            key={i}
-          />
-        );
-      })}
+          return (
+            <VisualizationTile
+              image={img}
+              text={text}
+              imgSideReverse={imgSideReverse}
+              key={i}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 }

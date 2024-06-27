@@ -16,4 +16,5 @@ export default function ContactGrid({ allImagesArray }) {
 
 ContactGrid.propTypes = {
   allImagesArray: PropTypes.array,
+  pageWidth: PropTypes.number,
 };

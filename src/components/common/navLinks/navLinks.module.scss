@@ -1,4 +1,5 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .desktopNav {
   display: flex;
@@ -8,6 +9,7 @@
   align-items: center;
   flex-grow: 1;
   padding-inline-start: 0;
+  font-size: $size-l;
   .navLink {
     color: $main-black;
     transition: $link-transition;
@@ -27,20 +29,38 @@
   .admin {
     color: $action-green;
   }
+
+  @include respond-to(medium-desktop) {
+    font-size: $size-m;
+    gap: calc($size-xl * 0.8);
+  }
+  @include respond-to(small-desktop) {
+    gap: $size-m;
+    font-size: $size-s;
+  }
 }
 
 .socials {
   display: flex;
   align-items: center;
   gap: $size-s;
+
   img {
     height: $size-xl;
     width: $size-xl;
     filter: $main-black--filter;
-    // transition: $link-transition;
   }
+
   img:hover {
     filter: $main-gray--filter !important;
+  }
+
+  @include respond-to(small-desktop) {
+    gap: $size-xs;
+    img {
+      height: $size-l;
+      width: $size-l;
+    }
   }
 }
 
@@ -50,7 +70,8 @@
   gap: $size-l;
   list-style: none;
   align-items: flex-start;
-  padding-inline-start: 0;
+  padding-left: 0;
+  font-size: $size-m;
 
   .navLink {
     cursor: default;
@@ -62,5 +83,14 @@
     cursor: default;
     color: $main-black;
     text-decoration: none;
+  }
+
+  @include respond-to(mobile) {
+    gap: $size-s;
+    font-size: $size-s;
+  }
+
+  @include respond-to(small-mobile) {
+    font-size: $size-xs;
   }
 }

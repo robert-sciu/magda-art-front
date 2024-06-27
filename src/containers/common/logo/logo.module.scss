@@ -1,11 +1,13 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+
 .logoGlow {
   width: $size-xxl;
   height: $size-xxl;
   position: relative;
   border-radius: $border-radius-xs;
   opacity: 0;
-  transition: 1s;
+  transition: opacity 1s;
 
   img {
     position: relative;
@@ -36,6 +38,11 @@
     opacity: 0.5;
     filter: blur($size-s);
   }
+
+  @include respond-to(medium-desktop) {
+    width: $size-xl;
+    height: $size-xl;
+  }
 }
 
 @keyframes rotateGlow {
@@ -53,11 +60,31 @@
   // margin-bottom: $size-xl;
 
   opacity: 0;
-  transition: 1s;
+  transition: opacity 1s;
 
   img {
     z-index: 10;
     border-radius: $border-radius-s;
     box-shadow: 2px 0px 10px $white-shadow;
+  }
+
+  @include respond-to(medium-desktop) {
+    width: $size-giant;
+    height: $size-giant;
+  }
+
+  @include respond-to(small-desktop) {
+    width: $size-xxxxl;
+    height: $size-xxxxl;
+  }
+
+  @include respond-to(small-tablet) {
+    width: $size-xxxl;
+    height: $size-xxxl;
+  }
+
+  @include respond-to(mobile) {
+    width: $size-xxl;
+    height: $size-xxl;
   }
 }

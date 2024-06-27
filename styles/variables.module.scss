@@ -31,6 +31,16 @@ $mobileNav-transparent-white: #ffffffc7;
 // widths
 $main-content-width: 1440px;
 
+// breakpoints
+$breakpoint-small-mobile: 320px;
+$breakpoint-mobile: 480px;
+$breakpoint-small-tablet: 600px;
+$breakpoint-tablet: 768px;
+$breakpoint-small-desktop: 1024px;
+$breakpoint-medium-small-desktop: 1280px;
+$breakpoint-medium-desktop: 1440px;
+$breakpoint-large-desktop: 1920px;
+
 // font and gap sizes
 $size-giant: calc(170rem / 16);
 $size-xxxxl: calc(135rem / 16);
@@ -52,7 +62,7 @@ $border-radius-xs: calc(2rem / 16);
 
 // line heights
 
-$line-height-standard: 1.5;
+$line-height-standard: 1.6;
 $line-height-l: 1.8;
 
 // properties
@@ -64,8 +74,8 @@ $line-height-l: 1.8;
 }
 
 // transitions
-$link-transition: all 0.2s ease-in;
-$link-transition-slow: all 0.5s ease-in;
+$link-transition: color 0.2s ease-in, filter 0.2s ease-in;
+$link-transition-slow: color 0.5s ease-in, filter 0.5s ease-in;
 // elements
 $parallax-height: 70vh;
 
@@ -84,4 +94,11 @@ $parallax-height: 70vh;
   sizeXs: $size-xs;
   sizeXxs: $size-xxs;
   sizeXxxs: $size-xxxs;
+  tabletWidth: $breakpoint-tablet;
+  mobileWidth: $breakpoint-mobile;
+  smallMobileWidth: $breakpoint-small-mobile;
+  largeDesktopWidth: $breakpoint-large-desktop;
+  mediumDesktopWidth: $breakpoint-medium-desktop;
+  smallDesktopWidth: $breakpoint-small-desktop;
+  mediumSmallDesktopWidth: $breakpoint-medium-small-desktop;
 }

@@ -153,7 +153,7 @@ export default function ImagesUploadManager() {
           <PageImagesUploadForm
             role="bio"
             selector={selectBioImages}
-            maxNumberOfImages={11}
+            maxNumberOfImages={12}
             onSubmit={handleSubmit}
             endpoint="pageImages"
             info={uploadInfo.smallImages}

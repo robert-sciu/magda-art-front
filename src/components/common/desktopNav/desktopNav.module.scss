@@ -1,8 +1,8 @@
 @import "../../../../styles//variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .desktopNav {
   width: 100%;
-  font-size: $size-m;
   display: flex;
   position: absolute;
   top: 0;
@@ -10,6 +10,14 @@
   background-color: $main-white;
   box-shadow: 2px 0px 10px $white-shadow;
   opacity: 0;
+
+  @include respond-to(medium-desktop) {
+    padding: $size-xxs $size-s;
+  }
+
+  @include respond-to(small-desktop) {
+    padding: $size-xxxs $size-xs;
+  }
 }
 
 .showNav {

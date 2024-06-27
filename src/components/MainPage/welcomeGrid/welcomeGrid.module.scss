@@ -1,8 +1,19 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .gridContainer {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
-  gap: $size-s;
+  gap: $size-xxs;
+
+  @include respond-to(small-desktop) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  @include respond-to(tablet) {
+    grid-template-columns: 1fr 1fr;
+    gap: $size-xxxxs;
+  }
 }

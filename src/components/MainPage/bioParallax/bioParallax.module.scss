@@ -1,4 +1,5 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .paralax {
   min-height: $parallax-height;
@@ -9,11 +10,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-position: 100% calc(40% + 50px);
+  background-position: 100% calc(40% + $size-xl);
+
+  @include respond-to(medium-desktop) {
+    background-position: $size-xxs calc(40% + $size-xl);
+    min-height: calc($parallax-height * 0.9);
+  }
+
+  @include respond-to(small-desktop) {
+    background-position: 37% $size-xxs;
+  }
   h2 {
     color: $main-white;
-    font-size: 17rem;
+    font-size: $size-giant;
     mix-blend-mode: difference;
     z-index: 3;
+    @include respond-to(tablet) {
+      font-size: $size-xxxl;
+    }
+    @include respond-to(mobile) {
+      font-size: $size-xxl;
+    }
   }
 }

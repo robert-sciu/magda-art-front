@@ -1,7 +1,13 @@
 @import "../../../../../styles/variables.module.scss";
+@import "../../../../../styles/mixins.module.scss";
+
 .grid111 {
   display: grid;
   gap: $size-xxxxs;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr;
+
+  @include respond-to(small-desktop) {
+    gap: calc($size-xxxxs * 0.5);
+  }
 }

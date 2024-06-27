@@ -2,7 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 export const loadingStateSlice = createSlice({
   name: "loadingState",
-  initialState: { filesLoaded: false, heroImageReady: false },
+  initialState: {
+    filesLoaded: false,
+    heroImageReady: false,
+  },
   reducers: {
     setFilesLoaded: (state, action) => {
       state.filesLoaded = action.payload;

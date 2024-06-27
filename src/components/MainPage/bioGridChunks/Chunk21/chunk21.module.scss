@@ -1,4 +1,6 @@
 @import "../../../../../styles/variables.module.scss";
+@import "../../../../../styles/mixins.module.scss";
+
 .grid21 {
   display: grid;
   gap: $size-xxxxs;
@@ -8,5 +10,9 @@
   .imgXlR {
     grid-column: 2/3;
     grid-row: 1/3;
+  }
+
+  @include respond-to(small-desktop) {
+    gap: calc($size-xxxxs * 0.5);
   }
 }

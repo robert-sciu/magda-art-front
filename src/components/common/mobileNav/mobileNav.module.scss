@@ -1,4 +1,25 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+
+.menuBtn {
+  width: $size-xxl;
+  position: fixed;
+  filter: $main-white--filter;
+  top: $size-s;
+  right: $size-s;
+  transition: $link-transition;
+  mix-blend-mode: difference;
+  z-index: 200;
+  img {
+    width: 100%;
+  }
+
+  @include respond-to(mobile) {
+    width: $size-xl;
+    top: $size-xs;
+    right: $size-xs;
+  }
+}
 
 .mobileNav {
   position: fixed;
@@ -14,27 +35,30 @@
   justify-content: center;
   align-items: flex-start;
   gap: $size-l;
-  font-size: $size-m;
-  padding-left: $size-m;
-  transition: transform 1s ease-out;
 
-  .menuBtn,
+  padding-left: $size-m;
+  transition: transform 0.5s ease-out;
+
   .closeBtn {
-    width: $size-xl;
+    width: calc($size-xl * 0.8);
     position: absolute;
     filter: $main-black--filter;
     top: $size-s;
     right: $size-s;
     transition: $link-transition;
+
+    @include respond-to(mobile) {
+      width: $size-l;
+      top: $size-xs;
+      right: $size-xs;
+    }
   }
 }
 
-.mobileNavVisible {
-  transition: transform 1s;
+.mobileNavOpen {
   transform: translateX(0);
 }
 
-.mobileNavHidden {
-  transition: transform 1s;
+.mobileNavClose {
   transform: translateX(100%);
 }
