@@ -12,9 +12,17 @@ import {
   selectAllImages,
   createImageColumns,
   selectAllColumns,
+  isLoadingContent,
 } from "./galleryPageSlice.js";
+import { setLocation } from "../../rootNav/rootNavSlice.js";
 
 import styles from "./galleryPageUi.module.scss";
+import scss from "../../../../styles/variables.module.scss";
+
+const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
+const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
+const smallDesktopWidth = parseInt(scss.smallDesktopWidth);
+const tabletWidth = parseInt(scss.tabletWidth);
 
 /**
  * Renders the Gallery Page UI with dynamically populated columns based on window width.
@@ -29,21 +37,29 @@ export default function GalleryPageUi() {
   const dispatch = useDispatch();
 
   const { data: paintings } = useSelector(selectAllImages);
+  const loadingContent = useSelector(isLoadingContent);
   const columns = useSelector(selectAllColumns);
+
+  useEffect(() => {
+    dispatch(setLocation(window.location.pathname));
+  }, [dispatch]);
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());
   }, []);
 
   useEffect(() => {
+    if (!numberOfColumns) return;
+    if (!paintings) return;
+    if (loadingContent) return;
     dispatch(createImageColumns(numberOfColumns));
-  }, [dispatch, numberOfColumns]);
+  }, [dispatch, numberOfColumns, paintings, loadingContent]);
 
   useEffect(() => {
-    if (paintings && numberOfColumns && allFillers) {
+    if (paintings && numberOfColumns && allFillers && !loadingContent) {
       dispatch(populateColumns({ paintings, fillers: [...allFillers] }));
     }
-  }, [paintings, dispatch, numberOfColumns, allFillers]);
+  }, [paintings, dispatch, numberOfColumns, allFillers, loadingContent]);
 
   useEffect(() => {
     if (Array.from(Object.keys(columns)).length === numberOfColumns) {
@@ -71,17 +87,17 @@ export default function GalleryPageUi() {
 
   function getNumberOfColumns() {
     const width = window.innerWidth;
-    if (width >= 3000) return 6;
-    if (width >= 2500) return 5;
-    if (width >= 2000) return 4;
-    if (width >= 1268) return 3;
-    if (width >= 1000) return 2;
+    if (width > 3000) return 6;
+    if (width > largeDesktopWidth) return 5;
+    if (width > mediumDesktopWidth) return 4;
+    if (width > smallDesktopWidth) return 3;
+    if (width > tabletWidth) return 2;
     return 1;
   }
 
   return (
     <div className={styles.galleryPage}>
-      {columnsReady && allFillers ? (
+      {columnsReady && allFillers && galleryColumns ? (
         Object.entries(galleryColumns).map((column) => {
           return (
             <GalleryColumn

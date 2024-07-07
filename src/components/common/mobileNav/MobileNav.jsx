@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import NavLinks from "../navLinks/NavLinks";
+import NavLinks from "../../../containers/common/navLinks/NavLinks";
 import menuBtn from "../../../assets/menu-outline.svg";
 import closeBtn from "../../../assets/close-circle-outline.svg";
 

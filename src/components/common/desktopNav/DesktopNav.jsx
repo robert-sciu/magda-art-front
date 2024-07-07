@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 import Logo from "../../../containers/common/logo/Logo";
-import NavLinks from "../navLinks/NavLinks";
+import NavLinks from "../../../containers/common/navLinks/NavLinks";
 
 import styles from "./desktopNav.module.scss";
 

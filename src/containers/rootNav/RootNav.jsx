@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 import Footer from "../common/footer/Footer";
-
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
+import MobileNav from "../../components/common/mobileNav/MobileNav";
+
 import { fetchCommonImages, setWindowWidth } from "./rootNavSlice";
 import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
-
-import MobileNav from "../../components/common/mobileNav/MobileNav";
 
 import scss from "../../../styles/variables.module.scss";
 
@@ -30,6 +29,7 @@ export default function RootNav() {
   const [desktopNav, setDesktopNav] = useState(window.innerWidth > tabletWidth);
   const [mobileNav, setMobileNav] = useState(window.innerWidth <= tabletWidth);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
   const dispatch = useDispatch();
 
   const loadState = useSelector(filesLoaded);

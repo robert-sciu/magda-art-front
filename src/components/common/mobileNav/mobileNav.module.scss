@@ -9,7 +9,8 @@
   right: $size-s;
   transition: $link-transition;
   mix-blend-mode: difference;
-  z-index: 200;
+  z-index: 99;
+  transition: z-index 0.5s ease-out;
   img {
     width: 100%;
   }
@@ -20,6 +21,10 @@
     right: $size-xs;
   }
 }
+
+// .menuBtnHidden {
+//   z-index: -100;
+// }
 
 .mobileNav {
   position: fixed;

@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 import { useSelector } from "react-redux";
+import PropTypes from "prop-types";
 
-import ContactGrid from "../../../components/MainPage/contactGrid/ContactGrid";
-import ContactForm from "../../../components/MainPage/contactForm/ContactForm";
-import ContactInfo from "../../../components/MainPage/contactInfo/ContactInfo";
+import ContactGrid from "../../../components/common/contactGrid/ContactGrid";
+import ContactForm from "../../../components/common/contactForm/ContactForm";
+import ContactInfo from "../../../components/common/contactInfo/ContactInfo";
 
 import {
   selectBigContactImage,
@@ -22,7 +23,7 @@ const api_url = import.meta.env.VITE_API_BASE_URL;
  *
  * @return {JSX.Element} The Contact component JSX
  */
-export default function Contact() {
+export default function Contact({ showExitBtn = null, onCloseOverlay = null }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
@@ -86,6 +87,8 @@ export default function Contact() {
             setSubject={setSubject}
             setMessage={setMessage}
             sendingInProgress={sendingInProgress}
+            showExitBtn={showExitBtn}
+            onCloseOverlay={onCloseOverlay}
           />
         )}
 
@@ -94,3 +97,8 @@ export default function Contact() {
     </div>
   );
 }
+
+Contact.propTypes = {
+  showExitBtn: PropTypes.bool,
+  onCloseOverlay: PropTypes.func,
+};

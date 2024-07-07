@@ -35,12 +35,12 @@ export default function Hero() {
     if (heroImageLoaded) {
       setTimeout(() => {
         setShowHeading(true);
-      }, 600);
+      }, 100);
     }
   }, [heroImageLoaded]);
 
   return (
-    <div className={styles.heroSection}>
+    <div className={styles.heroSection} name="hero">
       <div className={styles.headingContainer}>
         {heroImageLoaded ? (
           <HeroHeading showHeading={showHeading} name={name} />

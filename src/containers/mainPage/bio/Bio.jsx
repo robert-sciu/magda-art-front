@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 
 import { useSelector } from "react-redux";
 
@@ -23,7 +23,7 @@ const intermediateWidthStep = 1750;
  *
  * @return {JSX.Element} The rendered Bio component.
  */
-export default function Bio() {
+function Bio(props, ref) {
   const [sortedImages, setSortedImages] = useState(null);
   const [gridType, setGridType] = useState(null);
 
@@ -63,7 +63,7 @@ export default function Bio() {
   }, [images]);
 
   return (
-    <div className={styles.background} name="bio">
+    <div ref={ref} className={styles.background} name="bio">
       <div className={styles.gridContainer}>
         {sortedImages ? (
           <BioGrid
@@ -93,3 +93,7 @@ export default function Bio() {
     </div>
   );
 }
+
+const ForwardedBio = forwardRef(Bio);
+
+export default ForwardedBio;

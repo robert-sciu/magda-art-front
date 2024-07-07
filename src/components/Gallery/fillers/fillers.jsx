@@ -1,7 +1,11 @@
+import { useState } from "react";
+
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
+import GalleryOverlayContact from "../../../containers/galleryPage/galleryOverlayContact/GalleryOverlayContact";
 
 import { selectLogoImage } from "../../../containers/rootNav/rootNavSlice";
 
@@ -16,11 +20,20 @@ function SocialsFiller() {
 }
 
 function ContactFiller() {
+  const [showContactOverlay, setShowContactOverlay] = useState(false);
+  function handleClick() {
+    setShowContactOverlay(true);
+  }
+
   return (
     <div>
-      <Link className={styles.link} to="/">
+      <Link className={styles.link} onClick={handleClick}>
         Contact
       </Link>
+
+      {showContactOverlay && (
+        <GalleryOverlayContact onCloseOverlay={setShowContactOverlay} />
+      )}
     </div>
   );
 }
@@ -29,7 +42,7 @@ function LogoFiller() {
   const logo = useSelector(selectLogoImage);
   return (
     <div className={styles.logo}>
-      <img src={logo?.externalUrl} alt={"logo"} />
+      <img src={logo?.Logo?.url} alt={"logo"} />
     </div>
   );
 }
@@ -50,3 +63,7 @@ const FillerComponents = {
 };
 
 export default FillerComponents;
+
+ContactFiller.propTypes = {
+  contactComponent: PropTypes.object,
+};

@@ -16,6 +16,8 @@ export default function ContactForm({
   setSubject,
   setMessage,
   sendingInProgress,
+  showExitBtn = false,
+  onCloseOverlay = () => {},
 }) {
   async function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +26,15 @@ export default function ContactForm({
 
   return (
     <div className={styles.contactContainer}>
-      <h2>Contact Me</h2>
+      <div className={styles.contactHeader}>
+        <h2>Contact Me</h2>
+        {showExitBtn && (
+          <button onClick={() => onCloseOverlay(false)} type="button">
+            Exit
+          </button>
+        )}
+      </div>
+
       <form onSubmit={handleSubmit} className={styles.contactForm}>
         <label htmlFor="name">Name</label>
         <input
@@ -85,4 +95,6 @@ ContactForm.propTypes = {
   setSubject: PropTypes.func.isRequired,
   setMessage: PropTypes.func.isRequired,
   sendingInProgress: PropTypes.bool,
+  showExitBtn: PropTypes.bool,
+  onCloseOverlay: PropTypes.func,
 };

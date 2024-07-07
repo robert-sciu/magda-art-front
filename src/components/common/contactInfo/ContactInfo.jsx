@@ -9,7 +9,7 @@ export default function ContactInfo({ messageStatus, onConfirm }) {
   }
   return (
     <div className={styles.contactInfo}>
-      <p>{messageStatus}</p>
+      <p className={styles.messageStatus}>{messageStatus}</p>
       <button onClick={handleClick}>ok</button>
     </div>
   );

@@ -15,13 +15,19 @@
 }
 
 .logo {
-  max-width: $size-xxxxl;
-  max-height: $size-xxxxl;
-  border: $size-xxxxs solid $main-white;
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  max-width: $size-xxl;
+  max-height: $size-xxl;
+  // border: $size-xxxxs solid $main-white;
+  // flex-grow: 0;
+  // height: 100%;
   img {
-    filter: $main-white--filter;
     width: 100%;
     height: 100%;
+    filter: $main-white--filter;
   }
 }
 

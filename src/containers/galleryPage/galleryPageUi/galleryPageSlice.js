@@ -83,12 +83,27 @@ export const galleryPageSlice = createSlice({
       );
       state.columns[highestCol].isHighest = true;
 
-      Object.values(state.columns).forEach((column) => {
+      createArrayFromObject(state.columns).forEach((column) => {
         const columnFreeSpace = highestColHeight - column.height;
         const minimumFreeSpace = 300;
+        const minimumFreeSpaceForLogo =
+          parseInt(scss.sizeXxl) + parseInt(scss.sizeXxs);
+
         if (columnFreeSpace > minimumFreeSpace && state.fillers.length > 0) {
           const filler = state.fillers.shift();
-          column.filler = filler.type;
+
+          // If the current column is the logo column, but it doesn't have enough space and we have fillers left in the array,
+          // we will use the next filler in the array to fill the column.
+          if (
+            filler.type === "logo" &&
+            columnFreeSpace < minimumFreeSpaceForLogo &&
+            state.fillers.length > 0
+          ) {
+            const nextFiller = state.fillers.shift();
+            column.filler = nextFiller.type;
+          } else {
+            column.filler = filler.type;
+          }
         }
       });
     },
@@ -124,6 +139,7 @@ export const selectFullResImg = (state) => state.galleryPage.fullResImg;
 export const selectAllColumns = (state) => state.galleryPage.columns;
 export const selectClickedImage = (state) => state.galleryPage.clickedImage;
 export const selectAllFillers = (state) => state.galleryPage.fillers;
+export const isLoadingContent = (state) => state.galleryPage.isLoadingContent;
 
 export const {
   createImageColumns,

@@ -35,7 +35,11 @@ export default function SocialIcons({ onLoad }) {
     <div className={styles.socials}>
       {socialIconsArray &&
         socialIconsArray.map((socialIcon) => (
-          <Link key={socialIcon.id} to={socialIcon.externalUrl} target="blank">
+          <Link
+            key={socialIcon.id}
+            to={`https://${socialIcon.externalUrl}`}
+            target="blank"
+          >
             <img
               src={socialIcon.url}
               alt={socialIcon.name}

@@ -1,9 +1,11 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
 
 .galleryColumn {
   display: flex;
   flex-direction: column;
   gap: $size-xxxs;
+
   .fillDiv {
     flex: 1;
     // height: 100%;
@@ -16,5 +18,9 @@
   }
   img {
     border-radius: $border-radius-xs;
+  }
+
+  @include respond-to(small-desktop) {
+    gap: $size-xxxxs;
   }
 }
