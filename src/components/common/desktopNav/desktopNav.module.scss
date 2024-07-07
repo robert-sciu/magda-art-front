@@ -10,6 +10,7 @@
   background-color: $main-white;
   box-shadow: 2px 0px 10px $white-shadow;
   opacity: 0;
+  transition: opacity 2s;
 
   @include respond-to(medium-desktop) {
     padding: $size-xxs $size-s;
@@ -22,5 +23,18 @@
 
 .showNav {
   opacity: 1;
+}
+
+.fixedNav {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  padding: $size-xxs $size-s;
+  background-color: $main-gray;
+  opacity: 0;
   transition: opacity 2s;
+}
+
+.showFixedNav {
+  opacity: 1;
 }

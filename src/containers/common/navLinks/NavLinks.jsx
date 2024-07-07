@@ -35,10 +35,11 @@ export default function NavLinks({
   return (
     <>
       <ul className={styles[navClass]} onClick={handleLinkClick}>
-        {navClass === "mobileNav" && <Logo />}
+        <li>{navClass === "mobileNav" && <Logo />}</li>
         <li>
           {location === "/" ? (
             <Link
+              href="#hero"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
               to="hero"
@@ -61,6 +62,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
+              href="#bio"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
               to="bio"
@@ -85,6 +87,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
+              href="#visualizations"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
               to="visualizations"
@@ -98,6 +101,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
+              href="#contact"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
               to="contact"

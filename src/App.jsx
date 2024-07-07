@@ -57,6 +57,10 @@ function App() {
     dispatch(fetchImages());
   }, [dispatch, loadState]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <BrowserRouter>
       <Routes>

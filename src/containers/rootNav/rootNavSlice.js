@@ -20,7 +20,13 @@ export const fetchCommonImages = createAsyncThunk(
 export const rootNavSlice = createSlice({
   name: "rootNav",
   initialState: {
-    common: { socials: {}, logo: {}, windowWidth: undefined, location: "" },
+    common: {
+      socials: {},
+      logo: {},
+      windowWidth: undefined,
+      location: "",
+      fixedNav: false,
+    },
     isLoadingContent: false,
     hasError: false,
   },
@@ -32,6 +38,10 @@ export const rootNavSlice = createSlice({
 
     setLocation: (state, action) => {
       state.common.location = action.payload;
+    },
+
+    setFixedNav: (state, action) => {
+      state.common.fixedNav = action.payload;
     },
   },
 
@@ -63,7 +73,9 @@ export const selectLogoImage = (state) => state.rootNav.common.logo;
 export const selectSocialsIcons = (state) => state.rootNav.common.socials;
 export const selectWindowWidth = (state) => state.rootNav.common.windowWidth;
 export const selectLocation = (state) => state.rootNav.common.location;
+export const selectFixedNav = (state) => state.rootNav.common.fixedNav;
 
-export const { setWindowWidth, setLocation } = rootNavSlice.actions;
+export const { setWindowWidth, setLocation, setFixedNav } =
+  rootNavSlice.actions;
 
 export default rootNavSlice.reducer;

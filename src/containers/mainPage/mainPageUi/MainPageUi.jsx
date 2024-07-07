@@ -18,15 +18,14 @@ import {
 import styles from "./mainPageUi.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
-import { setLocation } from "../../rootNav/rootNavSlice";
+import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
 
 export default function MainPageUi() {
   const [bioParallaxImageArray, setBioParallaxImageArray] = useState([]);
   // prettier-ignore
   const [galleryParallaxImageArray, setGalleryParallaxImageArray] = useState([]);
-  const [navIsFixed, setNavIsFixed] = useState(false);
 
-  const bioRef = useRef(null);
+  const triggerRef = useRef(null);
 
   const bioParallaxImage = useSelector(selectBioParallaxImage);
   const galleryParallaxImage = useSelector(selectGalleryParallaxImage);
@@ -50,40 +49,38 @@ export default function MainPageUi() {
   }, [galleryParallaxImage]);
 
   useEffect(() => {
-    const bioRefCurrent = bioRef.current;
+    const triggerRefCurrent = triggerRef.current;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.boundingClientRect.y < 0) {
-          setNavIsFixed(true);
+          dispatch(setFixedNav(true));
         } else {
-          setNavIsFixed(false);
+          dispatch(setFixedNav(false));
         }
       },
       {
         root: null,
-
         threshold: 0,
         rootMargin: "0px",
       }
     );
-    if (bioRefCurrent) {
-      observer.observe(bioRefCurrent);
+    if (triggerRefCurrent) {
+      observer.observe(triggerRefCurrent);
     }
     return () => {
-      if (bioRefCurrent) {
-        observer.unobserve(bioRefCurrent);
+      if (triggerRefCurrent) {
+        observer.unobserve(triggerRefCurrent);
       }
     };
-  }, []);
-
-  console.log(navIsFixed);
+  }, [triggerRef, dispatch]);
 
   return (
     <div className={styles.uiContainer}>
       <Hero />
+      <div ref={triggerRef} style={{ position: "absolute", top: "100vh" }} />
       <Welcome />
       <BioParallax bioParallaxImageArray={bioParallaxImageArray} />
-      <Bio ref={bioRef} />
+      <Bio />
       <GalleryParallax galleryParallaxImageArray={galleryParallaxImageArray} />
       <Visualizations />
       <Contact />

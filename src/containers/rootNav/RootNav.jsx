@@ -6,8 +6,14 @@ import { Outlet } from "react-router-dom";
 import Footer from "../common/footer/Footer";
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
 import MobileNav from "../../components/common/mobileNav/MobileNav";
+import FixedNav from "../../components/common/fixedNav/FixedNav";
 
-import { fetchCommonImages, setWindowWidth } from "./rootNavSlice";
+import {
+  fetchCommonImages,
+  selectFixedNav,
+  selectLocation,
+  setWindowWidth,
+} from "./rootNavSlice";
 import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
 
@@ -26,6 +32,7 @@ export default function RootNav() {
   const [logoLoaded, setLogoLoaded] = useState(false);
   const [socialsLoaded, setSocialsLoaded] = useState(false);
   const [showNav, setShowNav] = useState(false);
+  const [showFixedNav, setShowFixedNav] = useState(false);
   const [desktopNav, setDesktopNav] = useState(window.innerWidth > tabletWidth);
   const [mobileNav, setMobileNav] = useState(window.innerWidth <= tabletWidth);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -34,6 +41,8 @@ export default function RootNav() {
 
   const loadState = useSelector(filesLoaded);
   const userIsAuthenticated = useSelector(isAuthenticated);
+  const navIsFixed = useSelector(selectFixedNav);
+  const location = useSelector(selectLocation);
 
   useEffect(() => {
     if (!loadState) return;
@@ -51,6 +60,16 @@ export default function RootNav() {
   useEffect(() => {
     (logoLoaded || socialsLoaded) && setShowNav(true);
   }, [logoLoaded, socialsLoaded]);
+
+  useEffect(() => {
+    if (navIsFixed) {
+      setTimeout(() => {
+        setShowFixedNav(true);
+      }, 100);
+    } else {
+      setShowFixedNav(false);
+    }
+  }, [navIsFixed]);
 
   useEffect(() => {
     function handleResize() {
@@ -76,6 +95,9 @@ export default function RootNav() {
           onLogoLoaded={setLogoLoaded}
           onSocialsLoaded={setSocialsLoaded}
         />
+      )}
+      {navIsFixed && location === "/" && (
+        <FixedNav showFixedNav={showFixedNav} />
       )}
       {mobileNav && (
         <MobileNav

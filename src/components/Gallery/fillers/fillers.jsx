@@ -42,7 +42,7 @@ function LogoFiller() {
   const logo = useSelector(selectLogoImage);
   return (
     <div className={styles.logo}>
-      <img src={logo?.Logo?.url} alt={"logo"} />
+      <img src={logo?.logo?.url} alt={"logo"} />
     </div>
   );
 }

@@ -13,7 +13,7 @@ footer {
 
     .footerInfo {
       font-size: $size-xs;
-      color: $main-medium-light-gray;
+      color: $main-gray;
     }
 
     @include respond-to(small-tablet) {

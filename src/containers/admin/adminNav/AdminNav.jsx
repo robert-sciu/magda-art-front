@@ -24,6 +24,7 @@ export default function AdminNav() {
     dispatch(logout());
     navigate("/login");
   }
+
   return (
     <div>
       <div className={styles.adminNav}>

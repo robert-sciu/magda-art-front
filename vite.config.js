@@ -3,11 +3,13 @@ import react from "@vitejs/plugin-react";
 import viteCompression from "vite-plugin-compression";
 import legacy from "@vitejs/plugin-legacy";
 import { visualizer } from "rollup-plugin-visualizer";
+import Sitemap from "vite-plugin-sitemap";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
+    Sitemap(),
     viteCompression({
       algorithm: "brotliCompress",
     }),
