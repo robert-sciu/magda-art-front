@@ -7,6 +7,8 @@ import {
 } from "../../utilities";
 
 const api_url = import.meta.env.VITE_API_BASE_URL;
+// const api_url = process.env.REACT_APP_API_BASE_URL;
+console.log(api_url);
 
 export const fetchCommonImages = createAsyncThunk(
   "rootNav/fetchCommonImages",
