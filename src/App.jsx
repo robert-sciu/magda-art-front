@@ -43,8 +43,10 @@ import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageS
 function App() {
   const dispatch = useDispatch();
   const loadState = useSelector(filesLoaded);
-
+  console.log("loading");
+  console.log("loadState: ", loadState);
   useEffect(() => {
+    console.log("trying");
     window.addEventListener("load", function () {
       console.log("content loaded");
       dispatch(setFilesLoaded(true));
@@ -57,10 +59,6 @@ function App() {
     dispatch(fetchPageImages());
     dispatch(fetchImages());
   }, [dispatch, loadState]);
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   return (
     <BrowserRouter>
