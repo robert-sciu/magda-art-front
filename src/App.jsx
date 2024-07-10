@@ -5,9 +5,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import RootNav from "./containers/rootNav/RootNav";
-import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
+// import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
 import Spinner from "./components/common/spinner/Spinner.jsx";
 // import Login from "./containers/admin/login/Login.jsx";
+
+const LazyMainPageUi = React.lazy(() =>
+  import("./containers/mainPage/mainPageUi/MainPageUi.jsx")
+);
+
 const LazyGalleryPageUi = React.lazy(() =>
   import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx")
 );
@@ -60,7 +65,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<RootNav />}>
-          <Route index element={<MainPageUi />} />
+          {/* <Route index element={<MainPageUi />} /> */}
+          <Route
+            index
+            element={
+              <Suspense fallback={<Spinner />}>
+                <LazyMainPageUi />
+              </Suspense>
+            }
+          />
           <Route
             path="/gallery"
             element={
@@ -73,7 +86,7 @@ function App() {
             path="/login"
             element={
               <Suspense fallback={<Spinner />}>
-                <LazyLogin />{" "}
+                <LazyLogin />
               </Suspense>
             }
           />
