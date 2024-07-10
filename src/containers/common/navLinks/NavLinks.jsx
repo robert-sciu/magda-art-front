@@ -39,7 +39,7 @@ export default function NavLinks({
         <li>
           {location === "/" ? (
             <Link
-              href="#hero"
+              // href="#hero"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
               to="hero"
@@ -62,7 +62,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              href="#bio"
+              // href="#bio"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
               to="bio"
@@ -87,7 +87,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              href="#visualizations"
+              // href="#visualizations"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
               to="visualizations"
@@ -101,7 +101,7 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              href="#contact"
+              // href="#contact"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
               to="contact"
