@@ -42,9 +42,9 @@ export default function NavLinks({
               // href="#hero"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
-              to="hero"
+              // to="hero"
               smooth={true}
-              onClick={handleLinkClick}
+              // onClick={handleLinkClick}
             >
               Home
             </Link>
@@ -65,9 +65,9 @@ export default function NavLinks({
               // href="#bio"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
-              to="bio"
+              // to="bio"
               smooth={true}
-              onClick={handleLinkClick}
+              // onClick={handleLinkClick}
             >
               Bio
             </Link>
@@ -90,9 +90,9 @@ export default function NavLinks({
               // href="#visualizations"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
-              to="visualizations"
+              // to="visualizations"
               smooth={true}
-              onClick={handleLinkClick}
+              // onClick={handleLinkClick}
             >
               Visualizations
             </Link>
@@ -104,9 +104,9 @@ export default function NavLinks({
               // href="#contact"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
-              to="contact"
+              // to="contact"
               smooth={true}
-              onClick={handleLinkClick}
+              // onClick={handleLinkClick}
             >
               Contact
             </Link>

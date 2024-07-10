@@ -35,9 +35,9 @@ const LazyAdminStart = React.lazy(() =>
 import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
 import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
 import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
+import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
 
 import "./App.scss";
-import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
 
 /**
  * Renders the main application component.
@@ -55,11 +55,11 @@ function App() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!loadState) return;
+    // if (!loadState) return;
     dispatch(fetchContent());
     dispatch(fetchPageImages());
     dispatch(fetchImages());
-  }, [dispatch, loadState]);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
