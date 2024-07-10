@@ -46,6 +46,7 @@ function App() {
 
   useEffect(() => {
     window.addEventListener("load", function () {
+      console.log("content loaded");
       dispatch(setFilesLoaded(true));
     });
   }, [dispatch]);
