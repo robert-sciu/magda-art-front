@@ -39,12 +39,12 @@ export default function NavLinks({
         <li>
           {location === "/" ? (
             <Link
-              // href="#hero"
+              href="#hero"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
-              // to="hero"
+              to="hero"
               smooth={true}
-              // onClick={handleLinkClick}
+              onClick={handleLinkClick}
             >
               Home
             </Link>
@@ -62,12 +62,12 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              // href="#bio"
+              href="#bio"
               className={styles.navLink}
               activeClass={styles.navLinkActive}
-              // to="bio"
+              to="bio"
               smooth={true}
-              // onClick={handleLinkClick}
+              onClick={handleLinkClick}
             >
               Bio
             </Link>
@@ -87,12 +87,12 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              // href="#visualizations"
+              href="#visualizations"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
-              // to="visualizations"
+              to="visualizations"
               smooth={true}
-              // onClick={handleLinkClick}
+              onClick={handleLinkClick}
             >
               Visualizations
             </Link>
@@ -101,12 +101,12 @@ export default function NavLinks({
         {(location === "/" || location === "/admin") && (
           <li>
             <Link
-              // href="#contact"
+              href="#contact"
               className={styles.navLink}
               activeclass={styles.navLinkActive}
-              // to="contact"
+              to="contact"
               smooth={true}
-              // onClick={handleLinkClick}
+              onClick={handleLinkClick}
             >
               Contact
             </Link>

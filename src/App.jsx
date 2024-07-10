@@ -2,7 +2,8 @@ import React from "react";
 import { Suspense, useEffect } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+// import { useSelector } from "react-redux";
 
 import RootNav from "./containers/rootNav/RootNav";
 // import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
@@ -32,7 +33,7 @@ const LazyAdminStart = React.lazy(() =>
   import("./containers/admin/adminStart/AdminStart.jsx")
 );
 
-import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
+// import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
 import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
 import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
 import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
@@ -47,12 +48,12 @@ import "./App.scss";
 
 function App() {
   const dispatch = useDispatch();
-  const loadState = useSelector(filesLoaded);
-  useEffect(() => {
-    window.addEventListener("load", function () {
-      dispatch(setFilesLoaded(true));
-    });
-  }, [dispatch]);
+  // const loadState = useSelector(filesLoaded);
+  // useEffect(() => {
+  //   window.addEventListener("load", function () {
+  //     dispatch(setFilesLoaded(true));
+  //   });
+  // }, [dispatch]);
 
   useEffect(() => {
     // if (!loadState) return;

@@ -14,7 +14,7 @@ import {
   selectLocation,
   setWindowWidth,
 } from "./rootNavSlice";
-import { filesLoaded } from "../../store/loadingStateSlice";
+// import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
 
 import scss from "../../../styles/variables.module.scss";
@@ -39,15 +39,15 @@ export default function RootNav() {
 
   const dispatch = useDispatch();
 
-  const loadState = useSelector(filesLoaded);
+  // const loadState = useSelector(filesLoaded);
   const userIsAuthenticated = useSelector(isAuthenticated);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
 
   useEffect(() => {
-    if (!loadState) return;
+    // if (!loadState) return;
     dispatch(fetchCommonImages());
-  }, [dispatch, loadState]);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setWindowWidth(window.innerWidth));
