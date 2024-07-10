@@ -96,7 +96,7 @@ export default function RootNav() {
           onSocialsLoaded={setSocialsLoaded}
         />
       )}
-      {navIsFixed && location === "/" && (
+      {navIsFixed && location === "/" && !mobileNav && (
         <FixedNav showFixedNav={showFixedNav} />
       )}
       {mobileNav && (
