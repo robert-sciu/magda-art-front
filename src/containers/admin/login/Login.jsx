@@ -9,8 +9,8 @@ import { isAuthenticated } from "./loginSlice.js";
 import styles from "./login.module.scss";
 
 export default function Login() {
-  const [email, setEmail] = useState("mail@example.pl");
-  const [password, setPassword] = useState("admin123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [checkedForToken, setCheckedForToken] = useState(false);
 
   const dispatch = useDispatch();
