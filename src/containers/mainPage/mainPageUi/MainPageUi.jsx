@@ -11,14 +11,16 @@ import Visualizations from "../visualizations/Visualizations";
 import Contact from "../../common/contact/Contact";
 
 import {
+  fetchPageImages,
   selectBioParallaxImage,
   selectGalleryParallaxImage,
 } from "./mainPageImagesSlice";
+import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
+import { fetchContent } from "./mainPageContentSlice";
 
 import styles from "./mainPageUi.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
-import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
 
 export default function MainPageUi() {
   const [bioParallaxImageArray, setBioParallaxImageArray] = useState([]);
@@ -34,6 +36,11 @@ export default function MainPageUi() {
   useEffect(() => {
     dispatch(setLocation(window.location.pathname));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchContent());
+    dispatch(fetchPageImages());
+  });
 
   useEffect(() => {
     const bioParallaxImageArray = createArrayFromObject(bioParallaxImage);

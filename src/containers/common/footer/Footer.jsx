@@ -23,7 +23,7 @@ export default function Footer() {
         <div className={styles.footerInfo}>
           <p>Copyrights &copy; {`${year} by ${owner}`}</p>
           <p>
-            {`Desig by ${designer}`} <Link to="#">{designer}</Link>
+            {`Design by ${designer}`} <Link to="#">{designer}</Link>
           </p>
         </div>
       </div>

@@ -13,6 +13,7 @@ import {
   createImageColumns,
   selectAllColumns,
   isLoadingContent,
+  fetchImages,
 } from "./galleryPageSlice.js";
 import { setLocation } from "../../rootNav/rootNavSlice.js";
 
@@ -43,6 +44,10 @@ export default function GalleryPageUi() {
   useEffect(() => {
     dispatch(setLocation(window.location.pathname));
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchImages());
+  });
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());

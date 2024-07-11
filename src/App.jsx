@@ -1,8 +1,9 @@
 import React from "react";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
+// import { useEffect } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 
 import RootNav from "./containers/rootNav/RootNav";
@@ -34,9 +35,9 @@ const LazyAdminStart = React.lazy(() =>
 );
 
 // import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
-import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
-import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
-import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
+// import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
+// import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
+// import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
 
 import "./App.scss";
 
@@ -47,7 +48,7 @@ import "./App.scss";
  */
 
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   // const loadState = useSelector(filesLoaded);
   // useEffect(() => {
   //   window.addEventListener("load", function () {
@@ -55,12 +56,12 @@ function App() {
   //   });
   // }, [dispatch]);
 
-  useEffect(() => {
-    // if (!loadState) return;
-    dispatch(fetchContent());
-    dispatch(fetchPageImages());
-    dispatch(fetchImages());
-  }, [dispatch]);
+  // useEffect(() => {
+  // if (!loadState) return;
+  // dispatch(fetchContent());
+  // dispatch(fetchPageImages());
+  // dispatch(fetchImages());
+  // }, [dispatch]);
 
   return (
     <BrowserRouter>
