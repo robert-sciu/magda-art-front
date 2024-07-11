@@ -10,6 +10,7 @@ const rootNavPromise = import("./containers/rootNav/RootNav.jsx");
 const mainPageUiPromise = import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
 
 import "./App.scss";
+import GrayBackground from "./components/common/grayBackground/GrayBackground.jsx";
 
 const LazyRootNav = React.lazy(() => rootNavPromise);
 
@@ -47,7 +48,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<Spinner />}>
+            <Suspense fallback={<GrayBackground />}>
               <LazyRootNav />
             </Suspense>
           }
@@ -55,7 +56,7 @@ function App() {
           <Route
             index
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<GrayBackground />}>
                 <LazyMainPageUi />
               </Suspense>
             }
@@ -63,7 +64,7 @@ function App() {
           <Route
             path="/gallery"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<GrayBackground />}>
                 <LazyGalleryPageUi />
               </Suspense>
             }
