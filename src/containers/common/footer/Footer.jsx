@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
 
 import Logo from "../logo/Logo";
 
@@ -22,9 +21,7 @@ export default function Footer() {
         <Logo />
         <div className={styles.footerInfo}>
           <p>Copyrights &copy; {`${year} by ${owner}`}</p>
-          <p>
-            {`Design by ${designer}`} <Link to="#">{designer}</Link>
-          </p>
+          <p>{`Design by ${designer}`}</p>
         </div>
       </div>
     </footer>
