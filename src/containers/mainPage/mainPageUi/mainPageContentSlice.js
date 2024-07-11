@@ -50,8 +50,8 @@ export const selectBio = (state) => state.mainPageContent.content.bio;
 export const selectVisualizationsTexts = (state) =>
   state.mainPageContent.content.visualizations;
 export const selectFooterOwner = (state) =>
-  state.mainPageContent.content.footerOwner;
+  state.mainPageContent.content["site owner"];
 export const selectFooterDesign = (state) =>
-  state.mainPageContent.content.footerDesign;
+  state.mainPageContent.content["developer name"];
 
 export default mainPageContentSlice.reducer;

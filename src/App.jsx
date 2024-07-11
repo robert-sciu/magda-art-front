@@ -1,20 +1,15 @@
 import React from "react";
 import { Suspense } from "react";
-// import { useEffect } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-// import { useSelector } from "react-redux";
 
-// import RootNav from "./containers/rootNav/RootNav";
-// import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
 import Spinner from "./components/common/spinner/Spinner.jsx";
-// import Login from "./containers/admin/login/Login.jsx";
 
 const rootNavPromise = import("./containers/rootNav/RootNav.jsx");
-const mainPageUiPromise = import(
-  "./containers/mainPage/mainPageUi/MainPageUi.jsx"
-);
+//prettier-ignore
+const mainPageUiPromise = import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
+
+import "./App.scss";
 
 const LazyRootNav = React.lazy(() => rootNavPromise);
 
@@ -39,19 +34,6 @@ const LazyAdminStart = React.lazy(() =>
   import("./containers/admin/adminStart/AdminStart.jsx")
 );
 
-// import { setFilesLoaded, filesLoaded } from "./store/loadingStateSlice.js";
-// import { fetchContent } from "./containers/mainPage/mainPageUi/mainPageContentSlice.js";
-// import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
-// import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
-
-// const preloadComponents = () => {
-//   import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
-//   import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx");
-//   import("./containers/rootNav/RootNav.jsx");
-// };
-
-import "./App.scss";
-
 /**
  * Renders the main application component.
  *
@@ -59,24 +41,6 @@ import "./App.scss";
  */
 
 function App() {
-  // const dispatch = useDispatch();
-  // const loadState = useSelector(filesLoaded);
-  // useEffect(() => {
-  //   window.addEventListener("load", function () {
-  //     dispatch(setFilesLoaded(true));
-  //   });
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  // if (!loadState) return;
-  // dispatch(fetchContent());
-  // dispatch(fetchPageImages());
-  // dispatch(fetchImages());
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   preloadComponents();
-  // }, []);
-
   return (
     <BrowserRouter>
       <Routes>
