@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Suspense } from "react";
 // import { useEffect } from "react";
 
@@ -11,13 +11,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Spinner from "./components/common/spinner/Spinner.jsx";
 // import Login from "./containers/admin/login/Login.jsx";
 
-const LazyRootNav = React.lazy(() =>
-  import("./containers/rootNav/RootNav.jsx")
+const rootNavPromise = import("./containers/rootNav/RootNav.jsx");
+const mainPageUiPromise = import(
+  "./containers/mainPage/mainPageUi/MainPageUi.jsx"
 );
 
-const LazyMainPageUi = React.lazy(() =>
-  import("./containers/mainPage/mainPageUi/MainPageUi.jsx")
-);
+const LazyRootNav = React.lazy(() => rootNavPromise);
+
+const LazyMainPageUi = React.lazy(() => mainPageUiPromise);
 
 const LazyGalleryPageUi = React.lazy(() =>
   import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx")
@@ -43,11 +44,11 @@ const LazyAdminStart = React.lazy(() =>
 // import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
 // import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
 
-const preloadComponents = () => {
-  import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
-  import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx");
-  import("./containers/rootNav/RootNav.jsx");
-};
+// const preloadComponents = () => {
+//   import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
+//   import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx");
+//   import("./containers/rootNav/RootNav.jsx");
+// };
 
 import "./App.scss";
 
@@ -72,9 +73,9 @@ function App() {
   // dispatch(fetchPageImages());
   // dispatch(fetchImages());
   // }, [dispatch]);
-  useEffect(() => {
-    preloadComponents();
-  }, []);
+  // useEffect(() => {
+  //   preloadComponents();
+  // }, []);
 
   return (
     <BrowserRouter>
@@ -87,7 +88,6 @@ function App() {
             </Suspense>
           }
         >
-          {/* <Route index element={<MainPageUi />} /> */}
           <Route
             index
             element={
