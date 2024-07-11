@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Suspense } from "react";
 // import { useEffect } from "react";
 
@@ -6,10 +6,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 // import { useSelector } from "react-redux";
 
-import RootNav from "./containers/rootNav/RootNav";
+// import RootNav from "./containers/rootNav/RootNav";
 // import MainPageUi from "./containers/mainPage/mainPageUi/MainPageUi.jsx";
 import Spinner from "./components/common/spinner/Spinner.jsx";
 // import Login from "./containers/admin/login/Login.jsx";
+
+const LazyRootNav = React.lazy(() =>
+  import("./containers/rootNav/RootNav.jsx")
+);
 
 const LazyMainPageUi = React.lazy(() =>
   import("./containers/mainPage/mainPageUi/MainPageUi.jsx")
@@ -39,6 +43,12 @@ const LazyAdminStart = React.lazy(() =>
 // import { fetchPageImages } from "./containers/mainPage/mainPageUi/mainPageImagesSlice.js";
 // import { fetchImages } from "./containers/galleryPage/galleryPageUi/galleryPageSlice.js";
 
+const preloadComponents = () => {
+  import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
+  import("./containers/galleryPage/galleryPageUi/GalleryPageUi.jsx");
+  import("./containers/rootNav/RootNav.jsx");
+};
+
 import "./App.scss";
 
 /**
@@ -62,11 +72,21 @@ function App() {
   // dispatch(fetchPageImages());
   // dispatch(fetchImages());
   // }, [dispatch]);
+  useEffect(() => {
+    preloadComponents();
+  }, []);
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RootNav />}>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<Spinner />}>
+              <LazyRootNav />
+            </Suspense>
+          }
+        >
           {/* <Route index element={<MainPageUi />} /> */}
           <Route
             index
