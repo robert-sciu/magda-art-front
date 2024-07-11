@@ -14,7 +14,6 @@ import {
   selectLocation,
   setWindowWidth,
 } from "./rootNavSlice";
-// import { filesLoaded } from "../../store/loadingStateSlice";
 import { isAuthenticated } from "../admin/login/loginSlice";
 
 import scss from "../../../styles/variables.module.scss";
@@ -73,7 +72,10 @@ export default function RootNav() {
 
   useEffect(() => {
     function handleResize() {
-      if (window.innerWidth <= tabletWidth) {
+      if (
+        window.innerWidth <= tabletWidth ||
+        window.innerHeight <= tabletWidth
+      ) {
         setMobileNav(true);
         setDesktopNav(false);
       } else {
