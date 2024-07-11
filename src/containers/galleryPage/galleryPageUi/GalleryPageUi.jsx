@@ -47,7 +47,7 @@ export default function GalleryPageUi() {
 
   useEffect(() => {
     dispatch(fetchImages());
-  });
+  }, [dispatch]);
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());

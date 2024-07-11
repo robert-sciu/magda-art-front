@@ -40,7 +40,7 @@ export default function MainPageUi() {
   useEffect(() => {
     dispatch(fetchContent());
     dispatch(fetchPageImages());
-  });
+  }, [dispatch]);
 
   useEffect(() => {
     const bioParallaxImageArray = createArrayFromObject(bioParallaxImage);
