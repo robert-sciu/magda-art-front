@@ -6,6 +6,9 @@ import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { isAuthenticated, logout } from "../login/loginSlice";
 
 import styles from "./adminNav.module.scss";
+import { fetchImages } from "../../galleryPage/galleryPageUi/galleryPageSlice";
+import { fetchPageImages } from "../../mainPage/mainPageUi/mainPageImagesSlice";
+import { fetchContent } from "../../mainPage/mainPageUi/mainPageContentSlice";
 
 export default function AdminNav() {
   const dispatch = useDispatch();
@@ -19,9 +22,17 @@ export default function AdminNav() {
     }
   }, [userIsAuthenticated, navigate]);
 
+  useEffect(() => {
+    if (!userIsAuthenticated) return;
+    dispatch(fetchPageImages());
+    dispatch(fetchImages());
+    dispatch(fetchContent());
+  }, [dispatch, userIsAuthenticated]);
+
   function handleLogout(e) {
     e.preventDefault();
     dispatch(logout());
+
     navigate("/login");
   }
 
