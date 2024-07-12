@@ -35,6 +35,8 @@ const LazyAdminStart = React.lazy(() =>
   import("./containers/admin/adminStart/AdminStart.jsx")
 );
 
+const api_url = import.meta.env.VITE_API_BASE_URL;
+
 /**
  * Renders the main application component.
  *
@@ -42,6 +44,17 @@ const LazyAdminStart = React.lazy(() =>
  */
 
 function App() {
+  fetch(`${api_url}/nonce`)
+    .then((response) => response.json())
+    .then((data) => {
+      const nonce = data.nonce;
+      const script = document.createElement("script");
+      script.setAttribute("nonce", nonce);
+      script.textContent = ``;
+      document.head.appendChild(script);
+    })
+    .catch((error) => console.error("Error fetching nonce:", error));
+
   return (
     <BrowserRouter>
       <Routes>
