@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Suspense } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -44,16 +44,18 @@ const api_url = import.meta.env.VITE_API_BASE_URL;
  */
 
 function App() {
-  fetch(`${api_url}/nonce`)
-    .then((response) => response.json())
-    .then((data) => {
-      const nonce = data.nonce;
-      const script = document.createElement("script");
-      script.setAttribute("nonce", nonce);
-      script.textContent = ``;
-      document.head.appendChild(script);
-    })
-    .catch((error) => console.error("Error fetching nonce:", error));
+  useEffect(() => {
+    fetch(`${api_url}/api/v1/nonce`)
+      .then((response) => response.json())
+      .then((data) => {
+        const nonce = data.nonce;
+        const script = document.createElement("script");
+        script.setAttribute("nonce", nonce);
+        script.textContent = `console.log('Nonce script running')`;
+        document.head.appendChild(script);
+      })
+      .catch((error) => console.error("Error fetching nonce:", error));
+  }, []);
 
   return (
     <BrowserRouter>
