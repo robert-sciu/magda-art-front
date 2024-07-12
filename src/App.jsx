@@ -45,7 +45,7 @@ const api_url = import.meta.env.VITE_API_BASE_URL;
 
 function App() {
   useEffect(() => {
-    fetch(`${api_url}/api/v1/nonce`)
+    fetch(`${api_url}/nonce`)
       .then((response) => response.json())
       .then((data) => {
         const nonce = data.nonce;
