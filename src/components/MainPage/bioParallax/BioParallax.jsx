@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import styles from "./bioParallax.module.scss";
 
 export default function BioParallax({ bioParallaxImageArray }) {
-  const paralaxImgData = bioParallaxImageArray[0];
+  const paralaxImgData =
+    bioParallaxImageArray.length > 0 ? bioParallaxImageArray[0] : null;
 
   const imgStyle = {
-    backgroundImage: `url(${paralaxImgData?.url})`,
+    backgroundImage: paralaxImgData ? `url(${paralaxImgData.url})` : null,
   };
 
   return (

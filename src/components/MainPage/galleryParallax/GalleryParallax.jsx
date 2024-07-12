@@ -5,9 +5,12 @@ import PropTypes from "prop-types";
 import styles from "./galleryParallax.module.scss";
 
 export default function GalleryParallax({ galleryParallaxImageArray }) {
-  const parallaxImgData = galleryParallaxImageArray[0];
+  const paralaxImgData =
+    galleryParallaxImageArray.length > 0 ? galleryParallaxImageArray[0] : null;
 
-  const imgStyle = { backgroundImage: `url(${parallaxImgData?.url})` };
+  const imgStyle = {
+    backgroundImage: paralaxImgData ? `url(${paralaxImgData.url})` : null,
+  };
   return (
     <div className={styles.parallax} style={imgStyle}>
       <div className={styles.galleryLinkBackground}>
