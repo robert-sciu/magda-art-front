@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 import Footer from "../common/footer/Footer";
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
-import MobileNav from "../../components/common/mobileNav/MobileNav";
+import { MobileNav } from "../../components/common/mobileNav/MobileNav";
 import FixedNav from "../../components/common/fixedNav/FixedNav";
 
 import {
@@ -42,6 +42,8 @@ export default function RootNav() {
   const userIsAuthenticated = useSelector(isAuthenticated);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
+
+  const navRef = useRef(null);
 
   useEffect(() => {
     // if (!loadState) return;
@@ -88,6 +90,18 @@ export default function RootNav() {
     return () => window.removeEventListener("resize", handleResize);
   }, [dispatch]);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideNavClick);
+    return () =>
+      document.removeEventListener("mousedown", handleOutsideNavClick);
+  });
+
+  function handleOutsideNavClick(e) {
+    if (navRef.current && !navRef.current.contains(e.target)) {
+      setMobileNavOpen(false);
+    }
+  }
+
   return (
     <>
       {desktopNav && (
@@ -103,6 +117,7 @@ export default function RootNav() {
       )}
       {mobileNav && (
         <MobileNav
+          ref={navRef}
           onSocialsLoaded={setSocialsLoaded}
           mobileNavOpen={mobileNavOpen}
           onMobileNavOpen={setMobileNavOpen}

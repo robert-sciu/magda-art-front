@@ -1,18 +1,15 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 
 import NavLinks from "../../../containers/common/navLinks/NavLinks";
 import menuBtn from "../../../assets/menu-outline.svg";
 import closeBtn from "../../../assets/close-circle-outline.svg";
 
 import styles from "./mobileNav.module.scss";
+import { forwardRef } from "react";
 
-export default function MobileNav({
-  onSocialsLoaded,
-  mobileNavOpen,
-  onMobileNavOpen,
-}) {
+function MobileNav({ onSocialsLoaded, mobileNavOpen, onMobileNavOpen }, ref) {
   return (
-    <>
+    <div ref={ref}>
       <div className={styles.menuBtn}>
         <img
           src={menuBtn}
@@ -41,12 +38,9 @@ export default function MobileNav({
           onMobileNavOpen={onMobileNavOpen}
         />
       </div>
-    </>
+    </div>
   );
 }
 
-MobileNav.propTypes = {
-  onSocialsLoaded: PropTypes.func,
-  mobileNavOpen: PropTypes.bool,
-  onMobileNavOpen: PropTypes.func,
-};
+const MobileNavWithRef = forwardRef(MobileNav);
+export { MobileNavWithRef as MobileNav };
