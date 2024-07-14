@@ -27,7 +27,7 @@ export const verifyToken = createAsyncThunk(
       return response.data.isValid;
     }
 
-    return null;
+    return Promise.reject();
   }
 );
 
@@ -52,7 +52,7 @@ export const loginUser = createAsyncThunk(
       return response.data.token;
     }
 
-    return null;
+    return Promise.reject();
   }
 );
 

@@ -35,6 +35,7 @@ export default function Login() {
 
   function handleLogin(e) {
     e.preventDefault();
+    if (!email || !password) return;
     dispatch(loginUser({ email, password }));
   }
 
