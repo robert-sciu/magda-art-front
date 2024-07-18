@@ -25,8 +25,8 @@ export default function ImageTile({
       {imgLoaded ? null : (
         <div className={styles.spinner}>
           <Spinner
-            size={spinnerSize || scss.sizeXl}
-            color={spinnerColor || undefined}
+          // size={spinnerSize || scss.sizeXl}
+          // color={spinnerColor || undefined}
           />
         </div>
       )}
