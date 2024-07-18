@@ -14,9 +14,9 @@ export default defineConfig({
     viteCompression({
       algorithm: "brotliCompress",
     }),
-    legacy({
-      targets: ["defaults", "not IE 11"],
-    }),
+    // legacy({
+    //   targets: ["defaults", "not IE 11"],
+    // }),
     // visualizer({
     //   filename: "./dist/stats.html",
     //   open: true,

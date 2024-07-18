@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import Spinner from "../spinner/Spinner";
 
 import styles from "./imageTile.module.scss";
-import scss from "../../../../styles/variables.module.scss";
+// import scss from "../../../../styles/variables.module.scss";
 
 export default function ImageTile({
   img,
   alt = "",
-  spinnerSize,
-  spinnerColor,
+  // spinnerSize,
+  // spinnerColor,
   loadCheck = () => {},
 }) {
   const [imgLoaded, setImgLoaded] = useState(false);
@@ -21,7 +21,11 @@ export default function ImageTile({
   }
 
   return (
-    <div className={styles.tileContainer}>
+    <div
+      className={`${styles.tileContainer} ${
+        imgLoaded ? styles.imgLoaded : null
+      }`}
+    >
       {imgLoaded ? null : (
         <div className={styles.spinner}>
           <Spinner
@@ -30,12 +34,7 @@ export default function ImageTile({
           />
         </div>
       )}
-      <img
-        src={img?.url}
-        alt={alt}
-        onLoad={handleLoad}
-        style={imgLoaded ? { opacity: "1" } : null}
-      />
+      <img src={img?.url} alt={alt} onLoad={handleLoad} />
     </div>
   );
 }

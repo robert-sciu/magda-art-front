@@ -7,11 +7,17 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    // transform: translate(-50%, -50%);
   }
   img {
     opacity: 0;
-    transition: 1s;
+    transition: 0.5s;
     height: 100%;
+  }
+}
+
+.imgLoaded {
+  img {
+    opacity: 1;
   }
 }
