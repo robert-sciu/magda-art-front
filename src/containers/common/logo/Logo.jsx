@@ -31,8 +31,9 @@ export default function Logo({ onLoad, isMainLogo }) {
 
   return (
     <div
-      className={isMainLogo ? styles.mainLogo : styles.logoGlow}
-      style={logoLoaded ? { opacity: "1" } : null}
+      className={`${isMainLogo ? styles.mainLogo : styles.logoGlow} ${
+        logoLoaded ? styles.logoLoaded : null
+      }`}
     >
       {logo && (
         <img

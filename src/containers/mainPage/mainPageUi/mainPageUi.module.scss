@@ -3,6 +3,12 @@
 
 .uiContainer {
   color: $main-black;
+
+  .refDiv {
+    position: "absolute";
+    top: "100vh";
+  }
+
   p {
     font-size: $size-s;
     line-height: $line-height-l;

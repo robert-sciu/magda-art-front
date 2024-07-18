@@ -13,10 +13,9 @@ export default function HeroBackground({
 
   return (
     <div
-      style={{
-        opacity: heroImageLoaded ? 1 : 0,
-      }}
-      className={`${styles.heroContainer} ${heroImageLoaded && styles.show}`}
+      className={`${styles.heroContainer} ${
+        heroImageLoaded ? styles.showHero : null
+      }`}
     >
       <img
         className={styles.heroImage}

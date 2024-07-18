@@ -84,7 +84,7 @@ export default function MainPageUi() {
   return (
     <div className={styles.uiContainer}>
       <Hero />
-      <div ref={triggerRef} style={{ position: "absolute", top: "100vh" }} />
+      <div ref={triggerRef} className={styles.refDiv} />
       <Welcome />
       <BioParallax bioParallaxImageArray={bioParallaxImageArray} />
       <Bio />
