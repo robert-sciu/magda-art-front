@@ -13,6 +13,14 @@ export function manageRejectedState(state) {
   state.hasError = true;
 }
 
+export function extractResponseData(response) {
+  return response?.data?.data || response?.data?.message || "empty response";
+}
+
+export function extractErrorResponse(error) {
+  return error?.response?.data?.message || error.message || "unknown error";
+}
+
 export function createImageObject(imageObject) {
   return {
     url: imageObject.url,

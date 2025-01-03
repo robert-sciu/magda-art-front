@@ -5,7 +5,7 @@ import Logo from "../logo/Logo";
 import {
   selectFooterDesign,
   selectFooterOwner,
-} from "../../mainPage/mainPageUi/mainPageContentSlice";
+} from "../../../store/mainPageContentSlice";
 
 import styles from "./footer.module.scss";
 

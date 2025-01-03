@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import WelcomeGrid from "../../../components/MainPage/welcomeGrid/WelcomeGrid";
 import SocialIcons from "../../common/socialIcons/SocialIcons";
 
-import { selectWelcome } from "../mainPageUi/mainPageContentSlice";
+import { selectWelcome } from "../../../store/mainPageContentSlice";
 import { selectWelcomeImages } from "../mainPageUi/mainPageImagesSlice";
 import {
   selectSocialsIcons,

@@ -3,8 +3,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import { loginUser, verifyToken } from "./loginSlice.js";
-import { isAuthenticated } from "./loginSlice.js";
+import {
+  loginUser,
+  verifyStoredToken,
+  isAuthenticated,
+  selectAuthToken,
+  selectTokenVerificationComplete,
+} from "../../../store/authSlice";
 
 import styles from "./login.module.scss";
 
@@ -17,13 +22,19 @@ export default function Login() {
   const navigate = useNavigate();
 
   const userAuthenticated = useSelector(isAuthenticated);
+  const tokenVerificationComplete = useSelector(
+    selectTokenVerificationComplete
+  );
 
-  const token = localStorage.getItem("token");
+  const token = useSelector(selectAuthToken);
 
   useEffect(() => {
-    if (token) {
-      dispatch(verifyToken({ token }));
+    if (token && !tokenVerificationComplete) {
+      dispatch(verifyStoredToken({ token }));
     }
+  }, [token, tokenVerificationComplete, dispatch]);
+
+  useEffect(() => {
     if (userAuthenticated) {
       navigate("/admin");
     } else {
@@ -31,7 +42,7 @@ export default function Login() {
         setCheckedForToken(true);
       }, 200);
     }
-  }, [userAuthenticated, navigate, dispatch, token]);
+  }, [userAuthenticated, navigate, dispatch]);
 
   function handleLogin(e) {
     e.preventDefault();

@@ -12,7 +12,8 @@ import {
   selectWelcome,
   selectVisualizationsTexts,
   fetchContent,
-} from "../../mainPage/mainPageUi/mainPageContentSlice";
+  updateContent,
+} from "../../../store/mainPageContentSlice";
 
 import styles from "./textEditor.module.scss";
 
@@ -78,15 +79,16 @@ export default function TextEditor() {
 
     const data = { heading: heading, content: inputData };
 
-    try {
-      await api.post(`${api_url}/contents`, data, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    dispatch(updateContent(data));
+    // await api.post(`${api_url}/contents`, data, {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    // } catch (error) {
+    //   console.log(error);
+    // }
     dispatch(fetchContent());
   }
 

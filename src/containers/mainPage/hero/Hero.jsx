@@ -7,7 +7,7 @@ import HeroBackground from "../../../components/MainPage/heroBackground/HeroBack
 import Spinner from "../../../components/common/spinner/Spinner";
 
 import { selectHeroImage } from "../mainPageUi/mainPageImagesSlice";
-import { selectName } from "../mainPageUi/mainPageContentSlice";
+import { selectName } from "../../../store/mainPageContentSlice";
 
 import styles from "./hero.module.scss";
 

@@ -14,9 +14,9 @@ import {
   selectLocation,
   setWindowWidth,
 } from "./rootNavSlice";
-import { isAuthenticated } from "../admin/login/loginSlice";
 
 import scss from "../../../styles/variables.module.scss";
+import { isAuthenticated } from "../../store/authSlice";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.

@@ -16,7 +16,7 @@ import {
   selectGalleryParallaxImage,
 } from "./mainPageImagesSlice";
 import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
-import { fetchContent } from "./mainPageContentSlice";
+import { fetchContent } from "../../../store/mainPageContentSlice";
 
 import styles from "./mainPageUi.module.scss";
 

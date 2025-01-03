@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 import { selectVisualizationsImages } from "../mainPageUi/mainPageImagesSlice";
-import { selectVisualizationsTexts } from "../mainPageUi/mainPageContentSlice";
+import { selectVisualizationsTexts } from "../../../store/mainPageContentSlice";
 
 import VisualizationTile from "../../../components/MainPage/visualizationTile/VisualizationTile";
 

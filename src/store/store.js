@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import mainPageContentReducer from "../containers/mainPage/mainPageUi/mainPageContentSlice";
+import mainPageContentReducer from "./mainPageContentSlice";
 import mainPageImagesReducer from "../containers/mainPage/mainPageUi/mainPageImagesSlice";
 import galleryPageReducer from "../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import rootNavReducer from "../containers/rootNav/rootNavSlice";
-import authReducer from "../containers/admin/login/loginSlice";
+import authReducer from "./authSlice";
 
 export default configureStore({
   reducer: {

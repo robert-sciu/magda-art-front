@@ -3,12 +3,11 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
-import { isAuthenticated, logout } from "../login/loginSlice";
-
 import styles from "./adminNav.module.scss";
 import { fetchImages } from "../../galleryPage/galleryPageUi/galleryPageSlice";
 import { fetchPageImages } from "../../mainPage/mainPageUi/mainPageImagesSlice";
-import { fetchContent } from "../../mainPage/mainPageUi/mainPageContentSlice";
+import { fetchContent } from "../../../store/mainPageContentSlice";
+import { isAuthenticated, logoutUser } from "../../../store/authSlice";
 
 export default function AdminNav() {
   const dispatch = useDispatch();
@@ -31,9 +30,9 @@ export default function AdminNav() {
 
   function handleLogout(e) {
     e.preventDefault();
-    dispatch(logout());
+    dispatch(logoutUser());
 
-    navigate("/login");
+    // navigate("/login");
   }
 
   return (
@@ -70,8 +69,16 @@ export default function AdminNav() {
               Gallery Images
             </NavLink>
           </li>
-          <li className={styles.navLink} onClick={handleLogout}>
-            Logout
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? styles.navLinkActive : styles.navLink
+              }
+              onClick={handleLogout}
+              to="/login"
+            >
+              logout
+            </NavLink>
           </li>
         </ul>
       </div>
