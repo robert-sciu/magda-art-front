@@ -49,7 +49,6 @@ export const mainPageContentSlice = createSlice({
     builder
       .addCase(fetchContent.pending, managePendingState)
       .addCase(fetchContent.fulfilled, (state, action) => {
-        console.log(action.payload);
         action.payload.data.forEach((contentObject) => {
           if (/^visualization\d+$/.test(contentObject.heading)) {
             state.content.visualizations[contentObject.heading] = {

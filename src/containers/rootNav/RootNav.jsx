@@ -8,15 +8,11 @@ import DesktopNav from "../../components/common/desktopNav/DesktopNav";
 import { MobileNav } from "../../components/common/mobileNav/MobileNav";
 import FixedNav from "../../components/common/fixedNav/FixedNav";
 
-import {
-  fetchCommonImages,
-  selectFixedNav,
-  selectLocation,
-  setWindowWidth,
-} from "./rootNavSlice";
+import { selectFixedNav, selectLocation, setWindowWidth } from "./rootNavSlice";
 
 import scss from "../../../styles/variables.module.scss";
-import { isAuthenticated } from "../../store/authSlice";
+import { selectAuthAuthenticationStatus } from "../../store/authSlice";
+import { fetchCommonImages } from "../../store/mainPageImagesSlice";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.
@@ -39,7 +35,7 @@ export default function RootNav() {
   const dispatch = useDispatch();
 
   // const loadState = useSelector(filesLoaded);
-  const userIsAuthenticated = useSelector(isAuthenticated);
+  const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
 

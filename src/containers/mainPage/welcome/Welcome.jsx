@@ -4,7 +4,7 @@ import WelcomeGrid from "../../../components/MainPage/welcomeGrid/WelcomeGrid";
 import SocialIcons from "../../common/socialIcons/SocialIcons";
 
 import { selectWelcome } from "../../../store/mainPageContentSlice";
-import { selectWelcomeImages } from "../mainPageUi/mainPageImagesSlice";
+import { selectWelcomeImages } from "../../../store/mainPageImagesSlice";
 import {
   selectSocialsIcons,
   selectWindowWidth,

@@ -10,7 +10,7 @@ import ContactInfo from "../../../components/common/contactInfo/ContactInfo";
 import {
   selectBigContactImage,
   selectSmallContactImages,
-} from "../../mainPage/mainPageUi/mainPageImagesSlice";
+} from "../../../store/mainPageImagesSlice";
 
 import styles from "./contact.module.scss";
 

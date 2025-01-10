@@ -7,9 +7,8 @@ import PropTypes from "prop-types";
 import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
 import GalleryOverlayContact from "../../../containers/galleryPage/galleryOverlayContact/GalleryOverlayContact";
 
-import { selectLogoImage } from "../../../containers/rootNav/rootNavSlice";
-
 import styles from "./fillers.module.scss";
+import { selectLogoImage } from "../../../store/mainPageImagesSlice";
 
 function SocialsFiller() {
   return (

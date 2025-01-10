@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import PageImagesUploadForm from "../pageImagesUploadForm/PageImagesUploadForm";
@@ -14,23 +14,23 @@ import {
   fetchPageImages,
   selectBigContactImage,
   selectSmallContactImages,
-} from "../../mainPage/mainPageUi/mainPageImagesSlice";
-
-import {
-  selectAllImages,
-  fetchImages,
-} from "../../galleryPage/galleryPageUi/galleryPageSlice";
-
-import {
-  fetchCommonImages,
+  deletePageImage,
+  setRoleToRefetch,
+  uploadPageImage,
+  selectPageImagesRoleToRefetch,
+  selectPageImagesRefetchNeeded,
+  fetchPageImagesForRole,
   selectLogoImage,
-  selectSocialsIcons,
-} from "../../rootNav/rootNavSlice";
+  fetchCommonImages,
+} from "../../../store/mainPageImagesSlice";
+
+import { selectAllImages } from "../../galleryPage/galleryPageUi/galleryPageSlice";
+
+import { selectSocialsIcons } from "../../rootNav/rootNavSlice";
 
 import styles from "./imagesUploadManager.module.scss";
 
-import api from "../../../api/api";
-const api_url = import.meta.env.VITE_API_BASE_URL;
+import { useEffect } from "react";
 
 const uploadInfo = {
   bigImages:
@@ -50,15 +50,25 @@ export default function ImagesUploadManager() {
 
   const dispatch = useDispatch();
 
+  const roleToRefetch = useSelector(selectPageImagesRoleToRefetch);
+  const refetchNeeded = useSelector(selectPageImagesRefetchNeeded);
+
+  useEffect(() => {
+    dispatch(fetchPageImages());
+    dispatch(fetchCommonImages());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!refetchNeeded) return;
+    dispatch(fetchPageImagesForRole(roleToRefetch));
+  });
+
   async function handleSubmit({
-    endpoint,
+    // endpoint,
     file,
     imageName,
     role,
     freePlacement,
-    width_cm,
-    height_cm,
-    description,
     externalUrl,
   }) {
     const formData = new FormData();
@@ -70,34 +80,16 @@ export default function ImagesUploadManager() {
         title: imageName,
         role: role || undefined,
         placement: freePlacement || undefined,
-        width_cm: Number(width_cm) || undefined,
-        height_cm: Number(height_cm) || undefined,
-        description: description || undefined,
         externalUrl: externalUrl || undefined,
       })
     );
-
-    try {
-      await api.post(`${api_url}/${endpoint}`, formData);
-    } catch (error) {
-      console.log(error);
-    }
-    reloadImages();
+    dispatch(setRoleToRefetch(role));
+    dispatch(uploadPageImage({ data: formData }));
   }
 
-  async function handleDelete(endpoint, imgId) {
-    try {
-      await api.delete(`${api_url}/${endpoint}?id=${imgId}`);
-    } catch (error) {
-      console.log(error);
-    }
-    reloadImages();
-  }
-
-  function reloadImages() {
-    dispatch(fetchCommonImages());
-    dispatch(fetchPageImages());
-    dispatch(fetchImages());
+  async function handleDelete({ id, role }) {
+    dispatch(setRoleToRefetch(role));
+    dispatch(deletePageImage({ id }));
   }
 
   return (

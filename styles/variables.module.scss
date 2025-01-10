@@ -27,6 +27,7 @@ $dark-shadow: #5555556e;
 $medium-shadow: #a3a3a36e;
 $overlay: #0000009d;
 $mobileNav-transparent-white: #ffffffc7;
+$main-gray-light: #a5a5a5;
 
 // widths
 $main-content-width: 1440px;
@@ -42,23 +43,37 @@ $breakpoint-medium-desktop: 1440px;
 $breakpoint-large-desktop: 1920px;
 
 // font and gap sizes
-$size-giant: calc(170rem / 16);
-$size-xxxxl: calc(135rem / 16);
-$size-xxxl: calc(110rem / 16);
-$size-xxl: calc(90rem / 16);
-$size-xl: calc(67rem / 16);
-$size-l: calc(40rem / 16);
-$size-m: calc(28rem / 16);
-$size-s: calc(22rem / 16);
-$size-xs: calc(16rem / 16);
-$size-xxs: calc(12rem / 16);
-$size-xxxs: calc(9rem / 16);
-$size-xxxxs: calc(6rem / 16);
+// $size-giant: calc(170rem / 16);
+// $size-xxxxl: calc(135rem / 16);
+// $size-xxxl: calc(110rem / 16);
+// $size-xxl: calc(90rem / 16);
+// $size-xl: calc(67rem / 16);
+// $size-l: calc(40rem / 16);
+// $size-m: calc(28rem / 16);
+// $size-s: calc(22rem / 16);
+// $size-xs: calc(16rem / 16);
+// $size-xxs: calc(12rem / 16);
+// $size-xxxs: calc(9rem / 16);
+// $size-xxxxs: calc(6rem / 16);
+
+$size-giant: 6.25rem;
+$size-xxxxl: 3.815rem;
+$size-xxxl: 3.052rem;
+$size-xxl: 2.441rem;
+$size-xl: 1.953rem;
+$size-l: 1.563rem;
+$size-m: 1.25rem;
+$size-s: 1rem;
+$size-xs: 0.8rem;
+$size-xxs: 0.64rem;
+$size-xxxs: 0.48rem;
+$size-xxxxs: 0.32rem;
+$size-tiny: 0.16rem;
 
 // border radii
-$border-radius-m: calc(8rem / 16);
-$border-radius-s: calc(4rem / 16);
-$border-radius-xs: calc(2rem / 16);
+$border-radius-m: $size-xxxs;
+$border-radius-s: $size-xxxxs;
+$border-radius-xs: $size-tiny;
 
 // line heights
 
@@ -76,6 +91,13 @@ $line-height-l: 1.8;
 // transitions
 $link-transition: color 0.2s ease-in, filter 0.2s ease-in;
 $link-transition-slow: color 0.5s ease-in, filter 0.5s ease-in;
+
+$inset-soft-shadow: inset 0 0.04rem 0.3rem 0 $main-gray-light;
+
+$basic-transition: all 0.2s ease-in;
+
+$main-gray-light: #808080;
+
 // elements
 $parallax-height: 70vh;
 

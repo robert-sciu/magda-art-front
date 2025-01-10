@@ -143,10 +143,10 @@ export default function PageImagesUploadForm({
     setFile(null);
   }
 
-  function handleDelete(imgId) {
-    setShowImages(false);
-    onDelete(endpoint, imgId);
-  }
+  // function handleDelete({ id, role }) {
+  //   setShowImages(false);
+  //   onDelete({ id, role });
+  // }
 
   return (
     <div className={styles.container}>
@@ -200,7 +200,7 @@ export default function PageImagesUploadForm({
       <div className={styles.gridContainer}>
         {showImages
           ? createArrayFromObject(images).map((img) => (
-              <ImageInspector img={img} key={img.id} onDelete={handleDelete} />
+              <ImageInspector img={img} key={img.id} onDelete={onDelete} />
             ))
           : null}
       </div>

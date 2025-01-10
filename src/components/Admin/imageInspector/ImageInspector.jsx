@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import styles from "./imageInspector.module.scss";
 
 export default function ImageInspector({ img, onDelete }) {
-  const imgId = img.id;
   function handleDelete(e) {
     e.preventDefault();
-    onDelete(imgId);
+    onDelete({ id: img.id, role: img.role });
   }
   return (
     <div className={styles.inspectorContainer}>
-      <img src={img.url} alt={img.name} />
+      <img src={img.url_desktop} alt={img.imageName} />
       <button onClick={(e) => handleDelete(e)}>Delete</button>
     </div>
   );

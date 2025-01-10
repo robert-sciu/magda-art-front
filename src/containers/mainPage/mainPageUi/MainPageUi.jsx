@@ -14,7 +14,7 @@ import {
   fetchPageImages,
   selectBioParallaxImage,
   selectGalleryParallaxImage,
-} from "./mainPageImagesSlice";
+} from "../../../store/mainPageImagesSlice";
 import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
 import { fetchContent } from "../../../store/mainPageContentSlice";
 

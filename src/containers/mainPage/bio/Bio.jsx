@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import BioGrid from "../../../components/MainPage/bioGrid/BioGrid";
 
 import { selectBio, selectName } from "../../../store/mainPageContentSlice";
-import { selectBioImages } from "../mainPageUi/mainPageImagesSlice";
+import { selectBioImages } from "../../../store/mainPageImagesSlice";
 
 import styles from "./bio.module.scss";
 import scss from "../../../../styles/variables.module.scss";

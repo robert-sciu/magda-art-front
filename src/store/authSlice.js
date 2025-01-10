@@ -21,7 +21,7 @@ export const loginUser = createAsyncThunk(
       });
       const { token } = extractResponseData(response);
       localStorage.setItem("access_token", token);
-      return extractResponseData(response);
+      return token;
     } catch (error) {
       return rejectWithValue(extractErrorResponse(error));
     }
@@ -72,11 +72,21 @@ export const authSlice = createSlice({
     clearToken(state) {
       state.token = null;
     },
+    setTokenVerificationComplete(state) {
+      state.tokenVerificationComplete = true;
+    },
+    clearAuthError(state) {
+      state.hasError = false;
+      state.error = null;
+      state.tokenVerificationComplete = false;
+      localStorage.removeItem("access_token");
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, managePendingState)
-      .addCase(loginUser.fulfilled, (state) => {
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.token = action.payload.token;
         state.isAuthenticated = true;
         state.tokenVerificationComplete = true;
         manageFulfilledState(state);
@@ -114,11 +124,20 @@ export const authSlice = createSlice({
   },
 });
 
-export const { clearToken, setToken } = authSlice.actions;
+export const {
+  clearToken,
+  setToken,
+  setTokenVerificationComplete,
+  clearAuthError,
+} = authSlice.actions;
 
 export default authSlice.reducer;
 
-export const isAuthenticated = (state) => state.auth.isAuthenticated;
+export const selectAuthAuthenticationStatus = (state) =>
+  state.auth.isAuthenticated;
+export const selectAuthLoadingStatus = (state) => state.auth.isLoading;
 export const selectAuthToken = (state) => state.auth.token;
-export const selectTokenVerificationComplete = (state) =>
+export const selectTokenVerificationStatus = (state) =>
   state.auth.tokenVerificationComplete;
+export const selectAuthErrorStatus = (state) => state.auth.hasError;
+export const selectAuthErrorMessage = (state) => state.auth.error;

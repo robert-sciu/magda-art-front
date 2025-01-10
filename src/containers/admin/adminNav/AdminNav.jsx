@@ -1,19 +1,23 @@
 import { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 import styles from "./adminNav.module.scss";
 import { fetchImages } from "../../galleryPage/galleryPageUi/galleryPageSlice";
-import { fetchPageImages } from "../../mainPage/mainPageUi/mainPageImagesSlice";
+// import { fetchPageImages } from "../../../store/mainPageImagesSlice";
 import { fetchContent } from "../../../store/mainPageContentSlice";
-import { isAuthenticated, logoutUser } from "../../../store/authSlice";
+import {
+  selectAuthAuthenticationStatus,
+  logoutUser,
+} from "../../../store/authSlice";
+import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
 
 export default function AdminNav() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userIsAuthenticated = useSelector(isAuthenticated);
+  const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
 
   useEffect(() => {
     if (!userIsAuthenticated) {
@@ -23,7 +27,7 @@ export default function AdminNav() {
 
   useEffect(() => {
     if (!userIsAuthenticated) return;
-    dispatch(fetchPageImages());
+    // dispatch(fetchPageImages());
     dispatch(fetchImages());
     dispatch(fetchContent());
   }, [dispatch, userIsAuthenticated]);
@@ -31,55 +35,19 @@ export default function AdminNav() {
   function handleLogout(e) {
     e.preventDefault();
     dispatch(logoutUser());
-
-    // navigate("/login");
   }
 
   return (
     <div>
       <div className={styles.adminNav}>
         <ul>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/admin/texts"
-            >
-              Page Texts
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/admin/images/pageImages"
-            >
-              Page Images
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              to="/admin/images/galleryImages"
-            >
-              Gallery Images
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
-              onClick={handleLogout}
-              to="/login"
-            >
-              logout
-            </NavLink>
-          </li>
+          <NavLinkBtn to="/admin/texts" label={"Page Texts"} />
+          <NavLinkBtn to="/admin/images/pageImages" label={"Page Images"} />
+          <NavLinkBtn
+            to="/admin/images/galleryImages"
+            label={"Gallery Images"}
+          />
+          <NavLinkBtn to="/login" label={"Logout"} onClick={handleLogout} />
         </ul>
       </div>
       <div className={styles.adminContainer}>

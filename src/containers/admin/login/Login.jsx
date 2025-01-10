@@ -5,73 +5,116 @@ import { useNavigate } from "react-router-dom";
 
 import {
   loginUser,
-  verifyStoredToken,
-  isAuthenticated,
   selectAuthToken,
-  selectTokenVerificationComplete,
+  selectAuthAuthenticationStatus,
+  selectAuthLoadingStatus,
+  selectTokenVerificationStatus,
+  selectAuthErrorStatus,
+  selectAuthErrorMessage,
+  clearAuthError,
+  verifyStoredToken,
+  setTokenVerificationComplete,
 } from "../../../store/authSlice";
 
 import styles from "./login.module.scss";
+import {
+  isEmailValid,
+  isPasswordValid,
+} from "../../../utilities/regexUtilities";
+import ModalWindowMain from "../../modalWindow/modalWindowMain";
+import InputElement from "../../../components/elements/inputElement/inputElement";
+import Button from "../../../components/elements/button/button";
 
 export default function Login() {
+  const [showLogin, setShowLogin] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [checkedForToken, setCheckedForToken] = useState(false);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userAuthenticated = useSelector(isAuthenticated);
-  const tokenVerificationComplete = useSelector(
-    selectTokenVerificationComplete
-  );
+  const loggedIn = useSelector(selectAuthAuthenticationStatus);
+  const isLoading = useSelector(selectAuthLoadingStatus);
+  const tokenVerificationComplete = useSelector(selectTokenVerificationStatus);
+  const hasError = useSelector(selectAuthErrorStatus);
+  const errorMessage = useSelector(selectAuthErrorMessage);
 
   const token = useSelector(selectAuthToken);
 
   useEffect(() => {
-    if (token && !tokenVerificationComplete) {
+    if (token) {
       dispatch(verifyStoredToken({ token }));
-    }
-  }, [token, tokenVerificationComplete, dispatch]);
+    } else dispatch(setTokenVerificationComplete());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    if (userAuthenticated) {
+    if (!tokenVerificationComplete && token) return;
+    if (loggedIn) {
       navigate("/admin");
     } else {
       setTimeout(() => {
-        setCheckedForToken(true);
-      }, 200);
+        setShowLogin(true);
+      }, 300);
     }
-  }, [userAuthenticated, navigate, dispatch]);
+  }, [loggedIn, tokenVerificationComplete, token, navigate, dispatch]);
 
   function handleLogin(e) {
     e.preventDefault();
-    if (!email || !password) return;
+    setEmailError("");
+    setPasswordError("");
+    if (!isEmailValid(email) || !isPasswordValid(password)) {
+      !isEmailValid(email) && setEmailError("Email is not valid");
+      !isPasswordValid(password) &&
+        setPasswordError("Password must be between 8 and 20 characters");
+      return;
+    }
     dispatch(loginUser({ email, password }));
   }
 
   return (
-    <div
-      className={`${styles.loginContainer} ${checkedForToken && styles.show}`}
-    >
-      <form onSubmit={handleLogin}>
-        <h2>Login</h2>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          value={email}
-          placeholder="email"
-          onChange={(e) => setEmail(e.target.value)}
+    <div className={`${styles.loginContainer}`}>
+      {showLogin && (
+        <form className={styles.formContainer}>
+          <h3>Log in to admin panel</h3>
+          <InputElement
+            label={"Email"}
+            type={"email"}
+            name={"email"}
+            inputError={emailError}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            width={100}
+          />
+          <InputElement
+            label={"Password"}
+            type={"password"}
+            name={"password"}
+            inputError={passwordError}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            width={100}
+          />
+          <div className={styles.loginButtonContainer}>
+            <Button
+              label={"login"}
+              onClick={handleLogin}
+              isLoading={isLoading}
+              loadingLabel={"logging in"}
+              // fixedHeight={true}
+            />
+          </div>
+        </form>
+      )}
+      {hasError && (
+        <ModalWindowMain
+          modalType={"error"}
+          data={errorMessage}
+          onCancel={clearAuthError}
         />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          value={password}
-          placeholder="password"
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-      </form>
+      )}
     </div>
   );
 }

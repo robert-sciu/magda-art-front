@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 
 import ImageTile from "../../../components/common/imageTile/ImageTile";
 
-import { selectHeroImage } from "../../mainPage/mainPageUi/mainPageImagesSlice";
+import { selectHeroImage } from "../../../store/mainPageImagesSlice";
 
 import styles from "./adminStart.module.scss";
 

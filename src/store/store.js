@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import mainPageContentReducer from "./mainPageContentSlice";
-import mainPageImagesReducer from "../containers/mainPage/mainPageUi/mainPageImagesSlice";
+import mainPageImagesReducer from "./mainPageImagesSlice";
 import galleryPageReducer from "../containers/galleryPage/galleryPageUi/galleryPageSlice";
 import rootNavReducer from "../containers/rootNav/rootNavSlice";
 import authReducer from "./authSlice";

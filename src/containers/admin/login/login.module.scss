@@ -1,66 +1,32 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/classes.module.scss";
 
 .loginContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-  opacity: 0;
+  @extend .fullScreenContainer;
 
-  form {
+  .formContainer {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 35vw;
+    height: 50vh;
     background-color: $main-white;
-    padding: $size-xxl;
+    padding: $size-xxl $size-xxxxl;
     box-shadow: 0 0rem 2rem $medium-shadow;
     border-radius: $border-radius-m;
-    gap: $size-xxs;
+    gap: $size-l;
 
-    h2 {
-      font-size: $size-m;
+    .loginButtonContainer {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-top: $size-xxl;
+      justify-content: center;
+    }
+
+    h3 {
+      margin-bottom: $size-xxl;
       text-align: center;
     }
-
-    label {
-      font-size: $size-s;
-    }
-
-    input {
-      margin-bottom: $size-s;
-      height: $size-l;
-      border-radius: $border-radius-s;
-      font-size: $size-s;
-      border: 3px solid $main-light-gray;
-      outline: none;
-      padding: $size-xxxs $size-xxxs;
-    }
-    input:focus {
-      border: 4px solid $main-medium-light-gray;
-    }
-
-    button {
-      font-size: $size-s;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: $size-xxs;
-      border-radius: $border-radius-s;
-      border: none;
-      background-color: $main-gray;
-      color: $main-white;
-      // box-shadow: 0 0 1rem 0.4rem $dark-shadow;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      color: $action-light-blue;
-    }
   }
-}
-
-.show {
-  opacity: 1;
-  transition: opacity 1s;
 }

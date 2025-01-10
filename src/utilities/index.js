@@ -1,16 +1,19 @@
 export function managePendingState(state) {
-  state.isLoadingContent = true;
-  state.hasError = true;
+  state.isLoading = true;
+  state.hasError = false;
+  state.error = null;
 }
 
 export function manageFulfilledState(state) {
-  state.isLoadingContent = false;
+  state.isLoading = false;
   state.hasError = false;
+  state.error = null;
 }
 
-export function manageRejectedState(state) {
-  state.isLoadingContent = false;
+export function manageRejectedState(state, action) {
+  state.isLoading = false;
   state.hasError = true;
+  state.error = action.payload;
 }
 
 export function extractResponseData(response) {
@@ -23,11 +26,14 @@ export function extractErrorResponse(error) {
 
 export function createImageObject(imageObject) {
   return {
-    url: imageObject.url,
-    name: imageObject.name,
+    url_desktop: imageObject.url_desktop,
+    url_mobile: imageObject.url_mobile,
+    url_lazy: imageObject.url_lazy,
+    imageName: imageObject.imageName,
     id: imageObject.id,
     placement: imageObject.placement ?? undefined,
-    externalUrl: imageObject.externalUrl ?? undefined,
+    role: imageObject.role,
+    externalUrl: imageObject.external_url ?? undefined,
   };
 }
 

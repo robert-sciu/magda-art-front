@@ -3,11 +3,12 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import { selectLogoImage } from "../../rootNav/rootNavSlice";
+// import { selectLogoImage } from "../../rootNav/rootNavSlice";
 
 import styles from "./logo.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
+import { selectLogoImage } from "../../../store/mainPageImagesSlice";
 
 /**
  * Renders a logo component that displays an image.
