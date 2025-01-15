@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import PropTypes from "prop-types";
 
-import Spinner from "../spinner/Spinner";
+// import Spinner from "../spinner/Spinner";
 
 import styles from "./imageTile.module.scss";
+import { selectDevice } from "../../../store/rootNavSlice";
+import { useSelector } from "react-redux";
 // import scss from "../../../../styles/variables.module.scss";
 
 export default function ImageTile({
@@ -12,12 +14,23 @@ export default function ImageTile({
   alt = "",
   // spinnerSize,
   // spinnerColor,
-  loadCheck = () => {},
+  isVisible,
+  qualityOverride = null,
+  onLoad = () => {},
 }) {
   const [imgLoaded, setImgLoaded] = useState(false);
+  const [imgQuality, setImgQuality] = useState(qualityOverride || "lazy");
+  const device = useSelector(selectDevice);
+
+  useEffect(() => {
+    if (isVisible) {
+      setImgQuality(device);
+    }
+  }, [isVisible, device]);
+
   function handleLoad() {
     setImgLoaded(true);
-    loadCheck(true);
+    onLoad();
   }
 
   return (
@@ -26,15 +39,7 @@ export default function ImageTile({
         imgLoaded ? styles.imgLoaded : null
       }`}
     >
-      {imgLoaded ? null : (
-        <div className={styles.spinner}>
-          <Spinner
-          // size={spinnerSize || scss.sizeXl}
-          // color={spinnerColor || undefined}
-          />
-        </div>
-      )}
-      <img src={img?.url} alt={alt} onLoad={handleLoad} />
+      <img src={img?.[`url_${imgQuality}`]} alt={alt} onLoad={handleLoad} />
     </div>
   );
 }
@@ -47,4 +52,7 @@ ImageTile.propTypes = {
   onMouseEnter: PropTypes.func,
   onMouseLeave: PropTypes.func,
   loadCheck: PropTypes.func,
+  qualityOverride: PropTypes.string,
+  onLoad: PropTypes.func,
+  isVisible: PropTypes.bool,
 };

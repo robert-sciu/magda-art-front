@@ -117,7 +117,7 @@ export const authSlice = createSlice({
         localStorage.removeItem("access_token");
         state.token = null;
         state.isAuthenticated = false;
-        state.tokenVerificationComplete = false;
+        state.tokenVerificationComplete = true;
         manageFulfilledState(state);
       })
       .addCase(logoutUser.rejected, manageRejectedState);

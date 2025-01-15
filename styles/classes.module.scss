@@ -19,3 +19,34 @@
   height: 100vh;
   width: 100vw;
 }
+
+.adminMainContainer {
+  position: relative;
+  padding: $size-xxxs;
+  gap: $size-l;
+  // margin-top: $size-xxl;
+  border: 1px solid $main-medium-light-gray;
+  background-color: $main-white;
+  width: 100%;
+}
+
+.modalWindowContent {
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  gap: $size-xxl;
+  padding: 0 $size-xl;
+  align-items: center;
+  cursor: default;
+}
+
+.backdropBlur {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}

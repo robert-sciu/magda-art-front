@@ -7,7 +7,6 @@
   background-color: $main-gray;
   color: $main-white;
   transition: $basic-transition;
-  // box-shadow: $inset-soft-shadow;
   text-decoration: none;
   text-align: center;
   display: flex;
@@ -28,19 +27,27 @@
   }
 }
 
-// .greenBtn {
-//   background-color: $add-green;
-//   &:hover {
-//     background-color: $add-green-hover;
-//   }
-// }
+.greenBtn {
+  background-color: $action-green;
+  &:hover {
+    background-color: $action-light-green;
+  }
+}
 
-// .redBtn {
-//   background-color: $delete-red;
-//   &:hover {
-//     background-color: $delete-red-hover;
-//   }
-// }
+.redBtn {
+  background-color: $error-red;
+  &:hover {
+    background-color: $cancel-red;
+  }
+}
+
+.lightBtn {
+  background-color: $main-white;
+  color: $main-black;
+  &:hover {
+    background-color: $main-white;
+  }
+}
 
 .smallBtn {
   min-width: 0 !important;
@@ -55,7 +62,7 @@
 }
 
 .fixedHeight {
-  height: $size-xxxl;
+  height: $size-xxl;
 }
 
 .flexHeight {

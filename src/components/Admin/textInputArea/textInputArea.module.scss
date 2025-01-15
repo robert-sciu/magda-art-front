@@ -1,12 +1,18 @@
 @import "../../../../styles/variables.module.scss";
 
-.activeEditButton {
-  background-color: $cancel-red;
-}
+// .activeEditButton {
+//   background-color: $cancel-red;
+// }
 
-.saveButton {
-  background-color: $action-green;
-}
-.saveButton:hover {
-  background-color: $action-light-green;
+// .saveButton {
+//   background-color: $action-green;
+// }
+// .saveButton:hover {
+//   background-color: $action-light-green;
+// }
+
+.buttonsContainer {
+  display: flex;
+  width: 30%;
+  gap: $size-xxxxs;
 }

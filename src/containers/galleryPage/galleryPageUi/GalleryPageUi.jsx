@@ -5,20 +5,27 @@ import { useDispatch, useSelector } from "react-redux";
 import GalleryOverlay from "../galleryOverlay/GalleryOverlay.jsx";
 import GalleryColumn from "../../../components/Gallery/galleryColumn/GalleryColumn.jsx";
 import Fillers from "../../../components/Gallery/fillers/fillers.jsx";
-import Spinner from "../../../components/common/spinner/Spinner.jsx";
 
-import {
-  populateColumns,
-  selectAllImages,
-  createImageColumns,
-  selectAllColumns,
-  isLoadingContent,
-  fetchImages,
-} from "./galleryPageSlice.js";
-import { setLocation } from "../../rootNav/rootNavSlice.js";
+// import { setLocation } from "../../../store/rootNavSlice.js";
 
 import styles from "./galleryPageUi.module.scss";
 import scss from "../../../../styles/variables.module.scss";
+import {
+  createImageColumns,
+  disableBlur,
+  fetchGalleryImages,
+  populateColumns,
+  selectClickedImage,
+  selectGalleryPageColumns,
+  selectGalleryPageImages,
+  selectGalleryPageImagesFetchStatus,
+  selectGalleryPageImagesLoadingStatus,
+  selectHighQualityLoadStatus,
+  selectLazyLoadStatus,
+  selectUseBlurStatus,
+} from "../../../store/galleryPageSlice.js";
+import LoadingState from "../../../components/loadingState/loadingState.jsx";
+import { selectDevice } from "../../../store/rootNavSlice.js";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -37,37 +44,57 @@ export default function GalleryPageUi() {
 
   const dispatch = useDispatch();
 
-  const { data: paintings } = useSelector(selectAllImages);
-  const loadingContent = useSelector(isLoadingContent);
-  const columns = useSelector(selectAllColumns);
+  const paintings = useSelector(selectGalleryPageImages);
+  const loadingContent = useSelector(selectGalleryPageImagesLoadingStatus);
+  const columns = useSelector(selectGalleryPageColumns);
+  const lazyLoaded = useSelector(selectLazyLoadStatus);
+  const highQualityLoaded = useSelector(selectHighQualityLoadStatus);
+  const fetchComplete = useSelector(selectGalleryPageImagesFetchStatus);
+  const blurIsEnabled = useSelector(selectUseBlurStatus);
+  const device = useSelector(selectDevice);
+  const clickedImage = useSelector(selectClickedImage);
+
+  // disables blur after 2 seconds if high quality images are loaded
+  // blur is only needed to transition from lazy to high quality for the first time
+  useEffect(() => {
+    if (!blurIsEnabled) return;
+    if (highQualityLoaded) {
+      setTimeout(() => {
+        dispatch(disableBlur());
+      }, 2000);
+    }
+  }, [dispatch, highQualityLoaded, blurIsEnabled]);
+
+  // useEffect(() => {
+  //   dispatch(setLocation(window.location.pathname));
+  // }, [dispatch]);
 
   useEffect(() => {
-    dispatch(setLocation(window.location.pathname));
-  }, [dispatch]);
-
-  useEffect(() => {
-    dispatch(fetchImages());
-  }, [dispatch]);
+    if (fetchComplete) return;
+    dispatch(fetchGalleryImages());
+  }, [dispatch, fetchComplete]);
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());
-  }, []);
+  }, [numberOfColumns, columns]);
 
   useEffect(() => {
-    if (!numberOfColumns) return;
-    if (!paintings) return;
-    if (loadingContent) return;
-    dispatch(createImageColumns(numberOfColumns));
-  }, [dispatch, numberOfColumns, paintings, loadingContent]);
-
-  useEffect(() => {
-    if (paintings && numberOfColumns && allFillers && !loadingContent) {
+    if (Object.keys(columns).length === getNumberOfColumns()) return;
+    if (!loadingContent && numberOfColumns && paintings && allFillers) {
+      dispatch(createImageColumns(numberOfColumns));
       dispatch(populateColumns({ paintings, fillers: [...allFillers] }));
     }
-  }, [paintings, dispatch, numberOfColumns, allFillers, loadingContent]);
+  }, [
+    dispatch,
+    numberOfColumns,
+    loadingContent,
+    paintings,
+    columns,
+    allFillers,
+  ]);
 
   useEffect(() => {
-    if (Array.from(Object.keys(columns)).length === numberOfColumns) {
+    if (Object.keys(columns).length === numberOfColumns) {
       setGalleryColumns(columns);
       setColumnsReady(true);
     }
@@ -102,27 +129,22 @@ export default function GalleryPageUi() {
 
   return (
     <div className={styles.galleryPage}>
-      {columnsReady && allFillers && galleryColumns ? (
+      {columnsReady &&
         Object.entries(galleryColumns).map((column) => {
+          const [name, data] = column;
+          const { paintings, isHighest, filler } = data;
           return (
             <GalleryColumn
-              // column[1].paintings contains paintings data
-              column={column[1].paintings}
-              // column[1].isHighest is a boolean that indicates if the column is the highest
-              // highest column in the grid doesn't get a filler
-              isHighest={column[1].isHighest}
-              key={column[0]}
-              // column[1].filler is the type of filler
-              Filler={Fillers[column[1].filler]}
+              column={paintings}
+              columnName={name}
+              isHighest={isHighest}
+              key={name}
+              Filler={Fillers[filler]}
             />
           );
-        })
-      ) : (
-        <div className={styles.spinnerContainer}>
-          <Spinner />
-        </div>
-      )}
-      <GalleryOverlay />
+        })}
+      <LoadingState fullscreen={true} fadeOut={lazyLoaded} />
+      {device === "desktop" && clickedImage && <GalleryOverlay />}
     </div>
   );
 }

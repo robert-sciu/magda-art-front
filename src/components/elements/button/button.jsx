@@ -15,7 +15,7 @@ import PropTypes from "prop-types";
  * @param {boolean} isLoading - Whether the button is in a loading state.
  * @param {boolean} disabled - Whether the button is disabled.
  * @param {string} loadingLabel - The label for the button when it is loading.
- * @param {string} style - A class name to add to the button. Available styles are "greenBtn", "smallBtn".
+ * @param {string} style - A class name to add to the button. Available styles are "greenBtn", "redBtn", "lightBtn" "smallBtn".
  *
  * @return {ReactElement}
  */
@@ -47,7 +47,7 @@ export default function Button({
     >
       {isLoading && (
         <>
-          <LoadingState spinnerOnly={true} />
+          <LoadingState spinnerOnly={true} background={"none"} />
           <p>{loadingLabel}</p>
         </>
       )}

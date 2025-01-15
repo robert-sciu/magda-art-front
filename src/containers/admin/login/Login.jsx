@@ -87,6 +87,7 @@ export default function Login() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             width={100}
+            textAlign={"center"}
           />
           <InputElement
             label={"Password"}
@@ -96,6 +97,7 @@ export default function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             width={100}
+            textAlign={"center"}
           />
           <div className={styles.loginButtonContainer}>
             <Button

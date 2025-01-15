@@ -99,12 +99,14 @@ export async function checkUploadInfo({
   height_cm,
   width_cm,
   description,
+  price,
   onImageNameError,
   onFileError,
   onUrlError,
   onHeightError,
   onWidthError,
   onDescriptionError,
+  onPriceError,
 }) {
   return new Promise((resolve) => {
     let isValid = true;
@@ -135,6 +137,11 @@ export async function checkUploadInfo({
 
     if (!description && onDescriptionError) {
       onDescriptionError("Please enter a description");
+      isValid = false;
+    }
+
+    if (price !== "" && !Number(price) && onPriceError) {
+      onPriceError("Please enter a valid number for price");
       isValid = false;
     }
 

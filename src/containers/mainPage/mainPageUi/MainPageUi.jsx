@@ -1,36 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Hero from "../hero/Hero";
-import Welcome from "../welcome/Welcome";
-import BioParallax from "../../../components/MainPage/bioParallax/BioParallax";
+// import Welcome from "../welcome/Welcome";
 import Bio from "../bio/Bio";
-import GalleryParallax from "../../../components/MainPage/galleryParallax/GalleryParallax";
 import Visualizations from "../visualizations/Visualizations";
 import Contact from "../../common/contact/Contact";
 
 import {
+  fetchCommonImages,
   fetchPageImages,
   selectBioParallaxImage,
   selectGalleryParallaxImage,
+  selectWelcomeImages,
+  setSectionInView,
 } from "../../../store/mainPageImagesSlice";
-import { setFixedNav, setLocation } from "../../rootNav/rootNavSlice";
-import { fetchContent } from "../../../store/mainPageContentSlice";
+import { setFixedNav, setLocation } from "../../../store/rootNavSlice";
+import {
+  fetchContent,
+  selectWelcome,
+} from "../../../store/mainPageContentSlice";
 
 import styles from "./mainPageUi.module.scss";
 
-import { createArrayFromObject } from "../../../utilities";
+// import { createArrayFromObject } from "../../../utilities";
+import Parallax from "../parallax/parallax";
+import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
+import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
+import PageSection from "../pageSection/pageSection";
 
 export default function MainPageUi() {
-  const [bioParallaxImageArray, setBioParallaxImageArray] = useState([]);
-  // prettier-ignore
-  const [galleryParallaxImageArray, setGalleryParallaxImageArray] = useState([]);
-
   const triggerRef = useRef(null);
+  const sectionRefs = useRef([]); // Array of refs for sections
 
-  const bioParallaxImage = useSelector(selectBioParallaxImage);
-  const galleryParallaxImage = useSelector(selectGalleryParallaxImage);
+  const addToRefs = (el) => {
+    if (el && !sectionRefs.current.includes(el)) {
+      sectionRefs.current.push(el);
+    }
+  };
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -40,20 +49,8 @@ export default function MainPageUi() {
   useEffect(() => {
     dispatch(fetchContent());
     dispatch(fetchPageImages());
+    dispatch(fetchCommonImages());
   }, [dispatch]);
-
-  useEffect(() => {
-    const bioParallaxImageArray = createArrayFromObject(bioParallaxImage);
-    if (bioParallaxImageArray.length > 0)
-      setBioParallaxImageArray(bioParallaxImageArray);
-  }, [bioParallaxImage]);
-
-  useEffect(() => {
-    const galleryParallaxImageArray =
-      createArrayFromObject(galleryParallaxImage);
-    if (galleryParallaxImageArray.length > 0)
-      setGalleryParallaxImageArray(galleryParallaxImageArray);
-  }, [galleryParallaxImage]);
 
   useEffect(() => {
     const triggerRefCurrent = triggerRef.current;
@@ -81,14 +78,72 @@ export default function MainPageUi() {
     };
   }, [triggerRef, dispatch]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const updatedSections = {};
+
+        entries.forEach((entry) => {
+          updatedSections[entry.target.id] = entry.isIntersecting;
+          // updatedSections[entry.target.id] = true;
+        });
+
+        // setVisibleSections((prev) => ({ ...prev, ...updatedSections }));
+
+        // Dispatch action for the first visible section
+        const inViewSection = Object.keys(updatedSections).find(
+          (id) => updatedSections[id]
+        );
+
+        if (inViewSection) {
+          dispatch(setSectionInView(inViewSection));
+        }
+      },
+      {
+        root: null, // Viewport as the root
+        threshold: 0.5, // Trigger when 50% visible
+      }
+    );
+
+    sectionRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      sectionRefs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+    };
+  }, [dispatch]);
+
   return (
     <div className={styles.uiContainer}>
       <Hero />
       <div ref={triggerRef} className={styles.refDiv} />
-      <Welcome />
-      <BioParallax bioParallaxImageArray={bioParallaxImageArray} />
+      <div ref={addToRefs} id="welcome">
+        {/* <Welcome /> */}
+        <PageSection
+          contentSelector={selectWelcome}
+          imageSelector={selectWelcomeImages}
+        />
+      </div>
+      <div ref={addToRefs} id="bioParallax">
+        <Parallax
+          imageSelector={selectBioParallaxImage}
+          sectionId="bioParallax"
+        >
+          <BioParallaxContent />
+        </Parallax>
+      </div>
       <Bio />
-      <GalleryParallax galleryParallaxImageArray={galleryParallaxImageArray} />
+      <div ref={addToRefs} id="galleryParallax">
+        <Parallax
+          imageSelector={selectGalleryParallaxImage}
+          sectionId="galleryParallax"
+        >
+          <GalleryParallaxContent />
+        </Parallax>
+      </div>
       <Visualizations />
       <Contact />
     </div>

@@ -1,9 +1,37 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/classes.module.scss";
 
 .galleryTile {
   position: relative;
   width: 100%;
   color: $main-white;
+
+  .tileContainer {
+    width: auto;
+    position: relative;
+    .blur {
+      transition: all 0.5s ease-in-out;
+      backdrop-filter: blur($size-xxxs);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    .noBlur {
+      backdrop-filter: blur(0);
+    }
+    .galleryImg {
+      transition: height 5s ease-in-out;
+      width: 100%;
+      height: $size-giant;
+      // height: 30%;
+    }
+    .imgLoaded {
+      height: 100%;
+      // flex: 1;
+    }
+  }
 
   .overlay {
     cursor: pointer;
@@ -11,7 +39,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: $size-xxxs;
+    gap: $size-xs;
     padding: $size-s;
     opacity: 0;
     transition: $link-transition-slow;
@@ -20,15 +48,35 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: $overlay;
+    background-color: $overlay-light;
     overflow: hidden;
     h3 {
       font-size: $size-m;
     }
 
-    p {
+    .description {
+      .descriptionText {
+        margin: auto;
+      }
       font-size: $size-xs;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: start;
+      // justify-content: start;
+      // min-height: $size-xl;
       text-align: center;
+      overflow: hidden;
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
     }
     button {
       background-color: $main-white;

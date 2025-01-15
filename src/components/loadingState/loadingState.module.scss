@@ -5,17 +5,25 @@
   transition: opacity 0.5s ease-in-out;
 }
 
+.backgroundLight {
+  background-color: $main-gray-light;
+}
+
+.backgroundDark {
+  background-color: $main-black;
+  color: $main-white;
+}
+
 .loadingStateContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $main-gray-light;
 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 100;
+  z-index: 50;
   .spinner {
     animation: spin 1.5s linear infinite;
     font-size: $size-xxxxl;

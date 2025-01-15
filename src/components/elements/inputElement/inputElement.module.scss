@@ -5,19 +5,61 @@
   display: flex;
   flex-direction: column;
   gap: $size-xxxxs;
-  align-items: center;
+  // align-items: center;
   justify-content: center;
   margin: 0 auto;
 
   .inputElement {
     @extend .input;
+    // text-align: left;
     width: 100%;
   }
+
+  .textAlignCenter {
+    text-align: center;
+  }
+  .textAlignLeft {
+    text-align: left;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .inputFileElement {
+    display: flex;
+    flex-direction: column;
+
+    gap: $size-xxs;
+  }
+
+  .checkboxContainer {
+    display: flex;
+    gap: $size-xs;
+    align-items: center;
+    .checkbox {
+      width: $size-s;
+      height: $size-s;
+    }
+  }
+
   .inputError {
     font-size: $size-xs;
     color: red;
     text-align: center;
   }
+}
+
+.alignCenter {
+  align-items: center;
+}
+
+.alignLeft {
+  align-items: flex-start;
+}
+
+.alignRight {
+  align-items: flex-end;
 }
 
 .width-100 {

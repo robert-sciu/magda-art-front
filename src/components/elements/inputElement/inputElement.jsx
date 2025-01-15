@@ -1,4 +1,9 @@
-import { classNameFormatter } from "../../../utilities/utilities";
+import {
+  capitalizeString,
+  classNameFormatter,
+  getFileNameFromUrl,
+} from "../../../utilities/utilities";
+import Button from "../button/button";
 import styles from "./inputElement.module.scss";
 
 import PropTypes from "prop-types";
@@ -15,6 +20,7 @@ import PropTypes from "prop-types";
  * @param {string} props.width - The width class for the input container (e.g., "100", "80").
  * @param {string} [props.name=""] - The name attribute for the input element.
  * @param {string} [props.autoComplete="off"] - The autocomplete attribute for the input element.
+ * @param {string} [props.alignment="center"] - The alignment class for the input container (e.g., "center", "left", 'right').
  *
  * @return {JSX.Element} A JSX element representing an input field with optional label and error message.
  */
@@ -28,23 +34,103 @@ export default function InputElement({
   width,
   name = "",
   autoComplete = "off",
+  alignment = "center",
+  textAlign = "left",
+  isDisabled = false,
 }) {
+  function triggerFileInput(e) {
+    e.preventDefault();
+    document.getElementById(name).click();
+  }
   return (
     <div
       className={classNameFormatter({
         styles,
-        classNames: ["inputElementContainer", width && `width-${width}`],
+        classNames: [
+          "inputElementContainer",
+          width && `width-${width}`,
+          alignment && `align${capitalizeString(alignment)}`,
+        ],
       })}
     >
-      {label && <label className={styles.label}>{label}:</label>}
-      <input
-        className={styles.inputElement}
-        type={type}
-        name={name}
-        autoComplete={autoComplete}
-        value={value}
-        onChange={onChange}
-      />
+      {["email", "text", "password"].includes(type) && (
+        <>
+          {label && <label className={styles.label}>{label}:</label>}
+          <input
+            className={classNameFormatter({
+              styles,
+              classNames: [
+                "inputElement",
+                `textAlign${capitalizeString(textAlign)}`,
+              ],
+            })}
+            type={type}
+            name={name}
+            autoComplete={autoComplete}
+            value={value}
+            onChange={onChange}
+            disabled={isDisabled}
+          />
+        </>
+      )}
+      {type === "file" && (
+        <>
+          <input
+            className={styles.hidden}
+            type={type}
+            id={name}
+            onChange={onChange}
+            value={value}
+          />
+          <div className={styles.inputFileElement}>
+            {label && (
+              <label className={styles.label}>
+                {label}: {getFileNameFromUrl(value)}
+              </label>
+            )}
+
+            <Button
+              label={"choose file"}
+              onClick={triggerFileInput}
+              style={"lightBtn"}
+            />
+          </div>
+        </>
+      )}
+      {type === "checkbox" && (
+        <>
+          <div className={styles.checkboxContainer}>
+            {label && <label className={styles.label}>{label}</label>}
+            <input
+              className={styles.checkbox}
+              type={type}
+              name={name}
+              autoComplete={autoComplete}
+              value={value}
+              onChange={onChange}
+            />
+          </div>
+        </>
+      )}
+      {type === "textArea" && (
+        <>
+          <textarea
+            className={classNameFormatter({
+              styles,
+              classNames: [
+                "inputElement",
+                `textAlign${capitalizeString(textAlign)}`,
+              ],
+            })}
+            rows={8}
+            type="text"
+            name={name}
+            value={value}
+            onChange={onChange}
+            disabled={isDisabled}
+          />
+        </>
+      )}
       {inputError && <p className={styles.inputError}>{inputError}</p>}
     </div>
   );
@@ -59,4 +145,8 @@ InputElement.propTypes = {
   label: PropTypes.string,
   name: PropTypes.string,
   autoComplete: PropTypes.string,
+
+  alignment: PropTypes.string,
+  textAlign: PropTypes.string,
+  isDisabled: PropTypes.bool,
 };

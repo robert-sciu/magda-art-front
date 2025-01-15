@@ -7,13 +7,13 @@
   grid-template-rows: 1fr 1fr;
   gap: $size-xxs;
 
-  @include respond-to(small-desktop) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-  }
+  // @include respond-to(small-desktop) {
+  //   grid-template-columns: 1fr 1fr 1fr 1fr;
+  //   grid-template-rows: 1fr;
+  // }
 
-  @include respond-to(tablet) {
-    grid-template-columns: 1fr 1fr;
-    gap: $size-xxxxs;
-  }
+  // @include respond-to(tablet) {
+  //   grid-template-columns: 1fr 1fr;
+  //   gap: $size-xxxxs;
+  // }
 }

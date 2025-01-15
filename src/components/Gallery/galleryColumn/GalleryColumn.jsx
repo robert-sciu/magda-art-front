@@ -3,12 +3,63 @@ import PropTypes from "prop-types";
 import GalleryTile from "../galleryTile/GalleryTile";
 
 import styles from "./galleryColumn.module.scss";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectLazyLoadStatus } from "../../../store/galleryPageSlice";
 
 export default function GalleryColumn({ column, isHighest, Filler = null }) {
+  const refs = useRef([]);
+  const [visibleImages, setVisibleImages] = useState(new Set());
+  const lazyLoaded = useSelector(selectLazyLoadStatus);
+
+  useEffect(() => {
+    if (!lazyLoaded) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleImages((prev) => {
+              if (!prev.has(entry.target.dataset.id)) {
+                // Create a new Set to trigger React state updates
+                const newSet = new Set(prev);
+                newSet.add(entry.target.dataset.id);
+                return newSet;
+              }
+              return prev;
+            });
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.1,
+      }
+    );
+
+    // Observe each `GalleryTile` using refs
+    refs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => {
+      // Cleanup
+      refs.current.forEach((ref) => {
+        if (ref) observer.unobserve(ref);
+      });
+      observer.disconnect();
+    };
+  }, [lazyLoaded, column]); // the column is here to rebuild the observer when the column changes when resized
+
   return (
     <div className={styles.galleryColumn}>
-      {column.map((image) => (
-        <GalleryTile image={image} key={image.id} />
+      {column.map((image, index) => (
+        <GalleryTile
+          img={image}
+          key={image.id}
+          isVisible={visibleImages.has(image.id.toString())}
+          ref={(el) => (refs.current[index] = el)}
+        />
       ))}
       {!isHighest ? (
         <div className={styles.fillDiv}>{Filler ? <Filler /> : null}</div>
@@ -21,4 +72,5 @@ GalleryColumn.propTypes = {
   column: PropTypes.array,
   isHighest: PropTypes.bool,
   Filler: PropTypes.func,
+  columnName: PropTypes.string,
 };

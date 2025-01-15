@@ -8,7 +8,13 @@ import DesktopNav from "../../components/common/desktopNav/DesktopNav";
 import { MobileNav } from "../../components/common/mobileNav/MobileNav";
 import FixedNav from "../../components/common/fixedNav/FixedNav";
 
-import { selectFixedNav, selectLocation, setWindowWidth } from "./rootNavSlice";
+import {
+  selectDevice,
+  selectFixedNav,
+  selectLocation,
+  setDevice,
+  setWindowWidth,
+} from "../../store/rootNavSlice";
 
 import scss from "../../../styles/variables.module.scss";
 import { selectAuthAuthenticationStatus } from "../../store/authSlice";
@@ -28,8 +34,6 @@ export default function RootNav() {
   const [socialsLoaded, setSocialsLoaded] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showFixedNav, setShowFixedNav] = useState(false);
-  const [desktopNav, setDesktopNav] = useState(window.innerWidth > tabletWidth);
-  const [mobileNav, setMobileNav] = useState(window.innerWidth <= tabletWidth);
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -38,16 +42,26 @@ export default function RootNav() {
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
+  const device = useSelector(selectDevice);
 
   const navRef = useRef(null);
 
-  useEffect(() => {
-    // if (!loadState) return;
-    dispatch(fetchCommonImages());
-  }, [dispatch]);
+  // const hasFetched = useRef(false);
+
+  // useEffect(() => {
+  //   // if (!loadState) return;
+  //   if (hasFetched.current) return;
+  //   hasFetched.current = true;
+  //   dispatch(fetchCommonImages());
+  // }, [dispatch]);
 
   useEffect(() => {
     dispatch(setWindowWidth(window.innerWidth));
+    if (window.innerWidth <= tabletWidth || window.innerHeight <= tabletWidth) {
+      dispatch(setDevice("mobile"));
+    } else {
+      dispatch(setDevice("desktop"));
+    }
   }, [dispatch]);
 
   useEffect(() => {
@@ -74,11 +88,9 @@ export default function RootNav() {
         window.innerWidth <= tabletWidth ||
         window.innerHeight <= tabletWidth
       ) {
-        setMobileNav(true);
-        setDesktopNav(false);
+        dispatch(setDevice("mobile"));
       } else {
-        setMobileNav(false);
-        setDesktopNav(true);
+        dispatch(setDevice("desktop"));
       }
       dispatch(setWindowWidth(window.innerWidth));
     }
@@ -100,7 +112,7 @@ export default function RootNav() {
 
   return (
     <>
-      {desktopNav && (
+      {device === "desktop" && (
         <DesktopNav
           showNav={showNav}
           showAdmin={showAdmin}
@@ -108,10 +120,10 @@ export default function RootNav() {
           onSocialsLoaded={setSocialsLoaded}
         />
       )}
-      {navIsFixed && location === "/" && !mobileNav && (
+      {navIsFixed && location === "/" && device === "desktop" && (
         <FixedNav showFixedNav={showFixedNav} />
       )}
-      {mobileNav && (
+      {device === "mobile" && (
         <MobileNav
           ref={navRef}
           onSocialsLoaded={setSocialsLoaded}

@@ -10,7 +10,8 @@ const rootNavPromise = import("./containers/rootNav/RootNav.jsx");
 const mainPageUiPromise = import("./containers/mainPage/mainPageUi/MainPageUi.jsx");
 
 import "./App.scss";
-import GrayBackground from "./components/common/grayBackground/GrayBackground.jsx";
+import LoadingState from "./components/loadingState/loadingState.jsx";
+// import GrayBackground from "./components/common/grayBackground/GrayBackground.jsx";
 
 const LazyRootNav = React.lazy(() => rootNavPromise);
 
@@ -28,11 +29,24 @@ const LazyAdminNav = React.lazy(() =>
 const LazyTextEditor = React.lazy(() =>
   import("./containers/admin/textEditor/TextEditor.jsx")
 );
-const LazyImagesUploadManager = React.lazy(() =>
-  import("./containers/admin/pageImagesUpload/ImagesUploadManager.jsx")
+const LazyPageImagesUploadManager = React.lazy(() =>
+  import(
+    "./containers/admin/pageImagesUploadManager/pageImagesUploadManager.jsx"
+  )
 );
+
+const LazyGalleryImagesUploadManager = React.lazy(() =>
+  import(
+    "./containers/admin/galleryImagesUploadManager/galleryImagesUploadManager.jsx"
+  )
+);
+
 const LazyAdminStart = React.lazy(() =>
   import("./containers/admin/adminStart/AdminStart.jsx")
+);
+
+const LazyPotectedRoute = React.lazy(() =>
+  import("./containers/admin/protectedRoute/protectedRoute.jsx")
 );
 
 /**
@@ -48,7 +62,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<GrayBackground />}>
+            <Suspense fallback={<LoadingState />}>
               <LazyRootNav />
             </Suspense>
           }
@@ -56,7 +70,7 @@ function App() {
           <Route
             index
             element={
-              <Suspense fallback={<GrayBackground />}>
+              <Suspense>
                 <LazyMainPageUi />
               </Suspense>
             }
@@ -64,7 +78,7 @@ function App() {
           <Route
             path="/gallery"
             element={
-              <Suspense fallback={<GrayBackground />}>
+              <Suspense>
                 <LazyGalleryPageUi />
               </Suspense>
             }
@@ -81,7 +95,9 @@ function App() {
             path="/admin"
             element={
               <Suspense fallback={<Spinner />}>
-                <LazyAdminNav />
+                <LazyPotectedRoute>
+                  <LazyAdminNav />
+                </LazyPotectedRoute>
               </Suspense>
             }
           >
@@ -102,10 +118,18 @@ function App() {
               }
             />
             <Route
-              path="images/:uploadSection"
+              path="images/pageImages"
               element={
                 <Suspense fallback={<Spinner />}>
-                  <LazyImagesUploadManager />
+                  <LazyPageImagesUploadManager />
+                </Suspense>
+              }
+            />
+            <Route
+              path="images/galleryImages"
+              element={
+                <Suspense fallback={<Spinner />}>
+                  <LazyGalleryImagesUploadManager />
                 </Suspense>
               }
             />

@@ -8,6 +8,8 @@ import {
 } from "../utilities";
 import apiClient from "../api/api";
 
+import he from "he";
+
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchContent = createAsyncThunk(
@@ -40,8 +42,11 @@ export const mainPageContentSlice = createSlice({
   name: "mainPageContent",
   initialState: {
     content: { visualizations: {} },
-    isLoadingContent: false,
+    isLoading: false,
     hasError: false,
+    error: null,
+    refetchNeeded: false,
+    fetchComplete: false,
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -49,22 +54,32 @@ export const mainPageContentSlice = createSlice({
     builder
       .addCase(fetchContent.pending, managePendingState)
       .addCase(fetchContent.fulfilled, (state, action) => {
+        const parser = new DOMParser();
         action.payload.data.forEach((contentObject) => {
           if (/^visualization\d+$/.test(contentObject.heading)) {
             state.content.visualizations[contentObject.heading] = {
-              content: contentObject.content,
+              content: parser.parseFromString(
+                contentObject.content,
+                "text/html"
+              ).body.textContent, // he.decode(contentObject.content), // contentObject.content,
               placement: contentObject.heading.slice(-1),
             };
             return;
           }
           state.content[contentObject.heading] = contentObject.content;
         });
+
+        state.refetchNeeded = false;
+        state.fetchComplete = true;
         manageFulfilledState(state);
       })
       .addCase(fetchContent.rejected, manageRejectedState)
 
       .addCase(updateContent.pending, managePendingState)
-      .addCase(updateContent.fulfilled, manageFulfilledState)
+      .addCase(updateContent.fulfilled, (state) => {
+        state.refetchNeeded = true;
+        manageFulfilledState(state);
+      })
       .addCase(updateContent.rejected, manageRejectedState);
   },
 });
@@ -78,5 +93,14 @@ export const selectFooterOwner = (state) =>
   state.mainPageContent.content["site owner"];
 export const selectFooterDesign = (state) =>
   state.mainPageContent.content["developer name"];
+
+export const selectContentLoadingStatus = (state) =>
+  state.mainPageContent.isLoading;
+
+export const selectContentRefetchNeeded = (state) =>
+  state.mainPageContent.refetchNeeded;
+
+export const selectContentFetchComplete = (state) =>
+  state.mainPageContent.fetchComplete;
 
 export default mainPageContentSlice.reducer;

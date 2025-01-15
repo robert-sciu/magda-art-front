@@ -3,34 +3,32 @@ import PropTypes from "prop-types";
 import styles from "./heroBackground.module.scss";
 
 export default function HeroBackground({
-  heroImageArray,
+  heroImage,
   onHeroImageLoaded,
-  heroImageLoaded,
+  imgQuality,
 }) {
   function handleHeroImageLoaded() {
     onHeroImageLoaded(true);
   }
 
   return (
-    <div
-      className={`${styles.heroContainer} ${
-        heroImageLoaded ? styles.showHero : null
-      }`}
-    >
-      <img
-        className={styles.heroImage}
-        src={heroImageArray[0]?.url}
-        alt={`Painting entitled ${heroImageArray[0]?.name}`}
-        onLoad={() => handleHeroImageLoaded()}
-      />
+    <div className={styles.heroContainer}>
+      {heroImage && (
+        <img
+          className={styles.heroImage}
+          src={heroImage[`url_${imgQuality}`]}
+          alt={`Painting entitled ${heroImage.title}`}
+          onLoad={() => handleHeroImageLoaded()}
+        />
+      )}
     </div>
   );
 }
 
 HeroBackground.propTypes = {
-  heroImageArray: PropTypes.array,
-  imgLoaded: PropTypes.bool,
-  onImgLoaded: PropTypes.func,
+  heroImage: PropTypes.object,
   onHeroImageLoaded: PropTypes.func,
+  imgQuality: PropTypes.string,
   heroImageLoaded: PropTypes.bool,
+  disableFadeIn: PropTypes.bool,
 };

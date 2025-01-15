@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import styles from "./adminNav.module.scss";
-import { fetchImages } from "../../galleryPage/galleryPageUi/galleryPageSlice";
-// import { fetchPageImages } from "../../../store/mainPageImagesSlice";
-import { fetchContent } from "../../../store/mainPageContentSlice";
+
 import {
   selectAuthAuthenticationStatus,
   logoutUser,
+  selectTokenVerificationStatus,
 } from "../../../store/authSlice";
 import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
 
@@ -18,19 +17,13 @@ export default function AdminNav() {
   const navigate = useNavigate();
 
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
+  const tokenVerificationComplete = useSelector(selectTokenVerificationStatus);
 
   useEffect(() => {
-    if (!userIsAuthenticated) {
+    if (tokenVerificationComplete && !userIsAuthenticated) {
       navigate("/login");
     }
-  }, [userIsAuthenticated, navigate]);
-
-  useEffect(() => {
-    if (!userIsAuthenticated) return;
-    // dispatch(fetchPageImages());
-    dispatch(fetchImages());
-    dispatch(fetchContent());
-  }, [dispatch, userIsAuthenticated]);
+  }, [userIsAuthenticated, navigate, tokenVerificationComplete]);
 
   function handleLogout(e) {
     e.preventDefault();

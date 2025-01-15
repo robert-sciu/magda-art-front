@@ -1,0 +1,62 @@
+@import "../../../../styles/variables.module.scss";
+
+.pageSectionContainer {
+  // background-color: antiquewhite;
+  border-radius: $border-radius-m;
+  max-width: $main-content-width;
+  margin: $size-giant auto;
+  padding: $size-xxl;
+  box-shadow: 0 0rem 2rem $medium-shadow;
+
+  .contentContainer {
+    display: flex;
+    align-items: center;
+  }
+
+  .imageContainer {
+  }
+}
+
+.gridGap {
+  gap: $size-xxl;
+}
+
+.grid41 {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+}
+
+.grid31 {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.grid21 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.grid11 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.fontXXL {
+  font-size: $size-xxl;
+}
+
+.fontXL {
+  font-size: $size-xl;
+}
+
+.fontL {
+  font-size: $size-l;
+}
+
+.fontM {
+  font-size: $size-m;
+}
+
+.fontS {
+  font-size: $size-s;
+}

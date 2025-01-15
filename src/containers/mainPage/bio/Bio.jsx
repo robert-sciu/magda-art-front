@@ -11,7 +11,7 @@ import styles from "./bio.module.scss";
 import scss from "../../../../styles/variables.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
-import { selectWindowWidth } from "../../rootNav/rootNavSlice";
+import { selectWindowWidth } from "../../../store/rootNavSlice";
 
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
 const smallDesktopWidth = parseInt(scss.smallDesktopWidth);

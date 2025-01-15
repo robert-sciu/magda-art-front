@@ -4,28 +4,25 @@ import WelcomeGrid from "../../../components/MainPage/welcomeGrid/WelcomeGrid";
 import SocialIcons from "../../common/socialIcons/SocialIcons";
 
 import { selectWelcome } from "../../../store/mainPageContentSlice";
-import { selectWelcomeImages } from "../../../store/mainPageImagesSlice";
 import {
-  selectSocialsIcons,
-  selectWindowWidth,
-} from "../../rootNav/rootNavSlice";
+  selectSocialIcons,
+  selectWelcomeImages,
+} from "../../../store/mainPageImagesSlice";
 
 import styles from "./welcome.module.scss";
-import scss from "../../../../styles/variables.module.scss";
+// import scss from "../../../../styles/variables.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
-
-const tabletWidth = parseInt(scss.tabletWidth);
 
 export default function Welcome() {
   const welcomeText = useSelector(selectWelcome);
   const welcomeImages = useSelector(selectWelcomeImages);
-  const socialIcons = useSelector(selectSocialsIcons);
+  const socialIcons = useSelector(selectSocialIcons);
 
   const socialIconsArray = createArrayFromObject(socialIcons);
   const welcomeImagesArray = createArrayFromObject(welcomeImages);
 
-  const pageWidth = useSelector(selectWindowWidth);
+  // const pageWidth = useSelector(selectWindowWidth);
 
   return (
     <div className={styles.welcomeContainer}>
@@ -37,13 +34,7 @@ export default function Welcome() {
         </div>
       </div>
       <div className={styles.welcomeGrid}>
-        <WelcomeGrid
-          welcomeImagesArray={
-            pageWidth <= tabletWidth
-              ? welcomeImagesArray.slice(0, 2)
-              : welcomeImagesArray
-          }
-        />
+        <WelcomeGrid welcomeImagesArray={welcomeImagesArray} />
       </div>
     </div>
   );

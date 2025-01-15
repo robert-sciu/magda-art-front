@@ -3,12 +3,10 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-// import { selectLogoImage } from "../../rootNav/rootNavSlice";
-
 import styles from "./logo.module.scss";
 
-import { createArrayFromObject } from "../../../utilities";
 import { selectLogoImage } from "../../../store/mainPageImagesSlice";
+import { selectDevice } from "../../../store/rootNavSlice";
 
 /**
  * Renders a logo component that displays an image.
@@ -21,9 +19,8 @@ import { selectLogoImage } from "../../../store/mainPageImagesSlice";
 export default function Logo({ onLoad, isMainLogo }) {
   const [logoLoaded, setLogoLoaded] = useState(false);
 
-  const logo = useSelector(selectLogoImage);
-
-  const logoImgData = createArrayFromObject(logo)[0];
+  const logo = useSelector(selectLogoImage)[0];
+  const device = useSelector(selectDevice);
 
   function handleLoad() {
     setLogoLoaded(true);
@@ -38,8 +35,8 @@ export default function Logo({ onLoad, isMainLogo }) {
     >
       {logo && (
         <img
-          src={logoImgData?.url}
-          alt={logoImgData?.name}
+          src={logo?.[`url_${device}`]}
+          alt={logo?.title}
           onLoad={handleLoad}
         />
       )}

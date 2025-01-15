@@ -1,0 +1,47 @@
+@import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+@import "../../../../styles/classes.module.scss";
+
+.parallax {
+  min-height: $parallax-height;
+  background-attachment: fixed;
+  background-color: $main-black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-position: 100% calc(40% + $size-xl);
+
+  // @include respond-to(medium-desktop) {
+  //   background-position: $size-xxs calc(40% + $size-xl);
+  //   min-height: calc($parallax-height * 0.9);
+  // }
+
+  // @include respond-to(small-desktop) {
+  //   background-position: 37% $size-xxs;
+  // }
+  // h2 {
+  // @include respond-to(tablet) {
+  //   font-size: $size-xxxl;
+  // }
+  // @include respond-to(mobile) {
+  //   font-size: $size-xxl;
+  // }
+  // }
+}
+
+.blur {
+  backdrop-filter: blur($size-xxxs);
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11;
+  width: 100%;
+  height: 100%;
+}
+.noBlur {
+  backdrop-filter: blur(0);
+}

@@ -9,13 +9,15 @@ import styles from "./galleryImagesUploadForm.module.scss";
 
 import {
   checkUploadInfo,
-  createArrayFromObject,
+  // createArrayFromObject,
   resetErrors,
 } from "../../../utilities";
+import InputElement from "../../../components/elements/inputElement/inputElement";
+import Button from "../../../components/elements/button/button";
 
 export default function GalleryImagesUploadForm({
   selector,
-  endpoint,
+  // endpoint,
   onSubmit,
   onDelete,
 }) {
@@ -25,20 +27,25 @@ export default function GalleryImagesUploadForm({
   const [width_cm, setWidth_cm] = useState("");
   const [height_cm, setHeight_cm] = useState("");
   const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [isSold, setIsSold] = useState(false);
+
   const [showImages, setShowImages] = useState(false);
   const [imageNameError, setImageNameError] = useState("");
   const [fileError, setFileError] = useState("");
   const [heightError, setHeightError] = useState("");
   const [widthError, setWidthError] = useState("");
   const [descriptionError, setDescriptionError] = useState("");
+  const [priceError, setPriceError] = useState("");
 
   const images = useSelector(selector);
-  const imagesArray = createArrayFromObject(images)[1];
+
+  // const imagesArray = createArrayFromObject(images)[1];
 
   useEffect(() => {
-    if (!imagesArray) return;
+    if (!images) return;
     setShowImages(true);
-  }, [imagesArray]);
+  }, [images]);
 
   function handleFileChange(e) {
     setFile(e.target.files[0]);
@@ -53,6 +60,7 @@ export default function GalleryImagesUploadForm({
       setDescriptionError,
       setHeightError,
       setWidthError,
+      setPriceError,
     ]);
 
     const isValid = await checkUploadInfo({
@@ -61,22 +69,29 @@ export default function GalleryImagesUploadForm({
       width_cm,
       height_cm,
       description,
+      price,
       onImageNameError: setImageNameError,
       onFileError: setFileError,
       onDescriptionError: setDescriptionError,
       onHeightError: setHeightError,
       onWidthError: setWidthError,
+      onPriceError: setPriceError,
     });
 
     if (!isValid) return;
 
-    await onSubmit({
-      endpoint,
-      file,
-      imageName,
+    const data = {
+      title: imageName,
+      description,
       width_cm,
       height_cm,
-      description,
+      price_eur: price,
+      is_sold: isSold,
+    };
+
+    await onSubmit({
+      data,
+      file,
     });
 
     setImageName("");
@@ -85,67 +100,93 @@ export default function GalleryImagesUploadForm({
     setDescription("");
     setFileInputValue("");
     setFile(null);
+    setPrice("");
+    setIsSold(false);
   }
 
-  function handleDelete(imgId) {
-    setShowImages(false);
-    onDelete(endpoint, imgId);
+  function handleDelete({ id }) {
+    onDelete({ id });
   }
 
   return (
     <div className={styles.container}>
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <form className={styles.formContainer}>
         <h3>Upload Image to Gallery</h3>
-        <label htmlFor="name">Title</label>
-        {imageNameError && <p className={styles.error}>{imageNameError}</p>}
-        <input
-          type="text"
-          id="name"
-          name="name"
+        <InputElement
+          type={"text"}
+          label={"Title"}
+          name={"title"}
           value={imageName}
           onChange={(e) => setImageName(e.target.value)}
+          inputError={imageNameError}
+          width={100}
+          alignment="left"
         />
-        <label htmlFor="width_cm">Width (cm):</label>
-        {widthError && <p className={styles.error}>{widthError}</p>}
-        <input
-          type="text"
-          id="width_cm"
-          name="width_cm"
-          value={width_cm}
-          onChange={(e) => setWidth_cm(e.target.value)}
-        />
-        <label htmlFor="height_cm">Height (cm):</label>
-        {heightError && <p className={styles.error}>{heightError}</p>}
-        <input
-          type="text"
-          id="height_cm"
-          name="height_cm"
-          value={height_cm}
-          onChange={(e) => setHeight_cm(e.target.value)}
-        />
-        <label htmlFor="description">Description:</label>
-        {descriptionError && <p className={styles.error}>{descriptionError}</p>}
-        <input
-          type="text"
-          id="description"
-          name="description"
+        <InputElement
+          type={"text"}
+          label={"Description"}
+          name={"description"}
           value={description}
           onChange={(e) => setDescription(e.target.value)}
+          inputError={descriptionError}
+          width={100}
+          alignment="left"
         />
-        <label htmlFor="file">File:</label>
-        {fileError && <p className={styles.error}>{fileError}</p>}
-        <input
-          type="file"
-          id="file"
-          name="file"
+        <InputElement
+          type={"text"}
+          label={"Width (cm)"}
+          name={"width_cm"}
+          value={width_cm}
+          onChange={(e) => setWidth_cm(e.target.value)}
+          inputError={widthError}
+          width={100}
+          alignment="left"
+        />
+        <InputElement
+          type={"text"}
+          label={"Height (cm)"}
+          name={"height_cm"}
+          value={height_cm}
+          onChange={(e) => setHeight_cm(e.target.value)}
+          inputError={heightError}
+          width={100}
+          alignment="left"
+        />
+        <InputElement
+          type={"text"}
+          label={"Price (€)"}
+          name={"price"}
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          inputError={priceError}
+          width={100}
+          alignment="left"
+        />
+        <InputElement
+          type={"checkbox"}
+          label={"Sold"}
+          value={isSold}
+          onChange={(e) => setIsSold(e.target.checked)}
+          name={"sold"}
+          width={100}
+          alignment="left"
+        />
+        <InputElement
+          type={"file"}
+          label={"File"}
+          name={"file-gallery"}
           value={fileInputValue}
           onChange={handleFileChange}
+          inputError={fileError}
+          width={100}
+          alignment="left"
         />
-        <button type="submit">Upload</button>
+
+        <Button label="Upload" onClick={handleSubmit} />
       </form>
       <div className={styles.gridContainer}>
         {showImages
-          ? imagesArray.map((img) => (
+          ? images.map((img) => (
               <ImageInspector img={img} key={img.id} onDelete={handleDelete} />
             ))
           : null}

@@ -7,10 +7,7 @@ import {
   extractResponseData,
 } from "../utilities";
 import apiClient from "../api/api";
-import {
-  clearPageImageStateForRoleToRefetch,
-  populatePageImagesState,
-} from "../utilities/reduxUtilities";
+import { populatePageImagesState } from "../utilities/reduxUtilities";
 
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
@@ -42,6 +39,7 @@ export const fetchPageImagesForRole = createAsyncThunk(
   "mainPageImages/fetchPageImagesForRole",
   async (role, { rejectWithValue }) => {
     try {
+      apiClient.defaults.headers["Content-Type"] = "application/json";
       const pageImages = await apiClient.get(
         `${api_url}/admin/pageImages/${role}`
       );
@@ -54,11 +52,19 @@ export const fetchPageImagesForRole = createAsyncThunk(
 
 export const uploadPageImage = createAsyncThunk(
   "mainPageImages/uploadPageImage",
-  async ({ data }, { rejectWithValue }) => {
+  async ({ data, file }, { rejectWithValue }) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("JSON", JSON.stringify(data));
     try {
       const response = await apiClient.post(
         `${api_url}/admin/pageImages`,
-        data
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
       return extractResponseData(response);
     } catch (error) {
@@ -82,24 +88,38 @@ export const mainPageImagesSlice = createSlice({
   name: "mainPageImages",
   initialState: {
     pageImages: {
-      common: {
-        socials: {},
-        logo: {},
-      },
-      hero: {},
-      welcome: {},
-      bioParallax: {},
-      bio: {},
-      galleryParallax: {},
-      visualizations: {},
-      contactBig: {},
-      contactSmall: {},
-      contact: {},
+      hero: [],
+      welcome: [],
+      bioParallax: [],
+      bio: [],
+      galleryParallax: [],
+      visualizations: [],
+      contactBig: [],
+      contactSmall: [],
+      contact: [],
     },
-    isLoadingContent: false,
+    commonImages: {
+      socials: [],
+      logo: [],
+    },
+    sectionInView: {
+      hero: false,
+      welcome: false,
+      bioParallax: false,
+      bio: false,
+      galleryParallax: false,
+      visualizations: false,
+      contactBig: false,
+      contactSmall: false,
+      contact: false,
+    },
+
+    isLoading: false,
     hasError: false,
     error: null,
 
+    pageImagesFetchComplete: false,
+    commonImagesFetchComplete: false,
     roleToRefetch: null,
     refetchNeeded: false,
   },
@@ -107,16 +127,18 @@ export const mainPageImagesSlice = createSlice({
     setRoleToRefetch(state, action) {
       state.roleToRefetch = action.payload;
     },
+    setSectionInView(state, action) {
+      state.sectionInView[action.payload] = true;
+    },
   },
   extraReducers: (builder) => {
-    // fetch content cases ////////////////////////////////////////////////////////////
     builder
       .addCase(fetchPageImages.pending, managePendingState)
       .addCase(fetchPageImages.fulfilled, (state, action) => {
+        state.pageImagesFetchComplete = true;
         populatePageImagesState({
           state,
           action,
-          commonRoles: Object.keys(state.pageImages.common),
         });
         manageFulfilledState(state);
       })
@@ -124,47 +146,51 @@ export const mainPageImagesSlice = createSlice({
 
       .addCase(fetchCommonImages.pending, managePendingState)
       .addCase(fetchCommonImages.fulfilled, (state, action) => {
+        state.commonImagesFetchComplete = true;
         populatePageImagesState({
           state,
           action,
-          commonRoles: Object.keys(state.pageImages.common),
+          commonOnly: true,
         });
         manageFulfilledState(state);
       })
       .addCase(fetchCommonImages.rejected, manageRejectedState)
+
+      .addCase(fetchPageImagesForRole.pending, managePendingState)
+      .addCase(fetchPageImagesForRole.fulfilled, (state, action) => {
+        state.refetchNeeded = false;
+        populatePageImagesState({
+          state,
+          action,
+          role: state.roleToRefetch,
+        });
+        state.roleToRefetch = null;
+        manageFulfilledState(state);
+      })
+      .addCase(fetchPageImagesForRole.rejected, manageRejectedState)
+
+      .addCase(uploadPageImage.pending, managePendingState)
+      .addCase(uploadPageImage.fulfilled, (state) => {
+        manageFulfilledState(state);
+        state.refetchNeeded = true;
+      })
+      .addCase(uploadPageImage.rejected, manageRejectedState)
 
       .addCase(deletePageImage.pending, managePendingState)
       .addCase(deletePageImage.fulfilled, (state) => {
         manageFulfilledState(state);
         state.refetchNeeded = true;
       })
-      .addCase(deletePageImage.rejected, manageRejectedState)
-
-      .addCase(fetchPageImagesForRole.pending, managePendingState)
-      .addCase(fetchPageImagesForRole.fulfilled, (state, action) => {
-        clearPageImageStateForRoleToRefetch({
-          state,
-          commonRoles: Object.keys(state.pageImages.common),
-        });
-
-        populatePageImagesState({
-          state,
-          action,
-          commonRoles: Object.keys(state.pageImages.common),
-        });
-
-        state.roleToRefetch = null;
-        state.refetchNeeded = false;
-        manageFulfilledState(state);
-      })
-      .addCase(fetchPageImagesForRole.rejected, manageRejectedState);
+      .addCase(deletePageImage.rejected, manageRejectedState);
   },
 });
 
-export const { setRoleToRefetch } = mainPageImagesSlice.actions;
+export const { setRoleToRefetch, setSectionInView } =
+  mainPageImagesSlice.actions;
 export const selectLogoImage = (state) =>
-  state.mainPageImages.pageImages.common.logo;
-
+  state.mainPageImages.commonImages.logo;
+export const selectSocialIcons = (state) =>
+  state.mainPageImages.commonImages.socials;
 export const selectHeroImage = (state) => state.mainPageImages.pageImages.hero;
 export const selectWelcomeImages = (state) =>
   state.mainPageImages.pageImages.welcome;
@@ -186,5 +212,17 @@ export const selectPageImagesRoleToRefetch = (state) =>
   state.mainPageImages.roleToRefetch;
 export const selectPageImagesRefetchNeeded = (state) =>
   state.mainPageImages.refetchNeeded;
+
+export const selectPageImagesLoadingStatus = (state) =>
+  state.mainPageImages.isLoading;
+
+export const selectPageImagesFetchStatus = (state) =>
+  state.mainPageImages.pageImagesFetchComplete;
+
+export const selectCommonImagesFetchStatus = (state) =>
+  state.mainPageImages.commonImagesFetchComplete;
+
+export const selectSectionInView = (state, section) =>
+  state.mainPageImages.sectionInView[section];
 
 export default mainPageImagesSlice.reducer;

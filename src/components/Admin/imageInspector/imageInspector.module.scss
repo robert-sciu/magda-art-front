@@ -2,13 +2,10 @@
 
 .inspectorContainer {
   position: relative;
-  img {
-  }
+  min-height: $size-giant;
   button {
     position: absolute;
     top: $size-xxxxs;
     right: $size-xxxxs;
-    background-color: $cancel-red;
-    cursor: pointer;
   }
 }

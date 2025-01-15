@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import SocialIcons from "../socialIcons/SocialIcons";
 
-import { selectLocation, setLocation } from "../../rootNav/rootNavSlice";
+import { selectLocation, setLocation } from "../../../store/rootNavSlice";
 
 import styles from "./navLinks.module.scss";
 import Logo from "../logo/Logo";

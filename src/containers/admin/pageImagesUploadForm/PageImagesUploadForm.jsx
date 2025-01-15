@@ -14,13 +14,14 @@ import {
   resetErrors,
   splitOnUppercase,
 } from "../../../utilities";
+import InputElement from "../../../components/elements/inputElement/inputElement";
+import Button from "../../../components/elements/button/button";
 
 export default function PageImagesUploadForm({
   role,
   selector,
   maxNumberOfImages,
   onSubmit,
-  endpoint,
   info,
   placementsNeeded = false,
   hardPlacement = undefined,
@@ -38,6 +39,9 @@ export default function PageImagesUploadForm({
   const [fileError, setFileError] = useState("");
   const [urlError, setUrlError] = useState("");
   const [compatibilityError, setCompatibilityError] = useState("");
+
+  console.log(file);
+  const [maxNumOfImagesReached, setMaxNumOfImagesReached] = useState(false);
   const [header, setHeader] = useState("");
   const [subHeader, setSubHeader] = useState("");
 
@@ -72,8 +76,19 @@ export default function PageImagesUploadForm({
   }, [images]);
 
   useEffect(() => {
-    const roleFormatted = splitOnUppercase(role);
+    if (maxNumberOfImages === Infinity) return;
     if (numberOfImages === maxNumberOfImages) {
+      setMaxNumOfImagesReached(true);
+    } else {
+      setMaxNumOfImagesReached(false);
+    }
+  }, [numberOfImages, maxNumberOfImages]);
+
+  //this tracks the number of images uploaded and changes the header and subheader accordingly
+  //leave it there
+  useEffect(() => {
+    const roleFormatted = splitOnUppercase(role);
+    if (maxNumOfImagesReached) {
       setHeader(
         `${roleFormatted} section ${
           maxNumberOfImages === 1 ? "image" : "images"
@@ -88,7 +103,7 @@ export default function PageImagesUploadForm({
       );
       setSubHeader(null);
     }
-  }, [role, numberOfImages, maxNumberOfImages]);
+  }, [role, numberOfImages, maxNumberOfImages, maxNumOfImagesReached]);
 
   function handleFileChange(e) {
     setFile(e.target.files[0]);
@@ -129,13 +144,16 @@ export default function PageImagesUploadForm({
       .replace("http://", "")
       .replace("www.", "");
 
+    const data = {
+      imageName: imageName,
+      role: role,
+      placement: freePlacement || undefined,
+      externalUrl: filteredUrl,
+    };
+
     await onSubmit({
-      endpoint,
+      data,
       file,
-      imageName,
-      role,
-      freePlacement,
-      externalUrl: externalUrl ? filteredUrl : null,
     });
     setImageName("");
     setExternalUrl("");
@@ -143,63 +161,57 @@ export default function PageImagesUploadForm({
     setFile(null);
   }
 
-  // function handleDelete({ id, role }) {
-  //   setShowImages(false);
-  //   onDelete({ id, role });
-  // }
-
   return (
     <div className={styles.container}>
-      <form className={styles.formContainer} onSubmit={handleSubmit}>
+      <form className={styles.formContainer}>
         <h3>{header}</h3>
-        {numberOfImages === maxNumberOfImages ? (
-          <p>{subHeader}</p>
-        ) : (
+        {maxNumOfImagesReached && <p>{subHeader}</p>}
+        {!maxNumOfImagesReached && showImages && (
           <>
-            <label htmlFor="name">Name</label>
-            {imageNameError && <p className={styles.error}>{imageNameError}</p>}
-            <input
+            <InputElement
               type="text"
-              id="name"
-              name="name"
+              label="Image name"
+              name="imageName"
               value={imageName}
               onChange={(e) => setImageName(e.target.value)}
+              inputError={imageNameError}
+              width={100}
+              alignment="left"
             />
-            {urlInput ? (
-              <>
-                <label htmlFor="url">Url</label>
-                {urlError && <p className={styles.error}>{urlError}</p>}
-                <input
-                  type="text"
-                  id="url"
-                  name="url"
-                  value={externalUrl}
-                  onChange={(e) => setExternalUrl(e.target.value)}
-                />
-              </>
-            ) : null}
-            <label htmlFor="file">File:</label>
-            {numberOfImages === maxNumberOfImages || (
-              <p className={styles.info}>{info}</p>
+            {urlInput && (
+              <InputElement
+                type="text"
+                label="Url"
+                name="url"
+                value={externalUrl}
+                onChange={(e) => setExternalUrl(e.target.value)}
+                inputError={urlError}
+                width={100}
+                alignment="left"
+              />
             )}
-            {fileError && <p className={styles.error}>{fileError}</p>}
-            {compatibilityError && (
-              <p className={styles.error}>{compatibilityError}</p>
-            )}
-            <input
-              type="file"
-              id="file"
-              name="file"
+            <p className={styles.info}>{info}</p>
+            <InputElement
+              type={"file"}
+              label={"File"}
+              name={`file-${role}`}
               value={fileInputValue}
               onChange={handleFileChange}
+              inputError={fileError || compatibilityError}
+              width={100}
+              alignment="left"
             />
-            <button type="submit">Upload</button>
+            <Button
+              label={"Upload"}
+              onClick={handleSubmit}
+              fixedHeight={true}
+            />
           </>
         )}
       </form>
       <div className={styles.gridContainer}>
         {showImages
-          ? createArrayFromObject(images).map((img) => (
+          ? images.map((img) => (
               <ImageInspector img={img} key={img.id} onDelete={onDelete} />
             ))
           : null}

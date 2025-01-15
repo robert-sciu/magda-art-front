@@ -5,4 +5,16 @@ function classNameFormatter({ styles, classNames }) {
   return formatted.join(" ");
 }
 
-export { classNameFormatter };
+function capitalizeString(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getFileNameFromUrl(url) {
+  if (url.includes("/")) {
+    return url.split("/").pop();
+  } else {
+    return url.split("\\").pop();
+  }
+}
+
+export { classNameFormatter, capitalizeString, getFileNameFromUrl };

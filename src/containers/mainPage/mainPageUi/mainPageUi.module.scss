@@ -13,16 +13,16 @@
     font-size: $size-s;
     line-height: $line-height-l;
 
-    @include respond-to(medium-small-desktop) {
-      line-height: $line-height-standard;
-    }
+    // @include respond-to(medium-small-desktop) {
+    //   line-height: $line-height-standard;
+    // }
 
-    @include respond-to(tablet) {
-      font-size: $size-xs;
-    }
+    // @include respond-to(tablet) {
+    //   font-size: $size-xs;
+    // }
 
-    @include respond-to(small-tablet) {
-      text-align: justify;
-    }
+    // @include respond-to(small-tablet) {
+    //   text-align: justify;
+    // }
   }
 }

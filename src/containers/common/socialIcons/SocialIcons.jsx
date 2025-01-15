@@ -4,11 +4,10 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import { selectSocialsIcons } from "../../rootNav/rootNavSlice";
-
 import styles from "./socialIcons.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
+import { selectSocialIcons } from "../../../store/mainPageImagesSlice";
 
 /**
  * Renders a component that displays social icons.
@@ -20,7 +19,7 @@ import { createArrayFromObject } from "../../../utilities";
 export default function SocialIcons({ onLoad }) {
   const [socialIconsLoaded, setSocialIconsLoaded] = useState(0);
 
-  const socialIcons = useSelector(selectSocialsIcons);
+  const socialIcons = useSelector(selectSocialIcons);
   const socialIconsArray = createArrayFromObject(socialIcons);
 
   const numberOfIcons = socialIconsArray.length;
@@ -41,7 +40,7 @@ export default function SocialIcons({ onLoad }) {
             target="blank"
           >
             <img
-              src={socialIcon.url}
+              src={socialIcon.url_mobile}
               alt={socialIcon.name}
               onLoad={() => setSocialIconsLoaded((prev) => prev + 1)}
             />

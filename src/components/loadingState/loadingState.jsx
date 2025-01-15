@@ -23,6 +23,7 @@ export default function LoadingState({
   size = undefined,
   fadeOut = false,
   inactive = false,
+  background = "light",
 }) {
   const [displayNone, setDisplayNone] = useState(false);
 
@@ -47,6 +48,8 @@ export default function LoadingState({
           fadeOut && "fadeOut",
           displayNone && "displayNone",
           inactive && !fadeOut && "displayNone",
+          background === "light" && "backgroundLight",
+          background === "dark" && "backgroundDark",
         ],
       })}
     >
@@ -68,4 +71,5 @@ LoadingState.propTypes = {
   size: PropTypes.string,
   fadeOut: PropTypes.bool,
   inactive: PropTypes.bool,
+  background: PropTypes.string,
 };

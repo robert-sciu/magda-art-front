@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import TextInputArea from "../../../components/Admin/textInputArea/TextInputArea";
-
 import {
   selectBio,
   selectFooterDesign,
@@ -13,14 +11,14 @@ import {
   selectVisualizationsTexts,
   fetchContent,
   updateContent,
+  selectContentLoadingStatus,
+  selectContentRefetchNeeded,
 } from "../../../store/mainPageContentSlice";
 
 import styles from "./textEditor.module.scss";
+import TextEditor from "../../../components/Admin/textInputArea/TextInputArea";
 
-import api from "../../../api/api";
-const api_url = import.meta.env.VITE_API_BASE_URL;
-
-export default function TextEditor() {
+export default function PageTextsManager() {
   const [name, setName] = useState("");
   const [welcome, setWelcome] = useState("");
   const [bio, setBio] = useState("");
@@ -38,6 +36,18 @@ export default function TextEditor() {
   const footerDesignData = useSelector(selectFooterDesign);
   const footerOwnerData = useSelector(selectFooterOwner);
   const visualizations = useSelector(selectVisualizationsTexts);
+
+  const isLoading = useSelector(selectContentLoadingStatus);
+  const refetchNeeded = useSelector(selectContentRefetchNeeded);
+
+  useEffect(() => {
+    dispatch(fetchContent());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (!refetchNeeded || isLoading) return;
+    dispatch(fetchContent());
+  }, [dispatch, refetchNeeded, isLoading]);
 
   useEffect(() => {
     const visualization1Data = visualizations?.visualization1?.content;
@@ -79,84 +89,82 @@ export default function TextEditor() {
 
     const data = { heading: heading, content: inputData };
 
-    // try {
     dispatch(updateContent(data));
-    // await api.post(`${api_url}/contents`, data, {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // } catch (error) {
-    //   console.log(error);
-    // }
-    dispatch(fetchContent());
   }
 
   return (
     <div className={styles.editorContainer}>
       <form>
-        <TextInputArea
+        <TextEditor
           heading={"name"}
           inputData={name}
           onChange={setName}
           large={false}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"welcome"}
           inputData={welcome}
           onChange={setWelcome}
           large={true}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"bio"}
           inputData={bio}
           onChange={setBio}
           large={true}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"developer name"}
           inputData={footerDesign}
           onChange={setFooterDesign}
           large={false}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"site owner"}
           inputData={footerOwner}
           onChange={setFooterOwner}
           large={false}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"visualization1"}
           inputData={visualization1}
           onChange={setVisualization1}
           large={true}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"visualization2"}
           inputData={visualization2}
           onChange={setVisualization2}
           large={true}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
 
-        <TextInputArea
+        <TextEditor
           heading={"visualization3"}
           inputData={visualization3}
           onChange={setVisualization3}
           large={true}
           submit={handleSubmit}
+          isLoading={isLoading && !refetchNeeded}
         />
       </form>
     </div>
