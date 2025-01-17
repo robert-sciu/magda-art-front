@@ -39,10 +39,10 @@
     filter: blur($size-s);
   }
 
-  @include respond-to(medium-desktop) {
-    width: $size-xl;
-    height: $size-xl;
-  }
+  // @include respond-to(medium-desktop) {
+  //   width: $size-xl;
+  //   height: $size-xl;
+  // }
 }
 
 @keyframes rotateGlow {
@@ -68,25 +68,25 @@
     box-shadow: 2px 0px 10px $white-shadow;
   }
 
-  @include respond-to(medium-desktop) {
-    width: $size-giant;
-    height: $size-giant;
-  }
+  // @include respond-to(medium-desktop) {
+  //   width: $size-giant;
+  //   height: $size-giant;
+  // }
 
-  @include respond-to(small-desktop) {
-    width: $size-xxxxl;
-    height: $size-xxxxl;
-  }
+  // @include respond-to(small-desktop) {
+  //   width: $size-xxxxl;
+  //   height: $size-xxxxl;
+  // }
 
-  @include respond-to(small-tablet) {
-    width: $size-xxxl;
-    height: $size-xxxl;
-  }
+  // @include respond-to(small-tablet) {
+  //   width: $size-xxxl;
+  //   height: $size-xxxl;
+  // }
 
-  @include respond-to(mobile) {
-    width: $size-xxl;
-    height: $size-xxl;
-  }
+  // @include respond-to(mobile) {
+  //   width: $size-xxl;
+  //   height: $size-xxl;
+  // }
 }
 
 .logoLoaded {

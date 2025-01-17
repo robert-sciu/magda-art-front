@@ -1,14 +1,51 @@
 @import "../../../../styles/variables.module.scss";
 
+// .socials {
+// display: flex;
+// gap: $size-s;
+// // opacity: 0;
+// img {
+//   transition: $link-transition;
+//   filter: $main-black--filter;
+// }
+// img:hover {
+//   filter: $main-white--filter;
+// }
+// }
 .socials {
   display: flex;
+  // align-items: center;
   gap: $size-s;
-  // opacity: 0;
-  img {
-    transition: $link-transition;
-    filter: $main-black--filter;
+  flex: 1;
+
+  .socialIcon {
+    img {
+      transition: $link-transition;
+      // height: $size-xl;
+      // width: $size-xl;
+      filter: $main-black--filter;
+      font-size: $size-xxxl;
+    }
+
+    img:hover {
+      filter: $main-gray--filter !important;
+    }
   }
-  img:hover {
-    filter: $main-white--filter;
+  .sizeS {
+    height: $size-xl;
+    width: $size-xl;
   }
+
+  .sizeL {
+    height: $size-xxxxl;
+    width: $size-xxxxl;
+  }
+
+  // @include respond-to(small-desktop) {
+  //   gap: $size-xs;
+  //   img {
+  //     height: $size-l;
+  //     width: $size-l;
+  //   }
+  // }
 }

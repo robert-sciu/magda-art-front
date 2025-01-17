@@ -1,36 +1,36 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+// @import "../../../../styles/variables.module.scss";
+// @import "../../../../styles/mixins.module.scss";
 
-.visualizationsBackground {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  .visualizationsContainer {
-    width: $main-content-width;
-    border-radius: $border-radius-m $border-radius-m 0 0;
-    overflow: hidden;
-    box-shadow: 0 0 2rem $dark-shadow;
-    margin: $size-xxxl 0;
+// .visualizationsBackground {
+//   width: 100%;
+//   display: flex;
+//   align-items: center;
+//   flex-direction: column;
+//   .visualizationsContainer {
+//     width: $main-content-width;
+//     border-radius: $border-radius-m $border-radius-m 0 0;
+//     overflow: hidden;
+//     box-shadow: 0 0 2rem $dark-shadow;
+//     margin: $size-xxxl 0;
 
-    .visualizationsHeader {
-      background-color: $main-light-gray;
-      padding: $size-l;
+//     .visualizationsHeader {
+//       background-color: $main-light-gray;
+//       padding: $size-l;
 
-      h2 {
-        text-align: center;
-        font-size: $size-l;
-        margin: 0;
-        @include respond-to(mobile) {
-          font-size: $size-m;
-        }
-      }
-    }
-    @include respond-to(medium-desktop) {
-      width: 100%;
-      border-radius: 0;
-      margin-top: 0;
-      z-index: -10;
-    }
-  }
-}
+//       h2 {
+//         text-align: center;
+//         font-size: $size-l;
+//         margin: 0;
+//         @include respond-to(mobile) {
+//           font-size: $size-m;
+//         }
+//       }
+//     }
+//     @include respond-to(medium-desktop) {
+//       width: 100%;
+//       border-radius: 0;
+//       margin-top: 0;
+//       z-index: -10;
+//     }
+//   }
+// }

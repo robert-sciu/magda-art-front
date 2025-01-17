@@ -1,104 +1,104 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+// @import "../../../../styles/variables.module.scss";
+// @import "../../../../styles/mixins.module.scss";
 
-.background {
-  background-color: $main-light-gray;
-  padding: $size-xxxxl;
-  .gridContainer {
-    background-color: $main-white;
-    width: $main-content-width;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    margin: 0 auto;
-    box-shadow: 0 0rem 5rem $dark-shadow;
-    border-radius: $border-radius-m;
-    .info {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+// .background {
+//   background-color: $main-light-gray;
+//   padding: $size-xxxxl;
+//   .gridContainer {
+//     background-color: $main-white;
+//     width: $main-content-width;
+//     margin: 0 auto;
+//     display: grid;
+//     grid-template-columns: 2fr 5fr;
+//     margin: 0 auto;
+//     box-shadow: 0 0rem 5rem $dark-shadow;
+//     border-radius: $border-radius-m;
+//     .info {
+//       display: flex;
+//       align-items: center;
+//       justify-content: center;
+//     }
 
-    .bioContent {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: $size-l;
-      padding: $size-xxl;
-      color: $main-black;
+//     .bioContent {
+//       display: flex;
+//       flex-direction: column;
+//       justify-content: center;
+//       gap: $size-l;
+//       padding: $size-xxl;
+//       color: $main-black;
 
-      h2 {
-        font-size: $size-l;
-        @include respond-to(small-desktop) {
-          font-size: $size-m;
-        }
-      }
+//       h2 {
+//         font-size: $size-l;
+//         @include respond-to(small-desktop) {
+//           font-size: $size-m;
+//         }
+//       }
 
-      @include respond-to(large-desktop) {
-        padding: $size-xxs $size-l;
-      }
+//       @include respond-to(large-desktop) {
+//         padding: $size-xxs $size-l;
+//       }
 
-      @include respond-to(medium-desktop) {
-        // width: 100%;
-        padding: $size-xxs $size-m;
-      }
+//       @include respond-to(medium-desktop) {
+//         // width: 100%;
+//         padding: $size-xxs $size-m;
+//       }
 
-      @include respond-to(small-desktop) {
-        padding: $size-xxs $size-m;
-        // text-align: center;
-      }
+//       @include respond-to(small-desktop) {
+//         padding: $size-xxs $size-m;
+//         // text-align: center;
+//       }
 
-      @include respond-to(tablet) {
-        padding: $size-l $size-s;
-      }
+//       @include respond-to(tablet) {
+//         padding: $size-l $size-s;
+//       }
 
-      @include respond-to(small-tablet) {
-        padding: $size-m $size-s;
-        gap: $size-s;
-      }
+//       @include respond-to(small-tablet) {
+//         padding: $size-m $size-s;
+//         gap: $size-s;
+//       }
 
-      @include respond-to(mobile) {
-        padding: $size-l $size-xxs;
-      }
-    }
+//       @include respond-to(mobile) {
+//         padding: $size-l $size-xxs;
+//       }
+//     }
 
-    @include respond-to(large-desktop) {
-      width: 90%;
-    }
+//     @include respond-to(large-desktop) {
+//       width: 90%;
+//     }
 
-    @include respond-to(medium-desktop) {
-      grid-template-columns: 2fr 6fr;
-      width: 100%;
-    }
+//     @include respond-to(medium-desktop) {
+//       grid-template-columns: 2fr 6fr;
+//       width: 100%;
+//     }
 
-    @include respond-to(small-desktop) {
-      display: flex;
-      flex-direction: column;
-    }
+//     @include respond-to(small-desktop) {
+//       display: flex;
+//       flex-direction: column;
+//     }
 
-    @include respond-to(mobile) {
-      box-shadow: none;
-    }
-  }
-  @include respond-to(large-desktop) {
-    // padding: $size-xxl $size-giant;
-  }
+//     @include respond-to(mobile) {
+//       box-shadow: none;
+//     }
+//   }
+//   @include respond-to(large-desktop) {
+//     // padding: $size-xxl $size-giant;
+//   }
 
-  @include respond-to(medium-desktop) {
-    padding: $size-m;
-  }
+//   @include respond-to(medium-desktop) {
+//     padding: $size-m;
+//   }
 
-  @include respond-to(small-desktop) {
-    padding: $size-m;
-  }
+//   @include respond-to(small-desktop) {
+//     padding: $size-m;
+//   }
 
-  @include respond-to(tablet) {
-    padding: $size-xs;
-  }
+//   @include respond-to(tablet) {
+//     padding: $size-xs;
+//   }
 
-  @include respond-to(mobile) {
-    padding: $size-l 0;
-    border-radius: 0;
-    background-color: $main-white;
-  }
-}
+//   @include respond-to(mobile) {
+//     padding: $size-l 0;
+//     border-radius: 0;
+//     background-color: $main-white;
+//   }
+// }

@@ -41,7 +41,13 @@ export const updateContent = createAsyncThunk(
 export const mainPageContentSlice = createSlice({
   name: "mainPageContent",
   initialState: {
-    content: { visualizations: {} },
+    content: {
+      visualizations: {
+        visualization1: {},
+        visualization2: {},
+        visualization3: {},
+      },
+    },
     isLoading: false,
     hasError: false,
     error: null,
@@ -87,8 +93,15 @@ export const mainPageContentSlice = createSlice({
 export const selectName = (state) => state.mainPageContent.content.name;
 export const selectWelcome = (state) => state.mainPageContent.content.welcome;
 export const selectBio = (state) => state.mainPageContent.content.bio;
-export const selectVisualizationsTexts = (state) =>
-  state.mainPageContent.content.visualizations;
+// export const selectVisualizationsTexts = (state) =>
+//   state.mainPageContent.content.visualizations;
+
+export const selectVisualization1Text = (state) =>
+  state.mainPageContent.content.visualizations["visualization1"].content;
+export const selectVisualization2Text = (state) =>
+  state.mainPageContent.content.visualizations["visualization2"].content;
+export const selectVisualization3Text = (state) =>
+  state.mainPageContent.content.visualizations["visualization3"].content;
 export const selectFooterOwner = (state) =>
   state.mainPageContent.content["site owner"];
 export const selectFooterDesign = (state) =>

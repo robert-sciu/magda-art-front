@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 
-import GalleryTile from "../galleryTile/GalleryTile";
+// import GalleryTile from "../galleryTile/GalleryTile";
 
 import styles from "./galleryColumn.module.scss";
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { selectLazyLoadStatus } from "../../../store/galleryPageSlice";
+import ImageDisplay from "../../../containers/common/imageDisplay/imageDisplay";
 
 export default function GalleryColumn({ column, isHighest, Filler = null }) {
   const refs = useRef([]);
@@ -54,11 +55,12 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
   return (
     <div className={styles.galleryColumn}>
       {column.map((image, index) => (
-        <GalleryTile
+        <ImageDisplay
           img={image}
           key={image.id}
           isVisible={visibleImages.has(image.id.toString())}
           ref={(el) => (refs.current[index] = el)}
+          type={"gallery"}
         />
       ))}
       {!isHighest ? (

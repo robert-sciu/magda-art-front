@@ -9,7 +9,7 @@ const config = {
     socials: Infinity,
     welcome: 4,
     bioParallax: 1,
-    bio: 12,
+    bio: 16,
     visualizations: 3,
     galleryParallax: 1,
     contactBig: 1,

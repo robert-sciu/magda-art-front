@@ -40,7 +40,6 @@ export default function PageImagesUploadForm({
   const [urlError, setUrlError] = useState("");
   const [compatibilityError, setCompatibilityError] = useState("");
 
-  console.log(file);
   const [maxNumOfImagesReached, setMaxNumOfImagesReached] = useState(false);
   const [header, setHeader] = useState("");
   const [subHeader, setSubHeader] = useState("");

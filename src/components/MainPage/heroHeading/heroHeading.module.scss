@@ -17,52 +17,53 @@
     text-align: center;
     text-wrap: nowrap;
 
-    @include respond-to(medium-desktop) {
-      font-size: $size-xxl;
-    }
+    // @include respond-to(medium-desktop) {
+    //   font-size: $size-xxl;
+    // }
 
-    @include respond-to(small-desktop) {
-      font-size: calc($size-xl * 1.1);
-    }
+    // @include respond-to(small-desktop) {
+    //   font-size: calc($size-xl * 1.1);
+    // }
 
-    @include respond-to(tablet) {
-      font-size: calc($size-xl * 0.9);
-    }
+    // @include respond-to(tablet) {
+    //   font-size: calc($size-xl * 0.9);
+    // }
 
-    @include respond-to(small-tablet) {
-      font-size: calc($size-xl * 0.75);
-    }
+    // @include respond-to(small-tablet) {
+    //   font-size: calc($size-xl * 0.75);
+    // }
 
-    @include respond-to(mobile) {
-      font-size: calc($size-xl * 0.5);
-    }
+    // @include respond-to(mobile) {
+    //   font-size: calc($size-xl * 0.5);
+    // }
   }
 
   h2 {
     font-size: $size-l;
     font-weight: 400;
-    @include respond-to(medium-desktop) {
-      font-size: $size-m;
-    }
+    //   @include respond-to(medium-desktop) {
+    //     font-size: $size-m;
+    //   }
 
-    @include respond-to(small-tablet) {
-      font-size: $size-s;
-    }
+    //   @include respond-to(small-tablet) {
+    //     font-size: $size-s;
+    //   }
 
-    @include respond-to(mobile) {
-      font-size: $size-xs;
-    }
+    //   @include respond-to(mobile) {
+    //     font-size: $size-xs;
+    //   }
+    // }
+
+    // @include respond-to(tablet) {
+    //   margin-top: 0;
+    // }
   }
 
-  @include respond-to(tablet) {
-    margin-top: 0;
+  .hide {
+    opacity: 0;
   }
-}
 
-.hide {
-  opacity: 0;
-}
-
-.show {
-  opacity: 1;
+  .show {
+    opacity: 1;
+  }
 }

@@ -1,0 +1,78 @@
+@import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+
+.gridContainer {
+  display: grid;
+  // width: 100%;
+  // overflow: hidden;
+}
+
+.mozaic {
+  position: absolute;
+  width: 100%;
+  transform: translateY(-10%);
+  // background-color: black;
+}
+
+.gapNone {
+  gap: 0;
+}
+
+.gapS {
+  gap: $size-tiny;
+}
+
+.gapM {
+  gap: $size-xxxs;
+}
+
+.gapL {
+  gap: $size-s;
+}
+
+.grid22 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.gridMozaic11 {
+  grid-template-columns: 1fr 1fr;
+  .imgSquare {
+    padding: $size-tiny;
+  }
+}
+
+.gridMozaic111 {
+  grid-template-columns: 1fr 1fr 1fr;
+
+  .imgBigLeft {
+    padding: $size-tiny;
+    grid-column: 1/3;
+    grid-row: 1/3;
+  }
+
+  .imgBigRight {
+    padding: $size-tiny;
+    grid-column: 2/4;
+    grid-row: 1/3;
+  }
+
+  .imgSmallRightUp,
+  .imgSmallRightDown,
+  .imgSmallLeftUp,
+  .imgSmallLeftDown {
+    padding: $size-tiny;
+  }
+}
+
+.flexContainer {
+  display: flex;
+}
+
+.flexRow {
+  flex-direction: row;
+}
+
+.flexColumn {
+  flex-direction: column;
+}

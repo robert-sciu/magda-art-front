@@ -129,7 +129,7 @@ export default function NavLinks({
         ) : null}
       </ul>
       <div className={styles.socials}>
-        <SocialIcons onLoad={onSocialsLoaded} />
+        <SocialIcons />
       </div>
     </>
   );

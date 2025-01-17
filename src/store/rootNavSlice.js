@@ -8,6 +8,7 @@ export const rootNavSlice = createSlice({
       location: "",
       fixedNav: false,
       device: "desktop",
+      widthType: undefined,
     },
     isLoadingContent: false,
     hasError: false,
@@ -24,6 +25,10 @@ export const rootNavSlice = createSlice({
 
     setFixedNav: (state, action) => {
       state.common.fixedNav = action.payload;
+    },
+
+    setWidthType: (state, action) => {
+      state.common.widthType = action.payload;
     },
 
     setDevice: (state, action) => {
@@ -46,8 +51,15 @@ export const selectWindowWidth = (state) => state.rootNav.common.windowWidth;
 export const selectLocation = (state) => state.rootNav.common.location;
 export const selectFixedNav = (state) => state.rootNav.common.fixedNav;
 export const selectDevice = (state) => state.rootNav.common.device;
+export const selectWidthType = (state) => state.rootNav.common.widthType;
 
-export const { setWindowWidth, setLocation, setFixedNav, setDevice } =
-  rootNavSlice.actions;
+export const {
+  setWindowWidth,
+  setLocation,
+  setFixedNav,
+  setDevice,
+  setWidthType,
+  setWidth,
+} = rootNavSlice.actions;
 
 export default rootNavSlice.reducer;

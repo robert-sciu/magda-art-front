@@ -8,6 +8,7 @@ import styles from "./socialIcons.module.scss";
 
 import { createArrayFromObject } from "../../../utilities";
 import { selectSocialIcons } from "../../../store/mainPageImagesSlice";
+import { classNameFormatter } from "../../../utilities/utilities";
 
 /**
  * Renders a component that displays social icons.
@@ -16,7 +17,7 @@ import { selectSocialIcons } from "../../../store/mainPageImagesSlice";
  * @param {Function} props.onLoad - A callback function to be called when all social icons have loaded.
  * @return {JSX.Element} The rendered component.
  */
-export default function SocialIcons({ onLoad }) {
+export default function SocialIcons({ onLoad, size = "S" }) {
   const [socialIconsLoaded, setSocialIconsLoaded] = useState(0);
 
   const socialIcons = useSelector(selectSocialIcons);
@@ -32,9 +33,13 @@ export default function SocialIcons({ onLoad }) {
 
   return (
     <div className={styles.socials}>
-      {socialIconsArray &&
-        socialIconsArray.map((socialIcon) => (
+      {numberOfIcons &&
+        socialIcons.map((socialIcon) => (
           <Link
+            className={classNameFormatter({
+              styles,
+              classNames: ["socialIcon", `size${size}`],
+            })}
             key={socialIcon.id}
             to={`https://${socialIcon.externalUrl}`}
             target="blank"
@@ -52,4 +57,5 @@ export default function SocialIcons({ onLoad }) {
 
 SocialIcons.propTypes = {
   onLoad: PropTypes.func,
+  size: PropTypes.string,
 };

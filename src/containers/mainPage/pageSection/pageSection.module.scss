@@ -1,24 +1,113 @@
 @import "../../../../styles/variables.module.scss";
 
 .pageSectionContainer {
-  // background-color: antiquewhite;
   border-radius: $border-radius-m;
   max-width: $main-content-width;
-  margin: $size-giant auto;
   padding: $size-xxl;
-  box-shadow: 0 0rem 2rem $medium-shadow;
+  // gap: $size-xxl;
 
   .contentContainer {
-    display: flex;
-    align-items: center;
+    display: flex; // align-items: center;
+    justify-content: center;
+    // background-color: red;
+    .header {
+      // background-color: blue;
+      margin-bottom: $size-l;
+    }
+
+    .content {
+      // display: flex;
+      // text-align: center;
+      // flex-direction: column;
+    }
   }
 
   .imageContainer {
+    display: flex;
+    align-items: center;
+    // background-color: green;
+  }
+
+  .mozaicOverflow {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 3%,
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0) 97%
+    );
+    mask-composite: intersect;
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 3%,
+      rgba(0, 0, 0, 1) 5%,
+      rgba(0, 0, 0, 1) 95%,
+      rgba(0, 0, 0, 0) 97%
+    );
+    -webkit-mask-composite: source-in;
+  }
+
+  .flex70 {
+    flex: 2 1 70%;
+  }
+
+  .flex30 {
+    flex: 1 1 30%;
+  }
+
+  .flex50 {
+    flex: 1 1 50%;
   }
 }
 
-.gridGap {
+.paddingXL {
+  padding: $size-xxxxl 0;
+}
+
+.paddingL {
+  padding: $size-xxl 0;
+}
+
+.paddingM {
+  padding: $size-l 0;
+}
+
+.paddingS {
+  padding: $size-s 0;
+}
+
+.paddingXS {
+  padding: $size-xxxs 0;
+}
+
+.marginL {
+  margin: $size-giant auto;
+}
+
+.marginM {
+  margin: $size-l auto;
+}
+
+.marginS {
+  margin: $size-s auto;
+}
+
+.cardStyle {
+  box-shadow: 0 0rem 2rem $medium-shadow;
+}
+
+.gapL {
   gap: $size-xxl;
+}
+
+.gapM {
+  gap: $size-m;
+}
+
+.gapS {
+  gap: $size-xxs;
 }
 
 .grid41 {
@@ -59,4 +148,24 @@
 
 .fontS {
   font-size: $size-s;
+}
+
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexRowReversed {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.flexColumnReversed {
+  display: flex;
+  flex-direction: column-reverse;
 }

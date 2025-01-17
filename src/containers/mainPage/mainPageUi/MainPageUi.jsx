@@ -1,27 +1,39 @@
 import { useEffect, useRef } from "react";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import Hero from "../hero/Hero";
 // import Welcome from "../welcome/Welcome";
-import Bio from "../bio/Bio";
-import Visualizations from "../visualizations/Visualizations";
+// import Bio from "../bio/Bio";
+// import Visualizations from "../visualizations/Visualizations";
 import Contact from "../../common/contact/Contact";
 
 import {
   fetchCommonImages,
   fetchPageImages,
+  selectBioImages,
   selectBioParallaxImage,
   selectGalleryParallaxImage,
+  selectVisualizationsImages,
   selectWelcomeImages,
   setSectionInView,
 } from "../../../store/mainPageImagesSlice";
-import { setFixedNav, setLocation } from "../../../store/rootNavSlice";
+import {
+  selectWidthType,
+  setFixedNav,
+  setLocation,
+  setWidthType,
+} from "../../../store/rootNavSlice";
 import {
   fetchContent,
+  selectBio,
+  selectName,
+  selectVisualization1Text,
+  // selectVisualizationsTexts,
   selectWelcome,
 } from "../../../store/mainPageContentSlice";
 
+import scss from "../../../../styles/variables.module.scss";
 import styles from "./mainPageUi.module.scss";
 
 // import { createArrayFromObject } from "../../../utilities";
@@ -30,17 +42,52 @@ import BioParallaxContent from "../../../components/MainPage/bioParallax/bioPara
 import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
 import PageSection from "../pageSection/pageSection";
 
+import useMeasure from "react-use-measure";
+
+const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
+const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
+const smallDesktopWidth = parseInt(scss.smallDesktopWidth);
+const tabletWidth = parseInt(scss.tabletWidth);
+const mobileWidth = parseInt(scss.mobileWidth);
+
 export default function MainPageUi() {
   const triggerRef = useRef(null);
   const sectionRefs = useRef([]); // Array of refs for sections
+
+  const widthType = useSelector(selectWidthType);
+
+  const [refMeasure, bounds] = useMeasure();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!bounds) return;
+    if (bounds.width < mobileWidth) {
+      if (widthType === 1) return;
+      dispatch(setWidthType(1));
+    } else if (bounds.width < tabletWidth) {
+      if (widthType === 2) return;
+      dispatch(setWidthType(2));
+    } else if (bounds.width < smallDesktopWidth) {
+      if (widthType === 3) return;
+      dispatch(setWidthType(3));
+    } else if (bounds.width < mediumDesktopWidth) {
+      if (widthType === 4) return;
+      dispatch(setWidthType(4));
+    } else if (bounds.width < largeDesktopWidth) {
+      if (widthType === 5) return;
+      dispatch(setWidthType(5));
+    } else {
+      if (widthType === 6) return;
+      dispatch(setWidthType(6));
+    }
+  }, [bounds, widthType, dispatch]);
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el);
     }
   };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setLocation(window.location.pathname));
@@ -85,12 +132,7 @@ export default function MainPageUi() {
 
         entries.forEach((entry) => {
           updatedSections[entry.target.id] = entry.isIntersecting;
-          // updatedSections[entry.target.id] = true;
         });
-
-        // setVisibleSections((prev) => ({ ...prev, ...updatedSections }));
-
-        // Dispatch action for the first visible section
         const inViewSection = Object.keys(updatedSections).find(
           (id) => updatedSections[id]
         );
@@ -104,11 +146,9 @@ export default function MainPageUi() {
         threshold: 0.5, // Trigger when 50% visible
       }
     );
-
     sectionRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
-
     return () => {
       sectionRefs.current.forEach((ref) => {
         if (ref) observer.unobserve(ref);
@@ -117,14 +157,27 @@ export default function MainPageUi() {
   }, [dispatch]);
 
   return (
-    <div className={styles.uiContainer}>
+    <div className={styles.uiContainer} ref={refMeasure}>
       <Hero />
       <div ref={triggerRef} className={styles.refDiv} />
       <div ref={addToRefs} id="welcome">
-        {/* <Welcome /> */}
         <PageSection
+          name="welcome"
           contentSelector={selectWelcome}
           imageSelector={selectWelcomeImages}
+          sectionFlexDirection={widthType <= 2 ? "colum" : "row"}
+          imageDisplayIsGrid={widthType > 3}
+          imageDisplayGridLayout={"22"}
+          imageDisplayIsFlex={widthType <= 3}
+          imageDisplayFlexDirection={widthType <= 2 ? "row" : "column"}
+          imageDisplayLimitImages={
+            widthType <= 3 ? (widthType <= 2 ? 4 : 2) : 4
+          }
+          imageGap={"M"}
+          isCardStyle={false}
+          margins={widthType > 4 ? "L" : "S"}
+          fontSize={widthType <= 1 ? "S" : "M"}
+          showSocialIcons={true}
         />
       </div>
       <div ref={addToRefs} id="bioParallax">
@@ -135,7 +188,33 @@ export default function MainPageUi() {
           <BioParallaxContent />
         </Parallax>
       </div>
-      <Bio />
+      <div ref={addToRefs} id="bio">
+        <PageSection
+          name="bio"
+          contentSelector={selectBio}
+          imageSelector={selectBioImages}
+          sectionFlexDirection={
+            widthType <= 2 ? "columnReversed" : "rowReversed"
+          }
+          imageDisplayIsGrid={widthType <= 2 ? false : true}
+          imageDisplayGridLayout={widthType <= 2 ? undefined : "mozaic"}
+          imageDisplayIsFlex={widthType <= 2 ? true : false}
+          imageDisplayFlexDirection={"row"}
+          additionalImagesStripe={widthType <= 2 ? true : false}
+          imageDisplayLimitImages={
+            widthType <= 2 ? (widthType <= 1 ? 3 : 5) : undefined
+          }
+          imageGap={"S"}
+          isCardStyle={widthType > 4}
+          margins={widthType > 4 ? "L" : "S"}
+          fontSize={widthType <= 2 ? "S" : "L"}
+          contentPadding={widthType <= 3 ? "L" : "XL"}
+          imagePadding={"XS"}
+          sectionGap={widthType <= 2 ? "S" : "L"}
+          showHeader={true}
+          header={useSelector(selectName)}
+        />
+      </div>
       <div ref={addToRefs} id="galleryParallax">
         <Parallax
           imageSelector={selectGalleryParallaxImage}
@@ -144,7 +223,54 @@ export default function MainPageUi() {
           <GalleryParallaxContent />
         </Parallax>
       </div>
-      <Visualizations />
+      <div ref={addToRefs} id="visualizations">
+        <PageSection
+          name="visualizations"
+          contentSelector={selectVisualization1Text}
+          imageSelector={selectVisualizationsImages}
+          sectionFlexDirection={
+            widthType <= 2 ? "columnReversed" : "rowReversed"
+          }
+          imageDisplayIsGrid={false}
+          imageDisplayIsFlex={true}
+          imageIndex={1}
+          isCardStyle={widthType > 4}
+          margins={widthType > 4 ? "L" : "S"}
+          fontSize={"M"}
+          contentPadding={widthType <= 3 ? "L" : "XL"}
+          imagePadding={"XS"}
+        />
+        <PageSection
+          name="visualizations"
+          contentSelector={selectVisualization1Text}
+          imageSelector={selectVisualizationsImages}
+          sectionFlexDirection={widthType <= 2 ? "columnReversed" : "row"}
+          imageDisplayIsGrid={false}
+          imageDisplayIsFlex={true}
+          imageIndex={2}
+          // isCardStyle={widthType > 4}
+          margins={"S"}
+          fontSize={"M"}
+          contentPadding={widthType <= 3 ? "L" : "XL"}
+          imagePadding={"XS"}
+        />
+        <PageSection
+          name="visualizations"
+          contentSelector={selectVisualization1Text}
+          imageSelector={selectVisualizationsImages}
+          sectionFlexDirection={
+            widthType <= 2 ? "columnReversed" : "rowReversed"
+          }
+          imageDisplayIsGrid={false}
+          imageDisplayIsFlex={true}
+          imageIndex={3}
+          isCardStyle={widthType > 4}
+          margins={widthType > 4 ? "L" : "S"}
+          fontSize={"M"}
+          contentPadding={widthType <= 3 ? "L" : "XL"}
+          imagePadding={"XS"}
+        />
+      </div>
       <Contact />
     </div>
   );
