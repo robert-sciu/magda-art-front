@@ -6,13 +6,14 @@ import Hero from "../hero/Hero";
 // import Welcome from "../welcome/Welcome";
 // import Bio from "../bio/Bio";
 // import Visualizations from "../visualizations/Visualizations";
-import Contact from "../../common/contact/Contact";
+// import Contact from "../../common/contact/Contact";
 
 import {
   fetchCommonImages,
   fetchPageImages,
   selectBioImages,
   selectBioParallaxImage,
+  // selectContactImages,
   selectGalleryParallaxImage,
   selectVisualizationsImages,
   selectWelcomeImages,
@@ -43,6 +44,7 @@ import GalleryParallaxContent from "../../../components/MainPage/galleryParallax
 import PageSection from "../pageSection/pageSection";
 
 import useMeasure from "react-use-measure";
+import ContactForm from "../../../components/common/contactForm/ContactForm";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -82,6 +84,8 @@ export default function MainPageUi() {
       dispatch(setWidthType(6));
     }
   }, [bounds, widthType, dispatch]);
+
+  console.log(widthType);
 
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
@@ -178,6 +182,10 @@ export default function MainPageUi() {
           margins={widthType > 4 ? "L" : "S"}
           fontSize={widthType <= 1 ? "S" : "M"}
           showSocialIcons={true}
+          showHeader={true}
+          header={"Welcome"}
+          // contentPadding={widthType <= 2 ? "L" : "M"}
+          contentTextAlign={widthType <= 2 ? "center" : "left"}
         />
       </div>
       <div ref={addToRefs} id="bioParallax">
@@ -213,6 +221,7 @@ export default function MainPageUi() {
           sectionGap={widthType <= 2 ? "S" : "L"}
           showHeader={true}
           header={useSelector(selectName)}
+          contentTextAlign={widthType <= 2 ? "center" : "left"}
         />
       </div>
       <div ref={addToRefs} id="galleryParallax">
@@ -239,6 +248,8 @@ export default function MainPageUi() {
           fontSize={"M"}
           contentPadding={widthType <= 3 ? "L" : "XL"}
           imagePadding={"XS"}
+          contentTextAlign={widthType <= 2 ? "center" : "left"}
+          withBorder={true}
         />
         <PageSection
           name="visualizations"
@@ -253,6 +264,8 @@ export default function MainPageUi() {
           fontSize={"M"}
           contentPadding={widthType <= 3 ? "L" : "XL"}
           imagePadding={"XS"}
+          contentTextAlign={widthType <= 2 ? "center" : "right"}
+          withBorder={true}
         />
         <PageSection
           name="visualizations"
@@ -269,9 +282,31 @@ export default function MainPageUi() {
           fontSize={"M"}
           contentPadding={widthType <= 3 ? "L" : "XL"}
           imagePadding={"XS"}
+          contentTextAlign={widthType <= 2 ? "center" : "left"}
+          withBorder={true}
         />
       </div>
-      <Contact />
+      <div ref={addToRefs} id="contact">
+        <PageSection
+          name="contact"
+          imageSelector={selectBioImages}
+          // contentSelector={selectVisualization1Text}
+          sectionFlexDirection={widthType <= 2 ? "column" : "row"}
+          imageDisplayIsGrid={widthType <= 2 ? false : true}
+          imageDisplayGridLayout={widthType <= 2 ? undefined : "mozaic"}
+          imageDisplayIsFlex={widthType <= 2 ? true : false}
+          imageDisplayFlexDirection={"row"}
+          imageGap={"S"}
+          imageDisplayLimitImages={widthType <= 2 ? 4 : undefined}
+          additionalImagesStripe={widthType <= 2 ? true : false}
+          hasCustomContent={true}
+          customContent={<ContactForm />}
+          // isCardStyle={widthType > 4}
+          margins={widthType > 4 ? "L" : "S"}
+        />
+      </div>
+
+      {/* <Contact /> */}
     </div>
   );
 }

@@ -91,6 +91,44 @@ export function splitOnUppercase(str) {
     .join(" ");
 }
 
+export async function checkEmailData({
+  name,
+  onNameError,
+  email,
+  onEmailError,
+  subject,
+  onSubjectError,
+  message,
+  onMessageError,
+}) {
+  return new Promise((resolve) => {
+    let isValid = true;
+    if (
+      !email
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      onEmailError("Please enter a valid email");
+      isValid = false;
+    }
+    if (!name) {
+      onNameError("Please enter a name");
+      isValid = false;
+    }
+    if (!subject) {
+      onSubjectError("Please enter a subject");
+      isValid = false;
+    }
+    if (!message) {
+      onMessageError("Please enter a message");
+      isValid = false;
+    }
+    resolve(isValid);
+  });
+}
+
 export async function checkUploadInfo({
   imageName,
   file,

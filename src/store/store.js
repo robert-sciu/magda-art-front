@@ -5,6 +5,7 @@ import mainPageImagesReducer from "./mainPageImagesSlice";
 import galleryPageReducer from "./galleryPageSlice";
 import rootNavReducer from "./rootNavSlice";
 import authReducer from "./authSlice";
+import mailerReducer from "./mailerSlice";
 
 export default configureStore({
   reducer: {
@@ -13,5 +14,6 @@ export default configureStore({
     galleryPage: galleryPageReducer,
     rootNav: rootNavReducer,
     auth: authReducer,
+    mailer: mailerReducer,
   },
 });

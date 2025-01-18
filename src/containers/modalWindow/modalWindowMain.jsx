@@ -7,12 +7,13 @@ import { useDispatch } from "react-redux";
 
 // import { clearTempData } from "../../../store/fullCalendarSlice";
 import { classNameFormatter } from "../../utilities/utilities";
-import ErrorWindow from "../../components/modalWindow/errorWindow";
+import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
+import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 
 export default function ModalWindowMain({
   modalType,
   // onSubmit,
-  // OnConfirm,
+  OnConfirm,
   onCancel,
   // onDeleteSubmit,
   data,
@@ -53,16 +54,11 @@ export default function ModalWindowMain({
             </div>
             <IoMove />
           </div>
-          {/* {modalType === "reservation" && (
-            <ReservationModal
-              reservation={data}
-              onSubmit={onSubmit}
-              onCancel={onCancel}
-              dispatch={dispatch}
-            />
-          )} */}
           {modalType === "error" && (
             <ErrorWindow error={data} onCancel={onCancel} dispatch={dispatch} />
+          )}
+          {modalType === "info" && (
+            <InfoModal info={data} onConfirm={OnConfirm} />
           )}
         </div>
       </Draggable>

@@ -5,104 +5,20 @@
   display: flex;
   flex-direction: column;
   padding: $size-xl $size-xxl;
-  .contactHeader {
-    display: flex;
-    justify-content: space-between;
-    h2 {
-      font-size: $size-l;
-      @include respond-to(tablet) {
-        font-size: $size-m;
-      }
-    }
-    button {
-      background-color: $cancel-red;
-      color: $main-white;
-      font-size: $size-s;
-      font-weight: 600;
-      border: none;
-      padding: $size-xxxs $size-xxs;
-      border-radius: $border-radius-s;
-      cursor: pointer;
-      padding: $size-xxs $size-m;
-    }
-  }
+  gap: $size-l;
   .contactForm {
     display: flex;
     flex-direction: column;
+    gap: $size-m;
     height: 100%;
-
-    label {
-      margin: $size-s auto 0 $size-xxxs;
-      font-size: $size-s;
-    }
-
-    input {
-      height: $size-l;
-    }
-
-    textarea {
-      flex-grow: 1;
-      resize: none;
-    }
-
-    input,
-    textarea {
-      border-radius: $border-radius-m;
-      font-size: $size-s;
-      border: 3px solid $main-light-gray;
-      outline: none;
-      padding: $size-xxxs $size-xxxs;
-      @include respond-to(medium-desktop) {
-        padding: 0 $size-xxxs;
-      }
-    }
-    textarea {
-      @include respond-to(small-tablet) {
-        height: $size-xxxxl;
-      }
-    }
-
-    input:focus,
-    textarea:focus {
-      border: 4px solid $main-medium-light-gray;
-    }
-
-    button {
-      margin-top: $size-l;
-      height: $size-l;
-      font-size: $size-m;
-      font-weight: 600;
-      text-transform: uppercase;
-      padding: $size-xxs;
-      height: $size-xl;
-      border-radius: $border-radius-s;
-      border: none;
-      background-color: $action-blue;
-      color: $main-white;
-      box-shadow: 0 0 1rem 0.4rem $dark-shadow;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: 0.3s;
-      span {
-        margin-right: $size-xxs;
-      }
-    }
-
-    button:hover,
-    button:active {
-      transform: scale(1.01);
-      box-shadow: 0 0 2rem 1rem $medium-shadow;
-      background-color: $action-light-blue;
-    }
   }
-
-  @include respond-to(medium-desktop) {
-    padding: $size-l;
-  }
-
-  @include respond-to(small-desktop) {
-    padding: $size-xxs;
+  .successMessage {
+    display: flex;
+    flex-direction: column;
+    gap: $size-m;
+    // height: 100%;
+    // align-items: center;
+    text-align: center;
+    // justify-content: center;
   }
 }

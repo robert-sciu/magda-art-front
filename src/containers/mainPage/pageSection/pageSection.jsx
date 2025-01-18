@@ -34,11 +34,17 @@ export default function PageSection({
   sectionGap = "L",
   showHeader = false,
   header = "",
+  contentTextAlign = "left",
+  withBorder = false,
+  hasCustomContent = false,
+  customContent = undefined,
 }) {
   const [decodedContent, setDecodedContent] = useState("");
 
-  const content = useSelector(contentSelector);
-  const images = useSelector(imageSelector);
+  const emptySelector = () => null;
+
+  const content = useSelector(contentSelector || emptySelector);
+  const images = useSelector(imageSelector || emptySelector);
 
   useEffect(() => {
     if (content) {
@@ -85,6 +91,7 @@ export default function PageSection({
             imageGap={imageGap}
             limitImages={imageDisplayLimitImages}
             isAdditional={true}
+            withBorder={withBorder}
           />
         </div>
       )}
@@ -97,17 +104,23 @@ export default function PageSection({
             `font${fontSize}`,
             "flex70",
             `padding${capitalizeString(contentPadding)}`,
+            `textAlign${capitalizeString(contentTextAlign)}`,
           ],
         })}
       >
         {showHeader && <h3 className={styles.header}>{header}</h3>}
-        <div className={styles.content}>
-          {decodedContent}
-          {showSocialIcons && (
-            <div className={styles.socials}>
-              <SocialIcons size={"L"} />
-            </div>
-          )}
+        <div
+          className={classNameFormatter({
+            styles,
+            classNames: [
+              "content",
+              `textAlign${capitalizeString(contentTextAlign)}`,
+            ],
+          })}
+        >
+          {hasCustomContent && customContent}
+          {!hasCustomContent && decodedContent}
+          {showSocialIcons && <SocialIcons size={"L"} />}
         </div>
       </div>
       <div
@@ -132,6 +145,7 @@ export default function PageSection({
           flexDirection={imageDisplayFlexDirection}
           imageGap={imageGap}
           limitImages={imageDisplayLimitImages}
+          withBorder={withBorder}
         />
       </div>
     </div>
@@ -159,4 +173,9 @@ PageSection.propTypes = {
   showHeader: PropTypes.bool,
   header: PropTypes.string,
   additionalImagesStripe: PropTypes.bool,
+  imageIndex: PropTypes.number,
+  contentTextAlign: PropTypes.string,
+  withBorder: PropTypes.bool,
+  hasCustomContent: PropTypes.bool,
+  customContent: PropTypes.object,
 };

@@ -8,7 +8,7 @@ import {
 } from "../utilities";
 import apiClient from "../api/api";
 
-import he from "he";
+// import he from "he";
 
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
@@ -102,6 +102,9 @@ export const selectVisualization2Text = (state) =>
   state.mainPageContent.content.visualizations["visualization2"].content;
 export const selectVisualization3Text = (state) =>
   state.mainPageContent.content.visualizations["visualization3"].content;
+
+export const selectVisualizationsTexts = (state) =>
+  state.mainPageContent.content.visualizations;
 export const selectFooterOwner = (state) =>
   state.mainPageContent.content["site owner"];
 export const selectFooterDesign = (state) =>

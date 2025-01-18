@@ -8,6 +8,7 @@
 
   .tileContainer {
     width: auto;
+    //
     position: relative;
     .blur {
       transition: all 0.5s ease-in-out;
@@ -25,11 +26,17 @@
       transition: height 5s ease-in-out;
       width: 100%;
       height: $size-giant;
-      // height: 30%;
+      // border: 3px solid $main-medium-light-gray;
     }
     .imgLoaded {
+      width: 100%;
       height: 100%;
-      // flex: 1;
+    }
+    .border {
+      box-shadow: $border-like-shadow;
+    }
+    .roundBorder {
+      border-radius: $border-radius-m;
     }
   }
 

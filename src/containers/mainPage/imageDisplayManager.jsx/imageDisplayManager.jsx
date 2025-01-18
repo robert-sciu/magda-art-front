@@ -1,20 +1,14 @@
 import PropTypes from "prop-types";
-
-// import ImageTile from "../../common/imageTile/ImageTile";
-
 import styles from "./imageDisplayManager.module.scss";
 import { useSelector } from "react-redux";
 import { selectSectionInView } from "../../../store/mainPageImagesSlice";
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef } from "react";
 import ImageDisplay from "../../../containers/common/imageDisplay/imageDisplay";
 import {
   capitalizeString,
   classNameFormatter,
 } from "../../../utilities/utilities";
 import { mozaicSequences } from "./mozaicSequences";
-
-import useMeasure from "react-use-measure";
-import { selectWindowWidth } from "../../../store/rootNavSlice";
 
 export const ImageDisplayManager = forwardRef(
   (
@@ -27,10 +21,8 @@ export const ImageDisplayManager = forwardRef(
       flexDirection = "row",
       limitImages = images.length,
       imageGap = "M",
-      // contentHeight,
-      // imagesHeight,
-      // measureBounds = false,
       isAdditional = false,
+      withBorder = false,
     },
     ref
   ) => {
@@ -67,20 +59,16 @@ export const ImageDisplayManager = forwardRef(
                     alt={img.name}
                     isVisible={sectionInView}
                     type="pageImage"
+                    border={withBorder}
+                    roundEdges={withBorder}
                   />
                 </div>
               ))}
           </div>
         )}
-        {gridLayout === "mozaic" && mozaicSequenceTypes && (
-          <div
-            // ref={measureBounds && imagesMeasureRef}
-            className={styles.mozaic}
-          >
+        {isGrid && gridLayout === "mozaic" && mozaicSequenceTypes && (
+          <div className={styles.mozaic}>
             {mozaicSequenceTypes.map((sequence, sequenceIndex) => {
-              // if (sequenceIndex >= maxSequenceIndex) {
-              //   return null;
-              // }
               const sliceStart = sequence.slice[0];
               const sliceEnd = sequence.slice[1];
               const classSequence = sequence.sequence;

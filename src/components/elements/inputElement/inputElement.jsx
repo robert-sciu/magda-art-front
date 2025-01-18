@@ -114,12 +114,14 @@ export default function InputElement({
       )}
       {type === "textArea" && (
         <>
+          {label && <label className={styles.label}>{label}:</label>}
           <textarea
             className={classNameFormatter({
               styles,
               classNames: [
                 "inputElement",
                 `textAlign${capitalizeString(textAlign)}`,
+                "textArea",
               ],
             })}
             rows={8}
