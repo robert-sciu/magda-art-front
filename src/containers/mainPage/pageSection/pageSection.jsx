@@ -15,12 +15,15 @@ import SocialIcons from "../../common/socialIcons/SocialIcons";
 export default function PageSection({
   name,
   contentSelector,
+  contentKey = false,
+  contentFlexWidth = "flex70",
   imageSelector,
   isCardStyle,
   imageDisplayIsGrid,
   imageDisplayGridLayout,
   imageDisplayIsFlex,
   imageDisplayFlexDirection,
+  imageDisplayFlexWidth = "flex30",
   additionalImagesStripe,
   sectionFlexDirection,
   imageDisplayLimitImages,
@@ -40,7 +43,6 @@ export default function PageSection({
   customContent = undefined,
 }) {
   const [decodedContent, setDecodedContent] = useState("");
-
   const emptySelector = () => null;
 
   const content = useSelector(contentSelector || emptySelector);
@@ -50,9 +52,11 @@ export default function PageSection({
     if (content) {
       /////// what the hell is this about
       //TODO: get to the bottom of this
-      setDecodedContent(he.decode(he.decode(content)));
+      setDecodedContent(
+        he.decode(he.decode(contentKey ? content?.[contentKey] : content))
+      );
     }
-  }, [content]);
+  }, [content, contentKey]);
 
   return (
     <div
@@ -75,7 +79,7 @@ export default function PageSection({
             styles,
             classNames: [
               "imageContainer",
-              "flex30",
+              imageDisplayFlexWidth,
               imageDisplayGridLayout === "mozaic" && "mozaicOverflow",
               `padding${capitalizeString(imagePadding)}`,
             ],
@@ -102,7 +106,7 @@ export default function PageSection({
             "contentContainer",
             "flexColumn",
             `font${fontSize}`,
-            "flex70",
+            contentFlexWidth,
             `padding${capitalizeString(contentPadding)}`,
             `textAlign${capitalizeString(contentTextAlign)}`,
           ],

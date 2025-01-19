@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 // import { clearTempData } from "../../../store/fullCalendarSlice";
 import { classNameFormatter } from "../../utilities/utilities";
 import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
-import InfoModal from "../../components/modalWindow/infoModal/infoModal";
+// import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 
 export default function ModalWindowMain({
   modalType,

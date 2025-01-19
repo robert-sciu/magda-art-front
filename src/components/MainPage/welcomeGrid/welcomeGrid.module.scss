@@ -1,22 +1,22 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+// @import "../../../../styles/variables.module.scss";
+// @import "../../../../styles/mixins.module.scss";
 
-.gridContainer {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: $size-xxs;
-  height: 100%;
-  width: 100%;
-  // flex: 1;
-  // background-color: red;
-  // @include respond-to(small-desktop) {
-  //   grid-template-columns: 1fr 1fr 1fr 1fr;
-  //   grid-template-rows: 1fr;
-  // }
+// .gridContainer {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   grid-template-rows: 1fr 1fr;
+//   gap: $size-xxs;
+//   height: 100%;
+//   width: 100%;
+//   // flex: 1;
+//   // background-color: red;
+//   // @include respond-to(small-desktop) {
+//   //   grid-template-columns: 1fr 1fr 1fr 1fr;
+//   //   grid-template-rows: 1fr;
+//   // }
 
-  // @include respond-to(tablet) {
-  //   grid-template-columns: 1fr 1fr;
-  //   gap: $size-xxxxs;
-  // }
-}
+//   // @include respond-to(tablet) {
+//   //   grid-template-columns: 1fr 1fr;
+//   //   gap: $size-xxxxs;
+//   // }
+// }

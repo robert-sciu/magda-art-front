@@ -28,8 +28,10 @@ import {
 import {
   fetchContent,
   selectBio,
+  selectContentFetchComplete,
   selectName,
-  selectVisualization1Text,
+  // selectVisualization1Text,
+  selectVisualizationsTexts,
   // selectVisualizationsTexts,
   selectWelcome,
 } from "../../../store/mainPageContentSlice";
@@ -57,6 +59,9 @@ export default function MainPageUi() {
   const sectionRefs = useRef([]); // Array of refs for sections
 
   const widthType = useSelector(selectWidthType);
+  const visualizations = useSelector(selectVisualizationsTexts);
+  const contentFetchComplete = useSelector(selectContentFetchComplete);
+  // console.log(visualizations["visualization1"]);
 
   const [refMeasure, bounds] = useMeasure();
 
@@ -160,6 +165,8 @@ export default function MainPageUi() {
     };
   }, [dispatch]);
 
+  // Object.keys(visualizations).map((key, index) => console.log(key, index));
+
   return (
     <div className={styles.uiContainer} ref={refMeasure}>
       <Hero />
@@ -233,16 +240,46 @@ export default function MainPageUi() {
         </Parallax>
       </div>
       <div ref={addToRefs} id="visualizations">
-        <PageSection
+        {contentFetchComplete &&
+          Object.keys(visualizations).map((contentKey, index) => (
+            <PageSection
+              key={contentKey}
+              name="visualizations"
+              contentSelector={selectVisualizationsTexts}
+              contentKey={contentKey}
+              contentFlexWidth={widthType <= 3 ? "flex60" : "flex70"}
+              imageSelector={selectVisualizationsImages}
+              imageIndex={index + 1}
+              sectionFlexDirection={
+                widthType <= 2
+                  ? "columnReversed"
+                  : index % 2 === 0
+                  ? "rowReversed"
+                  : "row"
+              }
+              imageDisplayIsGrid={false}
+              imageDisplayIsFlex={true}
+              imageDisplayFlexDirection={widthType <= 3 ? "flex40" : "flex30"}
+              isCardStyle={widthType > 4 && index % 2 === 0}
+              margins={widthType > 4 ? "L" : "S"}
+              fontSize={"M"}
+              contentPadding={widthType <= 3 ? "L" : "XL"}
+              imagePadding={"XS"}
+              contentTextAlign={widthType <= 2 ? "center" : "left"}
+              withBorder={true}
+            />
+          ))}
+        {/* <PageSection
           name="visualizations"
           contentSelector={selectVisualization1Text}
+          contentKey={"visualization1"}
           imageSelector={selectVisualizationsImages}
+          imageIndex={1}
           sectionFlexDirection={
             widthType <= 2 ? "columnReversed" : "rowReversed"
           }
           imageDisplayIsGrid={false}
           imageDisplayIsFlex={true}
-          imageIndex={1}
           isCardStyle={widthType > 4}
           margins={widthType > 4 ? "L" : "S"}
           fontSize={"M"}
@@ -250,8 +287,8 @@ export default function MainPageUi() {
           imagePadding={"XS"}
           contentTextAlign={widthType <= 2 ? "center" : "left"}
           withBorder={true}
-        />
-        <PageSection
+        /> */}
+        {/* <PageSection
           name="visualizations"
           contentSelector={selectVisualization1Text}
           imageSelector={selectVisualizationsImages}
@@ -284,7 +321,7 @@ export default function MainPageUi() {
           imagePadding={"XS"}
           contentTextAlign={widthType <= 2 ? "center" : "left"}
           withBorder={true}
-        />
+        /> */}
       </div>
       <div ref={addToRefs} id="contact">
         <PageSection

@@ -3,7 +3,7 @@ import { Suspense } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import Spinner from "./components/common/spinner/Spinner.jsx";
+// import Spinner from "./components/common/spinner/Spinner.jsx";
 
 const rootNavPromise = import("./containers/rootNav/RootNav.jsx");
 //prettier-ignore
@@ -86,7 +86,7 @@ function App() {
           <Route
             path="/login"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<LoadingState />}>
                 <LazyLogin />
               </Suspense>
             }
@@ -94,7 +94,7 @@ function App() {
           <Route
             path="/admin"
             element={
-              <Suspense fallback={<Spinner />}>
+              <Suspense fallback={<LoadingState />}>
                 <LazyPotectedRoute>
                   <LazyAdminNav />
                 </LazyPotectedRoute>
@@ -104,7 +104,7 @@ function App() {
             <Route
               index
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<LoadingState />}>
                   <LazyAdminStart />
                 </Suspense>
               }
@@ -112,7 +112,7 @@ function App() {
             <Route
               path="texts"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<LoadingState />}>
                   <LazyTextEditor />
                 </Suspense>
               }
@@ -120,7 +120,7 @@ function App() {
             <Route
               path="images/pageImages"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<LoadingState />}>
                   <LazyPageImagesUploadManager />
                 </Suspense>
               }
@@ -128,7 +128,7 @@ function App() {
             <Route
               path="images/galleryImages"
               element={
-                <Suspense fallback={<Spinner />}>
+                <Suspense fallback={<LoadingState />}>
                   <LazyGalleryImagesUploadManager />
                 </Suspense>
               }

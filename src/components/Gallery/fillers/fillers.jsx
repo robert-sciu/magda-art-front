@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
-import GalleryOverlayContact from "../../../containers/galleryPage/galleryOverlayContact/GalleryOverlayContact";
+// import GalleryOverlayContact from "../../../containers/galleryPage/galleryOverlayContact/GalleryOverlayContact";
 
 import styles from "./fillers.module.scss";
 import { selectLogoImage } from "../../../store/mainPageImagesSlice";
@@ -31,7 +31,8 @@ function ContactFiller() {
       </Link>
 
       {showContactOverlay && (
-        <GalleryOverlayContact onCloseOverlay={setShowContactOverlay} />
+        // <GalleryOverlayContact onCloseOverlay={setShowContactOverlay} />
+        <p>ok</p>
       )}
     </div>
   );

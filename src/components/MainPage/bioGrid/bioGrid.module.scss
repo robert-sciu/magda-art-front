@@ -1,21 +1,21 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+// @import "../../../../styles/variables.module.scss";
+// @import "../../../../styles/mixins.module.scss";
 
-.bioGallery {
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  gap: $size-xxxxs;
-  margin: $size-xxxxs;
-  border-top-left-radius: $border-radius-m;
-  border-bottom-left-radius: $border-radius-m;
-  @include respond-to(small-desktop) {
-    flex-direction: row;
-    gap: calc($size-xxxxs * 0.5);
-    border-radius: $border-radius-m;
-  }
+// .bioGallery {
+//   overflow: hidden;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $size-xxxxs;
+//   margin: $size-xxxxs;
+//   border-top-left-radius: $border-radius-m;
+//   border-bottom-left-radius: $border-radius-m;
+//   @include respond-to(small-desktop) {
+//     flex-direction: row;
+//     gap: calc($size-xxxxs * 0.5);
+//     border-radius: $border-radius-m;
+//   }
 
-  @include respond-to(mobile) {
-    flex-direction: column;
-  }
-}
+//   @include respond-to(mobile) {
+//     flex-direction: column;
+//   }
+// }

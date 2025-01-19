@@ -43,9 +43,9 @@ export const mainPageContentSlice = createSlice({
   initialState: {
     content: {
       visualizations: {
-        visualization1: {},
-        visualization2: {},
-        visualization3: {},
+        // visualization1: {},
+        // visualization2: {},
+        // visualization3: {},
       },
     },
     isLoading: false,
@@ -60,16 +60,19 @@ export const mainPageContentSlice = createSlice({
     builder
       .addCase(fetchContent.pending, managePendingState)
       .addCase(fetchContent.fulfilled, (state, action) => {
-        const parser = new DOMParser();
+        // const parser = new DOMParser();
         action.payload.data.forEach((contentObject) => {
           if (/^visualization\d+$/.test(contentObject.heading)) {
-            state.content.visualizations[contentObject.heading] = {
-              content: parser.parseFromString(
-                contentObject.content,
-                "text/html"
-              ).body.textContent, // he.decode(contentObject.content), // contentObject.content,
-              placement: contentObject.heading.slice(-1),
-            };
+            // console.log(contentObject);
+            state.content.visualizations[contentObject.heading] =
+              contentObject.content;
+            // {
+            // content: parser.parseFromString(
+            //   contentObject.content,
+            //   "text/html"
+            // ).body.textContent, // he.decode(contentObject.content), // contentObject.content,
+            // placement: contentObject.heading.slice(-1),
+            // };
             return;
           }
           state.content[contentObject.heading] = contentObject.content;
@@ -96,12 +99,12 @@ export const selectBio = (state) => state.mainPageContent.content.bio;
 // export const selectVisualizationsTexts = (state) =>
 //   state.mainPageContent.content.visualizations;
 
-export const selectVisualization1Text = (state) =>
-  state.mainPageContent.content.visualizations["visualization1"].content;
-export const selectVisualization2Text = (state) =>
-  state.mainPageContent.content.visualizations["visualization2"].content;
-export const selectVisualization3Text = (state) =>
-  state.mainPageContent.content.visualizations["visualization3"].content;
+// export const selectVisualization1Text = (state) =>
+//   state.mainPageContent.content.visualizations["visualization1"].content;
+// export const selectVisualization2Text = (state) =>
+//   state.mainPageContent.content.visualizations["visualization2"].content;
+// export const selectVisualization3Text = (state) =>
+//   state.mainPageContent.content.visualizations["visualization3"].content;
 
 export const selectVisualizationsTexts = (state) =>
   state.mainPageContent.content.visualizations;
