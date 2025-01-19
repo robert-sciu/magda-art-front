@@ -13,7 +13,7 @@ import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
 export default function ModalWindowMain({
   modalType,
   // onSubmit,
-  OnConfirm,
+  // OnConfirm,
   onCancel,
   // onDeleteSubmit,
   data,
@@ -57,9 +57,9 @@ export default function ModalWindowMain({
           {modalType === "error" && (
             <ErrorWindow error={data} onCancel={onCancel} dispatch={dispatch} />
           )}
-          {modalType === "info" && (
+          {/* {modalType === "info" && (
             <InfoModal info={data} onConfirm={OnConfirm} />
-          )}
+          )} */}
         </div>
       </Draggable>
     </div>
