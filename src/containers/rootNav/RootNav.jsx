@@ -18,7 +18,15 @@ import {
 
 import scss from "../../../styles/variables.module.scss";
 import { selectAuthAuthenticationStatus } from "../../store/authSlice";
-import { fetchCommonImages } from "../../store/mainPageImagesSlice";
+import {
+  fetchCommonImages,
+  selectPageImagesFetchStatus,
+} from "../../store/mainPageImagesSlice";
+import {
+  selectGalleryPageImagesFetchStatus,
+  // selectGalleryPageImagesLoadingStatus,
+} from "../../store/galleryPageSlice";
+import LoadingState from "../../components/loadingState/loadingState";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.
@@ -39,6 +47,8 @@ export default function RootNav() {
   const dispatch = useDispatch();
 
   // const loadState = useSelector(filesLoaded);
+  const pageImagesLoaded = useSelector(selectPageImagesFetchStatus);
+  const galleryImagesLoaded = useSelector(selectGalleryPageImagesFetchStatus);
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
@@ -48,12 +58,12 @@ export default function RootNav() {
 
   // const hasFetched = useRef(false);
 
-  // useEffect(() => {
-  //   // if (!loadState) return;
-  //   if (hasFetched.current) return;
-  //   hasFetched.current = true;
-  //   dispatch(fetchCommonImages());
-  // }, [dispatch]);
+  useEffect(() => {
+    // if (!loadState) return;
+    // if (hasFetched.current) return;
+    // hasFetched.current = true;
+    dispatch(fetchCommonImages());
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(setWindowWidth(window.innerWidth));
@@ -133,6 +143,14 @@ export default function RootNav() {
       )}
       <Outlet />
       <Footer />
+      <LoadingState
+        inactive={
+          (location === "/" && pageImagesLoaded) ||
+          (location === "/gallery" && galleryImagesLoaded) ||
+          location === "/admin" ||
+          location === "/login"
+        }
+      />
     </>
   );
 }

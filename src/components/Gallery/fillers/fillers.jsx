@@ -9,6 +9,7 @@ import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
 
 import styles from "./fillers.module.scss";
 import { selectLogoImage } from "../../../store/mainPageImagesSlice";
+import ModalWindowMain from "../../../containers/modalWindow/modalWindowMain";
 
 function SocialsFiller() {
   return (
@@ -32,17 +33,20 @@ function ContactFiller() {
 
       {showContactOverlay && (
         // <GalleryOverlayContact onCloseOverlay={setShowContactOverlay} />
-        <p>ok</p>
+        <ModalWindowMain
+          modalType={"contact"}
+          onSetState={setShowContactOverlay}
+        />
       )}
     </div>
   );
 }
 
 function LogoFiller() {
-  const logo = useSelector(selectLogoImage);
+  const logo = useSelector(selectLogoImage)[0];
   return (
     <div className={styles.logo}>
-      <img src={logo?.logo?.url} alt={"logo"} />
+      <img className={styles.logoImg} src={logo?.url_mobile} alt={"logo"} />
     </div>
   );
 }

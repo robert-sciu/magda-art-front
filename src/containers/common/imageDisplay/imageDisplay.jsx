@@ -125,4 +125,6 @@ ImageDisplay.propTypes = {
   lazyLoaded: PropTypes.bool,
   isVisible: PropTypes.bool,
   type: PropTypes.string,
+  withBorder: PropTypes.bool,
+  roundEdges: PropTypes.bool,
 };

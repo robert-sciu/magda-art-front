@@ -26,7 +26,7 @@ import {
 } from "../../../store/galleryPageSlice.js";
 import LoadingState from "../../../components/loadingState/loadingState.jsx";
 import { selectDevice, setLocation } from "../../../store/rootNavSlice.js";
-import { fetchCommonImages } from "../../../store/mainPageImagesSlice.js";
+// import { fetchCommonImages } from "../../../store/mainPageImagesSlice.js";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -75,9 +75,9 @@ export default function GalleryPageUi() {
     dispatch(fetchGalleryImages());
   }, [dispatch, fetchComplete]);
 
-  useEffect(() => {
-    dispatch(fetchCommonImages());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchCommonImages());
+  // }, [dispatch]);
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());

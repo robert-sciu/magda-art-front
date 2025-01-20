@@ -4,7 +4,7 @@
 .contactContainer {
   display: flex;
   flex-direction: column;
-  padding: $size-xl $size-xxl;
+  // padding: $size-xl $size-xxl;
   gap: $size-l;
   .contactForm {
     display: flex;
@@ -16,9 +16,20 @@
     display: flex;
     flex-direction: column;
     gap: $size-m;
+    // font-weight: 600;
+    font-size: $size-m;
+    color: $action-green;
     // height: 100%;
     // align-items: center;
     text-align: center;
     // justify-content: center;
   }
+}
+
+.paddingL {
+  padding: $size-xl $size-xxl;
+}
+
+.paddingS {
+  padding: $size-xxxs $size-m;
 }

@@ -10,7 +10,13 @@ import { checkEmailData, resetErrors } from "../../../utilities";
 import { selectMailerSuccessMessage } from "../../../store/mailerSlice";
 import { clearMailerMessage } from "../../../store/mailerSlice";
 
-export default function ContactForm() {
+import PropTypes from "prop-types";
+import {
+  capitalizeString,
+  classNameFormatter,
+} from "../../../utilities/utilities";
+
+export default function ContactForm({ onSetState, padding = "L" }) {
   const [name, setName] = useState("");
   const [nameError, setNameError] = useState("");
   const [email, setEmail] = useState("");
@@ -67,8 +73,20 @@ export default function ContactForm() {
     dispatch(sendMail({ data: requestBody }));
   }
 
+  function handleClick() {
+    dispatch(clearMailerMessage());
+    if (onSetState) {
+      onSetState(false);
+    }
+  }
+
   return (
-    <div className={styles.contactContainer}>
+    <div
+      className={classNameFormatter({
+        styles,
+        classNames: ["contactContainer", `padding${capitalizeString(padding)}`],
+      })}
+    >
       <div>
         <h2>Contact Me</h2>
       </div>
@@ -132,13 +150,15 @@ export default function ContactForm() {
         {mailSentMessage && (
           <div className={styles.successMessage}>
             <p>{mailSentMessage}</p>
-            <Button
-              label={"Cool!"}
-              onClick={() => dispatch(clearMailerMessage())}
-            />
+            <Button label={"Cool!"} onClick={handleClick} />
           </div>
         )}
       </form>
     </div>
   );
 }
+
+ContactForm.propTypes = {
+  onSetState: PropTypes.func,
+  padding: PropTypes.string,
+};

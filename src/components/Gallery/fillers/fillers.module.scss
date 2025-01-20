@@ -16,17 +16,17 @@
 
 .logo {
   display: flex;
-
   justify-content: center;
   align-items: center;
-  max-width: $size-xxl;
-  max-height: $size-xxl;
+  max-width: $size-giant;
+  max-height: $size-giant;
   // border: $size-xxxxs solid $main-white;
   // flex-grow: 0;
   // height: 100%;
-  img {
-    width: 100%;
-    height: 100%;
+  .logoImg {
+    // width: 100%;
+    // height: 100%;
+    flex: 1;
     filter: $main-white--filter;
   }
 }

@@ -53,7 +53,7 @@ export const ImageDisplayManager = forwardRef(
                 isAdditional ? -1 : limitImages
               )
               .map((img) => (
-                <div key={img.id}>
+                <div key={img.id} className={styles.imageContainer}>
                   <ImageDisplay
                     img={img}
                     alt={img.name}

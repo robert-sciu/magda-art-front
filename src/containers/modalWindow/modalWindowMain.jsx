@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 // import { clearTempData } from "../../../store/fullCalendarSlice";
 import { classNameFormatter } from "../../utilities/utilities";
 import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
+import ContactWindow from "../../components/modalWindow/contactModal/contactWindow";
 // import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 
 export default function ModalWindowMain({
@@ -19,6 +20,7 @@ export default function ModalWindowMain({
   data,
   disableBlur,
   // additionalInfo,
+  onSetState,
 }) {
   const dispatch = useDispatch();
   const nodeRef = useRef(null);
@@ -28,14 +30,19 @@ export default function ModalWindowMain({
       e.target.className.includes("blur")
     ) {
       if (onCancel) {
-        // dispatch(clearTempData());
         dispatch(onCancel());
+      }
+      if (onSetState) {
+        onSetState(false);
       }
     }
   }
   function handleClose() {
     if (onCancel) {
       dispatch(onCancel());
+    }
+    if (onSetState) {
+      onSetState(false);
     }
   }
   return (
@@ -60,6 +67,7 @@ export default function ModalWindowMain({
           {/* {modalType === "info" && (
             <InfoModal info={data} onConfirm={OnConfirm} />
           )} */}
+          {modalType === "contact" && <ContactWindow onSetState={onSetState} />}
         </div>
       </Draggable>
     </div>
@@ -76,4 +84,5 @@ ModalWindowMain.propTypes = {
   disableBlur: PropTypes.bool,
   OnConfirm: PropTypes.func,
   additionalInfo: PropTypes.any,
+  onSetState: PropTypes.func,
 };

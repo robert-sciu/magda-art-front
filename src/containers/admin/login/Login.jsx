@@ -24,6 +24,7 @@ import {
 import ModalWindowMain from "../../modalWindow/modalWindowMain";
 import InputElement from "../../../components/elements/inputElement/inputElement";
 import Button from "../../../components/elements/button/button";
+import { setLocation } from "../../../store/rootNavSlice";
 
 export default function Login() {
   const [showLogin, setShowLogin] = useState(false);
@@ -42,6 +43,10 @@ export default function Login() {
   const errorMessage = useSelector(selectAuthErrorMessage);
 
   const token = useSelector(selectAuthToken);
+
+  useEffect(() => {
+    dispatch(setLocation(window.location.pathname));
+  }, [dispatch]);
 
   useEffect(() => {
     if (token) {

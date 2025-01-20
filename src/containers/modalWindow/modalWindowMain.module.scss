@@ -1,12 +1,12 @@
 @import "../../../styles/variables.module.scss";
-
+@import "../../../styles/classes.module.scss";
 .modalWindowBackground {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.082);
+  background-color: rgba(0, 0, 0, 0.575);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,16 +16,16 @@
   cursor: default;
 
   .modalWindowContainer {
-    width: 30rem;
+    width: 35rem;
     z-index: 21;
     display: flex;
     flex-direction: column;
-    gap: $size-xxl;
+    gap: $size-xxxxs;
     background-color: $main-white;
     border-radius: $size-xxxs;
     align-items: center;
     cursor: default;
-    padding: 0 0 $size-xxxl;
+    // padding: $size-xxxxs $size-xl;
     .dragArea {
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
       width: 100%;
@@ -37,15 +37,15 @@
       align-items: center;
       justify-content: space-between;
       flex-direction: row-reverse;
-      padding: 0 $size-s;
-      font-size: $size-l;
+      padding: 0 $size-xxs;
+      font-size: $size-s;
       color: $main-gray;
       .closeBtn {
         cursor: pointer;
-        // transition: $basic-transition;
+        transition: $basic-transition;
 
         &:hover {
-          // color: $delete-red-hover;
+          color: $main-black;
         }
       }
     }
@@ -53,5 +53,5 @@
 }
 
 .blur {
-  // @extend .backdropBlur;
+  @extend .backdropBlur;
 }

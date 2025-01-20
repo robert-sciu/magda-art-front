@@ -11,6 +11,7 @@ import {
   selectTokenVerificationStatus,
 } from "../../../store/authSlice";
 import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
+import { setLocation } from "../../../store/rootNavSlice";
 
 export default function AdminNav() {
   const dispatch = useDispatch();
@@ -18,6 +19,10 @@ export default function AdminNav() {
 
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
   const tokenVerificationComplete = useSelector(selectTokenVerificationStatus);
+
+  useEffect(() => {
+    dispatch(setLocation(window.location.pathname));
+  }, [dispatch]);
 
   useEffect(() => {
     if (tokenVerificationComplete && !userIsAuthenticated) {

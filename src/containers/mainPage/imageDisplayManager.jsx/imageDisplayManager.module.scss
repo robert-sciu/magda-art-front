@@ -67,12 +67,8 @@
 
 .flexContainer {
   display: flex;
-  // width: 100%;
-  // img {
-  //   width: 100%;
-  // }
-  // height: 100%;
-  // flex: 1;
+  flex: 1;
+  position: relative;
 }
 
 .flexRow {
@@ -81,4 +77,12 @@
 
 .flexColumn {
   flex-direction: column;
+}
+
+.imageContainer {
+  // height: 100%;
+  // display: flex;
+  // object-fit: cover;
+  // width: 100%;
+  flex: 1;
 }

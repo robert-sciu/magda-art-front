@@ -36,7 +36,7 @@ export default function PageSection({
   imagePadding = "L",
   sectionGap = "L",
   showHeader = false,
-  header = "",
+  headerSelector = "",
   contentTextAlign = "left",
   withBorder = false,
   hasCustomContent = false,
@@ -47,6 +47,7 @@ export default function PageSection({
 
   const content = useSelector(contentSelector || emptySelector);
   const images = useSelector(imageSelector || emptySelector);
+  const header = useSelector(headerSelector || emptySelector);
 
   useEffect(() => {
     if (content) {
@@ -182,4 +183,7 @@ PageSection.propTypes = {
   withBorder: PropTypes.bool,
   hasCustomContent: PropTypes.bool,
   customContent: PropTypes.object,
+  contentKey: PropTypes.string,
+  imageDisplayFlexWidth: PropTypes.string,
+  contentFlexWidth: PropTypes.string,
 };
