@@ -1,7 +1,4 @@
 import { useDispatch, useSelector } from "react-redux";
-
-import ImageTile from "../../../components/common/imageTile/ImageTile";
-
 import {
   fetchPageImagesForRole,
   selectHeroImage,
@@ -11,14 +8,14 @@ import styles from "./adminStart.module.scss";
 
 // import { createArrayFromObject } from "../../../utilities";
 import { useEffect, useState } from "react";
+import ImageDisplay from "../../common/imageDisplay/imageDisplay";
 
 export default function AdminStart() {
   const [showHero, setShowHero] = useState(false);
 
   const dispatch = useDispatch();
 
-  const heroImage = useSelector(selectHeroImage);
-  // const heroImageData = createArrayFromObject(heroImage)[0];
+  const heroImage = useSelector(selectHeroImage)[0];
 
   useEffect(() => {
     if (heroImage) {
@@ -34,12 +31,12 @@ export default function AdminStart() {
       <p>
         Choose a category from a menu above to start working on your content
       </p>
-      {showHero && (
-        <div className={styles.heroImageContainer}>
-          <ImageTile img={heroImage} qualityOverride={"desktop"} />
-        </div>
-      )}
-      {/* <div>{heroImage && <ImageTile img={heroImageData} />}</div> */}
+
+      <div className={styles.heroImageContainer}>
+        {showHero && (
+          <ImageDisplay type={"adminImage"} img={heroImage} isVisible={true} />
+        )}
+      </div>
     </div>
   );
 }

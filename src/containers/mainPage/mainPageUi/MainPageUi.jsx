@@ -7,11 +7,11 @@ import Hero from "../hero/Hero";
 import {
   // fetchCommonImages,
   fetchPageImages,
-  selectBioImages,
-  selectBioParallaxImage,
-  selectGalleryParallaxImage,
-  selectVisualizationsImages,
-  selectWelcomeImages,
+  // selectBioImages,
+  // selectBioParallaxImage,
+  // selectGalleryParallaxImage,
+  // selectVisualizationsImages,
+  // selectWelcomeImages,
   // selectPageImagesFetchStatus,
   setSectionInView,
 } from "../../../store/mainPageImagesSlice";
@@ -23,25 +23,25 @@ import {
 } from "../../../store/rootNavSlice";
 import {
   fetchContent,
-  selectBio,
+  // selectBio,
   selectContentFetchComplete,
-  selectName,
+  // selectName,
   selectVisualizationsTexts,
-  selectWelcome,
+  // selectWelcome,
 } from "../../../store/mainPageContentSlice";
 
 import scss from "../../../../styles/variables.module.scss";
 import styles from "./mainPageUi.module.scss";
 
-// import { createArrayFromObject } from "../../../utilities";
-import Parallax from "../parallax/parallax";
-import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
-import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
+// // import { createArrayFromObject } from "../../../utilities";
+// import Parallax from "../parallax/parallax";
+// import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
+// import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
 
 import useMeasure from "react-use-measure";
 import SectionDefinition from "../sectionDefinition/sectionDefinition";
-import PageSection from "../pageSection/pageSection";
-import ContactForm from "../../../components/common/contactForm/ContactForm";
+// import PageSection from "../pageSection/pageSection";
+// import ContactForm from "../../../components/common/contactForm/ContactForm";
 // import LoadingState from "../../../components/loadingState/loadingState";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);

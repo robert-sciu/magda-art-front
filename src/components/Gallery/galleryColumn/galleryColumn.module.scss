@@ -17,11 +17,11 @@
     align-items: center;
     justify-content: center;
   }
-  img {
-    border-radius: $border-radius-xs;
-  }
+  // img {
+  //   border-radius: $border-radius-xs;
+  // }
 
-  @include respond-to(small-desktop) {
-    gap: $size-xxxxs;
-  }
+  // @include respond-to(small-desktop) {
+  //   gap: $size-xxxxs;
+  // }
 }

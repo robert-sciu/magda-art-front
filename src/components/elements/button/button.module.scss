@@ -53,6 +53,20 @@
   min-width: 0 !important;
 }
 
+.iconOnly {
+  border: none;
+  background-color: transparent;
+  color: $main-white;
+  cursor: pointer;
+  .icon {
+    font-size: $size-xxl;
+    transition: $basic-transition;
+  }
+  .icon:hover {
+    color: $action-blue;
+  }
+}
+
 .button.disabled {
   cursor: default;
   background-color: $main-gray-light;

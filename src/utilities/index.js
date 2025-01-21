@@ -130,30 +130,31 @@ export async function checkEmailData({
 }
 
 export async function checkUploadInfo({
+  isUpdate,
   imageName,
   file,
   externalUrl,
   urlInput,
   height_cm,
   width_cm,
-  description,
+  description_en,
   price,
   onImageNameError,
   onFileError,
   onUrlError,
   onHeightError,
   onWidthError,
-  onDescriptionError,
+  onDescriptionEnError,
   onPriceError,
 }) {
   return new Promise((resolve) => {
     let isValid = true;
-    if (!imageName && onImageNameError) {
+    if (!isUpdate && !imageName && onImageNameError) {
       onImageNameError("Please enter an image name");
       isValid = false;
     }
 
-    if (!file) {
+    if (!isUpdate && !file) {
       onFileError("Please select a file");
       isValid = false;
     }
@@ -173,8 +174,8 @@ export async function checkUploadInfo({
       isValid = false;
     }
 
-    if (!description && onDescriptionError) {
-      onDescriptionError("Please enter a description");
+    if (!description_en && onDescriptionEnError) {
+      onDescriptionEnError("Please enter a description");
       isValid = false;
     }
 

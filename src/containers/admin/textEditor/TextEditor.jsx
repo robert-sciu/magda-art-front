@@ -50,9 +50,10 @@ export default function PageTextsManager() {
   }, [dispatch, refetchNeeded, isLoading]);
 
   useEffect(() => {
-    const visualization1Data = visualizations?.visualization1?.content;
-    const visualization2Data = visualizations?.visualization2?.content;
-    const visualization3Data = visualizations?.visualization3?.content;
+    console.log(visualizations);
+    const visualization1Data = visualizations?.visualization1;
+    const visualization2Data = visualizations?.visualization2;
+    const visualization3Data = visualizations?.visualization3;
     setName(nameData || "");
     setWelcome(welcomeData || "");
     setBio(bioData || "");

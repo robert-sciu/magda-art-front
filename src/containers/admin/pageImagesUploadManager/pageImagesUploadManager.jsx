@@ -10,8 +10,6 @@ import {
   selectGalleryParallaxImage,
   selectVisualizationsImages,
   fetchPageImages,
-  selectBigContactImage,
-  selectSmallContactImages,
   deletePageImage,
   setRoleToRefetch,
   uploadPageImage,
@@ -19,7 +17,6 @@ import {
   selectPageImagesRefetchNeeded,
   fetchPageImagesForRole,
   selectLogoImage,
-  // fetchCommonImages,
   selectPageImagesLoadingStatus,
   selectPageImagesFetchStatus,
   selectSocialIcons,
@@ -152,26 +149,6 @@ export default function PageImagesUploadManager() {
         onSubmit={handleSubmit}
         info={uploadInfo.visualizationImages}
         placementsNeeded={true}
-        onDelete={handleDelete}
-      />
-      <PageImagesUploadForm
-        role="contactBig"
-        selector={selectBigContactImage}
-        maxNumberOfImages={pageImagesQuantityLimits.contactBig}
-        onSubmit={handleSubmit}
-        info={uploadInfo.bigContactImage}
-        placementsNeeded={true}
-        hardPlacement={1}
-        onDelete={handleDelete}
-      />
-      <PageImagesUploadForm
-        role="contactSmall"
-        selector={selectSmallContactImages}
-        maxNumberOfImages={pageImagesQuantityLimits.contactSmall}
-        onSubmit={handleSubmit}
-        info={uploadInfo.smallImages}
-        placementsNeeded={true}
-        hardPlacement={2}
         onDelete={handleDelete}
       />
     </div>

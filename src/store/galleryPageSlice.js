@@ -50,6 +50,21 @@ export const uploadGalleryImage = createAsyncThunk(
   }
 );
 
+export const updateGalleryImage = createAsyncThunk(
+  "galleryPage/updateGalleryImage",
+  async ({ data, id }, { rejectWithValue }) => {
+    try {
+      const response = await apiClient.patch(
+        `${api_url}/admin/paintings/${id}`,
+        data
+      );
+      return extractResponseData(response);
+    } catch (error) {
+      return rejectWithValue(extractErrorResponse(error));
+    }
+  }
+);
+
 export const deleteGalleryImage = createAsyncThunk(
   "galleryPage/deletePageImage",
   async ({ id }) => {
@@ -76,8 +91,11 @@ export const galleryPageSlice = createSlice({
     useBlur: true,
 
     clickedImage: null,
+    imageToEdit: null,
     columns: {},
     fillers: null,
+
+    updatedImageData: null,
 
     isLoading: false,
     hasError: false,
@@ -112,9 +130,14 @@ export const galleryPageSlice = createSlice({
     setClickedImage: (state, action) => {
       state.clickedImage = action.payload;
     },
+    setImgToEdit: (state, action) => {
+      state.imageToEdit = action.payload;
+    },
     resetClickedImage: (state) => {
       state.clickedImage = null;
-      state.fullResImg = null;
+    },
+    resetImgToEdit: (state) => {
+      state.updatedImageData = null;
     },
     setFillers: (state, action) => {
       state.fillers = action.payload;
@@ -160,8 +183,18 @@ export const galleryPageSlice = createSlice({
       })
       .addCase(uploadGalleryImage.rejected, manageRejectedState)
 
+      .addCase(updateGalleryImage.pending, managePendingState)
+      .addCase(updateGalleryImage.fulfilled, (state, action) => {
+        state.refetchNeeded = true;
+        state.updatedImageData = action.payload;
+        manageFulfilledState(state);
+      })
+      .addCase(updateGalleryImage.rejected, manageRejectedState)
+
       .addCase(deleteGalleryImage.pending, managePendingState)
       .addCase(deleteGalleryImage.fulfilled, (state) => {
+        state.updatedImageData = null;
+        state.imageToEdit = null;
         state.refetchNeeded = true;
         manageFulfilledState(state);
       })
@@ -181,13 +214,15 @@ export const {
   setColumnsReset,
   increaseHighQualityLoadCount,
   disableBlur,
+  setImgToEdit,
+  resetImgToEdit,
 } = galleryPageSlice.actions;
 
 export const selectGalleryPageImages = (state) =>
   state.galleryPage.galleryImages;
-// export const selectFullResImg = (state) => state.galleryPage.fullResImg;
 export const selectGalleryPageColumns = (state) => state.galleryPage.columns;
 export const selectClickedImage = (state) => state.galleryPage.clickedImage;
+export const selectImageToEdit = (state) => state.galleryPage.imageToEdit;
 export const selectAllFillers = (state) => state.galleryPage.fillers;
 
 // export const isLoadingContent = (state) => state.galleryPage.isLoadingContent;
@@ -209,5 +244,7 @@ export const selectHighQualityLoadStatus = (state) =>
   state.galleryPage.highQualityIsLoaded;
 
 export const selectUseBlurStatus = (state) => state.galleryPage.useBlur;
+export const selectUpdatedImageData = (state) =>
+  state.galleryPage.updatedImageData;
 
 export default galleryPageSlice.reducer;

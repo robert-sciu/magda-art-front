@@ -24,14 +24,17 @@ import {
 } from "../../store/mainPageImagesSlice";
 import {
   selectGalleryPageImagesFetchStatus,
+  // selectLazyLoadStatus,
   // selectGalleryPageImagesLoadingStatus,
 } from "../../store/galleryPageSlice";
 import LoadingState from "../../components/loadingState/loadingState";
+import styles from "./rootNav.module.scss";
 
 /**
  * Renders the root navigation component with dynamic links based on user authentication.
  *
  * @return {JSX.Element} The root navigation component JSX.
+ *
  */
 
 const tabletWidth = parseInt(scss.tabletWidth);
@@ -121,7 +124,7 @@ export default function RootNav() {
   }
 
   return (
-    <>
+    <div className={styles.rootNavContainer}>
       {device === "desktop" && (
         <DesktopNav
           showNav={showNav}
@@ -147,10 +150,10 @@ export default function RootNav() {
         inactive={
           (location === "/" && pageImagesLoaded) ||
           (location === "/gallery" && galleryImagesLoaded) ||
-          location === "/admin" ||
-          location === "/login"
+          location !== "/" ||
+          location !== "/gallery"
         }
       />
-    </>
+    </div>
   );
 }

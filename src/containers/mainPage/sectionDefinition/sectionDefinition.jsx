@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import ContactForm from "../../../components/common/contactForm/ContactForm";
 import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
 import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
@@ -95,7 +94,9 @@ const SectionDefinition = {
         fontSize={"M"}
         contentPadding={widthType <= 3 ? "L" : "XL"}
         imagePadding={"XS"}
-        contentTextAlign={widthType <= 2 ? "center" : "left"}
+        contentTextAlign={
+          widthType <= 2 ? "center" : index % 2 === 0 ? "left" : "right"
+        }
         withBorder={true}
       />
     ));

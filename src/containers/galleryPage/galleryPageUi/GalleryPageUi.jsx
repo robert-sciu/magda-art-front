@@ -148,7 +148,7 @@ export default function GalleryPageUi() {
             />
           );
         })}
-      <LoadingState fullscreen={true} fadeOut={lazyLoaded} />
+      <LoadingState fadeOut={lazyLoaded} />
       {device === "desktop" && clickedImage && <GalleryOverlay />}
     </div>
   );

@@ -29,6 +29,7 @@ export default function Button({
   disabled,
   loadingLabel,
   style,
+  secondaryStyle,
   fixedHeight = false,
 }) {
   return (
@@ -36,8 +37,9 @@ export default function Button({
       className={classNameFormatter({
         styles,
         classNames: [
-          "button",
+          style !== "iconOnly" && "button",
           style,
+          secondaryStyle,
           disabled && "disabled",
           fixedHeight ? "fixedHeight" : "flexHeight",
         ],
@@ -53,7 +55,7 @@ export default function Button({
       )}
       {!isLoading && (
         <>
-          {icon}
+          {icon && <div className={styles.icon}>{icon}</div>}
           <p>{isActive ? activeLabel : label}</p>
         </>
       )}
@@ -70,6 +72,7 @@ Button.propTypes = {
   activeLabel: PropTypes.string,
   loadingLabel: PropTypes.string,
   style: PropTypes.string,
+  secondaryStyle: PropTypes.string,
   disabled: PropTypes.bool,
   fixedHeight: PropTypes.bool,
 };

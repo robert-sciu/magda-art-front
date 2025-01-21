@@ -211,7 +211,12 @@ export default function PageImagesUploadForm({
       <div className={styles.gridContainer}>
         {showImages
           ? images.map((img) => (
-              <ImageInspector img={img} key={img.id} onDelete={onDelete} />
+              <ImageInspector
+                img={img}
+                key={img.id}
+                onDelete={onDelete}
+                type={"pageImg"}
+              />
             ))
           : null}
       </div>

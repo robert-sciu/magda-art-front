@@ -57,86 +57,88 @@ const LazyPotectedRoute = React.lazy(() =>
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense fallback={<LoadingState />}>
-              <LazyRootNav />
-            </Suspense>
-          }
-        >
+    <div className="appContainer">
+      <BrowserRouter>
+        <Routes>
           <Route
-            index
-            element={
-              <Suspense>
-                <LazyMainPageUi />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/gallery"
-            element={
-              <Suspense>
-                <LazyGalleryPageUi />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/login"
+            path="/"
             element={
               <Suspense fallback={<LoadingState />}>
-                <LazyLogin />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/admin"
-            element={
-              <Suspense fallback={<LoadingState />}>
-                <LazyPotectedRoute>
-                  <LazyAdminNav />
-                </LazyPotectedRoute>
+                <LazyRootNav />
               </Suspense>
             }
           >
             <Route
               index
               element={
-                <Suspense fallback={<LoadingState />}>
-                  <LazyAdminStart />
+                <Suspense>
+                  <LazyMainPageUi />
                 </Suspense>
               }
             />
             <Route
-              path="texts"
+              path="/gallery"
               element={
-                <Suspense fallback={<LoadingState />}>
-                  <LazyTextEditor />
+                <Suspense>
+                  <LazyGalleryPageUi />
                 </Suspense>
               }
             />
             <Route
-              path="images/pageImages"
+              path="/login"
               element={
                 <Suspense fallback={<LoadingState />}>
-                  <LazyPageImagesUploadManager />
+                  <LazyLogin />
                 </Suspense>
               }
             />
             <Route
-              path="images/galleryImages"
+              path="/admin"
               element={
                 <Suspense fallback={<LoadingState />}>
-                  <LazyGalleryImagesUploadManager />
+                  <LazyPotectedRoute>
+                    <LazyAdminNav />
+                  </LazyPotectedRoute>
                 </Suspense>
               }
-            />
+            >
+              <Route
+                index
+                element={
+                  <Suspense fallback={<LoadingState />}>
+                    <LazyAdminStart />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="texts"
+                element={
+                  <Suspense fallback={<LoadingState />}>
+                    <LazyTextEditor />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="images/pageImages"
+                element={
+                  <Suspense fallback={<LoadingState />}>
+                    <LazyPageImagesUploadManager />
+                  </Suspense>
+                }
+              />
+              <Route
+                path="images/galleryImages"
+                element={
+                  <Suspense fallback={<LoadingState />}>
+                    <LazyGalleryImagesUploadManager />
+                  </Suspense>
+                }
+              />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 

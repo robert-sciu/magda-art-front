@@ -36,7 +36,7 @@ export default function AdminNav() {
   }
 
   return (
-    <div>
+    <div className={styles.adminContainer}>
       <div className={styles.adminNav}>
         <ul>
           <NavLinkBtn to="/admin/texts" label={"Page Texts"} />
@@ -48,7 +48,7 @@ export default function AdminNav() {
           <NavLinkBtn to="/login" label={"Logout"} onClick={handleLogout} />
         </ul>
       </div>
-      <div className={styles.adminContainer}>
+      <div className={styles.adminOutletContainer}>
         <Outlet />
       </div>
     </div>

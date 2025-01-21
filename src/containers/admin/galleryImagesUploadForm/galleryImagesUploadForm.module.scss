@@ -20,15 +20,15 @@
       color: $error-red;
       font-size: $size-xs;
     }
-    button {
-      cursor: pointer;
-      padding: $size-xxxxs;
-      width: auto;
-      align-self: start;
-      min-width: calc($size-xxxxl * 1.5);
-      border-radius: $border-radius-m;
-      border: 1px solid $main-medium-light-gray;
-    }
+    // button {
+    //   cursor: pointer;
+    //   padding: $size-xxxxs;
+    //   width: auto;
+    //   align-self: start;
+    //   min-width: calc($size-xxxxl * 1.5);
+    //   border-radius: $border-radius-m;
+    //   border: 1px solid $main-medium-light-gray;
+    // }
   }
   .gridContainer {
     box-shadow: inset 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.199);

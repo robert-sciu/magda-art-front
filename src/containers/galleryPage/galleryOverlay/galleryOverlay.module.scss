@@ -1,16 +1,6 @@
 @import "../../../../styles/variables.module.scss";
 @import "../../../../styles/mixins.module.scss";
 
-.inactive {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -100;
-  opacity: 0;
-}
-
 .overlay {
   position: fixed;
   top: 0;
@@ -43,26 +33,16 @@
 
     .closeBtn {
       position: absolute;
-      transform: scale(0.5);
-      filter: $main-white--filter;
-      top: -$size-xxxs;
-      right: -$size-xxxs;
-      background-color: transparent;
-      cursor: pointer;
-      transition: $link-transition;
-
-      &:hover {
-        filter: $action-blue--filter;
-      }
-
-      // @include respond-to(small-desktop) {
-      //   transform: scale(0.7);
-      // }
+      top: $size-s;
+      right: $size-xxs;
     }
 
     .imageContainer {
       // THIS IS SOOOOO IMPORTANT IF YOU HAVE PROBLEM WITH IMAGE OVERFLOWING FLEX AREA
       min-height: 0;
+      // height: 100%;
+      // max-height: 80%;
+      max-width: 95%;
       display: flex;
       border: 2px solid $main-gray;
       position: relative;
@@ -85,11 +65,5 @@
         text-align: center;
       }
     }
-
-    // @include respond-to(small-desktop) {
-    //   padding: $size-l $size-s;
-    //   width: 97%;
-    //   height: 95%;
-    // }
   }
 }

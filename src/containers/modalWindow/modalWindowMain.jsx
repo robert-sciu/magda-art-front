@@ -6,9 +6,13 @@ import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
 // import { clearTempData } from "../../../store/fullCalendarSlice";
-import { classNameFormatter } from "../../utilities/utilities";
+import {
+  capitalizeString,
+  classNameFormatter,
+} from "../../utilities/utilities";
 import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
 import ContactWindow from "../../components/modalWindow/contactModal/contactWindow";
+import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 // import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 
 export default function ModalWindowMain({
@@ -21,6 +25,7 @@ export default function ModalWindowMain({
   disableBlur,
   // additionalInfo,
   onSetState,
+  width = "M",
 }) {
   const dispatch = useDispatch();
   const nodeRef = useRef(null);
@@ -54,7 +59,16 @@ export default function ModalWindowMain({
       onClick={handleBgClick}
     >
       <Draggable nodeRef={nodeRef}>
-        <div ref={nodeRef} className={styles.modalWindowContainer}>
+        <div
+          ref={nodeRef}
+          className={classNameFormatter({
+            styles,
+            classNames: [
+              "modalWindowContainer",
+              `width${capitalizeString(width)}`,
+            ],
+          })}
+        >
           <div className={styles.dragArea}>
             <div className={styles.closeBtn} onClick={handleClose}>
               <IoClose />
@@ -64,9 +78,9 @@ export default function ModalWindowMain({
           {modalType === "error" && (
             <ErrorWindow error={data} onCancel={onCancel} dispatch={dispatch} />
           )}
-          {/* {modalType === "info" && (
-            <InfoModal info={data} onConfirm={OnConfirm} />
-          )} */}
+          {modalType === "info" && (
+            <InfoModal info={data} onCancel={onCancel} dispatch={dispatch} />
+          )}
           {modalType === "contact" && <ContactWindow onSetState={onSetState} />}
         </div>
       </Draggable>
@@ -85,4 +99,5 @@ ModalWindowMain.propTypes = {
   OnConfirm: PropTypes.func,
   additionalInfo: PropTypes.any,
   onSetState: PropTypes.func,
+  width: PropTypes.string,
 };

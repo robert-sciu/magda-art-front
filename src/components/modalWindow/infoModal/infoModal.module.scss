@@ -3,8 +3,21 @@
 
 .modalWindow {
   @extend .modalWindowContent;
-
-  .buttonsContainer {
-    @extend .modalWindowButtonsContainer;
+  gap: $size-s;
+  padding: $size-xl $size-xxl;
+  width: 100%;
+  position: relative;
+  .infoContainer {
+    flex: 0;
+    max-height: 60vh;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    .infoTextContainer {
+      display: flex;
+      gap: $size-s;
+      border-bottom: 2px dotted $main-medium-light-gray;
+      width: 100%;
+      justify-content: space-between;
+    }
   }
 }

@@ -1,3 +1,5 @@
+import he from "he";
+
 function classNameFormatter({ styles, classNames }) {
   const formatted = classNames.map((className) => {
     return styles[className];
@@ -17,4 +19,13 @@ function getFileNameFromUrl(url) {
   }
 }
 
-export { classNameFormatter, capitalizeString, getFileNameFromUrl };
+function desanitizeString(str) {
+  return he.decode(he.decode(str));
+}
+
+export {
+  classNameFormatter,
+  capitalizeString,
+  getFileNameFromUrl,
+  desanitizeString,
+};

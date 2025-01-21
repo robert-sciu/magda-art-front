@@ -49,6 +49,10 @@
 }
 
 .adminContainer {
+  flex: 1;
+}
+
+.adminOutletContainer {
   background-color: $main-light-gray;
   padding: $size-xxl $size-xxl;
   position: relative;

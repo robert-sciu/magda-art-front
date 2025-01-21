@@ -8,8 +8,7 @@
 
   .tileContainer {
     width: auto;
-    //
-    position: relative;
+    // position: relative;
     .blur {
       transition: all 0.5s ease-in-out;
       backdrop-filter: blur($size-xxxs);
@@ -23,10 +22,8 @@
       backdrop-filter: blur(0);
     }
     .galleryImg {
-      transition: height 5s ease-in-out;
       width: 100%;
-      height: $size-giant;
-      // border: 3px solid $main-medium-light-gray;
+      // height: $size-giant;
     }
     .imgLoaded {
       width: 100%;
@@ -108,5 +105,17 @@
         box-shadow: 0 0 0.4rem 0.01rem $white-shadow;
       }
     }
+  }
+}
+
+.overlayTileContainer {
+  width: auto;
+  height: 100%;
+  position: relative;
+  img {
+    transition: 0.5s;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
   }
 }

@@ -16,7 +16,6 @@
   cursor: default;
 
   .modalWindowContainer {
-    width: 35rem;
     z-index: 21;
     display: flex;
     flex-direction: column;
@@ -25,7 +24,6 @@
     border-radius: $size-xxxs;
     align-items: center;
     cursor: default;
-    // padding: $size-xxxxs $size-xl;
     .dragArea {
       box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
       width: 100%;
@@ -49,6 +47,12 @@
         }
       }
     }
+  }
+  .widthM {
+    width: 35rem;
+  }
+  .widthL {
+    width: 80rem;
   }
 }
 

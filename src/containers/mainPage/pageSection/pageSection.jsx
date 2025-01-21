@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import {
   capitalizeString,
   classNameFormatter,
+  desanitizeString,
 } from "../../../utilities/utilities";
-import he from "he";
 import PropTypes from "prop-types";
 import ImageDisplayManager from "../imageDisplayManager.jsx/imageDisplayManager";
 import SocialIcons from "../../common/socialIcons/SocialIcons";
@@ -54,7 +54,7 @@ export default function PageSection({
       /////// what the hell is this about
       //TODO: get to the bottom of this
       setDecodedContent(
-        he.decode(he.decode(contentKey ? content?.[contentKey] : content))
+        desanitizeString(contentKey ? content?.[contentKey] : content)
       );
     }
   }, [content, contentKey]);
@@ -160,30 +160,30 @@ export default function PageSection({
 PageSection.propTypes = {
   name: PropTypes.string,
   contentSelector: PropTypes.func,
+  contentKey: PropTypes.string,
+  contentFlexWidth: PropTypes.string,
   imageSelector: PropTypes.func,
+  isCardStyle: PropTypes.bool,
   imageDisplayIsGrid: PropTypes.bool,
+  imageDisplayGridLayout: PropTypes.string,
   imageDisplayIsFlex: PropTypes.bool,
   imageDisplayFlexDirection: PropTypes.string,
+  imageDisplayFlexWidth: PropTypes.string,
+  additionalImagesStripe: PropTypes.bool,
+  sectionFlexDirection: PropTypes.string,
   imageDisplayLimitImages: PropTypes.number,
-  isCardStyle: PropTypes.bool,
+  imageIndex: PropTypes.number,
+  imageGap: PropTypes.string,
   margins: PropTypes.string,
   fontSize: PropTypes.string,
-  sectionFlexDirection: PropTypes.string,
   showSocialIcons: PropTypes.bool,
-  imageDisplayGridLayout: PropTypes.string,
-  imageGap: PropTypes.string,
   contentPadding: PropTypes.string,
   imagePadding: PropTypes.string,
   sectionGap: PropTypes.string,
   showHeader: PropTypes.bool,
-  header: PropTypes.string,
-  additionalImagesStripe: PropTypes.bool,
-  imageIndex: PropTypes.number,
+  headerSelector: PropTypes.string,
   contentTextAlign: PropTypes.string,
   withBorder: PropTypes.bool,
   hasCustomContent: PropTypes.bool,
-  customContent: PropTypes.object,
-  contentKey: PropTypes.string,
-  imageDisplayFlexWidth: PropTypes.string,
-  contentFlexWidth: PropTypes.string,
+  customContent: PropTypes.string,
 };

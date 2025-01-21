@@ -37,6 +37,7 @@ export default function InputElement({
   alignment = "center",
   textAlign = "left",
   isDisabled = false,
+  onFocus = () => {},
 }) {
   function triggerFileInput(e) {
     e.preventDefault();
@@ -70,6 +71,7 @@ export default function InputElement({
             value={value}
             onChange={onChange}
             disabled={isDisabled}
+            onFocus={onFocus}
           />
         </>
       )}
@@ -108,6 +110,7 @@ export default function InputElement({
               autoComplete={autoComplete}
               value={value}
               onChange={onChange}
+              defaultChecked={value}
             />
           </div>
         </>
@@ -151,4 +154,5 @@ InputElement.propTypes = {
   alignment: PropTypes.string,
   textAlign: PropTypes.string,
   isDisabled: PropTypes.bool,
+  onFocus: PropTypes.func,
 };
