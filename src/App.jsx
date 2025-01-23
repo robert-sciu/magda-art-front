@@ -80,13 +80,14 @@ function App() {
     dispatch(setAppLoaded(true));
   });
 
-  if (underConstruction === 1) {
+  if (underConstruction === "1") {
     return (
       <div className="maintenance">
         <h1>Under Construction</h1>
       </div>
     );
   }
+
   return (
     <div className="appContainer">
       {location === "/" && <LoadingState fadeOut={heroSectionInView} />}
