@@ -40,8 +40,6 @@
     .imageContainer {
       // THIS IS SOOOOO IMPORTANT IF YOU HAVE PROBLEM WITH IMAGE OVERFLOWING FLEX AREA
       min-height: 0;
-      // height: 100%;
-      // max-height: 80%;
       max-width: 95%;
       display: flex;
       border: 2px solid $main-gray;

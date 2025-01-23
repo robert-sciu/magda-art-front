@@ -1,39 +1,12 @@
 @import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
 
 .galleryPage {
   display: flex;
   gap: $size-xxxs;
   background-color: $main-black;
   padding: $size-giant $size-l $size-xl;
-  // margin-top: $size-l;
-  // align-items: flex-start;
   min-height: 100vh;
-  // position: relative;
-
-  // @include respond-to(small-desktop) {
-  //   padding: $size-giant $size-s $size-xl;
-  //   gap: $size-xxxxs;
-  // }
-
-  // @include respond-to(tablet) {
-  //   margin: 0;
-  //   padding: $size-giant $size-s $size-xl;
-  // }
-
-  // @include respond-to(mobile) {
-  //   padding: $size-xxxl $size-xxs $size-xl;
-  // }
-
   img {
     min-height: $size-xxxl;
   }
 }
-
-// .spinnerContainer {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-// }

@@ -6,11 +6,42 @@
   position: relative;
   overflow: hidden;
   z-index: -50;
-  background-color: $main-black;
+  background-color: $text-secondary;
+
   .headingContainer {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    .heading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: $size-s;
+      opacity: 1;
+      transition: opacity 3s;
+      color: $text-primary;
+      margin-top: $size-xxl;
+
+      h1 {
+        font-family: "Dancing Script", cursive;
+        font-weight: 400;
+        font-size: $size-xxxl;
+        text-align: center;
+        text-wrap: nowrap;
+      }
+
+      h2 {
+        font-size: $size-l;
+        font-weight: 400;
+      }
+    }
+    .hideHeading {
+      opacity: 0;
+    }
+
+    .showHeading {
+      opacity: 1;
+    }
   }
 }

@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-
-import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
+import { useSelector } from "react-redux";
+
+import Button from "../../../components/elements/button/Button";
 import ImageInspector from "../../../components/Admin/imageInspector/ImageInspector";
+import InputElement from "../../../components/elements/inputElement/InputElement";
 
 import styles from "./pageImagesUploadForm.module.scss";
 
@@ -14,8 +16,6 @@ import {
   resetErrors,
   splitOnUppercase,
 } from "../../../utilities";
-import InputElement from "../../../components/elements/inputElement/inputElement";
-import Button from "../../../components/elements/button/button";
 
 export default function PageImagesUploadForm({
   role,
@@ -23,8 +23,6 @@ export default function PageImagesUploadForm({
   maxNumberOfImages,
   onSubmit,
   info,
-  placementsNeeded = false,
-  hardPlacement = undefined,
   onDelete,
   urlInput = false,
 }) {
@@ -33,7 +31,6 @@ export default function PageImagesUploadForm({
   const [imageName, setImageName] = useState("");
   const [externalUrl, setExternalUrl] = useState("");
   const [showImages, setShowImages] = useState(false);
-  const [freePlacement, setFreePlacement] = useState(undefined);
   const [numberOfImages, setNumberOfImages] = useState(0);
   const [imageNameError, setImageNameError] = useState("");
   const [fileError, setFileError] = useState("");
@@ -45,25 +42,6 @@ export default function PageImagesUploadForm({
   const [subHeader, setSubHeader] = useState("");
 
   const images = useSelector(selector);
-
-  useEffect(() => {
-    if (!placementsNeeded) return;
-    let freePlacement;
-    if (hardPlacement) {
-      freePlacement = hardPlacement;
-    } else {
-      const placementsList = createArrayFromObject(images).map(
-        (img) => img.placement
-      );
-      for (let i = 1; i <= maxNumberOfImages; i++) {
-        if (!placementsList.includes(i)) {
-          freePlacement = i;
-          break;
-        }
-      }
-    }
-    setFreePlacement(freePlacement);
-  }, [images, maxNumberOfImages, placementsNeeded, hardPlacement]);
 
   useEffect(() => {
     setNumberOfImages(createArrayFromObject(images).length);
@@ -146,7 +124,6 @@ export default function PageImagesUploadForm({
     const data = {
       imageName: imageName,
       role: role,
-      placement: freePlacement || undefined,
       externalUrl: filteredUrl,
     };
 

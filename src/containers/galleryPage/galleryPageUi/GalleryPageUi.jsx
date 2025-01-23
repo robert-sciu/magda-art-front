@@ -6,10 +6,6 @@ import GalleryOverlay from "../galleryOverlay/GalleryOverlay.jsx";
 import GalleryColumn from "../../../components/Gallery/galleryColumn/GalleryColumn.jsx";
 import Fillers from "../../../components/Gallery/fillers/fillers.jsx";
 
-// import { setLocation } from "../../../store/rootNavSlice.js";
-
-import styles from "./galleryPageUi.module.scss";
-import scss from "../../../../styles/variables.module.scss";
 import {
   createImageColumns,
   disableBlur,
@@ -21,12 +17,13 @@ import {
   selectGalleryPageImagesFetchStatus,
   selectGalleryPageImagesLoadingStatus,
   selectHighQualityLoadStatus,
-  selectLazyLoadStatus,
   selectUseBlurStatus,
 } from "../../../store/galleryPageSlice.js";
-import LoadingState from "../../../components/loadingState/loadingState.jsx";
+
 import { selectDevice, setLocation } from "../../../store/rootNavSlice.js";
-// import { fetchCommonImages } from "../../../store/mainPageImagesSlice.js";
+
+import scss from "../../../../styles/variables.module.scss";
+import styles from "./galleryPageUi.module.scss";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -48,7 +45,6 @@ export default function GalleryPageUi() {
   const paintings = useSelector(selectGalleryPageImages);
   const loadingContent = useSelector(selectGalleryPageImagesLoadingStatus);
   const columns = useSelector(selectGalleryPageColumns);
-  const lazyLoaded = useSelector(selectLazyLoadStatus);
   const highQualityLoaded = useSelector(selectHighQualityLoadStatus);
   const fetchComplete = useSelector(selectGalleryPageImagesFetchStatus);
   const blurIsEnabled = useSelector(selectUseBlurStatus);
@@ -74,10 +70,6 @@ export default function GalleryPageUi() {
     if (fetchComplete) return;
     dispatch(fetchGalleryImages());
   }, [dispatch, fetchComplete]);
-
-  // useEffect(() => {
-  //   dispatch(fetchCommonImages());
-  // }, [dispatch]);
 
   useEffect(() => {
     setNumberOfColumns(getNumberOfColumns());
@@ -148,8 +140,7 @@ export default function GalleryPageUi() {
             />
           );
         })}
-      <LoadingState fadeOut={lazyLoaded} />
-      {device === "desktop" && clickedImage && <GalleryOverlay />}
+      {clickedImage && <GalleryOverlay isMobile={device === "mobile"} />}
     </div>
   );
 }

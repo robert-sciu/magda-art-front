@@ -3,4 +3,7 @@
 
 .container {
   @extend .adminMainContainer;
+  display: flex;
+  flex-direction: column;
+  gap: $size-tiny;
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Suspense } from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -11,6 +11,14 @@ const mainPageUiPromise = import("./containers/mainPage/mainPageUi/MainPageUi.js
 
 import "./App.scss";
 import LoadingState from "./components/loadingState/loadingState.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLazyLoadStatus } from "./store/galleryPageSlice.js";
+import {
+  selectAppLoaded,
+  selectLocation,
+  setAppLoaded,
+} from "./store/rootNavSlice.js";
+import { selectSectionInView } from "./store/mainPageImagesSlice.js";
 // import GrayBackground from "./components/common/grayBackground/GrayBackground.jsx";
 
 const LazyRootNav = React.lazy(() => rootNavPromise);
@@ -27,22 +35,22 @@ const LazyAdminNav = React.lazy(() =>
   import("./containers/admin/adminNav/AdminNav.jsx")
 );
 const LazyTextEditor = React.lazy(() =>
-  import("./containers/admin/textEditor/TextEditor.jsx")
+  import("./containers/admin/pageTextsManager/PageTextsManager.jsx")
 );
 const LazyPageImagesUploadManager = React.lazy(() =>
   import(
-    "./containers/admin/pageImagesUploadManager/pageImagesUploadManager.jsx"
+    "./containers/admin/pageImagesUploadManager/PageImagesUploadManager.jsx"
   )
 );
 
 const LazyGalleryImagesUploadManager = React.lazy(() =>
   import(
-    "./containers/admin/galleryImagesUploadManager/galleryImagesUploadManager.jsx"
+    "./containers/admin/galleryImagesUploadManager/GalleryImagesUploadManager.jsx"
   )
 );
 
 const LazyAdminStart = React.lazy(() =>
-  import("./containers/admin/adminStart/AdminStart.jsx")
+  import("./components/Admin/adminStart/AdminStart.jsx")
 );
 
 const LazyPotectedRoute = React.lazy(() =>
@@ -54,16 +62,41 @@ const LazyPotectedRoute = React.lazy(() =>
  *
  * @return {JSX.Element} The rendered application component.
  */
+const underConstruction = import.meta.env.VITE_UNDER_CONSTRUCTION;
 
 function App() {
+  const location = useSelector(selectLocation);
+  const appLoaded = useSelector(selectAppLoaded);
+  const galleryLazyLoaded = useSelector(selectLazyLoadStatus);
+  const heroSectionInView = useSelector((state) =>
+    selectSectionInView(state, "hero")
+  );
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (appLoaded) return;
+    if (!location) return;
+    dispatch(setAppLoaded(true));
+  });
+
+  if (underConstruction === 1) {
+    return (
+      <div className="maintenance">
+        <h1>Under Construction</h1>
+      </div>
+    );
+  }
   return (
     <div className="appContainer">
+      {location === "/" && <LoadingState fadeOut={heroSectionInView} />}
+      {location === "/gallery" && <LoadingState fadeOut={galleryLazyLoaded} />}
       <BrowserRouter>
         <Routes>
           <Route
             path="/"
             element={
-              <Suspense fallback={<LoadingState />}>
+              <Suspense fallback={<div className="grayBg"></div>}>
                 <LazyRootNav />
               </Suspense>
             }
@@ -79,7 +112,7 @@ function App() {
             <Route
               path="/gallery"
               element={
-                <Suspense>
+                <Suspense fallback={<div className="grayBg"></div>}>
                   <LazyGalleryPageUi />
                 </Suspense>
               }
@@ -87,7 +120,7 @@ function App() {
             <Route
               path="/login"
               element={
-                <Suspense fallback={<LoadingState />}>
+                <Suspense>
                   <LazyLogin />
                 </Suspense>
               }
@@ -95,7 +128,7 @@ function App() {
             <Route
               path="/admin"
               element={
-                <Suspense fallback={<LoadingState />}>
+                <Suspense>
                   <LazyPotectedRoute>
                     <LazyAdminNav />
                   </LazyPotectedRoute>
@@ -105,7 +138,7 @@ function App() {
               <Route
                 index
                 element={
-                  <Suspense fallback={<LoadingState />}>
+                  <Suspense>
                     <LazyAdminStart />
                   </Suspense>
                 }
@@ -113,7 +146,7 @@ function App() {
               <Route
                 path="texts"
                 element={
-                  <Suspense fallback={<LoadingState />}>
+                  <Suspense>
                     <LazyTextEditor />
                   </Suspense>
                 }
@@ -121,7 +154,7 @@ function App() {
               <Route
                 path="images/pageImages"
                 element={
-                  <Suspense fallback={<LoadingState />}>
+                  <Suspense>
                     <LazyPageImagesUploadManager />
                   </Suspense>
                 }
@@ -129,7 +162,7 @@ function App() {
               <Route
                 path="images/galleryImages"
                 element={
-                  <Suspense fallback={<LoadingState />}>
+                  <Suspense>
                     <LazyGalleryImagesUploadManager />
                   </Suspense>
                 }

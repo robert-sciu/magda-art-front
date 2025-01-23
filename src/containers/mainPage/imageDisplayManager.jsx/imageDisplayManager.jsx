@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
-import styles from "./imageDisplayManager.module.scss";
+
 import { useSelector } from "react-redux";
+
+import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
+
 import { selectSectionInView } from "../../../store/mainPageImagesSlice";
-import ImageDisplay from "../../../containers/common/imageDisplay/imageDisplay";
+
+import styles from "./imageDisplayManager.module.scss";
+
 import {
   capitalizeString,
   classNameFormatter,

@@ -1,39 +1,22 @@
 @import "./../../../../styles/variables.module.scss";
+@import "./../../../../styles/classes.module.scss";
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 2.5fr;
-  border: 1px solid $main-medium-light-gray;
-  padding: $size-l;
-  gap: $size-xl;
-  margin-bottom: $size-l;
-  background-color: $main-light-gray;
-
+  @extend .adminSectionContainer;
   .formContainer {
     display: flex;
     flex-direction: column;
     gap: $size-xxs;
     align-items: start;
-    // background-color: red;
 
     .error {
-      color: $error-red;
+      color: $common-red;
       font-size: $size-xs;
     }
 
     .info {
       font-style: italic;
-      color: $action-green;
-    }
-
-    button {
-      // cursor: pointer;
-      // padding: $size-xxxxs;s
-      // width: auto;
-      // align-self: start;
-      // min-width: calc($size-xxxxl * 1.5);
-      // border-radius: $border-radius-m;
-      // border: 1px solid $main-medium-light-gray;
+      color: $common-green;
     }
   }
   .gridContainer {

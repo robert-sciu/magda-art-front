@@ -6,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.575);
+  background-color: $overlay-dark;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     gap: $size-xxxxs;
-    background-color: $main-white;
+    background-color: $background-secondary;
     border-radius: $size-xxxs;
     align-items: center;
     cursor: default;
@@ -37,13 +37,13 @@
       flex-direction: row-reverse;
       padding: 0 $size-xxs;
       font-size: $size-s;
-      color: $main-gray;
+      color: $text-tertiary;
       .closeBtn {
         cursor: pointer;
         transition: $basic-transition;
 
         &:hover {
-          color: $main-black;
+          color: $text-secondary;
         }
       }
     }

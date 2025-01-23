@@ -1,18 +1,16 @@
-import { NavLink } from "react-router-dom";
-import { Link } from "react-scroll";
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
-import SocialIcons from "../socialIcons/SocialIcons";
+import SocialIcons from "../../../components/common/socialIcons/SocialIcons";
 
 import { selectLocation, setLocation } from "../../../store/rootNavSlice";
 
 import styles from "./navLinks.module.scss";
-import Logo from "../logo/Logo";
+import UniversalNavLink from "../../../components/elements/universalNavLink/UniversalNavLink";
+// import Logo from "../logo/Logo";
 
 export default function NavLinks({
   showAdmin,
-  onSocialsLoaded,
   navClass,
   onMobileNavOpen = () => {},
 }) {
@@ -27,7 +25,6 @@ export default function NavLinks({
     } else if (navClass === "desktopNav") {
       dispatch(setLocation(window.location.pathname));
     }
-
     e.preventDefault();
     onMobileNavOpen(false);
   }
@@ -35,96 +32,75 @@ export default function NavLinks({
   return (
     <>
       <ul className={styles[navClass]} onClick={handleLinkClick}>
-        <li>{navClass === "mobileNav" && <Logo />}</li>
         <li>
           {location === "/" ? (
-            <Link
-              href="#hero"
-              className={styles.navLink}
-              activeClass={styles.navLinkActive}
+            <UniversalNavLink
+              isScroll={true}
               to="hero"
-              smooth={true}
-              onClick={handleLinkClick}
-            >
-              Home
-            </Link>
+              label="Home"
+              onLinkClick={handleLinkClick}
+              isMobile={navClass === "mobileNav"}
+            />
           ) : (
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? styles.navLinkActive : styles.navLink
-              }
+            <UniversalNavLink
+              isNav={true}
               to="/"
-            >
-              Home
-            </NavLink>
+              label="Home"
+              isMobile={navClass === "mobileNav"}
+            />
           )}
         </li>
         {(location === "/" || location === "/admin") && (
           <li>
-            <Link
-              href="#bio"
-              className={styles.navLink}
-              activeClass={styles.navLinkActive}
+            <UniversalNavLink
+              isScroll={true}
               to="bio"
-              smooth={true}
-              onClick={handleLinkClick}
-            >
-              Bio
-            </Link>
+              label="Bio"
+              onLinkClick={handleLinkClick}
+              isMobile={navClass === "mobileNav"}
+            />
           </li>
         )}
 
         <li>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? styles.navLinkActive : styles.navLink
-            }
+          <UniversalNavLink
+            isNav={true}
             to="/gallery"
-          >
-            Gallery
-          </NavLink>
+            label="Gallery"
+            isMobile={navClass === "mobileNav"}
+          />
         </li>
         {(location === "/" || location === "/admin") && (
           <li>
-            <Link
-              href="#visualizations"
-              className={styles.navLink}
-              activeclass={styles.navLinkActive}
+            <UniversalNavLink
+              isScroll={true}
               to="visualizations"
-              smooth={true}
-              onClick={handleLinkClick}
-            >
-              Visualizations
-            </Link>
+              label="Visualizations"
+              onLinkClick={handleLinkClick}
+              isMobile={navClass === "mobileNav"}
+            />
           </li>
         )}
         {(location === "/" || location === "/admin") && (
           <li>
-            <Link
-              href="#contact"
-              className={styles.navLink}
-              activeclass={styles.navLinkActive}
+            <UniversalNavLink
+              isScroll={true}
               to="contact"
-              smooth={true}
-              onClick={handleLinkClick}
-            >
-              Contact
-            </Link>
+              label="Contact"
+              onLinkClick={handleLinkClick}
+              isMobile={navClass === "mobileNav"}
+            />
           </li>
         )}
 
         {showAdmin ? (
           <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? `${styles.navLinkActive} ${styles.admin}`
-                  : styles.navLink
-              }
+            <UniversalNavLink
+              isNav={true}
               to="/admin"
-            >
-              ADMIN
-            </NavLink>
+              label="Admin"
+              isMobile={navClass === "mobileNav"}
+            />
           </li>
         ) : null}
       </ul>

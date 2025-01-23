@@ -3,10 +3,10 @@ import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
-import Footer from "../common/footer/Footer";
+import Footer from "../../components/common/footer/Footer";
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
-import { MobileNav } from "../../components/common/mobileNav/MobileNav";
-import FixedNav from "../../components/common/fixedNav/FixedNav";
+import LoadingState from "../../components/loadingState/loadingState";
+import MobileNav from "../../components/common/mobileNav/MobileNav";
 
 import {
   selectDevice,
@@ -15,19 +15,14 @@ import {
   setDevice,
   setWindowWidth,
 } from "../../store/rootNavSlice";
-
-import scss from "../../../styles/variables.module.scss";
+import { selectGalleryPageImagesFetchStatus } from "../../store/galleryPageSlice";
 import { selectAuthAuthenticationStatus } from "../../store/authSlice";
 import {
   fetchCommonImages,
   selectPageImagesFetchStatus,
 } from "../../store/mainPageImagesSlice";
-import {
-  selectGalleryPageImagesFetchStatus,
-  // selectLazyLoadStatus,
-  // selectGalleryPageImagesLoadingStatus,
-} from "../../store/galleryPageSlice";
-import LoadingState from "../../components/loadingState/loadingState";
+
+import scss from "../../../styles/variables.module.scss";
 import styles from "./rootNav.module.scss";
 
 /**
@@ -49,7 +44,6 @@ export default function RootNav() {
 
   const dispatch = useDispatch();
 
-  // const loadState = useSelector(filesLoaded);
   const pageImagesLoaded = useSelector(selectPageImagesFetchStatus);
   const galleryImagesLoaded = useSelector(selectGalleryPageImagesFetchStatus);
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
@@ -59,12 +53,7 @@ export default function RootNav() {
 
   const navRef = useRef(null);
 
-  // const hasFetched = useRef(false);
-
   useEffect(() => {
-    // if (!loadState) return;
-    // if (hasFetched.current) return;
-    // hasFetched.current = true;
     dispatch(fetchCommonImages());
   }, [dispatch]);
 
@@ -128,13 +117,19 @@ export default function RootNav() {
       {device === "desktop" && (
         <DesktopNav
           showNav={showNav}
+          isFixedNav={false}
           showAdmin={showAdmin}
           onLogoLoaded={setLogoLoaded}
           onSocialsLoaded={setSocialsLoaded}
         />
       )}
       {navIsFixed && location === "/" && device === "desktop" && (
-        <FixedNav showFixedNav={showFixedNav} />
+        <DesktopNav
+          showNav={showFixedNav}
+          isFixedNav={true}
+          onLogoLoaded={setLogoLoaded}
+          onSocialsLoaded={setSocialsLoaded}
+        />
       )}
       {device === "mobile" && (
         <MobileNav

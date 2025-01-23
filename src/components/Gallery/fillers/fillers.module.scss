@@ -20,15 +20,8 @@
   align-items: center;
   max-width: $size-giant;
   max-height: $size-giant;
-  // border: $size-xxxxs solid $main-white;
-  // flex-grow: 0;
-  // height: 100%;
-  .logoImg {
-    // width: 100%;
-    // height: 100%;
-    flex: 1;
-    filter: $main-white--filter;
-  }
+  filter: $logo-filter;
+  flex: 1;
 }
 
 .randomFiller {

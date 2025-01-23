@@ -1,17 +1,17 @@
+import PropTypes from "prop-types";
+
 import { NavLink } from "react-router-dom";
+
+import Button from "../button/Button";
 
 import styles from "./navLinkBtn.module.scss";
 
-import Button from "../button/button";
-
-import PropTypes from "prop-types";
-
 export default function NavLinkBtn({ to, label, onClick = () => {} }) {
   return (
-    <li>
+    <li className={styles.navLinkContainer}>
       <NavLink className={styles.navLink} to={to} onClick={onClick}>
         {({ isActive }) => (
-          <Button label={label} style={isActive ? "" : "lightBtn"} />
+          <Button label={label} flexStretch={true} disabled={isActive} />
         )}
       </NavLink>
     </li>

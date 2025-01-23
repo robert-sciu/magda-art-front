@@ -5,14 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Hero from "../hero/Hero";
 
 import {
-  // fetchCommonImages,
   fetchPageImages,
-  // selectBioImages,
-  // selectBioParallaxImage,
-  // selectGalleryParallaxImage,
-  // selectVisualizationsImages,
-  // selectWelcomeImages,
-  // selectPageImagesFetchStatus,
   setSectionInView,
 } from "../../../store/mainPageImagesSlice";
 import {
@@ -23,33 +16,21 @@ import {
 } from "../../../store/rootNavSlice";
 import {
   fetchContent,
-  // selectBio,
   selectContentFetchComplete,
-  // selectName,
   selectVisualizationsTexts,
-  // selectWelcome,
 } from "../../../store/mainPageContentSlice";
 
 import scss from "../../../../styles/variables.module.scss";
 import styles from "./mainPageUi.module.scss";
 
-// // import { createArrayFromObject } from "../../../utilities";
-// import Parallax from "../parallax/parallax";
-// import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
-// import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
-
 import useMeasure from "react-use-measure";
 import SectionDefinition from "../sectionDefinition/sectionDefinition";
-// import PageSection from "../pageSection/pageSection";
-// import ContactForm from "../../../components/common/contactForm/ContactForm";
-// import LoadingState from "../../../components/loadingState/loadingState";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
 const smallDesktopWidth = parseInt(scss.smallDesktopWidth);
 const tabletWidth = parseInt(scss.tabletWidth);
 const mobileWidth = parseInt(scss.mobileWidth);
-
 export default function MainPageUi() {
   const triggerRef = useRef(null);
   const sectionRefs = useRef([]); // Array of refs for sections
@@ -57,7 +38,6 @@ export default function MainPageUi() {
   const widthType = useSelector(selectWidthType);
   const visualizations = useSelector(selectVisualizationsTexts);
   const contentFetchComplete = useSelector(selectContentFetchComplete);
-  // const imagesFetchComplete = useSelector(selectPageImagesFetchStatus);
 
   const [refMeasure, bounds] = useMeasure();
 
@@ -86,8 +66,6 @@ export default function MainPageUi() {
     }
   }, [bounds, widthType, dispatch]);
 
-  console.log(widthType);
-
   const addToRefs = (el) => {
     if (el && !sectionRefs.current.includes(el)) {
       sectionRefs.current.push(el);
@@ -101,7 +79,6 @@ export default function MainPageUi() {
   useEffect(() => {
     dispatch(fetchContent());
     dispatch(fetchPageImages());
-    // dispatch(fetchCommonImages());
   }, [dispatch]);
 
   useEffect(() => {
@@ -131,6 +108,8 @@ export default function MainPageUi() {
   }, [triggerRef, dispatch]);
 
   useEffect(() => {
+    if (!contentFetchComplete) return;
+    const curentRefs = sectionRefs.current;
     const observer = new IntersectionObserver(
       (entries) => {
         const updatedSections = {};
@@ -147,19 +126,19 @@ export default function MainPageUi() {
         }
       },
       {
-        root: null, // Viewport as the root
-        threshold: 0.5, // Trigger when 50% visible
+        root: null,
+        threshold: 0.5,
       }
     );
-    sectionRefs.current.forEach((ref) => {
+    curentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
     return () => {
-      sectionRefs.current.forEach((ref) => {
+      curentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
     };
-  }, [dispatch]);
+  }, [contentFetchComplete, sectionRefs, dispatch]);
 
   return (
     <div className={styles.uiContainer} ref={refMeasure}>

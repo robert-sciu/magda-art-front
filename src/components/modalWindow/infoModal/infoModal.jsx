@@ -1,8 +1,10 @@
-import { desanitizeString } from "../../../utilities/utilities";
-import Button from "../../elements/button/button";
+import PropTypes from "prop-types";
+
+import Button from "../../elements/button/Button";
+
 import styles from "./infoModal.module.scss";
 
-import PropTypes from "prop-types";
+import { desanitizeString } from "../../../utilities/utilities";
 
 export default function InfoModal({ info, onCancel, dispatch }) {
   function handleClick(e) {
@@ -38,7 +40,7 @@ export default function InfoModal({ info, onCancel, dispatch }) {
 }
 
 InfoModal.propTypes = {
-  info: PropTypes.obj,
+  info: PropTypes.object,
   onCancel: PropTypes.func,
   dispatch: PropTypes.func,
 };

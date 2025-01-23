@@ -1,29 +1,26 @@
-import { IoMove, IoClose } from "react-icons/io5";
-import styles from "./modalWindowMain.module.scss";
-import Draggable from "react-draggable";
 import { useRef } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
 
-// import { clearTempData } from "../../../store/fullCalendarSlice";
+import Draggable from "react-draggable";
+import { useDispatch } from "react-redux";
+import { IoMove, IoClose } from "react-icons/io5";
+
+import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
+import ContactWindow from "../../components/modalWindow/contactModal/contactWindow";
+import InfoModal from "../../components/modalWindow/infoModal/infoModal";
+
+import styles from "./modalWindowMain.module.scss";
+
 import {
   capitalizeString,
   classNameFormatter,
 } from "../../utilities/utilities";
-import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
-import ContactWindow from "../../components/modalWindow/contactModal/contactWindow";
-import InfoModal from "../../components/modalWindow/infoModal/infoModal";
-// import InfoModal from "../../components/modalWindow/infoModal/infoModal";
 
 export default function ModalWindowMain({
   modalType,
-  // onSubmit,
-  // OnConfirm,
   onCancel,
-  // onDeleteSubmit,
   data,
   disableBlur,
-  // additionalInfo,
   onSetState,
   width = "M",
 }) {

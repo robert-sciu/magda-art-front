@@ -1,5 +1,4 @@
 @import "../../../../styles//variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
 
 .desktopNav {
   width: 100%;
@@ -7,35 +6,20 @@
   position: absolute;
   top: 0;
   padding: $size-xxxxs $size-m;
-  background-color: $main-white;
-  box-shadow: 2px 0px 5px $white-shadow;
+  background-color: $background-nav;
   opacity: 0;
-  transition: opacity 2s;
+  transition: opacity 1s;
   z-index: 100;
+}
 
-  // @include respond-to(medium-desktop) {
-  //   padding: $size-xxs $size-s;
-  // }
-
-  // @include respond-to(small-desktop) {
-  //   padding: $size-xxxs $size-xs;
-  // }
+.topNav {
+  position: absolute;
+  box-shadow: $shadow-nav;
+}
+.fixedNav {
+  position: fixed;
 }
 
 .showNav {
-  opacity: 1;
-}
-
-.fixedNav {
-  position: fixed;
-  top: 0;
-  z-index: 100;
-  padding: $size-xxs $size-s;
-  background-color: $main-gray;
-  opacity: 0;
-  transition: opacity 2s;
-}
-
-.showFixedNav {
   opacity: 1;
 }

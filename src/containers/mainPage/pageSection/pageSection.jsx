@@ -1,16 +1,18 @@
-import { useSelector } from "react-redux";
-import styles from "./pageSection.module.scss";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
+import PropTypes from "prop-types";
+
+import ImageDisplayManager from "../imageDisplayManager.jsx/imageDisplayManager";
+import SocialIcons from "../../../components/common/socialIcons/SocialIcons";
+
+import styles from "./pageSection.module.scss";
+
 import {
   capitalizeString,
   classNameFormatter,
   desanitizeString,
 } from "../../../utilities/utilities";
-import PropTypes from "prop-types";
-import ImageDisplayManager from "../imageDisplayManager.jsx/imageDisplayManager";
-import SocialIcons from "../../common/socialIcons/SocialIcons";
-
-// import polyfill from "@juggle/resize-observer";
 
 export default function PageSection({
   name,
@@ -36,7 +38,7 @@ export default function PageSection({
   imagePadding = "L",
   sectionGap = "L",
   showHeader = false,
-  headerSelector = "",
+  headerSelector = false,
   contentTextAlign = "left",
   withBorder = false,
   hasCustomContent = false,
@@ -120,6 +122,10 @@ export default function PageSection({
             classNames: [
               "content",
               `textAlign${capitalizeString(contentTextAlign)}`,
+              showSocialIcons && "gapM",
+              sectionFlexDirection === "column" &&
+                showSocialIcons &&
+                "contentCenter",
             ],
           })}
         >
@@ -181,9 +187,9 @@ PageSection.propTypes = {
   imagePadding: PropTypes.string,
   sectionGap: PropTypes.string,
   showHeader: PropTypes.bool,
-  headerSelector: PropTypes.string,
+  headerSelector: PropTypes.func,
   contentTextAlign: PropTypes.string,
   withBorder: PropTypes.bool,
   hasCustomContent: PropTypes.bool,
-  customContent: PropTypes.string,
+  customContent: PropTypes.object,
 };

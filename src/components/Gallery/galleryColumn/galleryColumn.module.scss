@@ -1,5 +1,4 @@
 @import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
 
 .galleryColumn {
   display: flex;
@@ -7,21 +6,12 @@
   flex: 1;
   gap: $size-xxxs;
 
-  .fillDiv {
+  .filler {
     flex: 1;
-    // height: 100%;
-    // width: 100%;
-    background-color: $main-gray;
+    background-color: $background-tertiary;
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  // img {
-  //   border-radius: $border-radius-xs;
-  // }
-
-  // @include respond-to(small-desktop) {
-  //   gap: $size-xxxxs;
-  // }
 }

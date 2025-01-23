@@ -1,0 +1,89 @@
+@import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+
+.logoGlow {
+  width: $size-xxl;
+  height: $size-xxl;
+  position: relative;
+  border-radius: $border-radius-xs;
+
+  img {
+    position: relative;
+    z-index: 10;
+    border-radius: inherit;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    inset: -0.2rem;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--gradient-angle),
+      #ff0000,
+      #00ff00,
+      #0000ff,
+      rgb(255, 255, 0),
+      rgb(255, 0, 255)
+    );
+    animation: rotateGlow 15s linear infinite;
+  }
+  &::before {
+    opacity: 0.1;
+  }
+  &::after {
+    opacity: 0.5;
+    filter: blur($size-s);
+  }
+
+  // @include respond-to(medium-desktop) {
+  //   width: $size-xl;
+  //   height: $size-xl;
+  // }
+}
+
+@keyframes rotateGlow {
+  0% {
+    --gradient-angle: 0deg;
+  }
+  100% {
+    --gradient-angle: 360deg;
+  }
+}
+
+.mainLogo {
+  width: calc($size-giant * 1.2);
+  height: calc($size-giant * 1.2);
+
+  img {
+    z-index: 10;
+    border-radius: $border-radius-s;
+    box-shadow: 2px 0px 10px $white-shadow;
+  }
+
+  // @include respond-to(medium-desktop) {
+  //   width: $size-giant;
+  //   height: $size-giant;
+  // }
+
+  // @include respond-to(small-desktop) {
+  //   width: $size-xxxxl;
+  //   height: $size-xxxxl;
+  // }
+
+  // @include respond-to(small-tablet) {
+  //   width: $size-xxxl;
+  //   height: $size-xxxl;
+  // }
+
+  // @include respond-to(mobile) {
+  //   width: $size-xxl;
+  //   height: $size-xxl;
+  // }
+}
+
+.sizeL {
+  width: $size-xxxxl;
+  height: $size-xxxxl;
+}

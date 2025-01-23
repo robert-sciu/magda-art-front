@@ -2,19 +2,19 @@ import { useState } from "react";
 
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
 
-import SocialIcons from "../../../containers/common/socialIcons/SocialIcons";
-// import GalleryOverlayContact from "../../../containers/galleryPage/galleryOverlayContact/GalleryOverlayContact";
+import SocialIcons from "../../common/socialIcons/SocialIcons";
+import ModalWindowMain from "../../../containers/modalWindow/modalWindowMain";
+import ImageDisplay from "../../elements/imageDisplay/ImageDisplay";
+
+import { selectLogoImage } from "../../../store/mainPageImagesSlice";
 
 import styles from "./fillers.module.scss";
-import { selectLogoImage } from "../../../store/mainPageImagesSlice";
-import ModalWindowMain from "../../../containers/modalWindow/modalWindowMain";
 
 function SocialsFiller() {
   return (
     <div>
-      <SocialIcons />
+      <SocialIcons size={"L"} />
     </div>
   );
 }
@@ -32,7 +32,6 @@ function ContactFiller() {
       </Link>
 
       {showContactOverlay && (
-        // <GalleryOverlayContact onCloseOverlay={setShowContactOverlay} />
         <ModalWindowMain
           modalType={"contact"}
           onSetState={setShowContactOverlay}
@@ -46,7 +45,7 @@ function LogoFiller() {
   const logo = useSelector(selectLogoImage)[0];
   return (
     <div className={styles.logo}>
-      <img className={styles.logoImg} src={logo?.url_mobile} alt={"logo"} />
+      <ImageDisplay img={logo} isVisible={true} type={"pageImage"} />
     </div>
   );
 }
@@ -67,7 +66,3 @@ const FillerComponents = {
 };
 
 export default FillerComponents;
-
-ContactFiller.propTypes = {
-  contactComponent: PropTypes.object,
-};

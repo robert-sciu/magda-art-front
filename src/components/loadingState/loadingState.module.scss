@@ -6,19 +6,18 @@
 }
 
 .backgroundLight {
-  background-color: $main-gray-light;
+  background-color: $background-tertiary;
 }
 
 .backgroundDark {
-  background-color: $main-black;
-  color: $main-white;
+  background-color: $background-dark;
+  color: $text-primary;
 }
 
 .loadingStateContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-
   top: 0;
   left: 0;
   width: 100%;

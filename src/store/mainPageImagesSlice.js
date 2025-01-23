@@ -113,6 +113,8 @@ export const mainPageImagesSlice = createSlice({
       // contactSmall: false,
       contact: false,
     },
+    // heroImgLoaded: false,
+    heroImgLoadedHQ: false,
 
     isLoading: false,
     hasError: false,
@@ -129,6 +131,9 @@ export const mainPageImagesSlice = createSlice({
     },
     setSectionInView(state, action) {
       state.sectionInView[action.payload] = true;
+    },
+    setHeroImgLoadedHQ(state) {
+      state.heroImgLoadedHQ = true;
     },
   },
   extraReducers: (builder) => {
@@ -185,7 +190,7 @@ export const mainPageImagesSlice = createSlice({
   },
 });
 
-export const { setRoleToRefetch, setSectionInView } =
+export const { setRoleToRefetch, setSectionInView, setHeroImgLoadedHQ } =
   mainPageImagesSlice.actions;
 export const selectLogoImage = (state) =>
   state.mainPageImages.commonImages.logo;
@@ -224,5 +229,8 @@ export const selectCommonImagesFetchStatus = (state) =>
 
 export const selectSectionInView = (state, section) =>
   state.mainPageImages.sectionInView[section];
+
+export const selectHeroImgLoadedHQ = (state) =>
+  state.mainPageImages.heroImgLoadedHQ;
 
 export default mainPageImagesSlice.reducer;

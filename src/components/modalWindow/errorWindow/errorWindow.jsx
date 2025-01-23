@@ -1,4 +1,4 @@
-import Button from "../../elements/button/button";
+import Button from "../../elements/button/Button";
 import styles from "./errorWindow.module.scss";
 import PropTypes from "prop-types";
 

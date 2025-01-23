@@ -1,12 +1,13 @@
+import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-// import GalleryTile from "../galleryTile/GalleryTile";
+import { useSelector } from "react-redux";
+
+import ImageDisplay from "../../elements/imageDisplay/ImageDisplay";
+
+import { selectLazyLoadStatus } from "../../../store/galleryPageSlice";
 
 import styles from "./galleryColumn.module.scss";
-import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
-import { selectLazyLoadStatus } from "../../../store/galleryPageSlice";
-import ImageDisplay from "../../../containers/common/imageDisplay/imageDisplay";
 
 export default function GalleryColumn({ column, isHighest, Filler = null }) {
   const refs = useRef([]);
@@ -15,6 +16,7 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
 
   useEffect(() => {
     if (!lazyLoaded) return;
+    const curentRefs = refs.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -37,15 +39,13 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
         threshold: 0.1,
       }
     );
-
     // Observe each `GalleryTile` using refs
-    refs.current.forEach((ref) => {
+    curentRefs.forEach((ref) => {
       if (ref) observer.observe(ref);
     });
-
     return () => {
       // Cleanup
-      refs.current.forEach((ref) => {
+      curentRefs.forEach((ref) => {
         if (ref) observer.unobserve(ref);
       });
       observer.disconnect();
@@ -64,7 +64,7 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
         />
       ))}
       {!isHighest ? (
-        <div className={styles.fillDiv}>{Filler ? <Filler /> : null}</div>
+        <div className={styles.filler}>{Filler ? <Filler /> : null}</div>
       ) : null}
     </div>
   );

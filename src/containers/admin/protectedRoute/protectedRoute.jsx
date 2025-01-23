@@ -1,6 +1,9 @@
-import PropTypes from "prop-types";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
+
 import {
   selectAuthAuthenticationStatus,
   selectAuthToken,
@@ -8,7 +11,6 @@ import {
   setTokenVerificationComplete,
   verifyStoredToken,
 } from "../../../store/authSlice";
-import { useNavigate } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
   const [showChildren, setShowChildren] = useState(false);

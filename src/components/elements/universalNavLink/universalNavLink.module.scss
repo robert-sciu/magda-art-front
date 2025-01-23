@@ -1,0 +1,33 @@
+@import "../../../../styles/variables.module.scss";
+
+.navLink {
+  color: $text-secondary;
+  transition: $link-transition;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navLink:hover {
+  color: $text-tertiary;
+}
+
+.navLinkActive {
+  color: $text-tertiary;
+  text-decoration: none;
+}
+
+.admin {
+  color: $common-green;
+}
+
+.navLinkMobile {
+  cursor: default;
+  color: $text-secondary;
+  text-decoration: none;
+}
+
+.navLinkActiveMobile {
+  cursor: default;
+  color: $text-secondary;
+  text-decoration: none;
+}

@@ -4,26 +4,20 @@
   border-radius: $border-radius-m;
   max-width: $main-content-width;
   padding: $size-xxl;
-  // gap: $size-xxl;
 
   .contentContainer {
     display: flex; // align-items: center;
     justify-content: center;
-    // background-color: red;
     .header {
-      // background-color: blue;
       margin-bottom: $size-l;
     }
 
     .content {
-      // display: flex;
-      // text-align: center;
-      // flex-direction: column;
-      // .socials {
-      //   background-color: red;
-      //   // text-align: center;
-      //   // display: inline;'
-      // }
+      display: flex;
+      flex-direction: column;
+    }
+    .contentCenter {
+      align-items: center;
     }
   }
 
@@ -45,16 +39,9 @@
 
   .imageContainer {
     display: flex;
-    // flex-direction: column;
     align-items: center;
     text-align: center;
     justify-content: center;
-    // width: 100%;
-    // height: 100%;
-    // flex: 1;
-    // margin: 0 auto;
-    // background-color: red;
-    // background-color: green;
   }
 
   .mozaicOverflow {
@@ -132,7 +119,7 @@
 }
 
 .cardStyle {
-  box-shadow: 0 0rem 2rem $medium-shadow;
+  box-shadow: 0 0rem 2rem $card-shadow-primary;
 }
 
 .gapL {
@@ -145,6 +132,10 @@
 
 .gapS {
   gap: $size-xxs;
+}
+
+.gapXS {
+  gap: $size-tiny;
 }
 
 .grid41 {

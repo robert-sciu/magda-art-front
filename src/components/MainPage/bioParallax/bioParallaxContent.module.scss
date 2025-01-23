@@ -1,7 +1,7 @@
 @import "../../../../styles/variables.module.scss";
 
 .parallaxText {
-  color: $main-white;
+  color: $text-primary;
   font-size: $size-giant;
   mix-blend-mode: difference;
   z-index: 15;

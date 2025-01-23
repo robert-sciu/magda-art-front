@@ -12,6 +12,7 @@ export const rootNavSlice = createSlice({
     },
     isLoadingContent: false,
     hasError: false,
+    appLoaded: false,
   },
 
   reducers: {
@@ -29,6 +30,10 @@ export const rootNavSlice = createSlice({
 
     setWidthType: (state, action) => {
       state.common.widthType = action.payload;
+    },
+
+    setAppLoaded: (state, action) => {
+      state.appLoaded = action.payload;
     },
 
     setDevice: (state, action) => {
@@ -53,6 +58,8 @@ export const selectFixedNav = (state) => state.rootNav.common.fixedNav;
 export const selectDevice = (state) => state.rootNav.common.device;
 export const selectWidthType = (state) => state.rootNav.common.widthType;
 
+export const selectAppLoaded = (state) => state.rootNav.appLoaded;
+
 export const {
   setWindowWidth,
   setLocation,
@@ -60,6 +67,8 @@ export const {
   setDevice,
   setWidthType,
   setWidth,
+  setAppLoaded,
+  setInitialLoadStateDisabled,
 } = rootNavSlice.actions;
 
 export default rootNavSlice.reducer;

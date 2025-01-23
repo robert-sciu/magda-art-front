@@ -44,25 +44,6 @@
 .socials {
   display: flex;
   align-items: center;
-  //   gap: $size-s;
-
-  //   img {
-  //     height: $size-xl;
-  //     width: $size-xl;
-  //     filter: $main-black--filter;
-  //   }
-
-  //   img:hover {
-  //     filter: $main-gray--filter !important;
-  //   }
-
-  // @include respond-to(small-desktop) {
-  //   gap: $size-xs;
-  //   img {
-  //     height: $size-l;
-  //     width: $size-l;
-  //   }
-  // }
 }
 
 .mobileNav {

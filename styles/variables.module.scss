@@ -8,18 +8,84 @@ $breakpoint-medium-small-desktop: 1280px;
 $breakpoint-medium-desktop: 1440px;
 $breakpoint-large-desktop: 1920px;
 
+// just as a reference
+
+// @include respond-to(medium-desktop) {
+//   padding: $size-xxs $size-s;
+// }
+
+// new wave of filters
+
+$logo-filter: invert(68%) sepia(61%) saturate(0%) hue-rotate(188deg)
+  brightness(113%) contrast(101%);
+$social-icon-filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
+  brightness(99%) contrast(85%);
+$social-icon-filter--hover: invert(58%) sepia(0%) saturate(0%)
+  hue-rotate(175deg) brightness(93%) contrast(91%);
+
+// new wave of colors
+
+$background-primary: #e0e0e0;
+$background-secondary: #d4d4d4;
+$background-tertiary: #5e5e5e;
+$background-dark: #202020;
+
+$background-nav: #dfdfdf;
+$background-mobile-nav: #ffffffe0;
+
+$background-btn-primary: #5e5e5e;
+$background-btn-primary--hover: #747474;
+
+$background-btn-secondary: #dfdfdf;
+$background-btn-secondary--hover: #d8d8d8;
+
+$background-btn-disabled: #a5a5a5;
+
+$background-btn-green: #009b15;
+$background-btn-green--hover: #00c21a;
+
+$background-btn-red: #ac0000;
+$background-btn-red--hover: #d30000;
+
+$icon-light: #dfdfdf;
+$icon-light--hover: #ffffff;
+
+$icon-dark: #202020;
+$icon-dark--hover: #383838;
+
+$text-primary: #ebebeb;
+$text-secondary: #202020;
+$text-tertiary: #5e5e5e;
+
+$gallery-parallax-background: #000000c2;
+$gallery-parallax-link---hover: #0077ff;
+
+$overlay-light: #00000069;
+$overlay-dark: #000000c2;
+
+$hero-gradient-top: #09201fd7;
+$hero-gradient-bottom: #472c0d86;
+
+$common-red: #ff0000;
+$common-green: #009b15;
+
+// new wave of shadows
+$shadow-nav: 0 0.1rem 0.3rem 0 #d1d1d1c4;
+$shadow-inset-primary: inset 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.199);
+$card-shadow-primary: 0 0rem 2rem #a3a3a36e;
+
+//new wave of transitions
+
+$basic-transition: all 0.2s ease-in;
+$basic-transition-slow: all 0.4s ease-in;
+$link-transition: color 0.2s ease-in, filter 0.2s ease-in;
+$link-transition-slow: color 0.5s ease-in, filter 0.5s ease-in;
+
 // colors
 
-$main-black--filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
-  brightness(99%) contrast(85%);
-$main-gray--filter: invert(38%) sepia(0%) saturate(0%) hue-rotate(175deg)
-  brightness(93%) contrast(91%);
-$main-white--filter: invert(68%) sepia(61%) saturate(0%) hue-rotate(188deg)
-  brightness(113%) contrast(101%);
 $action-blue--filter: invert(28%) sepia(98%) saturate(2273%) hue-rotate(202deg)
   brightness(101%) contrast(105%);
 
-$gallery-paralax-background: #000000c2;
 $action-blue: #0077ff;
 $action-light-blue: #2289ff;
 $action-green: #01a001;
@@ -29,13 +95,11 @@ $error-red: #ff0000;
 $main-medium-light-gray: #a7a7a7;
 $main-light-gray: #d3d3d3;
 $secondary-color--hover: #f5f5f5;
-$background-primary: #e0e0e0;
-$background-secondary: #d4d4d4;
+
 $white-shadow: #d1d1d1ab;
 $dark-shadow: #5555556e;
 $medium-shadow: #a3a3a36e;
-$overlay-light: #00000069;
-$overlay-dark: #000000c2;
+
 $mobileNav-transparent-white: #ffffffc7;
 $main-gray-light: #a5a5a5;
 
@@ -82,13 +146,9 @@ $line-height-l: 1.8;
 }
 
 // transitions
-$link-transition: color 0.2s ease-in, filter 0.2s ease-in;
-$link-transition-slow: color 0.5s ease-in, filter 0.5s ease-in;
 
 $inset-soft-shadow: inset 0 0.04rem 0.3rem 0 $main-gray-light;
 $border-like-shadow: 0 0 0.3rem 0 $main-gray-light;
-
-$basic-transition: all 0.2s ease-in;
 
 $main-gray-light: #808080;
 

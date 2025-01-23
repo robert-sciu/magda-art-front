@@ -1,0 +1,24 @@
+@import "../../../../styles/variables.module.scss";
+@import "../../../../styles/mixins.module.scss";
+
+footer {
+  box-shadow: $card-shadow-primary;
+  padding: $size-l $size-l;
+  margin-top: auto;
+
+  .footerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .footerInfo {
+      font-size: $size-xs;
+      color: $text-tertiary;
+    }
+
+    @include respond-to(small-tablet) {
+      flex-direction: column;
+      gap: $size-s;
+    }
+  }
+}

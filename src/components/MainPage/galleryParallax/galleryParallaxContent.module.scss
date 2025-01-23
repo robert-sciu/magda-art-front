@@ -2,7 +2,7 @@
 @import "../../../../styles/mixins.module.scss";
 
 .galleryLinkBackground {
-  background-color: $gallery-paralax-background;
+  background-color: $gallery-parallax-background;
   backdrop-filter: blur(4px);
   width: 100%;
   z-index: 15;
@@ -15,13 +15,19 @@
     .link {
       text-decoration: none;
       font-size: $size-xxl;
-      color: $main-white;
+      color: $text-primary;
       transition: $link-transition;
     }
 
     .link:hover,
     .link:active {
-      color: $action-blue;
+      color: $gallery-parallax-link---hover;
+    }
+    @include respond-to(large-desktop) {
+      max-width: 80%;
+    }
+    @include respond-to(mobile) {
+      justify-content: center;
     }
   }
 }

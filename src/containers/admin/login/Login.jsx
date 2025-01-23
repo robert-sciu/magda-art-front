@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
+import Button from "../../../components/elements/button/Button";
+import InputElement from "../../../components/elements/inputElement/InputElement";
+import ModalWindowMain from "../../modalWindow/modalWindowMain";
 
 import {
   loginUser,
@@ -15,16 +19,14 @@ import {
   verifyStoredToken,
   setTokenVerificationComplete,
 } from "../../../store/authSlice";
+import { setLocation } from "../../../store/rootNavSlice";
 
 import styles from "./login.module.scss";
+
 import {
   isEmailValid,
   isPasswordValid,
 } from "../../../utilities/regexUtilities";
-import ModalWindowMain from "../../modalWindow/modalWindowMain";
-import InputElement from "../../../components/elements/inputElement/inputElement";
-import Button from "../../../components/elements/button/button";
-import { setLocation } from "../../../store/rootNavSlice";
 
 export default function Login() {
   const [showLogin, setShowLogin] = useState(false);
@@ -110,7 +112,6 @@ export default function Login() {
               onClick={handleLogin}
               isLoading={isLoading}
               loadingLabel={"logging in"}
-              // fixedHeight={true}
             />
           </div>
         </form>

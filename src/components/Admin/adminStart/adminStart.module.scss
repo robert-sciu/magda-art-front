@@ -1,0 +1,28 @@
+@import "../../../../styles/variables.module.scss";
+
+.adminStartContainer {
+  display: flex;
+  flex-direction: column;
+  gap: $size-s;
+  align-items: center;
+  justify-content: center;
+  padding: 0 $size-l $size-l;
+  height: 80vh;
+
+  .heroImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    object-fit: scale-down;
+    overflow: hidden;
+  }
+
+  h2 {
+    font-size: $size-l;
+  }
+
+  p {
+    font-size: $size-s;
+  }
+}

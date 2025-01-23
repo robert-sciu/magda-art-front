@@ -3,15 +3,12 @@
 
 .gridContainer {
   display: grid;
-  // width: 100%;
-  // overflow: hidden;
 }
 
 .mozaic {
   position: absolute;
   width: 100%;
   transform: translateY(-10%);
-  // background-color: black;
 }
 
 .gapNone {

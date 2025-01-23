@@ -5,13 +5,11 @@
   display: flex;
   flex-direction: column;
   gap: $size-xxxxs;
-  // align-items: center;
   justify-content: center;
   margin: 0 auto;
 
   .inputElement {
     @extend .input;
-    // text-align: left;
     width: 100%;
   }
 
@@ -33,7 +31,7 @@
   .inputFileElement {
     display: flex;
     flex-direction: column;
-
+    align-items: flex-start;
     gap: $size-xxs;
   }
 
@@ -49,7 +47,7 @@
 
   .inputError {
     font-size: $size-xs;
-    color: red;
+    color: $common-red;
     text-align: center;
   }
 }

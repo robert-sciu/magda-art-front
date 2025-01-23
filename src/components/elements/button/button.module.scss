@@ -1,84 +1,141 @@
 @import "./../../../../styles/variables.module.scss";
 
 .button {
-  border-radius: $size-xxxxs;
+  border-radius: $border-radius-s;
   border: none;
   padding: $size-xxxxs $size-xs;
-  background-color: $main-gray;
-  color: $main-white;
   transition: $basic-transition;
   text-decoration: none;
   text-align: center;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: $size-xxxs;
   cursor: pointer;
   position: relative;
-  justify-content: center;
-  // flex: 1;
   min-width: 7rem;
-  // height: $size-xxxxl;
-  &:hover,
-  &:active {
-    background-color: $main-gray-light;
+  &:focus {
+    outline: none;
   }
+  & {
+    -webkit-tap-highlight-color: transparent;
+  }
+  &:active {
+    outline: none;
+    box-shadow: none; /* Removes any shadow styling on active */
+  }
+
   &:focus {
     outline: none;
   }
 }
 
+.iconOnly {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: $size-xxl;
+  transition: $basic-transition;
+
+  &:focus {
+    outline: none;
+  }
+  & {
+    -webkit-tap-highlight-color: transparent;
+  }
+  &:active {
+    outline: none;
+    box-shadow: none; /* Removes any shadow styling on active */
+  }
+}
+
+.navIcon {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: $size-xxxxl;
+  padding: $size-xs;
+  &:focus {
+    outline: none;
+  }
+  & {
+    -webkit-tap-highlight-color: transparent;
+  }
+  &:active {
+    outline: none;
+    box-shadow: none; /* Removes any shadow styling on active */
+  }
+}
+
+.basicGrayBtn {
+  background-color: $background-btn-primary;
+  color: $text-primary;
+  &:hover,
+  &:active {
+    background-color: $background-btn-primary--hover;
+  }
+}
+
+.basicLightIcon {
+  color: $icon-light;
+  &:hover,
+  &:active {
+    color: $icon-light--hover;
+  }
+}
+
+.basicDarkIcon {
+  color: $icon-dark;
+  &:hover,
+  &:active {
+    color: $icon-dark--hover;
+  }
+}
+
 .greenBtn {
-  background-color: $action-green;
-  &:hover {
-    background-color: $action-light-green;
+  background-color: $background-btn-green;
+  color: $text-primary;
+  &:hover,
+  &:active {
+    background-color: $background-btn-green--hover;
   }
 }
 
 .redBtn {
-  background-color: $error-red;
-  &:hover {
-    background-color: $cancel-red;
+  background-color: $background-btn-red;
+  color: $text-primary;
+  &:hover,
+  &:active {
+    background-color: $background-btn-red--hover;
   }
 }
 
 .lightBtn {
-  background-color: $main-white;
-  color: $main-black;
-  &:hover {
-    background-color: $main-white;
+  background-color: $background-btn-secondary;
+  color: $text-secondary;
+  &:hover,
+  &:active {
+    background-color: $background-btn-secondary--hover;
   }
+}
+
+.button.disabled {
+  cursor: default;
+  background-color: $background-btn-disabled;
 }
 
 .smallBtn {
   min-width: 0 !important;
 }
 
-.iconOnly {
-  border: none;
-  background-color: transparent;
-  color: $main-white;
-  cursor: pointer;
-  .icon {
-    font-size: $size-xxl;
-    transition: $basic-transition;
-  }
-  .icon:hover {
-    color: $action-blue;
-  }
-}
-
-.button.disabled {
-  cursor: default;
-  background-color: $main-gray-light;
-  &:hover {
-    background-color: $main-gray-light;
-  }
+.bigBtn {
+  min-width: 10rem;
 }
 
 .fixedHeight {
   height: $size-xxl;
 }
 
-.flexHeight {
-  // flex: 1;
+.flexStretch {
+  flex: 1;
 }

@@ -12,16 +12,18 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  background-position: 100% calc(40% + $size-xl);
+  background-position: 50% calc(50% + $size-m);
 
   // @include respond-to(medium-desktop) {
   //   background-position: $size-xxs calc(40% + $size-xl);
   //   min-height: calc($parallax-height * 0.9);
   // }
 
-  // @include respond-to(small-desktop) {
-  //   background-position: 37% $size-xxs;
-  // }
+  @include respond-to(small-desktop) {
+    background-position: 37% $size-xxs;
+    // height: calc($parallax-height * 0.1);
+    // width: 50%
+  }
   // h2 {
   // @include respond-to(tablet) {
   //   font-size: $size-xxxl;

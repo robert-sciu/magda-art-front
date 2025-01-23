@@ -12,7 +12,7 @@
     height: 50vh;
     background-color: $main-white;
     padding: $size-xxl $size-xxxxl;
-    box-shadow: 0 0rem 2rem $medium-shadow;
+    box-shadow: $card-shadow-primary;
     border-radius: $border-radius-m;
     gap: $size-l;
 

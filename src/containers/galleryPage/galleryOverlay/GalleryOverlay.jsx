@@ -1,6 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
-import Button from "../../../components/elements/button/button";
+import { useDispatch, useSelector } from "react-redux";
+import { IoCloseCircleOutline } from "react-icons/io5";
+
+import Button from "../../../components/elements/button/Button";
+import LoadingState from "../../../components/loadingState/loadingState";
+import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
 
 import {
   resetClickedImage,
@@ -9,11 +14,6 @@ import {
 } from "../../../store/galleryPageSlice";
 
 import styles from "./galleryOverlay.module.scss";
-// import scss from "../../../../styles/variables.module.scss";
-import { useState } from "react";
-import LoadingState from "../../../components/loadingState/loadingState";
-import ImageDisplay from "../../common/imageDisplay/imageDisplay";
-import { IoCloseCircleOutline } from "react-icons/io5";
 
 export default function GalleryOverlay() {
   const [imageLoaded, setImageLoaded] = useState(false);

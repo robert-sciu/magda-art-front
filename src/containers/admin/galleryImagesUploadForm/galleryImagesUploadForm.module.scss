@@ -1,43 +1,25 @@
 @import "../../../../styles/variables.module.scss";
+@import "../../../../styles/classes.module.scss";
 .container {
-  // width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 2.5fr;
-  border: 1px solid $main-medium-light-gray;
-  padding: $size-l;
-  gap: $size-xl;
-  // margin-bottom: $size-l;
-  background-color: $main-light-gray;
+  @extend .adminSectionContainer;
   align-items: start;
-  // height: 100%;
+
   .formContainer {
     display: flex;
     flex-direction: column;
     gap: $size-xxs;
     align-items: start;
-
     .error {
-      color: $error-red;
+      color: $common-red;
       font-size: $size-xs;
     }
-    // button {
-    //   cursor: pointer;
-    //   padding: $size-xxxxs;
-    //   width: auto;
-    //   align-self: start;
-    //   min-width: calc($size-xxxxl * 1.5);
-    //   border-radius: $border-radius-m;
-    //   border: 1px solid $main-medium-light-gray;
-    // }
   }
   .gridContainer {
-    box-shadow: inset 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.199);
+    box-shadow: $shadow-inset-primary;
     padding: $size-xxs;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-content: center;
-    // height: 100%;
-
     gap: $size-xxs;
     img {
       max-height: $size-giant;

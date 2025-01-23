@@ -4,6 +4,7 @@ import styles from "./loadingState.module.scss";
 import PropTypes from "prop-types";
 import { classNameFormatter } from "../../utilities/utilities";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 /**
  * A loading state component.
@@ -24,16 +25,23 @@ export default function LoadingState({
   fadeOut = false,
   inactive = false,
   background = "light",
+  appLoadedSelector = () => null,
 }) {
   const [displayNone, setDisplayNone] = useState(false);
+  const appLoaded = useSelector(appLoadedSelector);
 
   useEffect(() => {
-    if (fadeOut) {
+    if (fadeOut || appLoaded) {
       setTimeout(() => {
         setDisplayNone(true);
-      }, 400);
+      }, 800);
     }
   });
+
+  if (displayNone) {
+    return null;
+  }
+
   return (
     <div
       className={classNameFormatter({
@@ -45,9 +53,10 @@ export default function LoadingState({
           !spinnerOnly && "loadingStateContainer",
           !fullscreen && !spinnerOnly && "containerSize",
           size && `size${size}`,
-          fadeOut && "fadeOut",
+          (fadeOut || appLoaded) && "fadeOut",
           displayNone && "displayNone",
           inactive && !fadeOut && "displayNone",
+          // initialLoadStateDisabled && "displayNone",
           background === "light" && "backgroundLight",
           background === "dark" && "backgroundDark",
         ],
@@ -72,4 +81,6 @@ LoadingState.propTypes = {
   fadeOut: PropTypes.bool,
   inactive: PropTypes.bool,
   background: PropTypes.string,
+  appLoadedSelector: PropTypes.func,
+  initialLoadStateDisableSelector: PropTypes.func,
 };

@@ -1,0 +1,145 @@
+@import "../../../../styles/variables.module.scss";
+@import "../../../../styles/classes.module.scss";
+
+.galleryTile {
+  position: relative;
+  width: 100%;
+  color: $main-white;
+
+  .tileContainer {
+    width: auto;
+    .galleryImg {
+      width: 100%;
+    }
+    .imgLoaded {
+      width: 100%;
+      height: 100%;
+    }
+    .border {
+      box-shadow: $border-like-shadow;
+    }
+    .roundBorder {
+      border-radius: $border-radius-m;
+    }
+  }
+
+  .infoOverlayMobile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: $size-s;
+  }
+  .infoOverlay {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: $size-xs;
+    padding: $size-s;
+    opacity: 0;
+    transition: opacity 0.2s ease-out;
+    // transition: $link-transition-slow;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay-light;
+    overflow: hidden;
+    h3 {
+      font-size: $size-m;
+    }
+
+    .description {
+      .descriptionText {
+        margin: auto;
+      }
+      font-size: $size-xs;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: start;
+      text-align: center;
+      overflow: hidden;
+      mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 1) 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
+    }
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.overlayTileContainer {
+  width: auto;
+  height: 100%;
+  position: relative;
+  img {
+    transition: 0.5s;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.heroContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  z-index: -50;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      $hero-gradient-top,
+      $hero-gradient-bottom
+    );
+    z-index: 30;
+  }
+
+  .heroImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -50;
+  }
+}
+
+.blur {
+  // whatever the reason using blur from classes makes it kinda choppy
+  transition: backdrop-filter 0.5s ease-in-out;
+  backdrop-filter: blur($size-xxxs);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.noBlur {
+  backdrop-filter: blur(0);
+}

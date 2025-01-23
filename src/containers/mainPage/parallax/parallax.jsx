@@ -1,12 +1,14 @@
+import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+
 import { useSelector } from "react-redux";
+
 import { selectDevice } from "../../../store/rootNavSlice";
 import { selectSectionInView } from "../../../store/mainPageImagesSlice";
-import { useEffect, useState } from "react";
-import { classNameFormatter } from "../../../utilities/utilities";
 
 import styles from "./parallax.module.scss";
 
-import PropTypes from "prop-types";
+import { classNameFormatter } from "../../../utilities/utilities";
 
 /**
  * Parallax component that renders a section with a parallax background image.
@@ -33,14 +35,14 @@ export default function Parallax({ imageSelector, sectionId, children }) {
 
   const imgStyle = {
     backgroundImage: parallaxImage
-      ? `url(${parallaxImage[`url_${imgQuality}`]})`
+      ? `url(${parallaxImage?.[`url_${imgQuality}`]})`
       : null,
   };
 
   useEffect(() => {
     if (isVisible) {
       const img = new Image();
-      img.src = parallaxImage[`url_${device}`];
+      img.src = parallaxImage?.[`url_${device}`];
       img.onload = () => {
         setImgQuality(device);
       };

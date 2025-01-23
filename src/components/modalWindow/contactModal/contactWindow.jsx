@@ -1,4 +1,4 @@
-import ContactForm from "../../common/contactForm/ContactForm";
+import ContactForm from "../../../containers/common/contactForm/ContactForm";
 import styles from "./contactWindow.module.scss";
 
 import PropTypes from "prop-types";

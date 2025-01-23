@@ -1,17 +1,19 @@
 import { useEffect } from "react";
-
-import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import styles from "./adminNav.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+
+import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
 
 import {
   selectAuthAuthenticationStatus,
   logoutUser,
   selectTokenVerificationStatus,
 } from "../../../store/authSlice";
-import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
+
 import { setLocation } from "../../../store/rootNavSlice";
+
+import styles from "./adminNav.module.scss";
 
 export default function AdminNav() {
   const dispatch = useDispatch();
