@@ -33,12 +33,13 @@ const SectionDefinition = {
       imageGap={"M"}
       sectionGap={widthType <= 2 ? "XS" : "L"}
       isCardStyle={false}
-      margins={widthType > 4 ? "L" : "S"}
+      margins={widthType > 4 ? "L" : "XS"}
       fontSize={widthType <= 1 ? "S" : "M"}
       showSocialIcons={true}
       showHeader={true}
       header={"Welcome"}
       contentTextAlign={widthType <= 2 ? "center" : "left"}
+      sectionPadding={widthType <= 3 ? "S" : "M"}
     />
   ),
   getBio: ({ widthType }) => (
@@ -65,6 +66,7 @@ const SectionDefinition = {
       showHeader={true}
       headerSelector={selectName}
       contentTextAlign={widthType <= 2 ? "center" : "left"}
+      sectionPadding={widthType <= 3 ? "S" : "M"}
     />
   ),
   getVisualizations: ({ widthType, visualizations, readyToRender }) => {
@@ -99,6 +101,7 @@ const SectionDefinition = {
           widthType <= 2 ? "center" : index % 2 === 0 ? "left" : "right"
         }
         withBorder={true}
+        sectionPadding={widthType <= 3 ? "S" : "M"}
       />
     ));
   },
@@ -117,6 +120,7 @@ const SectionDefinition = {
       hasCustomContent={true}
       customContent={<ContactForm />}
       margins={widthType > 4 ? "L" : "S"}
+      sectionPadding={widthType <= 3 ? "S" : "M"}
     />
   ),
   getBioParallax: () => (

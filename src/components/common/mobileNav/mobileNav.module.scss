@@ -3,8 +3,8 @@
 
 .menuBtn {
   position: fixed;
-  top: $size-s;
-  right: $size-s;
+  top: $size-xxxxs;
+  right: $size-xxxxs;
   mix-blend-mode: difference;
   z-index: 99;
 }
@@ -28,9 +28,9 @@
 
   .closeBtn {
     position: absolute;
-    top: $size-m;
-    right: $size-m;
-    font-size: $size-xxl;
+    top: $size-xxs;
+    right: $size-xxs;
+    font-size: $size-m;
   }
 }
 

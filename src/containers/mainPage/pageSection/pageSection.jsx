@@ -43,6 +43,7 @@ export default function PageSection({
   withBorder = false,
   hasCustomContent = false,
   customContent = undefined,
+  sectionPadding = "M",
 }) {
   const [decodedContent, setDecodedContent] = useState("");
   const emptySelector = () => null;
@@ -73,6 +74,7 @@ export default function PageSection({
           `gap${capitalizeString(sectionGap)}`,
           isCardStyle && "cardStyle",
           margins && `margin${capitalizeString(margins)}`,
+          `sectionPadding${capitalizeString(sectionPadding)}`,
         ],
       })}
     >
@@ -192,4 +194,5 @@ PageSection.propTypes = {
   withBorder: PropTypes.bool,
   hasCustomContent: PropTypes.bool,
   customContent: PropTypes.object,
+  sectionPadding: PropTypes.string,
 };

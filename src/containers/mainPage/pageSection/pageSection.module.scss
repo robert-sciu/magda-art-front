@@ -3,7 +3,6 @@
 .pageSectionContainer {
   border-radius: $border-radius-m;
   max-width: $main-content-width;
-  padding: $size-xxl;
 
   .contentContainer {
     display: flex; // align-items: center;
@@ -104,6 +103,14 @@
 
 .paddingXS {
   padding: $size-xxxs 0;
+}
+
+.sectionPaddingM {
+  padding: $size-xxxl;
+}
+
+.sectionPaddingS {
+  padding: $size-m;
 }
 
 .marginL {
