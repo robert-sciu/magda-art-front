@@ -80,12 +80,6 @@ function App() {
     dispatch(setAppLoaded(true));
   });
 
-  useEffect(() => {
-    if (location !== "/" && location.endsWith("/")) {
-      window.location.href = location.slice(0, -1);
-    }
-  }, [location]);
-
   if (underConstruction === "1") {
     return (
       <div className="maintenance">
