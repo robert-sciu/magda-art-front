@@ -20,7 +20,7 @@ apiClient.interceptors.request.use(
   (config) => {
     const token = selectAuthToken(store.getState());
     if (token) {
-      config.headers["x-auth-token"] = token;
+      config.headers["X-auth-token"] = token;
     }
     // config.headers["Accept-Language"] = currentLanguage;
     return config;
