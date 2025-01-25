@@ -118,7 +118,7 @@ const SectionDefinition = {
       imageDisplayLimitImages={widthType <= 2 ? 4 : undefined}
       additionalImagesStripe={widthType <= 2 ? true : false}
       hasCustomContent={true}
-      customContent={<ContactForm />}
+      customContent={<ContactForm padding={"XS"} />}
       margins={widthType > 4 ? "L" : "S"}
       sectionPadding={widthType <= 3 ? "S" : "M"}
     />
