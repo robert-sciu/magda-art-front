@@ -54,8 +54,6 @@ export default function PageSection({
 
   useEffect(() => {
     if (content) {
-      /////// what the hell is this about
-      //TODO: get to the bottom of this
       setDecodedContent(
         desanitizeString(contentKey ? content?.[contentKey] : content)
       );
