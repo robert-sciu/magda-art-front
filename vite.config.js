@@ -53,6 +53,7 @@ export default defineConfig({
     // }),
   ],
   build: {
+    outDir: "dist", // Default for Vite
     target: "esnext", // Set the target to the latest ES version
     minify: "terser", // Use 'terser' for more control over minification
     terserOptions: {
