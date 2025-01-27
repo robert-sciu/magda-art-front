@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import viteCompression from "vite-plugin-compression";
-import legacy from "@vitejs/plugin-legacy";
+// import legacy from "@vitejs/plugin-legacy";
 // import { visualizer } from "rollup-plugin-visualizer";
 import Sitemap from "vite-plugin-sitemap";
 // import csp from "vite-plugin-csp";
@@ -53,7 +53,7 @@ export default defineConfig({
     // }),
   ],
   build: {
-    outDir: "dist", // Default for Vite
+    // outDir: "dist", // Default for Vite
     target: "esnext", // Set the target to the latest ES version
     minify: "terser", // Use 'terser' for more control over minification
     terserOptions: {
