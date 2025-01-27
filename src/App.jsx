@@ -19,7 +19,7 @@ import {
   setAppLoaded,
 } from "./store/rootNavSlice.js";
 import { selectSectionInView } from "./store/mainPageImagesSlice.js";
-import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+// import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 // import GrayBackground from "./components/common/grayBackground/GrayBackground.jsx";
 
 const LazyRootNav = React.lazy(() => rootNavPromise);
@@ -63,12 +63,6 @@ const LazyPotectedRoute = React.lazy(() =>
  *
  * @return {JSX.Element} The rendered application component.
  */
-
-disableReactDevTools();
-
-if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-  delete window.__REDUX_DEVTOOLS_EXTENSION__;
-}
 
 function App() {
   const location = useSelector(selectLocation);
