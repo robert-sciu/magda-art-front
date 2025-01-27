@@ -63,6 +63,7 @@ export default function GalleryOverlay() {
             icon={<IoCloseCircleOutline />}
             fixedHeight={true}
             style={"iconOnly"}
+            color={"basicLightIcon"}
             onClick={closeOverlay}
           />
         </div>

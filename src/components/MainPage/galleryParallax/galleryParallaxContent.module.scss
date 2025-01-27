@@ -1,32 +1,31 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 .galleryLinkBackground {
-  background-color: $gallery-parallax-background;
+  background-color: styles.$gallery-parallax-background;
   backdrop-filter: blur(4px);
   width: 100%;
   z-index: 15;
   .container {
-    max-width: $main-content-width;
-    margin: $size-s auto $size-s;
+    max-width: styles.$main-content-width;
+    margin: styles.$size-s auto styles.$size-s;
     display: flex;
     align-items: center;
 
     .link {
       text-decoration: none;
-      font-size: $size-xxl;
-      color: $text-primary;
-      transition: $link-transition;
+      font-size: styles.$size-xxl;
+      color: styles.$text-primary;
+      transition: styles.$link-transition;
     }
 
     .link:hover,
     .link:active {
-      color: $gallery-parallax-link---hover;
+      color: styles.$gallery-parallax-link---hover;
     }
-    @include respond-to(large-desktop) {
+    @include styles.respond-to(large-desktop) {
       max-width: 80%;
     }
-    @include respond-to(mobile) {
+    @include styles.respond-to(mobile) {
       justify-content: center;
     }
   }

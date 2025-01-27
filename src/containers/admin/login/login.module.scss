@@ -1,8 +1,7 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .loginContainer {
-  @extend .fullScreenContainer;
+  @include styles.fullScreenContainer;
 
   .formContainer {
     display: flex;
@@ -10,22 +9,22 @@
     justify-content: center;
     width: 35vw;
     height: 50vh;
-    background-color: $main-white;
-    padding: $size-xxl $size-xxxxl;
-    box-shadow: $card-shadow-primary;
-    border-radius: $border-radius-m;
-    gap: $size-l;
+    background-color: styles.$main-white;
+    padding: styles.$size-xxl styles.$size-xxxxl;
+    box-shadow: styles.$card-shadow-primary;
+    border-radius: styles.$border-radius-m;
+    gap: styles.$size-l;
 
     .loginButtonContainer {
       width: 100%;
       display: flex;
       flex-direction: column;
-      margin-top: $size-xxl;
+      margin-top: styles.$size-xxl;
       justify-content: center;
     }
 
     h3 {
-      margin-bottom: $size-xxl;
+      margin-bottom: styles.$size-xxl;
       text-align: center;
     }
   }

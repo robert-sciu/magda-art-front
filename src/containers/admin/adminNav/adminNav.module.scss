@@ -1,26 +1,26 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .adminContainer {
   flex: 1;
   .adminNav {
-    margin-top: $size-xxxl;
-    padding: $size-m;
-    gap: $size-xxl;
+    margin-top: styles.$size-xxxl;
+    padding: styles.$size-m;
+    gap: styles.$size-xxl;
 
     ul {
       display: flex;
       justify-content: center;
       list-style: none;
-      gap: $size-l;
-      font-size: $size-m;
+      gap: styles.$size-l;
+      font-size: styles.$size-m;
     }
   }
 }
 
 .adminOutletContainer {
-  background-color: $background-secondary;
-  padding: $size-s $size-s;
-  width: $main-content-width;
-  margin: 0 auto $size-xxxl;
-  border-radius: $border-radius-s;
+  background-color: styles.$background-secondary;
+  padding: styles.$size-s styles.$size-s;
+  width: styles.$main-content-width;
+  margin: 0 auto styles.$size-xxxl;
+  border-radius: styles.$border-radius-s;
 }

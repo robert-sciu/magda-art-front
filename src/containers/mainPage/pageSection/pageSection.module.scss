@@ -1,14 +1,14 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .pageSectionContainer {
-  border-radius: $border-radius-m;
-  max-width: $main-content-width;
+  border-radius: styles.$border-radius-m;
+  max-width: styles.$main-content-width;
 
   .contentContainer {
     display: flex; // align-items: center;
     justify-content: center;
     .header {
-      margin-bottom: $size-l;
+      margin-bottom: styles.$size-l;
     }
 
     .content {
@@ -86,63 +86,63 @@
 }
 
 .paddingXL {
-  padding: $size-xxxxl 0;
+  padding: styles.$size-xxxxl 0;
 }
 
 .paddingL {
-  padding: $size-xxl 0;
+  padding: styles.$size-xxl 0;
 }
 
 .paddingM {
-  padding: $size-l 0;
+  padding: styles.$size-l 0;
 }
 
 .paddingS {
-  padding: $size-s 0;
+  padding: styles.$size-s 0;
 }
 
 .paddingXS {
-  padding: $size-xxxs 0;
+  padding: styles.$size-xxxs 0;
 }
 
 .sectionPaddingM {
-  padding: $size-xxxl;
+  padding: styles.$size-xxxl;
 }
 
 .sectionPaddingS {
-  padding: $size-m;
+  padding: styles.$size-m;
 }
 
 .marginL {
-  margin: $size-giant auto;
+  margin: styles.$size-giant auto;
 }
 
 .marginM {
-  margin: $size-l auto;
+  margin: styles.$size-l auto;
 }
 
 .marginS {
-  margin: $size-s auto;
+  margin: styles.$size-s auto;
 }
 
 .cardStyle {
-  box-shadow: 0 0rem 2rem $card-shadow-primary;
+  box-shadow: 0 0rem 2rem styles.$card-shadow-primary;
 }
 
 .gapL {
-  gap: $size-xxl;
+  gap: styles.$size-xxl;
 }
 
 .gapM {
-  gap: $size-m;
+  gap: styles.$size-m;
 }
 
 .gapS {
-  gap: $size-xxs;
+  gap: styles.$size-xxs;
 }
 
 .gapXS {
-  gap: $size-tiny;
+  gap: styles.$size-tiny;
 }
 
 .grid41 {
@@ -166,23 +166,23 @@
 }
 
 .fontXXL {
-  font-size: $size-xxl;
+  font-size: styles.$size-xxl;
 }
 
 .fontXL {
-  font-size: $size-xl;
+  font-size: styles.$size-xl;
 }
 
 .fontL {
-  font-size: $size-l;
+  font-size: styles.$size-l;
 }
 
 .fontM {
-  font-size: $size-m;
+  font-size: styles.$size-m;
 }
 
 .fontS {
-  font-size: $size-s;
+  font-size: styles.$size-s;
 }
 
 .flexRow {

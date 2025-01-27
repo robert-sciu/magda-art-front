@@ -1,9 +1,12 @@
-// import React from "react";
+import React from "react";
 
-disableReactDevTools();
+const env = import.meta.env;
 
-if (window.__REDUX_DEVTOOLS_EXTENSION__) {
-  delete window.__REDUX_DEVTOOLS_EXTENSION__;
+if (env !== "development") {
+  disableReactDevTools();
+  if (window.__REDUX_DEVTOOLS_EXTENSION__) {
+    delete window.__REDUX_DEVTOOLS_EXTENSION__;
+  }
 }
 
 import ReactDOM from "react-dom/client";
@@ -19,10 +22,10 @@ import { selectAppLoaded } from "./store/rootNavSlice.js";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-    <LoadingState appLoadedSelector={selectAppLoaded} />
-  </Provider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+      <LoadingState appLoadedSelector={selectAppLoaded} />
+    </Provider>
+  </React.StrictMode>
 );

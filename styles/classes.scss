@@ -1,0 +1,68 @@
+@use "./variables";
+
+@mixin input {
+  border-radius: variables.$size-xxxxs;
+  border: none;
+  padding: variables.$size-xxxxs;
+  box-shadow: variables.$inset-soft-shadow;
+  text-align: center;
+  transition: variables.$basic-transition;
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin fullScreenContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+@mixin adminMainContainer {
+  position: relative;
+  padding: variables.$size-xxxs;
+  gap: variables.$size-l;
+  border: 1px solid variables.$main-medium-light-gray;
+  background-color: variables.$main-white;
+  width: 100%;
+}
+
+@mixin modalWindowContent {
+  z-index: 21;
+  display: flex;
+  flex-direction: column;
+  gap: variables.$size-xxl;
+  padding: 0 variables.$size-xl;
+  align-items: center;
+  cursor: default;
+}
+
+.modalWindowButtonsContainer {
+  display: flex;
+  gap: variables.$size-xxs;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.backdropBlur {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+@mixin adminSectionContainer {
+  display: grid;
+  grid-template-columns: 1fr 2.5fr;
+  border: 1px solid variables.$text-primary;
+  padding: variables.$size-l;
+  gap: variables.$size-xl;
+  background-color: variables.$background-secondary;
+  border-radius: variables.$border-radius-s;
+}

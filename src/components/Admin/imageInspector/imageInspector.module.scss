@@ -1,11 +1,11 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .inspectorContainer {
   position: relative;
-  min-height: $size-giant;
+  min-height: styles.$size-giant;
   .actionBtn {
     position: absolute;
-    top: $size-xxxxs;
-    right: $size-xxxxs;
+    top: styles.$size-xxxxs;
+    right: styles.$size-xxxxs;
   }
 }

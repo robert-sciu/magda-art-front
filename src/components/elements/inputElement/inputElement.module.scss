@@ -1,15 +1,14 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .inputElementContainer {
   display: flex;
   flex-direction: column;
-  gap: $size-xxxxs;
+  gap: styles.$size-xxxxs;
   justify-content: center;
   margin: 0 auto;
 
   .inputElement {
-    @extend .input;
+    @include styles.input;
     width: 100%;
   }
 
@@ -32,22 +31,22 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
   }
 
   .checkboxContainer {
     display: flex;
-    gap: $size-xs;
+    gap: styles.$size-xs;
     align-items: center;
     .checkbox {
-      width: $size-s;
-      height: $size-s;
+      width: styles.$size-s;
+      height: styles.$size-s;
     }
   }
 
   .inputError {
-    font-size: $size-xs;
-    color: $common-red;
+    font-size: styles.$size-xs;
+    color: styles.$common-red;
     text-align: center;
   }
 }

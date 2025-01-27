@@ -1,27 +1,26 @@
-@import "./../../../../styles/variables.module.scss";
-@import "./../../../../styles/classes.module.scss";
+@use "./../../../../styles";
 
 .container {
-  @extend .adminSectionContainer;
+  @include styles.adminSectionContainer;
   .formContainer {
     display: flex;
     flex-direction: column;
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
     align-items: start;
 
     .error {
-      color: $common-red;
-      font-size: $size-xs;
+      color: styles.$common-red;
+      font-size: styles.$size-xs;
     }
 
     .info {
       font-style: italic;
-      color: $common-green;
+      color: styles.$common-green;
     }
   }
   .gridContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
   }
 }

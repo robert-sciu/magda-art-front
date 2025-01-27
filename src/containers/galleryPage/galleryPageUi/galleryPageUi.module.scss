@@ -1,12 +1,12 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .galleryPage {
   display: flex;
-  gap: $size-xxxs;
-  background-color: $main-black;
-  padding: $size-giant $size-l $size-xl;
+  gap: styles.$size-xxxs;
+  background-color: styles.$main-black;
+  padding: styles.$size-giant styles.$size-l styles.$size-xl;
   min-height: 100vh;
   img {
-    min-height: $size-xxxl;
+    min-height: styles.$size-xxxl;
   }
 }

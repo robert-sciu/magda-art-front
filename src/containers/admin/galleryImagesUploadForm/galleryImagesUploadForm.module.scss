@@ -1,28 +1,28 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
+
 .container {
-  @extend .adminSectionContainer;
+  @include styles.adminSectionContainer;
   align-items: start;
 
   .formContainer {
     display: flex;
     flex-direction: column;
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
     align-items: start;
     .error {
-      color: $common-red;
-      font-size: $size-xs;
+      color: styles.$common-red;
+      font-size: styles.$size-xs;
     }
   }
   .gridContainer {
-    box-shadow: $shadow-inset-primary;
-    padding: $size-xxs;
+    box-shadow: styles.$shadow-inset-primary;
+    padding: styles.$size-xxs;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     align-content: center;
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
     img {
-      max-height: $size-giant;
+      max-height: styles.$size-giant;
       object-fit: cover;
       object-position: center;
       height: 100%;

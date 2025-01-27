@@ -1,9 +1,9 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .buttonsContainer {
   display: flex;
   width: 30%;
-  gap: $size-xxxxs;
+  gap: styles.$size-xxxxs;
   .actionBtn {
     flex: 1;
     display: flex;

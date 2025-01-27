@@ -1,12 +1,12 @@
-@import "../../../../styles//variables.module.scss";
+@use "../../../../styles";
 
 .desktopNav {
   width: 100%;
   display: flex;
   position: absolute;
   top: 0;
-  padding: $size-xxxxs $size-m;
-  background-color: $background-nav;
+  padding: styles.$size-xxxxs styles.$size-m;
+  background-color: styles.$background-nav;
   opacity: 0;
   transition: opacity 1s;
   z-index: 100;
@@ -14,7 +14,7 @@
 
 .topNav {
   position: absolute;
-  box-shadow: $shadow-nav;
+  box-shadow: styles.$shadow-nav;
 }
 .fixedNav {
   position: fixed;

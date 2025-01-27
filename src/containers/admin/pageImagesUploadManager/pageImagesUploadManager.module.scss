@@ -1,9 +1,8 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .container {
-  @extend .adminMainContainer;
+  @include styles.adminMainContainer;
   display: flex;
   flex-direction: column;
-  gap: $size-tiny;
+  gap: styles.$size-tiny;
 }

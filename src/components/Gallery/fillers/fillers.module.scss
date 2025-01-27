@@ -1,36 +1,36 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .link:link,
 .link:visited {
-  color: $main-black;
-  transition: $link-transition;
+  color: styles.$main-black;
+  transition: styles.$link-transition;
   text-decoration: none;
-  font-size: $size-l;
+  font-size: styles.$size-l;
   cursor: pointer;
 }
 
 .link:hover,
 .link:active {
-  color: $main-white;
+  color: styles.$main-white;
 }
 
 .logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: $size-giant;
-  max-height: $size-giant;
-  filter: $logo-filter;
+  max-width: styles.$size-giant;
+  max-height: styles.$size-giant;
+  filter: styles.$logo-filter;
   flex: 1;
 }
 
 .randomFiller {
-  padding: $size-s $size-l;
+  padding: styles.$size-s styles.$size-l;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: $main-black;
+  color: styles.$main-black;
   p {
-    font-size: $size-s;
+    font-size: styles.$size-s;
   }
 }

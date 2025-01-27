@@ -1,5 +1,4 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 .overlay {
   position: fixed;
@@ -7,7 +6,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $overlay-dark;
+  background-color: styles.$overlay-dark;
   opacity: 1;
   transition: opacity 1s;
   z-index: 100;
@@ -25,16 +24,16 @@
     align-items: center;
     height: 90%;
     width: 90%;
-    gap: $size-m;
-    padding: $size-xl $size-xl;
-    background-color: $overlay-dark;
-    border-radius: $border-radius-m;
-    border: 2px solid $main-gray;
+    gap: styles.$size-m;
+    padding: styles.$size-xl styles.$size-xl;
+    background-color: styles.$overlay-dark;
+    border-radius: styles.$border-radius-m;
+    border: 2px solid styles.$main-gray;
 
     .closeBtn {
       position: absolute;
-      top: $size-s;
-      right: $size-xxs;
+      top: styles.$size-s;
+      right: styles.$size-xxs;
     }
 
     .imageContainer {
@@ -42,7 +41,7 @@
       min-height: 0;
       max-width: 95%;
       display: flex;
-      border: 2px solid $main-gray;
+      border: 2px solid styles.$main-gray;
       position: relative;
     }
 
@@ -50,16 +49,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      color: $main-white;
+      color: styles.$main-white;
 
       h3 {
         cursor: text;
-        font-size: $size-m;
+        font-size: styles.$size-m;
         text-align: center;
       }
       p {
         cursor: text;
-        font-size: $size-xs;
+        font-size: styles.$size-xs;
         text-align: center;
       }
     }

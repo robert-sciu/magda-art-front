@@ -1,41 +1,39 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .parallax {
-  min-height: $parallax-height;
+  min-height: styles.$parallax-height;
   background-attachment: fixed;
-  background-color: $main-black;
+  background-color: styles.$main-black;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  background-position: 50% calc(50% + $size-m);
+  background-position: 50% calc(50% + styles.$size-m);
 
   // @include respond-to(medium-desktop) {
-  //   background-position: $size-xxs calc(40% + $size-xl);
-  //   min-height: calc($parallax-height * 0.9);
+  //   background-position: styles.$size-xxs calc(40% + styles.$size-xl);
+  //   min-height: calc(styles.$parallax-height * 0.9);
   // }
 
-  @include respond-to(small-desktop) {
-    background-position: 37% $size-xxs;
-    // height: calc($parallax-height * 0.1);
-    // width: 50%
-  }
+  // @include styles.respond-to(small-desktop) {
+  //   background-position: 37% styles.$size-xxs;
+  //   height: calc(styles.$parallax-height * 0.1);
+  //   width: 50%;
+  // }
   // h2 {
   // @include respond-to(tablet) {
-  //   font-size: $size-xxxl;
+  //   font-size: styles.$size-xxxl;
   // }
   // @include respond-to(mobile) {
-  //   font-size: $size-xxl;
+  //   font-size: styles.$size-xxl;
   // }
   // }
 }
 
 .blur {
-  backdrop-filter: blur($size-xxxs);
+  backdrop-filter: blur(styles.$size-xxxs);
   transition: all 0.5s ease-in-out;
   position: absolute;
   top: 0;

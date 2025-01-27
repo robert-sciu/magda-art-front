@@ -1,8 +1,7 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .modalWindow {
-  @extend .modalWindowContent;
+  @include styles.modalWindowContent;
   p {
     text-align: center;
   }

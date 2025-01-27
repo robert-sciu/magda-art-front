@@ -1,10 +1,9 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .modalWindow {
-  @extend .modalWindowContent;
-  gap: $size-s;
-  padding: $size-xl $size-xxl;
+  @include styles.modalWindowContent;
+  gap: styles.$size-s;
+  padding: styles.$size-xl styles.$size-xxl;
   width: 100%;
   position: relative;
   .infoContainer {
@@ -14,8 +13,8 @@
     scrollbar-width: thin;
     .infoTextContainer {
       display: flex;
-      gap: $size-s;
-      border-bottom: 2px dotted $text-tertiary;
+      gap: styles.$size-s;
+      border-bottom: 2px dotted styles.$text-tertiary;
       width: 100%;
       justify-content: space-between;
     }

@@ -1,4 +1,4 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .heroSection {
   width: 100vw;
@@ -6,7 +6,7 @@
   position: relative;
   overflow: hidden;
   z-index: -50;
-  background-color: $text-secondary;
+  background-color: styles.$text-secondary;
 
   .headingContainer {
     position: absolute;
@@ -17,22 +17,22 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: $size-s;
+      gap: styles.$size-s;
       opacity: 1;
       transition: opacity 3s;
-      color: $text-primary;
-      margin-top: $size-xxl;
+      color: styles.$text-primary;
+      margin-top: styles.$size-xxl;
 
       h1 {
         font-family: "Dancing Script", cursive;
         font-weight: 400;
-        font-size: $size-xxxl;
+        font-size: styles.$size-xxxl;
         text-align: center;
         text-wrap: nowrap;
       }
 
       h2 {
-        font-size: $size-l;
+        font-size: styles.$size-l;
         font-weight: 400;
       }
     }

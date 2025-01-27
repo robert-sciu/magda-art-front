@@ -1,43 +1,42 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 .desktopNav {
   display: flex;
   list-style: none;
-  gap: $size-xl;
+  gap: styles.$size-xl;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
   padding-inline-start: 0;
-  font-size: $size-l;
+  font-size: styles.$size-l;
 
   .navLink {
-    color: $main-black;
-    transition: $link-transition;
+    color: styles.$main-black;
+    transition: styles.$link-transition;
     text-decoration: none;
     cursor: pointer;
   }
 
   .navLink:hover {
-    color: $main-gray;
+    color: styles.$main-gray;
   }
 
   .navLinkActive {
-    color: $main-gray;
+    color: styles.$main-gray;
     text-decoration: none;
   }
 
   .admin {
-    color: $action-green;
+    color: styles.$action-green;
   }
 
-  @include respond-to(medium-desktop) {
-    font-size: $size-m;
-    gap: calc($size-xl * 0.8);
+  @include styles.respond-to(medium-desktop) {
+    font-size: styles.$size-m;
+    gap: calc(styles.$size-xl * 0.8);
   }
-  @include respond-to(small-desktop) {
-    gap: $size-m;
-    font-size: $size-s;
+  @include styles.respond-to(small-desktop) {
+    gap: styles.$size-m;
+    font-size: styles.$size-s;
   }
 }
 
@@ -49,30 +48,30 @@
 .mobileNav {
   display: flex;
   flex-direction: column;
-  gap: $size-l;
+  gap: styles.$size-l;
   list-style: none;
   align-items: flex-start;
   padding-left: 0;
-  font-size: $size-m;
+  font-size: styles.$size-m;
 
   .navLink {
     cursor: default;
-    color: $main-black;
+    color: styles.$main-black;
     text-decoration: none;
   }
 
   .navLinkActive {
     cursor: default;
-    color: $main-black;
+    color: styles.$main-black;
     text-decoration: none;
   }
 
-  @include respond-to(mobile) {
-    gap: $size-s;
-    font-size: $size-s;
+  @include styles.respond-to(mobile) {
+    gap: styles.$size-s;
+    font-size: styles.$size-s;
   }
 
-  @include respond-to(small-mobile) {
-    font-size: $size-xs;
+  @include styles.respond-to(small-mobile) {
+    font-size: styles.$size-xs;
   }
 }

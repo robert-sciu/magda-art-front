@@ -1,12 +1,12 @@
-@import "../../../styles/variables.module.scss";
-@import "../../../styles/classes.module.scss";
+@use "../../../styles";
+
 .modalWindowBackground {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: $overlay-dark;
+  background-color: styles.$overlay-dark;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,9 +19,9 @@
     z-index: 21;
     display: flex;
     flex-direction: column;
-    gap: $size-xxxxs;
-    background-color: $background-secondary;
-    border-radius: $size-xxxs;
+    gap: styles.$size-xxxxs;
+    background-color: styles.$background-secondary;
+    border-radius: styles.$size-xxxs;
     align-items: center;
     cursor: default;
     .dragArea {
@@ -35,15 +35,15 @@
       align-items: center;
       justify-content: space-between;
       flex-direction: row-reverse;
-      padding: 0 $size-xxs;
-      font-size: $size-s;
-      color: $text-tertiary;
+      padding: 0 styles.$size-xxs;
+      font-size: styles.$size-s;
+      color: styles.$text-tertiary;
       .closeBtn {
         cursor: pointer;
-        transition: $basic-transition;
+        transition: styles.$basic-transition;
 
         &:hover {
-          color: $text-secondary;
+          color: styles.$text-secondary;
         }
       }
     }

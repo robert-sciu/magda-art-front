@@ -1,8 +1,7 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 .uiContainer {
-  color: $main-black;
+  color: styles.$main-black;
 
   .refDiv {
     position: "absolute";
@@ -10,7 +9,7 @@
   }
 
   p {
-    font-size: $size-s;
-    line-height: $line-height-l;
+    font-size: styles.$size-s;
+    line-height: styles.$line-height-l;
   }
 }

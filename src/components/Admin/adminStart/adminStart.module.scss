@@ -1,12 +1,12 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .adminStartContainer {
   display: flex;
   flex-direction: column;
-  gap: $size-s;
+  gap: styles.$size-s;
   align-items: center;
   justify-content: center;
-  padding: 0 $size-l $size-l;
+  padding: 0 styles.$size-l styles.$size-l;
   height: 80vh;
 
   .heroImageContainer {
@@ -19,10 +19,10 @@
   }
 
   h2 {
-    font-size: $size-l;
+    font-size: styles.$size-l;
   }
 
   p {
-    font-size: $size-s;
+    font-size: styles.$size-s;
   }
 }

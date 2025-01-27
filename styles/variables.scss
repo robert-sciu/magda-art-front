@@ -1,0 +1,181 @@
+// breakpoints
+$breakpoint-small-mobile: 320px;
+$breakpoint-mobile: 480px;
+$breakpoint-small-tablet: 600px;
+$breakpoint-tablet: 768px;
+$breakpoint-small-desktop: 1024px;
+$breakpoint-medium-small-desktop: 1280px;
+$breakpoint-medium-desktop: 1440px;
+$breakpoint-large-desktop: 1920px;
+
+// just as a reference
+
+// @include respond-to(medium-desktop) {
+//   padding: $size-xxs $size-s;
+// }
+
+// new wave of filters
+
+$logo-filter: invert(68%) sepia(61%) saturate(0%) hue-rotate(188deg)
+  brightness(113%) contrast(101%);
+$social-icon-filter: invert(3%) sepia(7%) saturate(4%) hue-rotate(314deg)
+  brightness(99%) contrast(85%);
+$social-icon-filter--hover: invert(58%) sepia(0%) saturate(0%)
+  hue-rotate(175deg) brightness(93%) contrast(91%);
+
+// new wave of colors
+
+$background-primary: #e0e0e0;
+$background-secondary: #d4d4d4;
+$background-tertiary: #5e5e5e;
+$background-dark: #202020;
+
+$background-nav: #dfdfdf;
+$background-mobile-nav: #ffffffe0;
+
+$background-btn-primary: #5e5e5e;
+$background-btn-primary--hover: #747474;
+
+$background-btn-secondary: #dfdfdf;
+$background-btn-secondary--hover: #d8d8d8;
+
+$background-btn-disabled: #a5a5a5;
+
+$background-btn-green: #009b15;
+$background-btn-green--hover: #00c21a;
+
+$background-btn-red: #ac0000;
+$background-btn-red--hover: #d30000;
+
+$icon-light: #dfdfdf;
+$icon-light--hover: #ffffff;
+
+$icon-dark: #202020;
+$icon-dark--hover: #383838;
+
+$text-primary: #ebebeb;
+$text-secondary: #202020;
+$text-tertiary: #5e5e5e;
+
+$gallery-parallax-background: #000000c2;
+$gallery-parallax-link---hover: #0077ff;
+
+$overlay-light: #00000069;
+$overlay-dark: #000000c2;
+
+$hero-gradient-top: #09201fd7;
+$hero-gradient-bottom: #472c0d86;
+
+$common-red: #ff0000;
+$common-green: #009b15;
+
+// new wave of shadows
+$shadow-nav: 0 0.1rem 0.3rem 0 #d1d1d1c4;
+$shadow-inset-primary: inset 0 0 0.1rem 0.1rem rgba(0, 0, 0, 0.199);
+$card-shadow-primary: 0 0rem 2rem #a3a3a36e;
+
+//new wave of transitions
+
+$basic-transition: all 0.2s ease-in;
+$basic-transition-slow: all 0.4s ease-in;
+$link-transition: color 0.2s ease-in, filter 0.2s ease-in;
+$link-transition-slow: color 0.5s ease-in, filter 0.5s ease-in;
+
+// colors
+
+$action-blue--filter: invert(28%) sepia(98%) saturate(2273%) hue-rotate(202deg)
+  brightness(101%) contrast(105%);
+
+$action-blue: #0077ff;
+$action-light-blue: #2289ff;
+$action-green: #01a001;
+$action-light-green: #59ff59;
+$cancel-red: #ff3d3d;
+$error-red: #ff0000;
+$main-medium-light-gray: #a7a7a7;
+$main-light-gray: #d3d3d3;
+$secondary-color--hover: #f5f5f5;
+
+$white-shadow: #d1d1d1ab;
+$dark-shadow: #5555556e;
+$medium-shadow: #a3a3a36e;
+
+$mobileNav-transparent-white: #ffffffc7;
+$main-gray-light: #a5a5a5;
+
+////////////////////////////////////////////////////////////////////
+$main-white: #dfdfdf;
+$main-black: #202020;
+$main-gray: #5e5e5e;
+$main-gray-dark: #383838;
+$main-gray-ligth: #9e9e9e;
+
+// widths
+$main-content-width: 1440px;
+
+$size-giant: 6.25rem;
+$size-xxxxl: 3.815rem;
+$size-xxxl: 3.052rem;
+$size-xxl: 2.441rem;
+$size-xl: 1.953rem;
+$size-l: 1.563rem;
+$size-m: 1.25rem;
+$size-s: 1rem;
+$size-xs: 0.8rem;
+$size-xxs: 0.64rem;
+$size-xxxs: 0.48rem;
+$size-xxxxs: 0.32rem;
+$size-tiny: 0.16rem;
+
+// border radii
+$border-radius-m: $size-xxxs;
+$border-radius-s: $size-xxxxs;
+$border-radius-xs: $size-tiny;
+
+// line heights
+
+$line-height-standard: 1.6;
+$line-height-l: 1.8;
+
+// properties
+
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+// transitions
+
+$inset-soft-shadow: inset 0 0.04rem 0.3rem 0 $main-gray-light;
+$border-like-shadow: 0 0 0.3rem 0 $main-gray-light;
+
+$main-gray-light: #808080;
+
+// elements
+$parallax-height: 70vh;
+
+:export {
+  mainLightGray: $main-light-gray;
+  mainWhite: $main-white;
+  mainGray: $main-gray;
+  actionBlue: $action-blue;
+  sizeGiant: $size-giant;
+  sizeXxxxl: $size-xxxxl;
+  sizeXxl: $size-xxl;
+  sizeXl: $size-xl;
+  sizeS: $size-s;
+  sizeM: $size-m;
+  sizeL: $size-l;
+  sizeXs: $size-xs;
+  sizeXxs: $size-xxs;
+  sizeXxxs: $size-xxxs;
+  sizeXxxxs: $size-xxxxs;
+  tabletWidth: $breakpoint-tablet;
+  mobileWidth: $breakpoint-mobile;
+  smallMobileWidth: $breakpoint-small-mobile;
+  largeDesktopWidth: $breakpoint-large-desktop;
+  mediumDesktopWidth: $breakpoint-medium-desktop;
+  smallDesktopWidth: $breakpoint-small-desktop;
+  mediumSmallDesktopWidth: $breakpoint-medium-small-desktop;
+}

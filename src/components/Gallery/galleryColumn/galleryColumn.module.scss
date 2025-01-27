@@ -1,14 +1,14 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .galleryColumn {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: $size-xxxs;
+  gap: styles.$size-xxxs;
 
   .filler {
     flex: 1;
-    background-color: $background-tertiary;
+    background-color: styles.$background-tertiary;
     position: relative;
     display: flex;
     align-items: center;

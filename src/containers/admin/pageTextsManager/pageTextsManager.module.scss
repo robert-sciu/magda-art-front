@@ -1,16 +1,15 @@
-@import "./../../../../styles/variables.module.scss";
-@import "./../../../../styles/classes.module.scss";
+@use "./../../../../styles";
 
 .editorContainer {
-  @extend .adminMainContainer;
+  @include styles.adminMainContainer;
   .editorForm {
-    border: 1px solid $text-primary;
-    padding: $size-l;
-    gap: $size-xl;
-    background-color: $background-secondary;
-    border-radius: $border-radius-s;
+    border: 1px solid styles.$text-primary;
+    padding: styles.$size-l;
+    gap: styles.$size-xl;
+    background-color: styles.$background-secondary;
+    border-radius: styles.$border-radius-s;
     display: flex;
     flex-direction: column;
-    gap: $size-xxs;
+    gap: styles.$size-xxs;
   }
 }

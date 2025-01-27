@@ -1,10 +1,9 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/classes.module.scss";
+@use "../../../../styles";
 
 .menuBtn {
   position: fixed;
-  top: $size-xxxxs;
-  right: $size-xxxxs;
+  top: styles.$size-xxxxs;
+  right: styles.$size-xxxxs;
   mix-blend-mode: difference;
   z-index: 99;
 }
@@ -15,22 +14,22 @@
   right: 0;
   width: 60%;
   height: 100vh;
-  background-color: $background-mobile-nav;
-  backdrop-filter: blur($size-xs);
+  background-color: styles.$background-mobile-nav;
+  backdrop-filter: blur(styles.$size-xs);
   z-index: 100;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: $size-l;
-  padding-left: $size-m;
+  gap: styles.$size-l;
+  padding-left: styles.$size-m;
   transition: transform 0.5s ease-out;
 
   .closeBtn {
     position: absolute;
-    top: $size-xxs;
-    right: $size-xxs;
-    font-size: $size-m;
+    top: styles.$size-xxs;
+    right: styles.$size-xxs;
+    font-size: styles.$size-m;
   }
 }
 

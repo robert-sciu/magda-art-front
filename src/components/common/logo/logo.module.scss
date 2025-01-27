@@ -1,11 +1,10 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 .logoGlow {
-  width: $size-xxl;
-  height: $size-xxl;
+  width: styles.$size-xxl;
+  height: styles.$size-xxl;
   position: relative;
-  border-radius: $border-radius-xs;
+  border-radius: styles.$border-radius-xs;
 
   img {
     position: relative;
@@ -34,12 +33,12 @@
   }
   &::after {
     opacity: 0.5;
-    filter: blur($size-s);
+    filter: blur(styles.$size-s);
   }
 
   // @include respond-to(medium-desktop) {
-  //   width: $size-xl;
-  //   height: $size-xl;
+  //   width: styles.$size-xl;
+  //   height: styles.$size-xl;
   // }
 }
 
@@ -53,37 +52,37 @@
 }
 
 .mainLogo {
-  width: calc($size-giant * 1.2);
-  height: calc($size-giant * 1.2);
+  width: calc(styles.$size-giant * 1.2);
+  height: calc(styles.$size-giant * 1.2);
 
   img {
     z-index: 10;
-    border-radius: $border-radius-s;
-    box-shadow: 2px 0px 10px $white-shadow;
+    border-radius: styles.$border-radius-s;
+    box-shadow: 2px 0px 10px styles.$white-shadow;
   }
 
   // @include respond-to(medium-desktop) {
-  //   width: $size-giant;
-  //   height: $size-giant;
+  //   width: styles.$size-giant;
+  //   height: styles.$size-giant;
   // }
 
   // @include respond-to(small-desktop) {
-  //   width: $size-xxxxl;
-  //   height: $size-xxxxl;
+  //   width: styles.$size-xxxxl;
+  //   height: styles.$size-xxxxl;
   // }
 
   // @include respond-to(small-tablet) {
-  //   width: $size-xxxl;
-  //   height: $size-xxxl;
+  //   width: styles.$size-xxxl;
+  //   height: styles.$size-xxxl;
   // }
 
   // @include respond-to(mobile) {
-  //   width: $size-xxl;
-  //   height: $size-xxl;
+  //   width: styles.$size-xxl;
+  //   height: styles.$size-xxl;
   // }
 }
 
 .sizeL {
-  width: $size-xxxxl;
-  height: $size-xxxxl;
+  width: styles.$size-xxxxl;
+  height: styles.$size-xxxxl;
 }

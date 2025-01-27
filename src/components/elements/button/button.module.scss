@@ -1,16 +1,16 @@
-@import "./../../../../styles/variables.module.scss";
+@use "./../../../../styles";
 
 .button {
-  border-radius: $border-radius-s;
+  border-radius: styles.$border-radius-s;
   border: none;
-  padding: $size-xxxxs $size-xs;
-  transition: $basic-transition;
+  padding: styles.$size-xxxxs styles.$size-xs;
+  transition: styles.$basic-transition;
   text-decoration: none;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: $size-xxxs;
+  gap: styles.$size-xxxs;
   cursor: pointer;
   position: relative;
   min-width: 7rem;
@@ -34,15 +34,14 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: $size-xxl;
-  transition: $basic-transition;
+  font-size: styles.$size-xxl;
+  transition: styles.$basic-transition;
+  -webkit-tap-highlight-color: transparent;
 
   &:focus {
     outline: none;
   }
-  & {
-    -webkit-tap-highlight-color: transparent;
-  }
+
   &:active {
     outline: none;
     box-shadow: none; /* Removes any shadow styling on active */
@@ -53,14 +52,13 @@
   border: none;
   background-color: transparent;
   cursor: pointer;
-  font-size: $size-xxl;
-  padding: $size-xxxs;
+  font-size: styles.$size-xxl;
+  padding: styles.$size-xxxs;
+  -webkit-tap-highlight-color: transparent;
   &:focus {
     outline: none;
   }
-  & {
-    -webkit-tap-highlight-color: transparent;
-  }
+
   &:active {
     outline: none;
     box-shadow: none; /* Removes any shadow styling on active */
@@ -68,60 +66,60 @@
 }
 
 .basicGrayBtn {
-  background-color: $background-btn-primary;
-  color: $text-primary;
+  background-color: styles.$background-btn-primary;
+  color: styles.$text-primary;
   &:hover,
   &:active {
-    background-color: $background-btn-primary--hover;
+    background-color: styles.$background-btn-primary--hover;
   }
 }
 
 .basicLightIcon {
-  color: $icon-light;
+  color: styles.$icon-light;
   &:hover,
   &:active {
-    color: $icon-light--hover;
+    color: styles.$icon-light--hover;
   }
 }
 
 .basicDarkIcon {
-  color: $icon-dark;
+  color: styles.$icon-dark;
   &:hover,
   &:active {
-    color: $icon-dark--hover;
+    color: styles.$icon-dark--hover;
   }
 }
 
 .greenBtn {
-  background-color: $background-btn-green;
-  color: $text-primary;
+  background-color: styles.$background-btn-green;
+  color: styles.$text-primary;
   &:hover,
   &:active {
-    background-color: $background-btn-green--hover;
+    background-color: styles.$background-btn-green--hover;
   }
 }
 
 .redBtn {
-  background-color: $background-btn-red;
-  color: $text-primary;
+  background-color: styles.$background-btn-red;
+  color: styles.$text-primary;
   &:hover,
   &:active {
-    background-color: $background-btn-red--hover;
+    background-color: styles.$background-btn-red--hover;
   }
 }
 
 .lightBtn {
-  background-color: $background-btn-secondary;
-  color: $text-secondary;
+  background-color: styles.$background-btn-secondary;
+  color: styles.$text-secondary;
   &:hover,
   &:active {
-    background-color: $background-btn-secondary--hover;
+    background-color: styles.$background-btn-secondary--hover;
   }
 }
 
 .button.disabled {
   cursor: default;
-  background-color: $background-btn-disabled;
+  background-color: styles.$background-btn-disabled;
 }
 
 .smallBtn {
@@ -133,7 +131,7 @@
 }
 
 .fixedHeight {
-  height: $size-xxl;
+  height: styles.$size-xxl;
 }
 
 .flexStretch {

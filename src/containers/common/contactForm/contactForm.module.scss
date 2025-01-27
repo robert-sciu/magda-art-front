@@ -1,33 +1,33 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .contactContainer {
   display: flex;
   flex-direction: column;
-  gap: $size-l;
+  gap: styles.$size-l;
   .contactForm {
     display: flex;
     flex-direction: column;
-    gap: $size-m;
+    gap: styles.$size-m;
     height: 100%;
   }
   .successMessage {
     display: flex;
     flex-direction: column;
-    gap: $size-m;
-    font-size: $size-m;
-    color: $common-green;
+    gap: styles.$size-m;
+    font-size: styles.$size-m;
+    color: styles.$common-green;
     text-align: center;
   }
 }
 
 .paddingL {
-  padding: $size-xl $size-xxl;
+  padding: styles.$size-xl styles.$size-xxl;
 }
 
 .paddingS {
-  padding: $size-xxxs $size-m;
+  padding: styles.$size-xxxs styles.$size-m;
 }
 
 .paddingXS {
-  padding: $size-xxxs $size-tiny;
+  padding: styles.$size-xxxs styles.$size-tiny;
 }

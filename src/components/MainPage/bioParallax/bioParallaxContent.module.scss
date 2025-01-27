@@ -1,8 +1,8 @@
-@import "../../../../styles/variables.module.scss";
+@use "../../../../styles";
 
 .parallaxText {
-  color: $text-primary;
-  font-size: $size-giant;
+  color: styles.$text-primary;
+  font-size: styles.$size-giant;
   mix-blend-mode: difference;
   z-index: 15;
 }

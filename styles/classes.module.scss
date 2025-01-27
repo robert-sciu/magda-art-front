@@ -1,68 +1,68 @@
-@import "./variables.module.scss";
+// @import "./variables.module.scss";
 
-.input {
-  border-radius: $size-xxxxs;
-  border: none;
-  padding: $size-xxxxs;
-  box-shadow: $inset-soft-shadow;
-  text-align: center;
-  transition: $basic-transition;
-  &:focus {
-    outline: none;
-  }
-}
+// .input {
+//   border-radius: $size-xxxxs;
+//   border: none;
+//   padding: $size-xxxxs;
+//   box-shadow: $inset-soft-shadow;
+//   text-align: center;
+//   transition: $basic-transition;
+//   &:focus {
+//     outline: none;
+//   }
+// }
 
-.fullScreenContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  width: 100vw;
-}
+// .fullScreenContainer {
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   height: 100vh;
+//   width: 100vw;
+// }
 
-.adminMainContainer {
-  position: relative;
-  padding: $size-xxxs;
-  gap: $size-l;
-  border: 1px solid $main-medium-light-gray;
-  background-color: $main-white;
-  width: 100%;
-}
+// .adminMainContainer {
+//   position: relative;
+//   padding: $size-xxxs;
+//   gap: $size-l;
+//   border: 1px solid $main-medium-light-gray;
+//   background-color: $main-white;
+//   width: 100%;
+// }
 
-.modalWindowContent {
-  z-index: 21;
-  display: flex;
-  flex-direction: column;
-  gap: $size-xxl;
-  padding: 0 $size-xl;
-  align-items: center;
-  cursor: default;
-}
+// .modalWindowContent {
+//   z-index: 21;
+//   display: flex;
+//   flex-direction: column;
+//   gap: $size-xxl;
+//   padding: 0 $size-xl;
+//   align-items: center;
+//   cursor: default;
+// }
 
-.modalWindowButtonsContainer {
-  display: flex;
-  gap: $size-xxs;
-  width: 100%;
-  justify-content: space-between;
-}
+// .modalWindowButtonsContainer {
+//   display: flex;
+//   gap: $size-xxs;
+//   width: 100%;
+//   justify-content: space-between;
+// }
 
-.backdropBlur {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  backdrop-filter: blur(2px);
-  z-index: 1;
-}
+// .backdropBlur {
+//   content: "";
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   backdrop-filter: blur(2px);
+//   z-index: 1;
+// }
 
-.adminSectionContainer {
-  display: grid;
-  grid-template-columns: 1fr 2.5fr;
-  border: 1px solid $text-primary;
-  padding: $size-l;
-  gap: $size-xl;
-  background-color: $background-secondary;
-  border-radius: $border-radius-s;
-}
+// .adminSectionContainer {
+//   display: grid;
+//   grid-template-columns: 1fr 2.5fr;
+//   border: 1px solid $text-primary;
+//   padding: $size-l;
+//   gap: $size-xl;
+//   background-color: $background-secondary;
+//   border-radius: $border-radius-s;
+// }

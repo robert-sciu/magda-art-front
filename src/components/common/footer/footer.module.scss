@@ -1,9 +1,8 @@
-@import "../../../../styles/variables.module.scss";
-@import "../../../../styles/mixins.module.scss";
+@use "../../../../styles";
 
 footer {
-  box-shadow: $card-shadow-primary;
-  padding: $size-l $size-l;
+  box-shadow: styles.$card-shadow-primary;
+  padding: styles.$size-l styles.$size-l;
   margin-top: auto;
 
   .footerContainer {
@@ -12,13 +11,13 @@ footer {
     align-items: center;
 
     .footerInfo {
-      font-size: $size-xs;
-      color: $text-tertiary;
+      font-size: styles.$size-xs;
+      color: styles.$text-tertiary;
     }
 
-    @include respond-to(small-tablet) {
+    @include styles.respond-to(small-tablet) {
       flex-direction: column;
-      gap: $size-s;
+      gap: styles.$size-s;
     }
   }
 }
