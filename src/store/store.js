@@ -8,7 +8,6 @@ import authReducer from "./authSlice";
 import mailerReducer from "./mailerSlice";
 
 export default configureStore({
-  devTools: false,
   reducer: {
     mainPageContent: mainPageContentReducer,
     mainPageImages: mainPageImagesReducer,
@@ -17,4 +16,5 @@ export default configureStore({
     auth: authReducer,
     mailer: mailerReducer,
   },
+  devTools: false,
 });
