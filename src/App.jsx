@@ -62,7 +62,6 @@ const LazyPotectedRoute = React.lazy(() =>
  *
  * @return {JSX.Element} The rendered application component.
  */
-const underConstruction = import.meta.env.VITE_UNDER_CONSTRUCTION;
 
 function App() {
   const location = useSelector(selectLocation);
@@ -79,14 +78,6 @@ function App() {
     if (!location) return;
     dispatch(setAppLoaded(true));
   });
-
-  if (underConstruction === "1") {
-    return (
-      <div className="maintenance">
-        <h1>Under Construction</h1>
-      </div>
-    );
-  }
 
   return (
     <div className="appContainer">
