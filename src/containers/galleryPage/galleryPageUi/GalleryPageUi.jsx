@@ -11,12 +11,14 @@ import {
   fetchGalleryImages,
   populateColumns,
   selectClickedImage,
+  selectGalleryFillers,
   selectGalleryPageColumns,
   selectGalleryPageImages,
   selectGalleryPageImagesFetchStatus,
   selectGalleryPageImagesLoadingStatus,
   selectHighQualityLoadStatus,
   selectUseBlurStatus,
+  setFillers,
 } from "../../../store/galleryPageSlice.js";
 
 import { selectDevice, setLocation } from "../../../store/rootNavSlice.js";
@@ -37,7 +39,7 @@ export default function GalleryPageUi() {
   const [galleryColumns, setGalleryColumns] = useState(null);
   const [numberOfColumns, setNumberOfColumns] = useState(null);
   const [columnsReady, setColumnsReady] = useState(false);
-  const [allFillers, setAllFillers] = useState([]);
+  // const [allFillers, setAllFillers] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -49,6 +51,7 @@ export default function GalleryPageUi() {
   const blurIsEnabled = useSelector(selectUseBlurStatus);
   const device = useSelector(selectDevice);
   const clickedImage = useSelector(selectClickedImage);
+  const fillers = useSelector(selectGalleryFillers);
 
   // disables blur after 2 seconds if high quality images are loaded
   // blur is only needed to transition from lazy to high quality for the first time
@@ -76,13 +79,11 @@ export default function GalleryPageUi() {
 
   useEffect(() => {
     if (Object.keys(columns).length === getNumberOfColumns()) return;
-    if (!loadingContent && numberOfColumns && paintings && allFillers) {
+    if (!loadingContent && numberOfColumns && paintings && fillers) {
       // dispatch(createImageColumns(numberOfColumns));
       dispatch(
         populateColumns({
           numberOfColumns,
-          paintings,
-          fillers: [...allFillers],
         })
       );
     }
@@ -92,7 +93,8 @@ export default function GalleryPageUi() {
     loadingContent,
     paintings,
     columns,
-    allFillers,
+    fillers,
+    // allFillers,
   ]);
 
   useEffect(() => {
@@ -116,7 +118,8 @@ export default function GalleryPageUi() {
     const fillers = Object.keys(Fillers).map((key) => {
       return { type: key };
     });
-    setAllFillers(fillers);
+    // setAllFillers(fillers);
+    dispatch(setFillers(fillers));
   }, [dispatch]);
 
   function getNumberOfColumns() {

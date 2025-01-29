@@ -53,8 +53,8 @@ function populatePageImagesState({
 
 function populateGalleryPageColumns({ state, action }) {
   const numberOfColumns = action.payload.numberOfColumns;
-  const fillers = action.payload.fillers;
-  const paintings = action.payload.paintings;
+  const fillers = state.fillers;
+  const paintings = state.galleryImages;
 
   const columns = {};
   for (let i = 1; i <= numberOfColumns; i++) {

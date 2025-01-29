@@ -227,6 +227,7 @@ export const selectGalleryPageErrrorStatus = (state) =>
   state.galleryPage.hasError;
 export const selectGalleryPageErrorMessage = (state) => state.galleryPage.error;
 export const selectLazyLoadStatus = (state) => state.galleryPage.lazyIsLoaded;
+export const selectGalleryFillers = (state) => state.galleryPage.fillers;
 export const selectHighQualityLoadStatus = (state) =>
   state.galleryPage.highQualityIsLoaded;
 
