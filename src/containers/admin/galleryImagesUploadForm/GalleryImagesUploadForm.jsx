@@ -222,22 +222,22 @@ export default function GalleryImagesUploadForm({
         />
         <InputElement
           type={"text"}
-          label={"Width (cm)"}
-          name={"width_cm"}
-          value={width_cm}
-          onChange={(e) => setWidth_cm(e.target.value)}
-          inputError={widthError}
+          label={"Height (cm)"}
+          name={"height_cm"}
+          value={height_cm}
+          onChange={(e) => setHeight_cm(e.target.value)}
+          inputError={heightError}
           width={100}
           alignment="left"
           onFocus={handleFocus}
         />
         <InputElement
           type={"text"}
-          label={"Height (cm)"}
-          name={"height_cm"}
-          value={height_cm}
-          onChange={(e) => setHeight_cm(e.target.value)}
-          inputError={heightError}
+          label={"Width (cm)"}
+          name={"width_cm"}
+          value={width_cm}
+          onChange={(e) => setWidth_cm(e.target.value)}
+          inputError={widthError}
           width={100}
           alignment="left"
           onFocus={handleFocus}
