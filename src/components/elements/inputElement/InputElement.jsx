@@ -141,6 +141,7 @@ export default function InputElement({
             value={value}
             onChange={onChange}
             disabled={isDisabled}
+            autoFocus={name.includes("description") && true}
           />
         </>
       )}
