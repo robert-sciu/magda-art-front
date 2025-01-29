@@ -5,8 +5,13 @@
   gap: styles.$size-xxxs;
   background-color: styles.$main-black;
   padding: styles.$size-giant styles.$size-l styles.$size-xl;
-  // min-height: 100vh;
   img {
     min-height: styles.$size-xxxl;
+  }
+}
+
+@include styles.respond-to(small-tablet) {
+  .galleryPage {
+    padding: styles.$size-xxxxl styles.$size-xxxxs styles.$size-m;
   }
 }

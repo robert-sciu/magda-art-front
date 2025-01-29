@@ -3,7 +3,8 @@
 .galleryLinkBackground {
   background-color: styles.$gallery-parallax-background;
   backdrop-filter: blur(4px);
-  width: 100%;
+  width: 100vw;
+
   z-index: 15;
   .container {
     max-width: styles.$main-content-width;

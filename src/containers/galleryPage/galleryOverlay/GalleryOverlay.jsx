@@ -48,7 +48,7 @@ export default function GalleryOverlay() {
             isVisible={!imageLoaded}
             fadeOut={imageLoaded}
             inactive={highQualityLoaded}
-            background="dark"
+            background={"dark"}
           />
         </div>
         <div className={styles.textContainer}>

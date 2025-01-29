@@ -30,24 +30,26 @@
   }
 }
 
-.iconOnly {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: styles.$size-xxl;
-  transition: styles.$basic-transition;
-  -webkit-tap-highlight-color: transparent;
+//  {
+//   border: none;
+//   background-color: transparent;
+//   cursor: pointer;
+//   font-size: styles.$size-xxl;
+//   transition: styles.$basic-transition;
+//   -webkit-tap-highlight-color: transparent;
+//   // width: 100%;
+//   // height: 100%;
+//   // padding: 0;
+//   &:focus {
+//     outline: none;
+//   }
 
-  &:focus {
-    outline: none;
-  }
-
-  &:active {
-    outline: none;
-    box-shadow: none; /* Removes any shadow styling on active */
-  }
-}
-
+//   &:active {
+//     outline: none;
+//     box-shadow: none; /* Removes any shadow styling on active */
+//   }
+// }
+.iconOnly,
 .navIcon {
   border: none;
   background-color: transparent;

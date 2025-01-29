@@ -45,6 +45,7 @@ const ImageDisplay = forwardRef(
     const isPageImage = type === "pageImage";
     const isAdminImage = type === "adminImage";
     const isHeroImage = type === "heroImage";
+    const isParallaxImage = type === "parallaxImage";
 
     const dispatch = useDispatch();
 
@@ -79,6 +80,12 @@ const ImageDisplay = forwardRef(
       if (isVisible) setImgQuality(device);
     }, [device, isVisible, imgQuality, isHeroImage]);
 
+    useEffect(() => {
+      if (!isParallaxImage) return;
+      if (imgQuality === "desktop") return;
+      if (isVisible) setImgQuality(device);
+    }, [device, isVisible, imgQuality, isParallaxImage]);
+
     function handleLoad(e) {
       setImgLoaded(true);
       if (isGallery && allHighQualityIsLoaded) return;
@@ -108,6 +115,22 @@ const ImageDisplay = forwardRef(
             ></div>
             <img
               className={styles.heroImage}
+              src={img?.[`url_${imgQuality}`]}
+              alt={`Painting entitled ${img?.title}`}
+              onLoad={handleLoad}
+            />
+          </div>
+        )}
+        {isParallaxImage && (
+          <div className={styles.parallaxContainer}>
+            <div
+              className={classNameFormatter({
+                styles,
+                classNames: ["blur", highQualityLoaded && "noBlur"],
+              })}
+            ></div>
+            <img
+              className={styles.parallaxImage}
               src={img?.[`url_${imgQuality}`]}
               alt={`Painting entitled ${img?.title}`}
               onLoad={handleLoad}

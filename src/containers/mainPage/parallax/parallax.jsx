@@ -1,89 +1,54 @@
-// import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import PropTypes from "prop-types";
 
 import { useSelector } from "react-redux";
 
-import { selectDevice } from "../../../store/rootNavSlice";
-import {
-  selectHeroImgLoadedHQ,
-  selectPageImagesFetchStatus,
-  selectSectionInView,
-} from "../../../store/mainPageImagesSlice";
+import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
+
+import { selectSectionInView } from "../../../store/mainPageImagesSlice";
 
 import styles from "./parallax.module.scss";
 
 import { classNameFormatter } from "../../../utilities/utilities";
 
-/**
- * Parallax component that renders a section with a parallax background image.
- *
- * This component uses the provided imageSelector function to select an image from the Redux store,
- * and dynamically adjusts the image quality based on the device type and section visibility.
- *
- * @param {Object} props - The props for the component.
- * @param {Function} props.imageSelector - A function that selects the image data from the Redux store.
- * @param {string} props.sectionId - The unique identifier for the section, used to determine visibility.
- * @param {React.ReactNode} props.children - Optional children elements to be rendered within the parallax section.
- *
- * @returns {JSX.Element} The rendered parallax component.
- */
+import { Parallax as ReactParallax, Background } from "react-parallax";
 
 export default function Parallax({ imageSelector, sectionId, children }) {
-  // const [imgQuality, setImgQuality] = useState("lazy");
-
-  const device = useSelector(selectDevice);
   const parallaxImage = useSelector(imageSelector)?.[0];
   const isVisible = useSelector((state) =>
     selectSectionInView(state, sectionId)
   );
-  const pageImageFetchComplete = useSelector(selectPageImagesFetchStatus);
-  const heroImageLoaded = useSelector(selectHeroImgLoadedHQ);
+  const MemoizedImageDisplay = useMemo(
+    () => (
+      <ImageDisplay
+        img={parallaxImage}
+        type={"parallaxImage"}
+        isVisible={isVisible}
+      />
+    ),
+    [parallaxImage, isVisible]
+  );
 
-  const hiQualityackgroundStyle = {
-    backgroundImage: `url(${parallaxImage?.[`url_${device}`]})`,
-  };
-  const lazyBackgroundStyle = {
-    backgroundImage: `url(${parallaxImage?.[`url_lazy`]})`,
-  };
+  if (!parallaxImage) return null;
 
   return (
-    <div
+    <ReactParallax
+      strength={300}
       className={classNameFormatter({
         styles,
         classNames: ["parallax"],
       })}
-      //as soon as the page is loaded and the hero image is loaded, switch to hi quality for parallaxes
-      //I can't see any other way to do this is the display is smooth and pretty as scss doesn't expose any onload info
-      //I also don't want to use the whole parallax library for one effect and besides I'm proud it did this by myself
-      //So next time you see this, just accept it
-      style={
-        isVisible || (pageImageFetchComplete && heroImageLoaded)
-          ? hiQualityackgroundStyle
-          : {}
-      }
     >
+      <Background>{MemoizedImageDisplay}</Background>
       <div
         className={classNameFormatter({
           styles,
-          classNames: ["parallaxLazy"],
+          classNames: ["header"],
         })}
-        style={lazyBackgroundStyle}
       >
-        <div
-          className={classNameFormatter({
-            styles,
-            classNames: ["blur"],
-          })}
-        ></div>
+        {children && children}
       </div>
-      <div
-        className={classNameFormatter({
-          styles,
-          classNames: ["blur", isVisible && "noBlur"],
-        })}
-      ></div>
-      {children && children}
-    </div>
+    </ReactParallax>
   );
 }
 
