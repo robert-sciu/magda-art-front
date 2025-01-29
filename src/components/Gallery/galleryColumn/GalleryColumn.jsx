@@ -5,7 +5,10 @@ import { useSelector } from "react-redux";
 
 import ImageDisplay from "../../elements/imageDisplay/ImageDisplay";
 
-import { selectLazyLoadStatus } from "../../../store/galleryPageSlice";
+import {
+  selectGalleryPageImages,
+  selectLazyLoadStatus,
+} from "../../../store/galleryPageSlice";
 
 import styles from "./galleryColumn.module.scss";
 
@@ -13,6 +16,11 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
   const refs = useRef([]);
   const [visibleImages, setVisibleImages] = useState(new Set());
   const lazyLoaded = useSelector(selectLazyLoadStatus);
+  const paintings = useSelector(selectGalleryPageImages);
+
+  const columnPaintings = column.map(
+    (paintingIndex) => paintings[paintingIndex]
+  );
 
   useEffect(() => {
     if (!lazyLoaded) return;
@@ -54,7 +62,7 @@ export default function GalleryColumn({ column, isHighest, Filler = null }) {
 
   return (
     <div className={styles.galleryColumn}>
-      {column.map((image, index) => (
+      {columnPaintings.map((image, index) => (
         <ImageDisplay
           img={image}
           key={image.id}

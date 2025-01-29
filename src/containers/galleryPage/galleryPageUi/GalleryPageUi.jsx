@@ -13,7 +13,7 @@ import {
   selectClickedImage,
   selectGalleryFillers,
   selectGalleryPageColumns,
-  selectGalleryPageImages,
+  // selectGalleryPageImages,
   selectGalleryPageImagesFetchStatus,
   selectGalleryPageImagesLoadingStatus,
   selectHighQualityLoadStatus,
@@ -43,7 +43,7 @@ export default function GalleryPageUi() {
 
   const dispatch = useDispatch();
 
-  const paintings = useSelector(selectGalleryPageImages);
+  // const paintings = useSelector(selectGalleryPageImages);
   const loadingContent = useSelector(selectGalleryPageImagesLoadingStatus);
   const columns = useSelector(selectGalleryPageColumns);
   const highQualityLoaded = useSelector(selectHighQualityLoadStatus);
@@ -79,7 +79,7 @@ export default function GalleryPageUi() {
 
   useEffect(() => {
     if (Object.keys(columns).length === getNumberOfColumns()) return;
-    if (!loadingContent && numberOfColumns && paintings && fillers) {
+    if (!loadingContent && numberOfColumns && fetchComplete && fillers) {
       // dispatch(createImageColumns(numberOfColumns));
       dispatch(
         populateColumns({
@@ -91,7 +91,7 @@ export default function GalleryPageUi() {
     dispatch,
     numberOfColumns,
     loadingContent,
-    paintings,
+    fetchComplete,
     columns,
     fillers,
     // allFillers,
@@ -118,7 +118,6 @@ export default function GalleryPageUi() {
     const fillers = Object.keys(Fillers).map((key) => {
       return { type: key };
     });
-    // setAllFillers(fillers);
     dispatch(setFillers(fillers));
   }, [dispatch]);
 

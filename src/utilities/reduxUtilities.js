@@ -65,7 +65,7 @@ function populateGalleryPageColumns({ state, action }) {
     };
   }
 
-  paintings.forEach((image) => {
+  paintings.forEach((image, index) => {
     const colHeights = createArrayFromObject(columns).map((col) => col.height);
     const lowestColHeight = Math.min(...colHeights);
     const lowestCol = Object.keys(columns).find(
@@ -73,7 +73,7 @@ function populateGalleryPageColumns({ state, action }) {
     );
     const gapSize = parseFloat(scss.sizeXxxs);
     columns[lowestCol].height += image.height_px + gapSize;
-    columns[lowestCol].paintings.push(image);
+    columns[lowestCol].paintings.push(index);
   });
   const colHeights = createArrayFromObject(columns).map((col) => col.height);
 
@@ -84,6 +84,7 @@ function populateGalleryPageColumns({ state, action }) {
 
   columns[highestCol].isHighest = true;
 
+  const fillersCopy = fillers.slice();
   createArrayFromObject(columns).forEach((column) => {
     const columnFreeSpace = highestColHeight - column.height;
     const minimumFreeSpace = 300;
@@ -91,8 +92,7 @@ function populateGalleryPageColumns({ state, action }) {
       parseInt(scss.sizeXxl) + parseInt(scss.sizeXxs);
 
     if (columnFreeSpace > minimumFreeSpace && fillers.length > 0) {
-      const filler = fillers.shift();
-
+      const filler = fillersCopy.shift();
       // If the current column is the logo column, but it doesn't have enough space and we have fillers left in the array,
       // we will use the next filler in the array to fill the column.
       if (
