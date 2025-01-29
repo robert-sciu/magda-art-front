@@ -18,8 +18,8 @@ export default function InfoModal({ info, onCancel, dispatch }) {
           if (
             [
               "id",
-              "width_px",
-              "height_px",
+              // "width_px",
+              // "height_px",
               "filename_desktop",
               "filename_mobile",
               "filename_lazy",
