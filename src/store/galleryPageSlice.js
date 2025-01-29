@@ -104,18 +104,6 @@ export const galleryPageSlice = createSlice({
     refetchNeeded: false,
   },
   reducers: {
-    createImageColumns: (state, action) => {
-      const columns = {};
-      for (let i = 1; i <= action.payload; i++) {
-        columns[`column-${i}`] = {
-          height: 0,
-          isHighest: false,
-          paintings: [],
-        };
-      }
-
-      state.columns = columns;
-    },
     /**
      * Populates the columns with paintings and fillers.
      *
@@ -203,7 +191,6 @@ export const galleryPageSlice = createSlice({
 });
 
 export const {
-  createImageColumns,
   populateColumns,
   setClickedImage,
   resetClickedImage,

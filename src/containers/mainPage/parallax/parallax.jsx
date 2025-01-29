@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import { useSelector } from "react-redux";
 
 import { selectDevice } from "../../../store/rootNavSlice";
-import { selectSectionInView } from "../../../store/mainPageImagesSlice";
+import {
+  selectHeroImgLoadedHQ,
+  selectPageImagesFetchStatus,
+  selectSectionInView,
+} from "../../../store/mainPageImagesSlice";
 
 import styles from "./parallax.module.scss";
 
@@ -25,29 +29,22 @@ import { classNameFormatter } from "../../../utilities/utilities";
  */
 
 export default function Parallax({ imageSelector, sectionId, children }) {
-  const [imgQuality, setImgQuality] = useState("lazy");
+  // const [imgQuality, setImgQuality] = useState("lazy");
 
   const device = useSelector(selectDevice);
   const parallaxImage = useSelector(imageSelector)?.[0];
   const isVisible = useSelector((state) =>
     selectSectionInView(state, sectionId)
   );
+  const pageImageFetchComplete = useSelector(selectPageImagesFetchStatus);
+  const heroImageLoaded = useSelector(selectHeroImgLoadedHQ);
 
-  const imgStyle = {
-    backgroundImage: parallaxImage
-      ? `url(${parallaxImage?.[`url_${imgQuality}`]})`
-      : null,
+  const hiQualityackgroundStyle = {
+    backgroundImage: `url(${parallaxImage?.[`url_${device}`]})`,
   };
-
-  useEffect(() => {
-    if (isVisible) {
-      const img = new Image();
-      img.src = parallaxImage?.[`url_${device}`];
-      img.onload = () => {
-        setImgQuality(device);
-      };
-    }
-  }, [parallaxImage, device, isVisible]);
+  const lazyBackgroundStyle = {
+    backgroundImage: `url(${parallaxImage?.[`url_lazy`]})`,
+  };
 
   return (
     <div
@@ -55,12 +52,34 @@ export default function Parallax({ imageSelector, sectionId, children }) {
         styles,
         classNames: ["parallax"],
       })}
-      style={imgStyle}
+      //as soon as the page is loaded and the hero image is loaded, switch to hi quality for parallaxes
+      //I can't see any other way to do this is the display is smooth and pretty as scss doesn't expose any onload info
+      //I also don't want to use the whole parallax library for one effect and besides I'm proud it did this by myself
+      //So next time you see this, just accept it
+      style={
+        isVisible || (pageImageFetchComplete && heroImageLoaded)
+          ? hiQualityackgroundStyle
+          : {}
+      }
     >
       <div
         className={classNameFormatter({
           styles,
-          classNames: ["blur", imgQuality !== "lazy" && "noBlur"],
+          classNames: ["parallaxLazy"],
+        })}
+        style={lazyBackgroundStyle}
+      >
+        <div
+          className={classNameFormatter({
+            styles,
+            classNames: ["blur"],
+          })}
+        ></div>
+      </div>
+      <div
+        className={classNameFormatter({
+          styles,
+          classNames: ["blur", isVisible && "noBlur"],
         })}
       ></div>
       {children && children}

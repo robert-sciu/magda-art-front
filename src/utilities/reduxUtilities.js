@@ -52,52 +52,63 @@ function populatePageImagesState({
 }
 
 function populateGalleryPageColumns({ state, action }) {
-  state.fillers = action.payload.fillers;
-  action.payload.paintings.forEach((image) => {
-    const colHeights = createArrayFromObject(state.columns).map(
-      (col) => col.height
-    );
+  const numberOfColumns = action.payload.numberOfColumns;
+  const fillers = action.payload.fillers;
+  const paintings = action.payload.paintings;
+
+  const columns = {};
+  for (let i = 1; i <= numberOfColumns; i++) {
+    columns[`column-${i}`] = {
+      height: 0,
+      isHighest: false,
+      paintings: [],
+    };
+  }
+
+  paintings.forEach((image) => {
+    const colHeights = createArrayFromObject(columns).map((col) => col.height);
     const lowestColHeight = Math.min(...colHeights);
-    const lowestCol = Object.keys(state.columns).find(
-      (col) => state.columns[col].height === lowestColHeight
+    const lowestCol = Object.keys(columns).find(
+      (col) => columns[col].height === lowestColHeight
     );
     const gapSize = parseFloat(scss.sizeXxxs);
-    state.columns[lowestCol].height += image.height_px + gapSize;
-    state.columns[lowestCol].paintings.push(image);
-    state.columns[lowestCol].imagesCount++;
+    columns[lowestCol].height += image.height_px + gapSize;
+    columns[lowestCol].paintings.push(image);
   });
-  const colHeights = createArrayFromObject(state.columns).map(
-    (col) => col.height
-  );
-  const highestColHeight = Math.max(...colHeights);
-  const highestCol = Object.keys(state.columns).find(
-    (col) => state.columns[col].height === highestColHeight
-  );
-  state.columns[highestCol].isHighest = true;
+  const colHeights = createArrayFromObject(columns).map((col) => col.height);
 
-  createArrayFromObject(state.columns).forEach((column) => {
+  const highestColHeight = Math.max(...colHeights);
+  const highestCol = Object.keys(columns).find(
+    (col) => columns[col].height === highestColHeight
+  );
+
+  columns[highestCol].isHighest = true;
+
+  createArrayFromObject(columns).forEach((column) => {
     const columnFreeSpace = highestColHeight - column.height;
     const minimumFreeSpace = 300;
     const minimumFreeSpaceForLogo =
       parseInt(scss.sizeXxl) + parseInt(scss.sizeXxs);
 
-    if (columnFreeSpace > minimumFreeSpace && state.fillers.length > 0) {
-      const filler = state.fillers.shift();
+    if (columnFreeSpace > minimumFreeSpace && fillers.length > 0) {
+      const filler = fillers.shift();
 
       // If the current column is the logo column, but it doesn't have enough space and we have fillers left in the array,
       // we will use the next filler in the array to fill the column.
       if (
         filler.type === "logo" &&
         columnFreeSpace < minimumFreeSpaceForLogo &&
-        state.fillers.length > 0
+        fillers.length > 0
       ) {
-        const nextFiller = state.fillers.shift();
+        const nextFiller = fillers.shift();
         column.filler = nextFiller.type;
       } else {
         column.filler = filler.type;
       }
     }
   });
+
+  state.columns = columns;
 }
 
 export { populatePageImagesState, populateGalleryPageColumns };

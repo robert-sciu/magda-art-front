@@ -16,5 +16,5 @@ export default configureStore({
     auth: authReducer,
     mailer: mailerReducer,
   },
-  devTools: false,
+  // devTools: false,
 });

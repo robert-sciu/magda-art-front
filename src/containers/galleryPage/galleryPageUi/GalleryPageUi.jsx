@@ -7,7 +7,6 @@ import GalleryColumn from "../../../components/Gallery/galleryColumn/GalleryColu
 import Fillers from "../../../components/Gallery/fillers/fillers.jsx";
 
 import {
-  createImageColumns,
   disableBlur,
   fetchGalleryImages,
   populateColumns,
@@ -78,8 +77,14 @@ export default function GalleryPageUi() {
   useEffect(() => {
     if (Object.keys(columns).length === getNumberOfColumns()) return;
     if (!loadingContent && numberOfColumns && paintings && allFillers) {
-      dispatch(createImageColumns(numberOfColumns));
-      dispatch(populateColumns({ paintings, fillers: [...allFillers] }));
+      // dispatch(createImageColumns(numberOfColumns));
+      dispatch(
+        populateColumns({
+          numberOfColumns,
+          paintings,
+          fillers: [...allFillers],
+        })
+      );
     }
   }, [
     dispatch,
