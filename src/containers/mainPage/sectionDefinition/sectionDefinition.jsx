@@ -39,7 +39,7 @@ const SectionDefinition = {
       showHeader={true}
       header={"Welcome"}
       contentTextAlign={widthType <= 2 ? "center" : "left"}
-      sectionPadding={widthType <= 3 ? "S" : "M"}
+      sectionPadding={widthType <= 3 ? "XS" : "M"}
     />
   ),
   getBio: ({ widthType }) => (
