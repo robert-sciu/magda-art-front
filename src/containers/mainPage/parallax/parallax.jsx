@@ -5,49 +5,36 @@ import { useSelector } from "react-redux";
 
 import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
 
-import { selectSectionInView } from "../../../store/mainPageImagesSlice";
+import { Parallax as ReactParallax, Background } from "react-parallax";
 
 import styles from "./parallax.module.scss";
 
-import { classNameFormatter } from "../../../utilities/utilities";
-
-import { Parallax as ReactParallax, Background } from "react-parallax";
-
-export default function Parallax({ imageSelector, sectionId, children }) {
+export default function Parallax({
+  imageSelector,
+  // sectionId,
+  children,
+}) {
   const parallaxImage = useSelector(imageSelector)?.[0];
-  const isVisible = useSelector((state) =>
-    selectSectionInView(state, sectionId)
-  );
+  // const isVisible = useSelector((state) =>
+  //   selectSectionInView(state, sectionId)
+  // );
   const MemoizedImageDisplay = useMemo(
     () => (
       <ImageDisplay
         img={parallaxImage}
         type={"parallaxImage"}
-        isVisible={isVisible}
+        isVisible={true}
       />
     ),
-    [parallaxImage, isVisible]
+    [parallaxImage]
   );
 
   if (!parallaxImage) return null;
 
   return (
-    <ReactParallax
-      strength={300}
-      className={classNameFormatter({
-        styles,
-        classNames: ["parallax"],
-      })}
-    >
+    <ReactParallax strength={200} className={styles.parallax}>
       <Background>{MemoizedImageDisplay}</Background>
-      <div
-        className={classNameFormatter({
-          styles,
-          classNames: ["header"],
-        })}
-      >
-        {children && children}
-      </div>
+      {children && children}
     </ReactParallax>
   );
 }

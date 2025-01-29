@@ -43,6 +43,7 @@ export default function MainPageUi() {
 
   const dispatch = useDispatch();
 
+  console.log(widthType);
   useEffect(() => {
     if (!bounds) return;
     if (bounds.width < mobileWidth) {
