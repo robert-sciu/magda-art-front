@@ -32,16 +32,21 @@
 
     .closeBtn {
       position: absolute;
-      top: styles.$size-s;
+      top: styles.$size-xxs;
       right: styles.$size-xxs;
+      @include styles.respond-to(small-tablet) {
+        top: styles.$size-tiny;
+        right: styles.$size-tiny;
+      }
     }
 
     .imageContainer {
       // THIS IS SOOOOO IMPORTANT IF YOU HAVE PROBLEM WITH IMAGE OVERFLOWING FLEX AREA
       min-height: 0;
-      max-width: 95%;
+      max-width: 90%;
       display: flex;
-      border: 2px solid styles.$main-gray;
+      // border: 2px solid styles.$main-gray;
+      box-shadow: styles.$inset-soft-shadow;
       position: relative;
     }
 

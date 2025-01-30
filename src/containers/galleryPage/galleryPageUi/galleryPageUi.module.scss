@@ -8,10 +8,33 @@
   img {
     min-height: styles.$size-xxxl;
   }
+  .galleryLogo {
+    position: absolute;
+    top: styles.$size-s;
+    left: styles.$size-s;
+    opacity: 1;
+    transition: styles.$basic-transition-slow;
+
+    @include styles.respond-to(small-tablet) {
+      top: styles.$size-xs;
+      left: styles.$size-xxs;
+    }
+  }
+
+  .hideLogo {
+    opacity: 0.1;
+  }
+  .overlay {
+    opacity: 0;
+    transition: styles.$basic-transition;
+  }
+  .showOverlay {
+    opacity: 1;
+  }
 }
 
 @include styles.respond-to(small-tablet) {
   .galleryPage {
-    padding: styles.$size-xxxxl styles.$size-xxxxs styles.$size-m;
+    padding: styles.$size-giant styles.$size-xxxxs styles.$size-m;
   }
 }

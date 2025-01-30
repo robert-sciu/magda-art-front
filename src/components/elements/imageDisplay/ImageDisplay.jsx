@@ -28,10 +28,13 @@ const ImageDisplay = forwardRef(
       withBorder = false,
       roundEdges = false,
       onLoad = () => {},
+      qualityOverride = false,
     },
     ref
   ) => {
-    const [imgQuality, setImgQuality] = useState("lazy");
+    const [imgQuality, setImgQuality] = useState(
+      qualityOverride ? qualityOverride : "lazy"
+    );
     const [imgLoaded, setImgLoaded] = useState(false);
     const [highQualityLoaded, setHighQualityLoaded] = useState(false);
 
@@ -74,11 +77,11 @@ const ImageDisplay = forwardRef(
       if (isVisible) setImgQuality("desktop");
     }, [device, isVisible, imgQuality, isGalleryOverlay]);
 
-    useEffect(() => {
-      if (!isHeroImage) return;
-      if (imgQuality === "desktop") return;
-      if (isVisible) setImgQuality(device);
-    }, [device, isVisible, imgQuality, isHeroImage]);
+    // useEffect(() => {
+    //   if (!isHeroImage) return;
+    //   if (imgQuality === "desktop") return;
+    //   if (isVisible) setImgQuality(device);
+    // }, [device, isVisible, imgQuality, isHeroImage]);
 
     useEffect(() => {
       if (!isParallaxImage) return;
@@ -115,7 +118,7 @@ const ImageDisplay = forwardRef(
             ></div>
             <img
               className={styles.heroImage}
-              src={img?.[`url_${imgQuality}`]}
+              src={img?.[`url_${device}`]}
               alt={`Painting entitled ${img?.title}`}
               onLoad={handleLoad}
             />

@@ -5,21 +5,23 @@ import { Outlet } from "react-router-dom";
 
 import Footer from "../../components/common/footer/Footer";
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
-import LoadingState from "../../components/loadingState/loadingState";
+// import LoadingState from "../../components/loadingState/loadingState";
 import MobileNav from "../../components/common/mobileNav/MobileNav";
 
 import {
   selectDevice,
   selectFixedNav,
   selectLocation,
+  selectMobileNavIsOpen,
   setDevice,
+  setMobileNavIsOpen,
   setWindowWidth,
 } from "../../store/rootNavSlice";
-import { selectGalleryPageImagesFetchStatus } from "../../store/galleryPageSlice";
+// import { selectGalleryPageImagesFetchStatus } from "../../store/galleryPageSlice";
 import { selectAuthAuthenticationStatus } from "../../store/authSlice";
 import {
   fetchCommonImages,
-  selectPageImagesFetchStatus,
+  // selectPageImagesFetchStatus,
 } from "../../store/mainPageImagesSlice";
 
 import scss from "../../../styles/variables.module.scss";
@@ -40,16 +42,14 @@ export default function RootNav() {
   const [socialsLoaded, setSocialsLoaded] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [showFixedNav, setShowFixedNav] = useState(false);
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
 
   const dispatch = useDispatch();
 
-  const pageImagesLoaded = useSelector(selectPageImagesFetchStatus);
-  const galleryImagesLoaded = useSelector(selectGalleryPageImagesFetchStatus);
   const userIsAuthenticated = useSelector(selectAuthAuthenticationStatus);
   const navIsFixed = useSelector(selectFixedNav);
   const location = useSelector(selectLocation);
   const device = useSelector(selectDevice);
+  const mobileNavOpen = useSelector(selectMobileNavIsOpen);
 
   const navRef = useRef(null);
 
@@ -108,8 +108,12 @@ export default function RootNav() {
 
   function handleOutsideNavClick(e) {
     if (navRef.current && !navRef.current.contains(e.target)) {
-      setMobileNavOpen(false);
+      dispatch(setMobileNavIsOpen(false));
     }
+  }
+
+  function handleMobileNavOpen(state) {
+    dispatch(setMobileNavIsOpen(state));
   }
 
   return (
@@ -136,19 +140,11 @@ export default function RootNav() {
           ref={navRef}
           onSocialsLoaded={setSocialsLoaded}
           mobileNavOpen={mobileNavOpen}
-          onMobileNavOpen={setMobileNavOpen}
+          onMobileNavOpen={handleMobileNavOpen}
         />
       )}
       <Outlet />
       <Footer />
-      <LoadingState
-        inactive={
-          (location === "/" && pageImagesLoaded) ||
-          (location === "/gallery" && galleryImagesLoaded) ||
-          location !== "/" ||
-          location !== "/gallery"
-        }
-      />
     </div>
   );
 }

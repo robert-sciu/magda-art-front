@@ -9,6 +9,7 @@ export const rootNavSlice = createSlice({
       fixedNav: false,
       device: "desktop",
       widthType: undefined,
+      mobileNavOpen: false,
     },
     isLoadingContent: false,
     hasError: false,
@@ -49,6 +50,9 @@ export const rootNavSlice = createSlice({
         state.common.device = "mobile";
       }
     },
+    setMobileNavIsOpen: (state, action) => {
+      state.common.mobileNavOpen = action.payload;
+    },
   },
 });
 
@@ -60,6 +64,9 @@ export const selectWidthType = (state) => state.rootNav.common.widthType;
 
 export const selectAppLoaded = (state) => state.rootNav.appLoaded;
 
+export const selectMobileNavIsOpen = (state) =>
+  state.rootNav.common.mobileNavOpen;
+
 export const {
   setWindowWidth,
   setLocation,
@@ -69,6 +76,7 @@ export const {
   setWidth,
   setAppLoaded,
   setInitialLoadStateDisabled,
+  setMobileNavIsOpen,
 } = rootNavSlice.actions;
 
 export default rootNavSlice.reducer;

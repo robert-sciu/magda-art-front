@@ -32,77 +32,77 @@ export default function NavLinks({
   return (
     <>
       <ul className={styles[navClass]} onClick={handleLinkClick}>
-        <li>
-          {location === "/" ? (
-            <UniversalNavLink
-              isScroll={true}
-              to="hero"
-              label="Home"
-              onLinkClick={handleLinkClick}
-              isMobile={navClass === "mobileNav"}
-            />
-          ) : (
-            <UniversalNavLink
-              isNav={true}
-              to="/"
-              label="Home"
-              isMobile={navClass === "mobileNav"}
-            />
-          )}
-        </li>
-        {(location === "/" || location === "/admin") && (
-          <li>
-            <UniversalNavLink
-              isScroll={true}
-              to="bio"
-              label="Bio"
-              onLinkClick={handleLinkClick}
-              isMobile={navClass === "mobileNav"}
-            />
-          </li>
-        )}
-
-        <li>
+        {/* <li> */}
+        {location === "/" ? (
           <UniversalNavLink
-            isNav={true}
-            to="/gallery"
-            label="Gallery"
+            isScroll={true}
+            to="hero"
+            label="Home"
+            onLinkClick={handleLinkClick}
             isMobile={navClass === "mobileNav"}
           />
-        </li>
+        ) : (
+          <UniversalNavLink
+            isNav={true}
+            to="/"
+            label="Home"
+            isMobile={navClass === "mobileNav"}
+          />
+        )}
+        {/* </li> */}
         {(location === "/" || location === "/admin") && (
-          <li>
-            <UniversalNavLink
-              isScroll={true}
-              to="visualizations"
-              label="Visualizations"
-              onLinkClick={handleLinkClick}
-              isMobile={navClass === "mobileNav"}
-            />
-          </li>
+          // <li>
+          <UniversalNavLink
+            isScroll={true}
+            to="bio"
+            label="Bio"
+            onLinkClick={handleLinkClick}
+            isMobile={navClass === "mobileNav"}
+          />
+          // </li>
+        )}
+
+        {/* <li> */}
+        <UniversalNavLink
+          isNav={true}
+          to="/gallery"
+          label="Gallery"
+          isMobile={navClass === "mobileNav"}
+        />
+        {/* </li> */}
+        {(location === "/" || location === "/admin") && (
+          // <li>
+          <UniversalNavLink
+            isScroll={true}
+            to="visualizations"
+            label="Visualizations"
+            onLinkClick={handleLinkClick}
+            isMobile={navClass === "mobileNav"}
+          />
+          // </li>
         )}
         {(location === "/" || location === "/admin") && (
-          <li>
-            <UniversalNavLink
-              isScroll={true}
-              to="contact"
-              label="Contact"
-              onLinkClick={handleLinkClick}
-              isMobile={navClass === "mobileNav"}
-            />
-          </li>
+          // <li>
+          <UniversalNavLink
+            isScroll={true}
+            to="contact"
+            label="Contact"
+            onLinkClick={handleLinkClick}
+            isMobile={navClass === "mobileNav"}
+          />
+          // </li>
         )}
 
         {showAdmin ? (
-          <li>
-            <UniversalNavLink
-              isNav={true}
-              to="/admin"
-              label="Admin"
-              isMobile={navClass === "mobileNav"}
-            />
-          </li>
-        ) : null}
+          // <li>
+          <UniversalNavLink
+            isNav={true}
+            to="/admin"
+            label="Admin"
+            isMobile={navClass === "mobileNav"}
+          />
+        ) : // </li>
+        null}
       </ul>
       <div className={styles.socials}>
         <SocialIcons />

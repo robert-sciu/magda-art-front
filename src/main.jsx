@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   // <React.StrictMode>
   <Provider store={store}>
     <App />
-    <LoadingState appLoadedSelector={selectAppLoaded} />
+    <LoadingState appLoadedSelector={selectAppLoaded} fullscreen={true} />
   </Provider>
   // </React.StrictMode>
 );

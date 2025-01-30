@@ -8,16 +8,29 @@
   z-index: -50;
   background-color: styles.$text-secondary;
 
+  .mobileContainer {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .desktopHeadingContainer {
+    margin-top: styles.$size-xxl;
+  }
+
   .headingContainer {
     position: absolute;
     top: 50%;
     left: 50%;
+    // background-color: red;
     transform: translateX(-50%) translateY(-50%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 90%;
+
     .heading {
       width: 100%;
       flex: 1;
@@ -28,14 +41,19 @@
       opacity: 1;
       transition: opacity 3s;
       color: styles.$text-primary;
-      margin-top: styles.$size-xxl;
 
       h1 {
         font-family: "Dancing Script", cursive;
         font-weight: 400;
-        font-size: styles.$size-xxxl;
+        font-size: styles.$size-giant;
         text-align: center;
         text-wrap: balance;
+        @include styles.respond-to(large-desktop) {
+          font-size: styles.$size-xxxxl;
+        }
+        @include styles.respond-to(tablet) {
+          font-size: styles.$size-xxxl;
+        }
       }
 
       h2 {

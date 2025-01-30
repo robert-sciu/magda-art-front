@@ -116,11 +116,14 @@ const SectionDefinition = {
       imageDisplayFlexDirection={"row"}
       imageGap={"S"}
       imageDisplayLimitImages={widthType <= 2 ? 4 : undefined}
+      contentPadding={widthType <= 3 ? "S" : "L"}
+      imagePadding={"XS"}
+      sectionGap={widthType <= 2 ? "S" : "L"}
       additionalImagesStripe={widthType <= 2 ? true : false}
       hasCustomContent={true}
       customContent={<ContactForm padding={"XS"} />}
       margins={widthType > 4 ? "L" : "S"}
-      sectionPadding={widthType <= 3 ? "S" : "M"}
+      sectionPadding={widthType <= 3 ? "XS" : "M"}
     />
   ),
   getBioParallax: () => (

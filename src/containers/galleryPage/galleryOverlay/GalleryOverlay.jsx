@@ -31,7 +31,10 @@ export default function GalleryOverlay() {
   }
 
   function handleLoad() {
-    setImageLoaded(true);
+    //it may be redundant but if the user has a fast connection it all happens too fast and looks bad
+    setTimeout(() => {
+      setImageLoaded(true);
+    }, 500);
   }
 
   return (
@@ -44,12 +47,6 @@ export default function GalleryOverlay() {
             isVisible={true}
             onLoad={handleLoad}
           />
-          <LoadingState
-            isVisible={!imageLoaded}
-            fadeOut={imageLoaded}
-            inactive={highQualityLoaded}
-            background={"dark"}
-          />
         </div>
         <div className={styles.textContainer}>
           <h3>{image.title}</h3>
@@ -58,6 +55,12 @@ export default function GalleryOverlay() {
             Width: {image.width_cm} cm / Height: {image.height_cm} cm
           </p>
         </div>
+        <LoadingState
+          isVisible={!imageLoaded}
+          fadeOut={imageLoaded}
+          inactive={highQualityLoaded}
+          background={"dark"}
+        />
         <div className={styles.closeBtn}>
           <Button
             icon={<IoCloseCircleOutline />}

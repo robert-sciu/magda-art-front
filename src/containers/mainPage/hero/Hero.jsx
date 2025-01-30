@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Logo from "../../../components/common/logo/Logo";
 import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
-import LoadingState from "../../../components/loadingState/loadingState";
+// import LoadingState from "../../../components/loadingState/loadingState";
 
 import {
   selectHeroImage,
@@ -29,8 +29,8 @@ import { classNameFormatter } from "../../../utilities/utilities";
 
 export default function Hero() {
   const [showHeading, setShowHeading] = useState(false);
-  const [heroImgLoaded, setHeroImgLoaded] = useState(false);
-  const [heroImgQuality, setHeroImgQuality] = useState("lazy");
+  // const [heroImgLoaded, setHeroImgLoaded] = useState(false);
+  // const [heroImgQuality, setHeroImgQuality] = useState(null);
 
   const contentFetchComplete = useSelector(selectContentFetchComplete);
 
@@ -40,6 +40,7 @@ export default function Hero() {
   const name = useSelector(selectName);
   const device = useSelector(selectDevice);
   const heroImageHQLoaded = useSelector(selectHeroImgLoadedHQ);
+  // console.log(heroImageHQLoaded);
 
   // Set the showHeading state to true after 600ms if the heroImageLoaded state is true
   // This is to prevent the HeroHeading component from being rendered before the background image is loaded
@@ -47,30 +48,43 @@ export default function Hero() {
   useEffect(() => {
     if (showHeading) return;
     dispatch(setSectionInView("hero"));
-    if (heroImgLoaded) {
-      setTimeout(() => {
-        setShowHeading(true);
-      }, 600);
+    if (heroImageHQLoaded) {
+      // setTimeout(() => {
+      setShowHeading(true);
+      // }, 600);
     }
-  }, [heroImgLoaded, dispatch, showHeading]);
+  }, [heroImageHQLoaded, dispatch, showHeading]);
 
-  useEffect(() => {
-    if (heroImageHQLoaded) return;
-    if (heroImgQuality === device) {
-      setTimeout(() => {
-        dispatch(setHeroImgLoadedHQ());
-      }, 1000);
-    }
-  }, [heroImgQuality, device, dispatch, heroImageHQLoaded]);
+  // useEffect(() => {
+  //   if (heroImageHQLoaded) return;
+  //   if (heroImgQuality === device) {
+  //     setTimeout(() => {
+  //       dispatch(setHeroImgLoadedHQ());
+  //     }, 1000);
+  //   }
+  // }, [heroImgQuality, device, dispatch, heroImageHQLoaded]);
 
-  function handleHeroLoad(imgQuality) {
-    setHeroImgLoaded(true);
-    setHeroImgQuality(imgQuality);
+  function handleHeroLoad() {
+    // setHeroImgLoaded(true);
+    // console.log(imgQuality);
+    // setHeroImgQuality(imgQuality);
+    // console.log("loaded");
+    setTimeout(() => {
+      dispatch(setHeroImgLoadedHQ());
+    }, 500);
   }
 
   return (
     <div className={styles.heroSection} name="hero">
-      <div className={styles.headingContainer}>
+      <div
+        className={classNameFormatter({
+          styles,
+          classNames: [
+            "headingContainer",
+            device === "desktop" && "desktopHeadingContainer",
+          ],
+        })}
+      >
         <div
           className={classNameFormatter({
             styles,
@@ -91,9 +105,10 @@ export default function Hero() {
           isVisible={true}
           type={"heroImage"}
           onLoad={handleHeroLoad}
+          qualityOverride={device}
         />
       )}
-      <LoadingState fadeOut={heroImgLoaded} inactive={heroImageHQLoaded} />
+      {/* <LoadingState fadeOut={heroImgLoaded} inactive={heroImageHQLoaded} /> */}
     </div>
   );
 }

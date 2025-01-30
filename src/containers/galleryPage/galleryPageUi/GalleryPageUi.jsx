@@ -21,10 +21,16 @@ import {
   setFillers,
 } from "../../../store/galleryPageSlice.js";
 
-import { selectDevice, setLocation } from "../../../store/rootNavSlice.js";
+import {
+  selectDevice,
+  selectMobileNavIsOpen,
+  setLocation,
+} from "../../../store/rootNavSlice.js";
 
 import scss from "../../../../styles/variables.module.scss";
 import styles from "./galleryPageUi.module.scss";
+import Logo from "../../../components/common/logo/Logo.jsx";
+import { classNameFormatter } from "../../../utilities/utilities.js";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -52,6 +58,7 @@ export default function GalleryPageUi() {
   const device = useSelector(selectDevice);
   const clickedImage = useSelector(selectClickedImage);
   const fillers = useSelector(selectGalleryFillers);
+  const mobileNavIsOpen = useSelector(selectMobileNavIsOpen);
 
   // disables blur after 2 seconds if high quality images are loaded
   // blur is only needed to transition from lazy to high quality for the first time
@@ -147,7 +154,24 @@ export default function GalleryPageUi() {
             />
           );
         })}
-      {clickedImage && <GalleryOverlay isMobile={device === "mobile"} />}
+      {device === "mobile" && (
+        <div
+          className={classNameFormatter({
+            styles,
+            classNames: ["galleryLogo", mobileNavIsOpen && "hideLogo"],
+          })}
+        >
+          <Logo size={"L"} />
+        </div>
+      )}
+      <div
+        className={classNameFormatter({
+          styles,
+          classNames: ["overlay", clickedImage && "showOverlay"],
+        })}
+      >
+        {clickedImage && <GalleryOverlay isMobile={device === "mobile"} />}
+      </div>
     </div>
   );
 }
