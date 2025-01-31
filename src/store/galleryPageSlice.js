@@ -4,12 +4,10 @@ import {
   managePendingState,
   manageFulfilledState,
   manageRejectedState,
-  // createArrayFromObject,
   extractResponseData,
   extractErrorResponse,
 } from "../utilities/index";
 
-// import scss from "../../styles/variables.module.scss";
 import apiClient from "../api/api";
 import { populateGalleryPageColumns } from "../utilities/reduxUtilities";
 
@@ -211,8 +209,6 @@ export const selectGalleryPageColumns = (state) => state.galleryPage.columns;
 export const selectClickedImage = (state) => state.galleryPage.clickedImage;
 export const selectImageToEdit = (state) => state.galleryPage.imageToEdit;
 export const selectAllFillers = (state) => state.galleryPage.fillers;
-
-// export const isLoadingContent = (state) => state.galleryPage.isLoadingContent;
 export const selectGalleryPageImagesLoadingStatus = (state) =>
   state.galleryPage.isLoading;
 export const selectGalleryPageImagesFetchStatus = (state) =>

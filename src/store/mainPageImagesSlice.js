@@ -109,11 +109,8 @@ export const mainPageImagesSlice = createSlice({
       bio: false,
       galleryParallax: false,
       visualizations: false,
-      // contactBig: false,
-      // contactSmall: false,
       contact: false,
     },
-    // heroImgLoaded: false,
     heroImgLoadedHQ: false,
 
     isLoading: false,
@@ -208,10 +205,6 @@ export const selectGalleryParallaxImage = (state) =>
   state.mainPageImages.pageImages.galleryParallax;
 export const selectContactImages = (state) =>
   state.mainPageImages.pageImages.contact;
-// export const selectBigContactImage = (state) =>
-//   state.mainPageImages.pageImages.contactBig;
-// export const selectSmallContactImages = (state) =>
-//   state.mainPageImages.pageImages.contactSmall;
 
 export const selectPageImagesRoleToRefetch = (state) =>
   state.mainPageImages.roleToRefetch;

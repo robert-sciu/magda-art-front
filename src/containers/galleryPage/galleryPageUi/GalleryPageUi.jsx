@@ -13,10 +13,10 @@ import {
   selectClickedImage,
   selectGalleryFillers,
   selectGalleryPageColumns,
-  // selectGalleryPageImages,
   selectGalleryPageImagesFetchStatus,
   selectGalleryPageImagesLoadingStatus,
   selectHighQualityLoadStatus,
+  selectLazyLoadStatus,
   selectUseBlurStatus,
   setFillers,
 } from "../../../store/galleryPageSlice.js";
@@ -31,6 +31,8 @@ import scss from "../../../../styles/variables.module.scss";
 import styles from "./galleryPageUi.module.scss";
 import Logo from "../../../components/common/logo/Logo.jsx";
 import { classNameFormatter } from "../../../utilities/utilities.js";
+import LoadingState from "../../../components/loadingState/LoadingState.jsx";
+import { useScrollLock } from "../../../utilities/customHooks.jsx";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -42,16 +44,16 @@ const tabletWidth = parseInt(scss.tabletWidth);
  */
 
 export default function GalleryPageUi() {
+  const [scrollDisabled, setScrollDisabled] = useState(true);
+  const [hideLoadingState, setHideLoadingState] = useState(false);
   const [galleryColumns, setGalleryColumns] = useState(null);
   const [numberOfColumns, setNumberOfColumns] = useState(null);
   const [columnsReady, setColumnsReady] = useState(false);
-  // const [allFillers, setAllFillers] = useState([]);
-
   const dispatch = useDispatch();
 
-  // const paintings = useSelector(selectGalleryPageImages);
   const loadingContent = useSelector(selectGalleryPageImagesLoadingStatus);
   const columns = useSelector(selectGalleryPageColumns);
+  const galleryLazyLoaded = useSelector(selectLazyLoadStatus);
   const highQualityLoaded = useSelector(selectHighQualityLoadStatus);
   const fetchComplete = useSelector(selectGalleryPageImagesFetchStatus);
   const blurIsEnabled = useSelector(selectUseBlurStatus);
@@ -62,12 +64,31 @@ export default function GalleryPageUi() {
 
   // disables blur after 2 seconds if high quality images are loaded
   // blur is only needed to transition from lazy to high quality for the first time
+
+  useScrollLock(scrollDisabled);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    if (!galleryLazyLoaded) return;
+    const timeoutId = setTimeout(() => {
+      setScrollDisabled(false);
+      setHideLoadingState(true);
+    }, 600);
+
+    return () => clearTimeout(timeoutId);
+  }, [galleryLazyLoaded]);
+
   useEffect(() => {
     if (!blurIsEnabled) return;
     if (highQualityLoaded) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         dispatch(disableBlur());
       }, 2000);
+
+      return () => clearTimeout(timeoutId);
     }
   }, [dispatch, highQualityLoaded, blurIsEnabled]);
 
@@ -87,7 +108,6 @@ export default function GalleryPageUi() {
   useEffect(() => {
     if (Object.keys(columns).length === getNumberOfColumns()) return;
     if (!loadingContent && numberOfColumns && fetchComplete && fillers) {
-      // dispatch(createImageColumns(numberOfColumns));
       dispatch(
         populateColumns({
           numberOfColumns,
@@ -101,7 +121,6 @@ export default function GalleryPageUi() {
     fetchComplete,
     columns,
     fillers,
-    // allFillers,
   ]);
 
   useEffect(() => {
@@ -172,6 +191,7 @@ export default function GalleryPageUi() {
       >
         {clickedImage && <GalleryOverlay isMobile={device === "mobile"} />}
       </div>
+      <LoadingState fadeOut={hideLoadingState} fullscreen={true} />
     </div>
   );
 }

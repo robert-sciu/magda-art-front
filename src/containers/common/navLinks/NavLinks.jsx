@@ -7,7 +7,6 @@ import { selectLocation, setLocation } from "../../../store/rootNavSlice";
 
 import styles from "./navLinks.module.scss";
 import UniversalNavLink from "../../../components/elements/universalNavLink/UniversalNavLink";
-// import Logo from "../logo/Logo";
 
 export default function NavLinks({
   showAdmin,
@@ -19,9 +18,7 @@ export default function NavLinks({
 
   function handleLinkClick(e) {
     if (navClass === "mobileNav") {
-      setTimeout(() => {
-        dispatch(setLocation(window.location.pathname));
-      }, 500);
+      dispatch(setLocation(window.location.pathname));
     } else if (navClass === "desktopNav") {
       dispatch(setLocation(window.location.pathname));
     }
@@ -32,7 +29,6 @@ export default function NavLinks({
   return (
     <>
       <ul className={styles[navClass]} onClick={handleLinkClick}>
-        {/* <li> */}
         {location === "/" ? (
           <UniversalNavLink
             isScroll={true}
@@ -49,9 +45,8 @@ export default function NavLinks({
             isMobile={navClass === "mobileNav"}
           />
         )}
-        {/* </li> */}
+
         {(location === "/" || location === "/admin") && (
-          // <li>
           <UniversalNavLink
             isScroll={true}
             to="bio"
@@ -59,19 +54,16 @@ export default function NavLinks({
             onLinkClick={handleLinkClick}
             isMobile={navClass === "mobileNav"}
           />
-          // </li>
         )}
 
-        {/* <li> */}
         <UniversalNavLink
           isNav={true}
           to="/gallery"
           label="Gallery"
           isMobile={navClass === "mobileNav"}
         />
-        {/* </li> */}
+
         {(location === "/" || location === "/admin") && (
-          // <li>
           <UniversalNavLink
             isScroll={true}
             to="visualizations"
@@ -79,10 +71,8 @@ export default function NavLinks({
             onLinkClick={handleLinkClick}
             isMobile={navClass === "mobileNav"}
           />
-          // </li>
         )}
         {(location === "/" || location === "/admin") && (
-          // <li>
           <UniversalNavLink
             isScroll={true}
             to="contact"
@@ -90,19 +80,16 @@ export default function NavLinks({
             onLinkClick={handleLinkClick}
             isMobile={navClass === "mobileNav"}
           />
-          // </li>
         )}
 
         {showAdmin ? (
-          // <li>
           <UniversalNavLink
             isNav={true}
             to="/admin"
             label="Admin"
             isMobile={navClass === "mobileNav"}
           />
-        ) : // </li>
-        null}
+        ) : null}
       </ul>
       <div className={styles.socials}>
         <SocialIcons />

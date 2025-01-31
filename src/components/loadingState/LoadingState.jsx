@@ -32,9 +32,13 @@ export default function LoadingState({
 
   useEffect(() => {
     if (fadeOut || appLoaded) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setDisplayNone(true);
       }, 800);
+
+      return () => {
+        clearTimeout(timeoutId);
+      };
     }
   });
 
@@ -56,7 +60,6 @@ export default function LoadingState({
           (fadeOut || appLoaded) && "fadeOut",
           displayNone && "displayNone",
           inactive && !fadeOut && "displayNone",
-          // initialLoadStateDisabled && "displayNone",
           background === "light" && "backgroundLight",
           background === "dark" && "backgroundDark",
         ],

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../../../components/elements/button/Button";
 import InputElement from "../../../components/elements/inputElement/InputElement";
-import ModalWindowMain from "../../modalWindow/modalWindowMain";
+import ModalWindowMain from "../../modalWindow/ModalWindowMain";
 
 import {
   loginUser,
@@ -62,9 +62,10 @@ export default function Login() {
     if (loggedIn) {
       navigate("/admin");
     } else {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setShowLogin(true);
       }, 300);
+      return () => clearTimeout(timeoutId);
     }
   }, [loggedIn, tokenVerificationComplete, token, navigate, dispatch]);
 

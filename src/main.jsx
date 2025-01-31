@@ -8,7 +8,7 @@ import store from "./store/store.js";
 import App from "./App.jsx";
 
 import "./index.scss";
-import LoadingState from "./components/loadingState/loadingState.jsx";
+import LoadingState from "./components/loadingState/LoadingState.jsx";
 import { selectAppLoaded } from "./store/rootNavSlice.js";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 

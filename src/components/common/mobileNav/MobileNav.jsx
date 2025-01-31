@@ -62,6 +62,5 @@ MobileNav.propTypes = {
   onMobileNavOpen: PropTypes.func,
 };
 
-// MobileNav.displayName = "MobileNav";
 
 export default MobileNav;

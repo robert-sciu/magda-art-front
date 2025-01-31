@@ -128,7 +128,6 @@ export default function PageImagesUploadManager() {
         maxNumberOfImages={pageImagesQuantityLimits.bio}
         onSubmit={handleSubmit}
         info={uploadInfo.smallSquareImages}
-        // placementsNeeded={true}
         onDelete={handleDelete}
       />
       <PageImagesUploadForm
@@ -145,7 +144,6 @@ export default function PageImagesUploadManager() {
         maxNumberOfImages={pageImagesQuantityLimits.visualizations}
         onSubmit={handleSubmit}
         info={uploadInfo.visualizationSquareImages}
-        // placementsNeeded={true}
         onDelete={handleDelete}
       />
     </div>

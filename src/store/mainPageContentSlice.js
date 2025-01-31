@@ -8,8 +8,6 @@ import {
 } from "../utilities";
 import apiClient from "../api/api";
 
-// import he from "he";
-
 const api_url = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchContent = createAsyncThunk(

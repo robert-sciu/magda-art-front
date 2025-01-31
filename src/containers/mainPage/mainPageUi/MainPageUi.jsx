@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -6,6 +6,7 @@ import Hero from "../hero/Hero";
 
 import {
   fetchPageImages,
+  selectHeroImgLoadedHQ,
   setSectionInView,
 } from "../../../store/mainPageImagesSlice";
 import {
@@ -25,6 +26,8 @@ import styles from "./mainPageUi.module.scss";
 
 import useMeasure from "react-use-measure";
 import SectionDefinition from "../sectionDefinition/sectionDefinition";
+import LoadingState from "../../../components/loadingState/LoadingState";
+import { useScrollLock } from "../../../utilities/customHooks";
 
 const largeDesktopWidth = parseInt(scss.largeDesktopWidth);
 const mediumDesktopWidth = parseInt(scss.mediumDesktopWidth);
@@ -32,16 +35,23 @@ const smallDesktopWidth = parseInt(scss.smallDesktopWidth);
 const tabletWidth = parseInt(scss.tabletWidth);
 const mobileWidth = parseInt(scss.mobileWidth);
 export default function MainPageUi() {
+  const [scrollDisabled, setScrollDisabled] = useState(true);
+  const [hideLoadingState, setHideLoadingState] = useState(false);
   const triggerRef = useRef(null);
-  const sectionRefs = useRef([]); // Array of refs for sections
+  const sectionRefs = useRef([]);
 
   const widthType = useSelector(selectWidthType);
   const visualizations = useSelector(selectVisualizationsTexts);
   const contentFetchComplete = useSelector(selectContentFetchComplete);
+  const heroImageHQLoaded = useSelector(selectHeroImgLoadedHQ);
 
   const [refMeasure, bounds] = useMeasure();
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     if (!bounds) return;
@@ -71,6 +81,18 @@ export default function MainPageUi() {
       sectionRefs.current.push(el);
     }
   };
+
+  useScrollLock(scrollDisabled);
+
+  useEffect(() => {
+    if (!heroImageHQLoaded) return;
+    const timeoutId = setTimeout(() => {
+      setScrollDisabled(false);
+      setHideLoadingState(true);
+    }, 600);
+
+    return () => clearTimeout(timeoutId);
+  }, [heroImageHQLoaded]);
 
   useEffect(() => {
     dispatch(setLocation(window.location.pathname));
@@ -162,6 +184,7 @@ export default function MainPageUi() {
       </div>
       <div ref={addToRefs} id="contact" />
       <div>{SectionDefinition.getContact({ widthType })}</div>
+      <LoadingState fadeOut={hideLoadingState} fullscreen={true} />
     </div>
   );
 }

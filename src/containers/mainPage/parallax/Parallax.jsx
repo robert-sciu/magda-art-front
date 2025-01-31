@@ -11,13 +11,9 @@ import styles from "./parallax.module.scss";
 
 export default function Parallax({
   imageSelector,
-  // sectionId,
   children,
 }) {
   const parallaxImage = useSelector(imageSelector)?.[0];
-  // const isVisible = useSelector((state) =>
-  //   selectSectionInView(state, sectionId)
-  // );
   const MemoizedImageDisplay = useMemo(
     () => (
       <ImageDisplay

@@ -5,9 +5,9 @@ import Draggable from "react-draggable";
 import { useDispatch } from "react-redux";
 import { IoMove, IoClose } from "react-icons/io5";
 
-import ErrorWindow from "../../components/modalWindow/errorWindow/errorWindow";
-import ContactWindow from "../../components/modalWindow/contactModal/contactWindow";
-import InfoModal from "../../components/modalWindow/infoModal/infoModal";
+import ErrorWindow from "../../components/modalWindow/errorWindow/ErrorWindow";
+import ContactWindow from "../../components/modalWindow/contactModal/ContactWindow";
+import InfoModal from "../../components/modalWindow/infoModal/InfoModal";
 
 import styles from "./modalWindowMain.module.scss";
 

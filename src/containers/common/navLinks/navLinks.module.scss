@@ -10,34 +10,8 @@
   padding-inline-start: 0;
   font-size: styles.$size-l;
 
-  // .navLink {
-  //   // color: styles.$main-black;
-
-  //   transition: styles.$link-transition;
-  //   text-decoration: none;
-  //   cursor: pointer;
-  // }
-
-  // .navLink:hover {
-  //   color: styles.$main-gray;
-  // }
-
-  // .navLinkActive {
-  //   color: styles.$main-gray;
-  //   text-decoration: none;
-  // }
-
-  // .admin {
-  //   color: styles.$action-green;
-  // }
-
-  @include styles.respond-to(medium-desktop) {
-    font-size: styles.$size-m;
-    gap: calc(styles.$size-xl * 0.8);
-  }
   @include styles.respond-to(small-desktop) {
-    gap: styles.$size-m;
-    font-size: styles.$size-s;
+    font-size: styles.$size-m;
   }
 }
 
@@ -55,25 +29,4 @@
   padding-left: 0;
   font-size: styles.$size-m;
   width: 100%;
-
-  // .navLink {
-  //   cursor: default;
-  //   color: styles.$main-black;
-  //   text-decoration: none;
-  // }
-
-  // .navLinkActive {
-  //   cursor: default;
-  //   color: styles.$main-black;
-  //   text-decoration: none;
-  // }
-
-  @include styles.respond-to(mobile) {
-    gap: styles.$size-l;
-    font-size: styles.$size-m;
-  }
-
-  // @include styles.respond-to(small-mobile) {
-  //   font-size: styles.$size-xs;
-  // }
 }

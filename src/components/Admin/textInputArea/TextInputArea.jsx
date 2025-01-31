@@ -40,11 +40,12 @@ export default function TextInputArea({
       setBtnIsLoading(true);
     }
     if (btnIsLoading && !isLoading) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setBtnIsLoading(false);
         setShowEdit(false);
       }, 1000); // this timeout may be unnecessary but from the user's experience perspective,
       // it looks better to wait a second than to just see the flash of the button spinner
+      return () => clearTimeout(timeoutId);
     }
   }, [isLoading, showEdit, btnIsLoading]);
 

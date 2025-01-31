@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 import PropTypes from "prop-types";
 
-import ImageDisplayManager from "../imageDisplayManager.jsx/imageDisplayManager";
+import ImageDisplayManager from "../imageDisplayManager.jsx/ImageDisplayManager";
 import SocialIcons from "../../../components/common/socialIcons/SocialIcons";
 
 import styles from "./pageSection.module.scss";

@@ -36,10 +36,6 @@
     filter: blur(styles.$size-s);
   }
 
-  // @include respond-to(medium-desktop) {
-  //   width: styles.$size-xl;
-  //   height: styles.$size-xl;
-  // }
 }
 
 @keyframes rotateGlow {
@@ -60,26 +56,6 @@
     border-radius: styles.$border-radius-s;
     box-shadow: 2px 0px 10px styles.$white-shadow;
   }
-
-  // @include respond-to(medium-desktop) {
-  //   width: styles.$size-giant;
-  //   height: styles.$size-giant;
-  // }
-
-  // @include respond-to(small-desktop) {
-  //   width: styles.$size-xxxxl;
-  //   height: styles.$size-xxxxl;
-  // }
-
-  // @include respond-to(small-tablet) {
-  //   width: styles.$size-xxxl;
-  //   height: styles.$size-xxxl;
-  // }
-
-  // @include respond-to(mobile) {
-  //   width: styles.$size-xxl;
-  //   height: styles.$size-xxl;
-  // }
 }
 
 .sizeL {

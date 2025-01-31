@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 import Button from "../../../components/elements/button/Button";
-import LoadingState from "../../../components/loadingState/loadingState";
+import LoadingState from "../../../components/loadingState/LoadingState";
 import ImageDisplay from "../../../components/elements/imageDisplay/ImageDisplay";
 
 import {
@@ -17,10 +17,19 @@ import styles from "./galleryOverlay.module.scss";
 
 export default function GalleryOverlay() {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const highQualityLoaded = useSelector(selectHighQualityLoadStatus);
+  const [showImage, setShowImage] = useState(false);
   const image = useSelector(selectClickedImage);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!imageLoaded || showImage) return;
+    const timeoutId = setTimeout(() => {
+      setShowImage(true);
+    }, 300);
+
+    return () => clearTimeout(timeoutId);
+  });
 
   function closeOverlay() {
     dispatch(resetClickedImage());
@@ -32,9 +41,8 @@ export default function GalleryOverlay() {
 
   function handleLoad() {
     //it may be redundant but if the user has a fast connection it all happens too fast and looks bad
-    setTimeout(() => {
-      setImageLoaded(true);
-    }, 500);
+
+    setImageLoaded(true);
   }
 
   return (
@@ -55,12 +63,7 @@ export default function GalleryOverlay() {
             Width: {image.width_cm} cm / Height: {image.height_cm} cm
           </p>
         </div>
-        <LoadingState
-          isVisible={!imageLoaded}
-          fadeOut={imageLoaded}
-          inactive={highQualityLoaded}
-          background={"dark"}
-        />
+        <LoadingState fadeOut={imageLoaded} background={"dark"} />
         <div className={styles.closeBtn}>
           <Button
             icon={<IoCloseCircleOutline />}

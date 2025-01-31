@@ -22,3 +22,28 @@
   height: 100%;
   background-color: #9e9e9e;
 }
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; /* for horizontal scrollbar */
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #474747;
+}
+
+/* Scrollbar thumb (the draggable part) */
+::-webkit-scrollbar-thumb {
+  background: #aaaaaa;
+}
+
+/* On hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}

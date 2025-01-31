@@ -77,12 +77,6 @@ const ImageDisplay = forwardRef(
       if (isVisible) setImgQuality("desktop");
     }, [device, isVisible, imgQuality, isGalleryOverlay]);
 
-    // useEffect(() => {
-    //   if (!isHeroImage) return;
-    //   if (imgQuality === "desktop") return;
-    //   if (isVisible) setImgQuality(device);
-    // }, [device, isVisible, imgQuality, isHeroImage]);
-
     useEffect(() => {
       if (!isParallaxImage) return;
       if (imgQuality === "desktop") return;

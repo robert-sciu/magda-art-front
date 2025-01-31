@@ -1,8 +1,8 @@
-import BioParallaxContent from "../../../components/MainPage/bioParallax/bioParallaxContent";
-import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/galleryParallaxContent";
+import BioParallaxContent from "../../../components/MainPage/bioParallax/BioParallaxContent";
+import GalleryParallaxContent from "../../../components/MainPage/galleryParallax/GalleryParallaxContent";
 import ContactForm from "../../common/contactForm/ContactForm";
-import PageSection from "../pageSection/pageSection";
-import Parallax from "../parallax/parallax";
+import PageSection from "../pageSection/PageSection";
+import Parallax from "../parallax/Parallax";
 
 import {
   selectBio,

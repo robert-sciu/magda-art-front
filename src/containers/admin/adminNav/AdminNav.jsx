@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import NavLinkBtn from "../../../components/elements/navLinkBtn/navLinkBtn";
+import NavLinkBtn from "../../../components/elements/navLinkBtn/NavLinkBtn";
 
 import {
   selectAuthAuthenticationStatus,

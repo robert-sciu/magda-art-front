@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import GalleryImagesUploadForm from "../galleryImagesUploadForm/GalleryImagesUploadForm";
-import ModalWindowMain from "../../modalWindow/modalWindowMain";
+import ModalWindowMain from "../../modalWindow/ModalWindowMain";
 
 import {
   clearGalleryErrors,

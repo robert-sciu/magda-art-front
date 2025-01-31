@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-import LoadingState from "../../loadingState/loadingState";
+import LoadingState from "../../loadingState/LoadingState";
 
 import styles from "./button.module.scss";
 

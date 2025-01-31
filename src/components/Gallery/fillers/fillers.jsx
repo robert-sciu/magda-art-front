@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import SocialIcons from "../../common/socialIcons/SocialIcons";
-import ModalWindowMain from "../../../containers/modalWindow/modalWindowMain";
+import ModalWindowMain from "../../../containers/modalWindow/ModalWindowMain";
 import ImageDisplay from "../../elements/imageDisplay/ImageDisplay";
 
 import { selectLogoImage } from "../../../store/mainPageImagesSlice";

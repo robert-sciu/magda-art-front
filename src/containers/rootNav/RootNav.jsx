@@ -5,7 +5,6 @@ import { Outlet } from "react-router-dom";
 
 import Footer from "../../components/common/footer/Footer";
 import DesktopNav from "../../components/common/desktopNav/DesktopNav";
-// import LoadingState from "../../components/loadingState/loadingState";
 import MobileNav from "../../components/common/mobileNav/MobileNav";
 
 import {
@@ -17,12 +16,8 @@ import {
   setMobileNavIsOpen,
   setWindowWidth,
 } from "../../store/rootNavSlice";
-// import { selectGalleryPageImagesFetchStatus } from "../../store/galleryPageSlice";
 import { selectAuthAuthenticationStatus } from "../../store/authSlice";
-import {
-  fetchCommonImages,
-  // selectPageImagesFetchStatus,
-} from "../../store/mainPageImagesSlice";
+import { fetchCommonImages } from "../../store/mainPageImagesSlice";
 
 import scss from "../../../styles/variables.module.scss";
 import styles from "./rootNav.module.scss";
@@ -76,9 +71,11 @@ export default function RootNav() {
 
   useEffect(() => {
     if (navIsFixed) {
-      setTimeout(() => {
+      const timeoutId = setTimeout(() => {
         setShowFixedNav(true);
       }, 100);
+
+      return () => clearTimeout(timeoutId);
     } else {
       setShowFixedNav(false);
     }
